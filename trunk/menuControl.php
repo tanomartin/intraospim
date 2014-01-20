@@ -54,7 +54,7 @@ $row=mysql_fetch_array($result);
 <table width="100%" border="0" align="center">
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center" class="Estilo18">ULTIMA ACTUALIZACI&Oacute;N - 25/10/2013 
+    <td colspan="3" align="right" class="Estilo3"><div align="center" class="Estilo18">ULTIMA ACTUALIZACI&Oacute;N - 20/01/2014
 	<?php if ($_SESSION['delcod'] == "3200") { 
 		print ("<a href='controlActua.php'>(control Actualizaci&oacute;n) </a>");
     } 

@@ -74,7 +74,7 @@ $row=mysql_fetch_array($result);
     <td height="33">&nbsp;</td>
     <td width="72%" align="right" class="Estilo3"><div align="center" class="Estilo13"><? 
 	if ($_SESSION['aut'] != "pepe") {
-		print("ÚLTIMA ACTUALIZACIÓN - 25/10/2013"); 
+		print("ÚLTIMA ACTUALIZACIÓN - 20/01/2014"); 
 	}
 	?></div></td>
     <td>&nbsp;</td>
