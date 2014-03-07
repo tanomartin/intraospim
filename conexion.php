@@ -1,7 +1,7 @@
 <?
 $host = "localhost";
-$user = "uv0471";
-$pass = "bsdf5762";
+$user = "XXXX";
+$pass = "XXXX";
 
 //Ejecucion de la sentencia SQL
 
