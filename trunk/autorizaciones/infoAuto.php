@@ -1,7 +1,7 @@
-<? session_save_path("../sesiones");
+<?php session_save_path("../sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: ../logintranet.php?err=2");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,41 +28,39 @@ body {
 </style>
 </head>
 
-<?
+<?php
 include ("lib/funciones.php");
 include ("../conexion.php");
-
+$nrosolicitud = $_GET['nrosolicitud'];
 $sql = "select * from autorizacionprocesada where delcod =".$_SESSION['delcod']." and nrosolicitud = $nrosolicitud";
-$result = mysql_db_query("uv0471_intranet",$sql,$db); 
+$result = mysql_query($sql,$db); 
 $row=mysql_fetch_array($result)
 ?>
 
 <body>
-<table width="923" border="0">
+<table width="739" border="0">
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
     <td colspan="2" scope="row"><div align="left">
       <p class="Estilo3">Solicitud N&uacute;mero <?php echo $nrosolicitud ?></p>
     </div></td>
-    <td width="500"><div align="right">
-      <table width="328" height="60" border="2">
-        <tr>
-          <td height="25"><div align="center"><strong>Fecha Solicitud</strong> </div></td>
-          <td><div align="center"><?php echo  invertirFecha($row['fechasolicitud']);?></div></td>
-        </tr>
-        <tr>
-          <td width="107" height="25"><div align="center"><strong>Status</strong> </div></td>
-          <td width="203"><div align="center"><?php echo estado($row['statusverificacion'],$row['statusautorizacion']) ?></div></td>
-        </tr>
-      </table>
-    </div>
+    <td width="328"><table width="328" height="60" border="2">
+      <tr>
+        <td height="25"><div align="center"><strong>Fecha Solicitud</strong> </div></td>
+        <td><div align="center"><?php echo  invertirFecha($row['fechasolicitud']);?></div></td>
+      </tr>
+      <tr>
+        <td width="107" height="25"><div align="center"><strong>Status</strong> </div></td>
+        <td width="203"><div align="center"><?php echo estado($row['statusverificacion'],$row['statusautorizacion']) ?></div></td>
+      </tr>
+    </table>
       <div align="right"></div></td>
   </tr>
 </table>
-<table width="922" border="0">
+<table width="739" border="0">
   <tr>
-    <td height="50"><h3 class="Estilo4">Informaci&oacute;n del Beneficiario </h3></td>
-    <td width="500"><h3 class="Estilo4">Informaci&oacute;n Solicitud </h3></td>
+    <td width="365" height="50"><h3 class="Estilo4">Informaci&oacute;n del Beneficiario </h3></td>
+    <td width="364"><h3 class="Estilo4">Informaci&oacute;n Solicitud </h3></td>
   </tr>
   <tr>
     <td><p><strong>N&uacute;mero de Afiliado:</strong> <?php echo $row['nrafil']?></p>
@@ -85,18 +83,12 @@ $row=mysql_fetch_array($result)
 			  		echo "Pendiente";
 			  } 
 		?>
-    - <?php echo $row['rechazoautorizacion'] ?></p></td>
-  </tr>
-  <tr>
-    <td width="412"><p>&nbsp;</p>    </td>
-    <td><div align="right">
-      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-    </div>      </td>
+    - <?php echo $row['rechazoautorizacion'] ?></p>
+      <p>&nbsp;</p>
+      <p>
+        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+      </p></td>
   </tr>
 </table>
-<h3>&nbsp;</h3>
-<h3>&nbsp;</h3>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 </body>
 </html>

@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,22 +28,24 @@ body {
 </style>
 </head>
 
-<?
+<?php
 include ("conexion.php");
+$empcod = $_GET['empcod'];
+$delcod = $_SESSION['delcod'];
 $sql1 = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
-$result1 = mysql_db_query("uv0471_intranet",$sql1,$db); 
+$result1 = mysql_query($sql1,$db); 
 $row1 = mysql_fetch_array($result1);
 $nrocuit = $row1['nrcuit'];
 
 
 $sql = "select * from titular where delcod = $delcod and empcod = '$empcod' order by '$orden'";
-$result = mysql_db_query("uv0471_intranet",$sql,$db); 
+$result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 ?>
 
 
-<body onUnload="logout.php">
-<form id="form1" name="form1" method="post" action="titulares.php?empcod=<? echo  $row1["empcod"]; ?>">
+<body>
+<form id="form1" name="form1" method="post" action="titulares.php?empcod=<?php echo $row1["empcod"]; ?>">
 <table width="1025" border="0">
   <tr>
     <td scope="row"><div align="center"><span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></div></td>
@@ -51,14 +53,10 @@ $row = mysql_fetch_array($result);
       <p class="Estilo3">NOMINA DE TITULARES </p>
     </div></td>
     <td width="635"><div align="right" class="Estilo3"><font size="2" face="Papyrus">
-      <?
- 					print ($row1['nombre']);
-	 ?>
+      <?php print ($row1['nombre']);?>
     </font></div></td>
   </tr>
-  <tr>
-    <td colspan="4" scope="row"><div align="right" class="Estilo4">O.S.P.I.M.</div></td>
-  </tr>
+  
   <tr>
     <td width="79"><strong>Seleccione el orden: </strong></td>
     <td width="93"><select name="orden" id="orden">
@@ -70,23 +68,21 @@ $row = mysql_fetch_array($result);
     <td width="200"><label><b><font face="Verdana" size="2">
       <input name="back2" type="submit" id="back2" value="LISTAR" />
     </font></b> </label></td>
-    <td scope="row">&nbsp;</td>
+    <td scope="row"><div align="right"><span class="Estilo4">O.S.P.I.M.</span></div></td>
   </tr>
 </table>
-
 </form>
-<form id="form2" name="form2" method="post" action="empresas.php">
+
 <table width="1026" border="0">
     <tr>
       <th width="536" scope="row"><div align="left"><b><font face="Verdana" size="2">
-        <input name="back" type="submit" id="back" value="VOLVER" />
+        <input name="volvar" value="Volver" type="button" onclick="location.href='empresas.php'" />
      </font></b></div></th>
       <th width="480" scope="row"><div align="right">
         <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
       </div></th>
     </tr>
-  </table>
-</form>
+</table>
 
 <table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
   <tr>
@@ -97,25 +93,22 @@ $row = mysql_fetch_array($result);
     <td width="118"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
 	<td width="180"><div align="center"><strong><font size="1" face="Verdana">Aportes Individuales </font></strong></div>	  <div align="center"></div></td>
   </tr>
-  <p>
-<?
+<?php
 while ($row=mysql_fetch_array($result)) {
-$des=$row['tipdoc'];
-$sql2 = "select * from tipodocu where codigo = '$des'";
-$result2 = mysql_db_query("uv0471_intranet",$sql2,$db); 
-$row2 = mysql_fetch_array($result2);
-
-print ("<td width=124><div align=center><font face=Verdana size=1>".$row['nrafil']."</font></div></td>");
-print ("<td width=187><font face=Verdana size=1><b>".$row['nombre']."</b></font></td>");
-print ("<td width=170><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
-print ("<td width=208><div align=center><font face=Verdana size=1>".$row2['descri']."-".$row['nrodoc']."</font></div></td>");
-print ("<td width=118><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row['nrcuil']."&nrafil=".$row['nrafil']."&empcod=".$empcod."'))>".FICHA."</font></div></td>");
-print ("<td width=180><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('aporteIndividual.php?cuil=".$row['nrcuil']."'))>".APORTES."</font></div></td>");
-print ("</tr>");
+	$des=$row['tipdoc'];
+	$sql2 = "select * from tipodocu where codigo = '$des'";
+	$result2 = mysql_query($sql2,$db); 
+	$row2 = mysql_fetch_array($result2);
+	
+	print ("<td width=124><div align=center><font face=Verdana size=1>".$row['nrafil']."</font></div></td>");
+	print ("<td width=187><font face=Verdana size=1><b>".$row['nombre']."</b></font></td>");
+	print ("<td width=170><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
+	print ("<td width=208><div align=center><font face=Verdana size=1>".$row2['descri']."-".$row['nrodoc']."</font></div></td>");
+	print ("<td width=118><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row['nrcuil']."&nrafil=".$row['nrafil']."&empcod=".$empcod."'))>".FICHA."</font></div></td>");
+	print ("<td width=180><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('aporteIndividual.php?cuil=".$row['nrcuil']."'))>".APORTES."</font></div></td>");
+	print ("</tr>");
 }
 ?>
-</p>
 </table>
-</form>
 </body>
 </html>
