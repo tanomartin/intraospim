@@ -204,7 +204,7 @@ if($delcod == 0 || $delcod == NULL)
 			$cabecera .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 			$cabecera .= "From: ".$nombre." <$emailRepli>" . "\r\n";
 			
-			//mail($mails,$asunto,$cuerpo,$cabecera); 
+			mail($mails,$asunto,$cuerpo,$cabecera); 
 			
 		} catch (PDOException $e) {
 			echo $e->getMessage();
