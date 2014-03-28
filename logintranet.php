@@ -16,6 +16,10 @@
 	font-weight: bold;
 	color: #000000;
 }
+.Estilo4 {
+	color: #FF0000;
+	font-weight: bold;
+}
 body {
 	background-color: #CCCCCC;
 }
@@ -26,6 +30,19 @@ body {
 <body>
 <h3 align="center" class="Estilo3">SISTEMA DE CONSULTA PARA DELEGACIONES</h3>
 <p align="center"><img src="ospimgris.jpg" width="308" height="350" /></p>
+<p align="center">
+<?php 
+	if (isset($_GET['err'])) {
+		$error = $_GET['err'];
+		if ($error == 1) {
+			print("<p align='center' class='Estilo4'>DATOS INCORRECTOS</p>");
+		}
+		if ($error == 2) {
+			print("<p align='center' class='Estilo4'>SESION CADUCADA VUELVA A INGRESAR</p>");
+		}
+	}
+?>
+</p>
 <form method="POST" action="verificaID.php">
   <table width="100%" border="0">
   <tr>

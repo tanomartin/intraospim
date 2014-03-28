@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 	
 $habilitados = array("1002","1102","1103","1106","1107","1108","1109","1701","1703","2603","2604","1301","1302","2001","2501","2602","2101","2102","2103","1401","1402","1402","1501","1601","1110","1202","1901","2201","2301","1802");
 $estaHabilitado = false;
@@ -56,14 +56,11 @@ body {
 
 <body onUnload="logout.php">
 
-<form id="form1" name="form1" method="post" action="logout.php">
-
-<?
-
+<?php
 include ("conexion.php");
 $sql = "select * from usuarios where delcod = $delcod";
-$result = mysql_db_query("uv0471_intranet",$sql,$db); 
-$row=mysql_fetch_array($result); 
+$result = mysql_query($sql,$db); 
+$row = mysql_fetch_array($result); 
 ?>
 
 
@@ -72,7 +69,8 @@ $row=mysql_fetch_array($result);
 <table width="100%" border="0" align="center">
   <tr>
     <td height="33">&nbsp;</td>
-    <td width="72%" align="right" class="Estilo3"><div align="center" class="Estilo13"><? 
+    <td width="72%" align="right" class="Estilo3"><div align="center" class="Estilo13">
+	<?php
 	if ($_SESSION['aut'] != "pepe") {
 		print("ÚLTIMA ACTUALIZACIÓN - 20/01/2014"); 
 	}
@@ -99,7 +97,7 @@ $row=mysql_fetch_array($result);
   <tr>
     <td width="14%" height="33"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
     <td align="right" class="Estilo3"><p align="center" class="Estilo14"> 
-	<? 
+	<?php 
 	if ($_SESSION['aut'] != "pepe") {
 		print("Bienvenido ".$row['nombre']); 
 	} else {
@@ -112,7 +110,7 @@ $row=mysql_fetch_array($result);
   <tr>
     <td width="14%">&nbsp;</td>
     <td align="right"><p align="center" class="Estilo15">
-	<? 
+	<?php
 	if ($_SESSION['aut'] != "pepe") {
 		print("Ultimo ingreso registrado el día ".$row['fecuac']." a las ".$row['horuac']); 
 	}
@@ -129,7 +127,7 @@ $row=mysql_fetch_array($result);
 </table>
 <table width="724" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="273"><div align="center" class="Estilo9"><a href="buscador/buscador.php">Beneficiarios</a> </div></td>
+    <td width="273"><div align="center" class="Estilo9"><a href="buscador.php">Beneficiarios</a> </div></td>
     <td width="208"><div align="center" class="Estilo9"><a href="empresas.php">Empresas</a></div></td>
    	<?php if ($estaHabilitado) {?>
    		 <td width="243"><div align="center"><a href=javascript:void(window.open("autorizaciones/listadoAuto.php")) class="Estilo9">Autorizaciones</a></div></td>
@@ -138,29 +136,26 @@ $row=mysql_fetch_array($result);
 </table>
 
 <p align="center" class="Estilo11">
- <?
+ <?php
 if ($_SESSION['aut'] != "pepe") {
-	print("<a href=javascript:void(window.open('consulta.php'))>Envianos tu consulta</a>");
+	print("<a href='consulta.php'>Envianos tu consulta</a>");
 }
 ?>
  <div align="center">
-    <input type="submit" name="Submit" value="Salir" />
+    <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
   </div>
   </label>
-
-</form>
-
 </body>
 </html>
 
 <p>
-  <?
+<?php
 if ($_SESSION['aut'] != "pepe") {
 	//update de la fecha y la hora
 	$hoy = date("Ymd"); 
 	$hora = date("H:i:s"); 
 	$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod"; 
-	$result = mysql_db_query("uv0471_intranet",$sql,$db);
+	$result = mysql_query($sql,$db);
 }
 ?>
 </p>

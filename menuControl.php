@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,25 +23,20 @@ body {
 	font-size: 18px;
 	color: #333333;
 }
-.Estilo11 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14px; color: #666666; }
 .Estilo13 {font-family: Papyrus}
 .Estilo17 {font-size: 10}
 .Estilo18 {font-family: Papyrus; color: #333333; }
 .Estilo19 {color: #333333}
-.Estilo24 {font-size: 9px}
-.Estilo9 {font-family: Papyrus; font-size: 24px; }
+.Estilo25 {font-size: 12px}
 -->
 </style>
 </head>
 
-<body onUnload="logout.php">
-
-<form id="form1" name="form1" method="post" action="logout.php">
-
-<?
+<body>
+<?php
 include ("conexion.php");
 $sql = "select * from usuarios where delcod = $delcod";
-$result = mysql_db_query("uv0471_intranet",$sql,$db); 
+$result = mysql_query($sql,$db); 
 $row=mysql_fetch_array($result); 
 ?>
 
@@ -74,12 +69,12 @@ $row=mysql_fetch_array($result);
   </tr>
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center"><span class="Estilo24"><span class="Estilo19">El instructivo esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://www.adobe.com/es/products/acrobat/readstep2.html")) target="_top">Descargar aqui</a></span> </div></td>
+    <td colspan="3" align="right" class="Estilo3"><div align="center"><span class="Estilo25"><span class="Estilo19">El instructivo esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://www.adobe.com/es/products/acrobat/readstep2.html")) target="_top">Descargar aqui</a></span> </div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td width="19%" height="33"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
-    <td colspan="3" align="right" class="Estilo3"><p align="center" class="Estilo19">Bienvenido <b><? echo $row['nombre'] ?></b></p></td>
+    <td colspan="3" align="right" class="Estilo3"><p align="center" class="Estilo19">Bienvenido <b><?php echo $row['nombre'] ?></b></p></td>
     <td width="21%">&nbsp;</td>
   </tr>
   <tr>
@@ -189,16 +184,13 @@ $row=mysql_fetch_array($result);
     <td><span class="Estilo17"></span></td>
   </tr>
 </table>
-<p align="center" class="Estilo11"><td width="243"><div align="center" class="Estilo9"><a href="autorizaciones/listadoAuto.php" class="Estilo9">Autorizaciones</a></div></td>
-<p align="center" class="Estilo11"><a href=javascript:void(window.open("consulta.php"))>Envianos tu consulta</a> </p>
+<!--<p align="center" class="Estilo11"><td width="243"><div align="center" class="Estilo9"><a href=javascript:void(window.open("autorizaciones/listadoAuto.php")) class="Estilo9">Autorizaciones</a></div></td>
+<p align="center" class="Estilo11"><a href=javascript:void(window.open("consulta.php"))>Envianos tu consulta</a> </p>-->
 <label>
   <div align="center">
-    <input type="submit" name="Submit" value="Salir" />
+    <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
   </div>
   </label>
-
-</form>
-
 </body>
 </html>
 

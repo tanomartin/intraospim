@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,10 +28,10 @@ body {
 </style>
 </head>
 
-<?
+<?php
 include ("conexion.php");
 $sql = "select * from empresa where delcod = $delcod order by '$orden'";
-$result = mysql_db_query("uv0471_intranet",$sql,$db); 
+$result = mysql_query($sql,$db); 
 ?>
 
 
@@ -43,40 +43,23 @@ $result = mysql_db_query("uv0471_intranet",$sql,$db);
     <td colspan="2" scope="row"><div align="left">
       <p class="Estilo3">EMPRESAS</p>
     </div></td>
-    <td width="752">&nbsp;</td>
+    <td width="593"><div align="right"><span class="Estilo4">O.S.P.I.M.</span></div></td>
   </tr>
   <tr>
-    <td colspan="4" scope="row"><div align="right" class="Estilo4">O.S.P.I.M.</div></td>
-  </tr>
-  <tr>
-    <td width="79"><strong>Seleccione el orden: </strong></td>
+    <td width="142"><strong>Seleccione el orden: </strong></td>
     <td width="93"><select name="orden" id="orden">
         <option value="empcod" selected="selected">C&oacute;digo</option>
         <option value="nombre">Nombre</option>
         <option value="nrcuit">C.U.I.T.</option>
 		<option value="copole">Cod. Pos.</option>
     </select></td>
-    <td width="200"><label><b><font face="Verdana" size="2">
-      <input name="back2" type="submit" id="back2" value="LISTAR" />
-    </font></b> </label></td>
-    <td scope="row">&nbsp;</td>
+    <td width="296">
+      <input name="back2" type="submit" id="back2" value="LISTAR" />    </td>
+    <td scope="row"><div align="right">
+      <input name="volvar" value="Volver" type="button" onclick="location.href='menu.php'" />
+    </div></td>
   </tr>
 </table>
-
-</form>
-<form id="form2" name="form2" method="post" action="menu.php">
-<table width="1145" border="0">
-    <tr>
-      <th width="536" scope="row"><div align="left"><b><font face="Verdana" size="2">
-        <input name="back" type="submit" id="back" value="VOLVER" />
-     </font></b></div></th>
-      <th width="599" scope="row"><div align="right">
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div></th>
-    </tr>
-  </table>
-</form>
-
 <table border="1" width="1145" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
   <tr>
     <td width="111"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
@@ -88,16 +71,16 @@ $result = mysql_db_query("uv0471_intranet",$sql,$db);
 	<td width="120"><div align="center"><strong><font size="1" face="Verdana">Listado de Titulares </font></strong></div></td>
   </tr>
   <p>
-<?
+<?php
 while ($row=mysql_fetch_array($result)) {
-print ("<td width=111><font face=Verdana size=1>".$row['empcod']."</font></td>");
-print ("<td width=333><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-print ("<td width=220><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-print ("<td width=120><div align=center><font face=Verdana size=1>".$row['copole']."</font></td>");
-print ("<td width=120><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoEmpresas.php?cuit=".$row['nrcuit']."'))>".FICHA."</font></div></td>");
-print ("<td width=120><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('cuenta.php?empcod=".$row['empcod']."'))>".CUENTA."</font></div></td>");
-print ("<td width=120><div align=center><font face=Verdana size=1><a href=titulares.php?empcod=".$row['empcod'].">".TITULARES."</font></div></td>");
-print ("</tr>");
+	print ("<td width=111><font face=Verdana size=1>".$row['empcod']."</font></td>");
+	print ("<td width=333><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
+	print ("<td width=220><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
+	print ("<td width=120><div align=center><font face=Verdana size=1>".$row['copole']."</font></td>");
+	print ("<td width=120><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoEmpresas.php?cuit=".$row['nrcuit']."'))>".FICHA."</font></div></td>");
+	print ("<td width=120><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('cuenta.php?empcod=".$row['empcod']."'))>".CUENTA."</font></div></td>");
+	print ("<td width=120><div align=center><font face=Verdana size=1><a href=titulares.php?empcod=".$row['empcod'].">".TITULARES."</font></div></td>");
+	print ("</tr>");
 }
 ?>
 </p>

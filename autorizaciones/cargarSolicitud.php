@@ -1,7 +1,7 @@
 <?php session_save_path("../sesiones");
 session_start();
 if($_SESSION['delcod'] == NULL) 
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: ../logintranet.php?err=2");
 	
 
 	// maximo 512KB
@@ -12,7 +12,7 @@ if($_SESSION['delcod'] == NULL)
 	
 	$delcod = $_SESSION['delcod'];
 if($delcod == 0 || $delcod == NULL) 
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: ../logintranet.php?err=2");
 	
 	$datos = array_values($_POST);
 	//echo $datos[0]; //echo "<br>";
@@ -176,9 +176,9 @@ if($delcod == 0 || $delcod == NULL)
 	
 	if ($todoOk == 0) {
 		try {
-			$hostname = "ospim.com.ar";
-			$dbname = "uv0471_intranet";
-			$dbh = new PDO("mysql:host=$hostname;dbname=$dbname","uv0471","bsdf5762");
+			include("../conexion.php");
+			$dbname = "sistem22_intranet";
+			$dbh = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$dbh->beginTransaction();
 			
@@ -204,7 +204,7 @@ if($delcod == 0 || $delcod == NULL)
 			$cabecera .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 			$cabecera .= "From: ".$nombre." <$emailRepli>" . "\r\n";
 			
-			mail($mails,$asunto,$cuerpo,$cabecera); 
+			//mail($mails,$asunto,$cuerpo,$cabecera); 
 			
 		} catch (PDOException $e) {
 			echo $e->getMessage();

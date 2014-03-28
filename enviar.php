@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 
@@ -11,7 +11,7 @@ if($_SESSION['delcod'] == null)
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
 </head>
-<?
+<?php
 	$nombre = $_POST["nombre"];
 	$email = $_POST["email"];
 	$atelefono = $_POST["telefono"];
@@ -28,10 +28,6 @@ if($_SESSION['delcod'] == null)
 	$mymail='intranet@ospim.com.ar';
 	$subject="Formulario recibido";
     mail($mymail, $subject, utf8_decode($cuerpo), $header);
+	
+	header("location: envio_consulta.php");
 ?>
-<body onUnload="logout.php">
-<script type="text/javascript"> 
-window.location="http://www.ospim.com.ar/intranet/envio_consulta.php"; 
-</script> 
-</body>
-</html>

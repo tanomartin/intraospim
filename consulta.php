@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -21,16 +21,11 @@ body {
 -->
 </style></head>
 <body onUnload="logout.php" text="#003300" link="#006060" vlink="#006060">
-<form method="post" action="enviar.php"> 
-<th width="333" height="28" scope="row"><div align="left"></div></th>
-</form>
 <form action="enviar.php" method="post"> 
-
-  <p align="center" class="Estilo3 Estilo4">FORMULARIO DE CONSULTA </p>
-  <p align="center"><img src="logoSolo.JPG" width="195" height="155"></p>
-  
-  
-  <div align="center">
+<div align="center">
+  <p class="Estilo3 Estilo4">FORMULARIO DE CONSULTA </p>
+  <p><img src="logoSolo.JPG" width="195" height="155"></p>
+  <p><input name="volvar" value="Volver" type="button" onclick="location.href='menu.php'"></p>
     <table width="1024" border="1">
       <tr>
         <th width="414" scope="row"><div align="right">Nombre y Apellido: </div></th>
@@ -53,17 +48,13 @@ body {
       </tr>
     </table>
     <table width="1025" border="1">
-      <tr>
-        
+      <tr>    
         <th scope="row">
-          
-          <div align="center">
             <input name="submit2" type="submit" value="Enviar">
-          </div></th>
+        </th>
       </tr>
     </table>
-    <b><font face="Verdana" size="2"></font></b></div>
+</div>
 </form>
-
 </body>
 </html> 

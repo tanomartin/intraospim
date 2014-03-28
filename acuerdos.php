@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,44 +28,38 @@ body {
 </head>
 <body>
 <div align="center">
-  <p>
-    <?
+<span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></p>
+<?php
 include ("conexion.php");
+$empcod = $_GET['empcod'];
+$delcod = $_SESSION['delcod'];
+$ano = $_GET['ano'];
+$mes = $_GET['mes'];
+
+
 $sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
-$result = mysql_db_query("uv0471_intranet",$sql,$db); 
+$result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
-?>
-    <span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></p>
-  <p><strong>
-  <?
+
 $sql2 = "select * from detacuer where delcod = $delcod and empcod = '$empcod' and anoacu = '$ano' and mesacu = '$mes'" ;
-$result2 = mysql_db_query("uv0471_intranet",$sql2,$db); 
+$result2 = mysql_query($sql2,$db); 
 $row2 = mysql_fetch_array($result2);
 $nroacu = $row2['nroacu'];
 				
 $sql3 = "select * from cabacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu" ;
-$result3 = mysql_db_query("uv0471_intranet",$sql3,$db); 
+$result3 = mysql_query($sql3,$db); 
 $row3 = mysql_fetch_array($result3);
-
-$sql5 = "select * from cabacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu" ;
-$result5 = mysql_db_query("uv0471_intranet",$sql5,$db); 
-$row5 = mysql_fetch_array($result5);
 $tipoAcu="Acuerdo";
-if ($row5['tipacu'] == 2) {
+if ($row3['tipacu'] == 2) {
 	$tipoAcu="Plan de Facilidades";
 } 
-if ($row5['tipacu'] == 3) {
+if ($row3['tipacu'] == 3) {
 	$tipoAcu="Moratoria AFIP";
 }
 
-
+print ("<p><b><font size='3' face='Papyrus'>".$row['nombre']."</font></b></p>");
 
 ?>
-  <font size="3" face="Papyrus">
-  <?
- 			print ($row['nombre']);
-		?>
-  </font></strong> </p>
 </div>
 <div align="center">
   <p class="Estilo3">Acuerdo</p>
@@ -74,40 +68,27 @@ if ($row5['tipacu'] == 3) {
   <table width="548" border="1">
     <tr>
       <th width="167" scope="row"><div align="left">Per&iacute;odo</div></th>
-      <td width="365"><?
- 						print ($ano);
-						print ("/");
-						print ($mes);
-					?></td>
+      <td width="365"><?php print ($mes."-".$ano);?></td>
     </tr>
     <tr>
       <th scope="row"><div align="left">N&uacute;mero</div></th>
-      <td><?
- 						print ($row3['nroacu']);
-					?></td>
+      <td><?php print ($row3['nroacu']);?></td>
     </tr>
     <tr>
       <th scope="row"><div align="left">Tipo </div></th>
-      <td><?
- 						print ($tipoAcu);
-					?></td>
+      <td><?php print ($tipoAcu); ?></td>
     </tr>
     <tr>
       <th scope="row"><div align="left">Fecha</div></th>
-      <td><?
- 						print ($row3['fecacu']);
-					?></td>
+      <td><?php print ($row3['fecacu']); ?></td>
     </tr>
     <tr>
       <th scope="row"><div align="left">Monto</div></th>
-      <td><?
- 						print ($row3['totacu']);
-					?></td>
+      <td><?php print ($row3['totacu']); ?></td>
     </tr>
     <tr>
       <th scope="row"><div align="left">Estado</div></th>
-      <td><?
-		if ($row3['estacu'] == 1) {
+      <td><?php if ($row3['estacu'] == 1) {
  			print ("Vigente");
 		} else {
 			print ("Cancelado");
@@ -117,9 +98,6 @@ if ($row5['tipacu'] == 3) {
   </table>
 </div>
 <p align="center" class="Estilo3">	Cuotas del Acuerdo</p>
-<p align="center" class="Estilo3">
-  <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-</p>
 <div align="center">
   <table border="1" width="794" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
     <tr>
@@ -130,9 +108,9 @@ if ($row5['tipacu'] == 3) {
       <td width="149"><div align="center"><strong><font size="1" face="Verdana">Fecha de Pago </font></strong></div></td>
     </tr>
     <p>
-      <?
+      <?php 
 	$sql4 = "select * from cuoacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu";
-	$result4 = mysql_db_query("uv0471_intranet",$sql4,$db); 
+	$result4 = mysql_query($sql4,$db); 
 	while ($row4=mysql_fetch_array($result4)) {
 		print ("<td width=80><div align=center><font face=Verdana size=1>".$row4['nrocuo']."</font></div></td>");
 		print ("<td width=136><div align=center><font face=Verdana size=1>".$row4['moncuo']."</font></div></td>");
@@ -144,6 +122,9 @@ if ($row5['tipacu'] == 3) {
 ?>
     </p>
   </table>
+  <p align="center" class="Estilo3">
+  <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+</p>
 </div>
 </body>
 </html>

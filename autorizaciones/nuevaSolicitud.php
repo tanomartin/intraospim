@@ -1,9 +1,9 @@
 <?php session_save_path("../sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.ospim.com.ar/intranet/logintranet.php");
+	header ("Location: ../logintranet.php?err=2");
 	
-include ("funciones.php");
+include ("lib/funciones.php");
 include ("../conexion.php");
 include ("lib/funcionesCarga.php");
 $fechaSolicitud = date("d/m/Y"); 
@@ -11,33 +11,36 @@ $cartel = 0;
 $delcod = $_SESSION['delcod'];
 //OJOOOOOOOOO
 
-if ($delcod == "4000") {
-	$queryTitu = "select * from titular where nrcuil = $cuil";
-	$queryFami = "select * from familia where nrcuil = $cuil";
-} else {
-	$queryTitu = "select * from titular where nrcuil = $cuil and delcod = $delcod";
-	$queryFami = "select * from familia where nrcuil = $cuil and delcod = $delcod";
-}
 
-if ($cuil != NULL) { 
-	$result = mysql_db_query("uv0471_intranet",$queryTitu,$db); 
-	$cant = mysql_num_rows($result);
-	if ($cant != 0) {
-		$row = mysql_fetch_array($result);
-		$tipo = "Titular";
-		$codigo = 1;
+if (isset($_GET['cuil'])) {
+	$cuil = $_GET['cuil'];
+	if ($delcod == "4000") {
+		$queryTitu = "select * from titular where nrcuil = $cuil";
+		$queryFami = "select * from familia where nrcuil = $cuil";
 	} else {
-		$result = mysql_db_query("uv0471_intranet",$queryFami,$db); 
+		$queryTitu = "select * from titular where nrcuil = $cuil and delcod = $delcod";
+		$queryFami = "select * from familia where nrcuil = $cuil and delcod = $delcod";
+	}
+	if ($cuil != NULL) { 
+		$result = mysql_query($queryTitu,$db); 
 		$cant = mysql_num_rows($result);
 		if ($cant != 0) {
 			$row = mysql_fetch_array($result);
-			$tipo = "Familiar";
-			$codigo = $row['codpar'];
-		} else { 
-			$cartel = 1;
+			$tipo = "Titular";
+			$codigo = 1;
+		} else {
+			$result = mysql_query($queryFami,$db); 
+			$cant = mysql_num_rows($result);
+			if ($cant != 0) {
+				$row = mysql_fetch_array($result);
+				$tipo = "Familiar";
+				$codigo = $row['codpar'];
+			} else { 
+				$cartel = 1;
+			}
 		}
-	}
-} 
+	} 
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -93,7 +96,7 @@ function controlCantidad(tipo) {
 		document.forms.nuevaSolicitud.notaCantidad.value = nota;
 	} else { <?php 
 	      $query="select * from clasificamaterial order by codigo ASC";
-		  $result = mysql_db_query("uv0471_intranet",$query,$db); 
+		  $result = mysql_query($query,$db); 
 		  while ($rowtipos=mysql_fetch_array($result)) { ?>
 		  		if (tipo == <?php echo $rowtipos['codigo'] ?>) {
 					if (<?php echo $rowtipos['presumaximo'] ?> == 0) {
@@ -175,7 +178,9 @@ function validar(formulario) {
     </div>
       <span class="Estilo6">(*) DATOS OBLIGATORIOS </span></td>
     <td width="420"><div align="right">
-      <p><a href="listadoAuto.php">Volver al Listado de Solicitudes </a></p>
+      <p>
+        <input type="button" name="volver" value="Volver a listado de Solicitudes" onclick="location.href='listadoAuto.php'"/>
+      </p>
       <table width="328" height="33" border="2">
         <tr>
           <td width="112" height="25"><div align="center"><strong>Fecha</strong> </div></td>
@@ -188,18 +193,15 @@ function validar(formulario) {
 </table>
 <table width="965" border="0">
   <tr>
-    <td width="535" height="50"><h3 class="Estilo4">Informaci&oacute;n del Beneficiario </h3></td>
-    <td width="420"><h3 class="Estilo4">Datos Solicitud</h3></td>
-  </tr>
-  <tr>
-    <td valign="top"><p><strong>* C.U.I.L.:</strong> 
-       <label>
-	  <input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onBlur="limpiarFormulario(this.value)" />
-      </label>
+    <td width="535" valign="top"><p><span class="Estilo4">Informaci&oacute;n del Beneficiario </span></p>
+      <p><strong>* C.U.I.L.:</strong> 
+         <label>
+          <input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onBlur="limpiarFormulario(this.value)" />
+            </label>
         <label>
-        <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onClick="location.href='nuevaSolicitud.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
-        </label>
-    </p>
+          <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onClick="location.href='nuevaSolicitud.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
+          </label>
+        </p>
       <p><strong>N&uacute;mero de Afiliado:</strong> 
         <input name="textNroAfil" type="text" id="textNroAfil" readonly="true" value="<?php echo $row['nrafil'] ?>" style="background:#CCCCCC"/>
       </p>
@@ -218,7 +220,44 @@ function validar(formulario) {
       </p>
       <p><strong>* Apellido y Nombre: </strong>
         <input name="textNombre" type="text" id="textNombre" value="<?php echo $row['nombre'] ?>" size="60"/>
-		<script>
+        </p>
+      <p>&nbsp;</p>
+      <p><span class="Estilo4">Información Obligatoria Pedido de Materiales - Presupuestos </span></p>
+      <p>Tipo de Material
+        <select name="tipoSolicitud" size="1" id="tipoSolicitud" onchange="controlCantidad(document.forms.nuevaSolicitud.tipoSolicitud[selectedIndex].value)" disabled="disabled">
+            <option value=0 selected="selected">Seleccione un valor </option>
+            <?php 
+					$query="select * from clasificamaterial order by codigo ASC";
+					$result = mysql_query($query,$db); 
+					while ($rowtipos=mysql_fetch_array($result)) { ?>
+            <option value="<?php echo $rowtipos['codigo'] ?>"><?php echo $rowtipos['descripcion']  ?></option>
+            <?php } ?>
+                  </select>
+          <label>
+          <input name="minimo" type="text" id="minimo" size="4" style="visibility:hidden"/>
+          <input name="maximo" type="text" id="maximo" size="4" style="visibility:hidden"/>
+                  </label>
+      </p>
+      <p>
+        <input name="notaCantidad" type="text" id="notaCantidad" size="50" style="background:#CCCCCC" readonly="true" />
+        <label></label>
+      </p>
+      <p id="presu1" style="visibility:hidden">Presupuesto 1 -
+        <input name="presu1" id="presu1" type="file" />
+      </p>
+      <p id="presu2" style="visibility:hidden">Presupuesto 2 -
+        <input name="presu2" id="presu2" type="file" />
+      </p>
+      <p id="presu3" style="visibility:hidden">Presupuesto 3 -
+        <input name="presu3" id="presu3" type="file" />
+      </p>
+      <p id="presu4" style="visibility:hidden">Presupuesto 4 -
+        <input name="presu4" id="presu4" type="file" />
+      </p>
+      <p id="presu5" style="visibility:hidden">Presupuesto 5 -
+        <input name="presu5" id="presu5" type="file" />
+      </p>
+        <script>
 			if (document.forms.nuevaSolicitud.textNombre.value != "")  {
 				document.forms.nuevaSolicitud.textNombre.readOnly = true;
 				document.forms.nuevaSolicitud.textNombre.style.background = "#CCCCCC";
@@ -226,9 +265,9 @@ function validar(formulario) {
 				document.forms.nuevaSolicitud.textNombre.readOnly = false;
 				document.forms.nuevaSolicitud.textNombre.style.background = "#FFFFFF";
 			}
-		</script>
-    </p>    </td>
-    <td><p><strong>* Tipo:</strong></p>
+		</script>      </td>
+    <td width="420" valign="top"><p><span class="Estilo4">Datos Solicitud</span></p>
+      <p><strong>* Tipo:</strong></p>
       <label><input name="tipo" id="tipoPractica" type="radio" value="1" onchange="mostrarPresu(0)" checked="checked"/>Pr&aacute;ctica</label>
       <br />
       <label><input name="tipo" id="tipoMaterial" type="radio" value="2" onchange="mostrarPresu(1)"/>Material </label>
@@ -246,51 +285,11 @@ function validar(formulario) {
       </div>
       <p><strong>Estudios:</strong> 
           <input name="estudios" id="estudios" type="file" />
-      </p>  
-      </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-	<div id="presu"> 
-		<h3 class="Estilo4">Información Obligatoria Pedido de Materiales - Presupuestos </h3>
-		<p>
-			  Tipo de Material
-	      <select name="tipoSolicitud" size="1" id="tipoSolicitud" onchange="controlCantidad(document.forms.nuevaSolicitud.tipoSolicitud[selectedIndex].value)" disabled="disabled">
-			    <option value=0 selected="selected">Seleccione un valor </option>
-			    <?php 
-					$query="select * from clasificamaterial order by codigo ASC";
-					$result = mysql_db_query("uv0471_intranet",$query,$db); 
-					while ($rowtipos=mysql_fetch_array($result)) { ?>
-			    <option value="<?php echo $rowtipos['codigo'] ?>"><?php echo $rowtipos['descripcion']  ?></option>
-		            <?php } ?>
-	        </select>
-		  <label>
-		  <input name="minimo" type="text" id="minimo" size="4" style="visibility:hidden"/>
-		  <input name="maximo" type="text" id="maximo" size="4" style="visibility:hidden"/>
-		  </label>
-		</p>
-		<p>
-	        <input name="notaCantidad" type="text" id="notaCantidad" size="50" style="background:#CCCCCC" readonly="true" />
-		  <label></label>
-		  </p>
-			<p id="presu1" style="visibility:hidden">Presupuesto 1 - 
-		    <input name="presu1" id="presu1" type="file" /></p>
-			<p id="presu2" style="visibility:hidden">Presupuesto 2 - 
-		      <input name="presu2" id="presu2" type="file" /></p>
-			<p id="presu3" style="visibility:hidden">Presupuesto 3 - 
-		      <input name="presu3" id="presu3" type="file" /></p>
-			<p id="presu4" style="visibility:hidden">Presupuesto 4 -
-              <input name="presu4" id="presu4" type="file" /></p>
-			<p id="presu5" style="visibility:hidden">Presupuesto 5 -
-              <input name="presu5" id="presu5" type="file" />
-</p>
-	</div>    </td>
-    <td height="28" valign="bottom"><div align="right">
-      <input name="generar" type="submit" id="generar" value="Generar Solicitud" />
-    </div></td>
-  </tr>
-  <tr>
-    <td valign="bottom">&nbsp;</td>
+        </p>
+      <p>&nbsp;</p>
+      <p>
+        <input name="generar" type="submit" id="generar" value="Generar Solicitud" />
+      </p></td>
   </tr>
 </table>
 </p>
