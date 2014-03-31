@@ -292,7 +292,6 @@ function validar(formulario) {
       </p></td>
   </tr>
 </table>
-</p>
 </form>
 </body>
 </html>
