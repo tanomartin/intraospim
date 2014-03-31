@@ -14,20 +14,12 @@ if($_SESSION['delcod'] == NULL)
 if($delcod == 0 || $delcod == NULL) 
 	header ("Location: ../logintranet.php?err=2");
 	
-	$datos = array_values($_POST);
-	//echo $datos[0]; //echo "<br>";
-	$cuit =  $datos[0];
-	//echo $datos[1]; //echo "<br>";
-	$nroafil = $datos[1];
-	//echo $datos[2]; //echo "<br>";
-	$detalleCodigo = $datos[2];
-	//echo $datos[3]; //echo "<br>";
-	$codPar = $datos[3];
-	//echo $datos[4]; //echo "<br>";
-	$nombre = strtoupper($datos[4]);
-	
-	//echo $datos[5]; //echo "<br>"; //echo "<br>";
-	$select = $datos[5];
+	$cuit =  $_POST['textCuil'];
+	$nroafil = $_POST['textNroAfil'];
+	$detalleCodigo = $_POST['textCodPar'];
+	$codPar = $_POST['codPar'];
+	$nombre = strtoupper($_POST['textNombre']);
+	$select = $_POST['tipo'];
 	if ($select == 1) {
 		$practica = 1;
 		$material = 0;
@@ -43,19 +35,14 @@ if($delcod == 0 || $delcod == NULL)
 		$material = 0;
 		$medicamento = 1;
 	}
-	
-	//echo $practica; //echo "<br>";
-	//echo $material; //echo "<br>";
-	//echo $medicamento; //echo "<br>";//echo "<br>";
-
-	//echo $datos[6]; //echo "<br>";
-	$tipoMaterial = $datos[6];
-	//echo "MINIMO: ".$datos[7]; //echo "<br>";
-	$minPersu = $datos[7];
-	//echo "MAXIMO: ".$datos[8]; //echo "<br>";
-	$maxPresu = $datos[8];
-	//echo $datos[9]; //echo "<br>";
-	$notaPresu =  $datos[9];
+	if (isset($_POST['tipoSolicitud'])) {
+		$tipoMaterial = $_POST['tipoSolicitud'];
+	} else {
+		$tipoMaterial = 0;
+	}
+	$minPersu = $_POST['minimo'];
+	$maxPresu = $_POST['maximo'];
+	$notaPresu =  $_POST['notaCantidad'];
 	
 	$todoOk = 0;
 	
