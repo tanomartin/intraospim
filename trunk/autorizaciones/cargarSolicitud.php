@@ -161,7 +161,7 @@ if($delcod == 0 || $delcod == NULL)
 		}
 	}
 	
-	if ($todoOk == 0) {
+	if ($todoOk == 0 and $delcod != 0 and $delcod != NULL) {
 		try {
 			include("../conexion.php");
 			$dbname = "sistem22_intranet";
