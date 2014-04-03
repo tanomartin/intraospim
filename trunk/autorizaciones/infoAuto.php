@@ -32,7 +32,8 @@ body {
 include ("lib/funciones.php");
 include ("../conexion.php");
 $nrosolicitud = $_GET['nrosolicitud'];
-$sql = "select * from autorizacionprocesada where delcod =".$_SESSION['delcod']." and nrosolicitud = $nrosolicitud";
+$delcod = $_SESSION['delcod'];
+$sql = "select * from autorizacionprocesada where delcod = $delcod and nrosolicitud = $nrosolicitud";
 $result = mysql_query($sql,$db); 
 $row=mysql_fetch_array($result)
 ?>
