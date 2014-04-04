@@ -29,8 +29,13 @@ body {
 </head>
 
 <?php
+if (isset($_POST['orden'])) {
+	$orden = $_POST['orden'];
+} else {
+	$orden = "delcod";
+}
 include ("conexion.php");
-$sql = "select * from empresa where delcod = $delcod order by '$orden'";
+$sql = "select * from empresa where delcod = $delcod order by $orden";
 $result = mysql_query($sql,$db); 
 ?>
 

@@ -38,7 +38,12 @@ $row1 = mysql_fetch_array($result1);
 $nrocuit = $row1['nrcuit'];
 
 
-$sql = "select * from titular where delcod = $delcod and empcod = '$empcod' order by '$orden'";
+if (isset($_POST['orden'])) {
+	$orden = $_POST['orden'];
+} else {
+	$orden = "nrafil";
+}
+$sql = "select * from titular where delcod = $delcod and empcod = '$empcod' order by $orden";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 ?>
