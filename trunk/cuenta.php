@@ -50,7 +50,7 @@ function estado($del,$emp,$ano, $me, $db) {
 				 if ($row6 != null) {
 				 	$des = "JUICI.";
 				 } else {
-							$sql2 = "select * from detacuer where delcod = $del and empcod = $emp and anoacu = $ano and mesacu = $me" ;
+							$sql2 = "select d.* from detacuer d, empresa e where e.delcod = $del and e.empcod = $emp and d.nrcuit = e.nrcuit and d.anoacu = $ano and d.mesacu = $me" ;
 							$result2 = mysql_query($sql2,$db); 
 							$row2 = mysql_fetch_array($result2);
 							if($row2!=null) {
