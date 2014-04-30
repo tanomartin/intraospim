@@ -41,12 +41,12 @@ $sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 
-$sql2 = "select * from detacuer where delcod = $delcod and empcod = '$empcod' and anoacu = '$ano' and mesacu = '$mes'" ;
+$sql2 = "select d.* from detacuer d, empresa e where e.delcod = $delcod and e.empcod = '$empcod' and e.nrcuit = d.nrcuit and d.anoacu = '$ano' and d.mesacu = '$mes'" ;
 $result2 = mysql_query($sql2,$db); 
 $row2 = mysql_fetch_array($result2);
 $nroacu = $row2['nroacu'];
 				
-$sql3 = "select * from cabacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu" ;
+$sql3 = "select c.* from cabacuer c, empresa e where e.delcod = $delcod and e.empcod = '$empcod' and e.nrcuit = c.nrcuit and c.nroacu = $nroacu" ;
 $result3 = mysql_query($sql3,$db); 
 $row3 = mysql_fetch_array($result3);
 $tipoAcu="Acuerdo";
@@ -109,7 +109,7 @@ print ("<p><b><font size='3' face='Papyrus'>".$row['nombre']."</font></b></p>");
     </tr>
     <p>
       <?php 
-	$sql4 = "select * from cuoacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu";
+	$sql4 = "select c.* from cuoacuer c, empresa e where e.delcod = $delcod and e.empcod = '$empcod' and e.nrcuit = c.nrcuit and nroacu = $nroacu";
 	$result4 = mysql_query($sql4,$db); 
 	while ($row4=mysql_fetch_array($result4)) {
 		print ("<td width=80><div align=center><font face=Verdana size=1>".$row4['nrocuo']."</font></div></td>");
