@@ -72,7 +72,7 @@ $row = mysql_fetch_array($result);
     <td width="72%" align="right" class="Estilo3"><div align="center" class="Estilo13">
 	<?php
 	if ($_SESSION['aut'] != "pepe") {
-		print("ÚLTIMA ACTUALIZACIÓN - 20/01/2014"); 
+		print("ÚLTIMA ACTUALIZACIÓN - 27/04/2014"); 
 	}
 	?></div></td>
     <td>&nbsp;</td>
