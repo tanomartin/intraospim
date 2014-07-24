@@ -14,7 +14,7 @@ if ($cant > 0) {
 				$_SESSION['delcod'] = $delcod;
 				$_SESSION['aut'] = 'pepepascual';
 				if ($delcod >= "3200") {
-					if ($delcod  != "4000") {
+					if ($delcod  < "4000") {
 						header ('location:menuControl.php');
 					} else {
 						header('location:autorizaciones/listadoAuto.php');
