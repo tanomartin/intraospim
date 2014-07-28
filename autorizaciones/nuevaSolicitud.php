@@ -14,7 +14,7 @@ $delcod = $_SESSION['delcod'];
 
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
-	if ($delcod == "4000") {
+	if ($delcod >= "4000") {
 		$queryTitu = "select * from titular where nrcuil = $cuil";
 		$queryFami = "select * from familia where nrcuil = $cuil";
 	} else {
