@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -25,7 +24,7 @@ body {
 <div align="center">
   <p class="Estilo3 Estilo4">FORMULARIO DE CONSULTA </p>
   <p><img src="logoSolo.JPG" width="195" height="155"></p>
-  <p><input name="volvar" value="Volver" type="button" onclick="location.href='menu.php'"></p>
+  <p><input name="volvar" value="Volver" type="button" onClick="location.href='menu.php'"></p>
     <table width="1024" border="1">
       <tr>
         <th width="414" scope="row"><div align="right">Nombre y Apellido: </div></th>

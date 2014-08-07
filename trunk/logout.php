@@ -6,7 +6,11 @@ if ($_SESSION['aut'] != "pepe") {
 	session_start();
 	session_unset();
 	session_destroy();
-	header ("Location: logintranet.php");
+	if (isset($_GET['error'])) {
+	 	header ("Location: logintranet.php?err=2");
+	} else {
+		header ("Location: logintranet.php");
+	}
 } else {
 		$_SESSION['delcod']= $_SESSION['delori'];
 		$_SESSION['aut'] = 'pepepascual';

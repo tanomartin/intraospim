@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,10 +33,9 @@ body {
 
 <body>
 <?php
-include ("conexion.php");
 $sql = "select * from usuarios where delcod = $delcod";
 $result = mysql_query($sql,$db); 
-$row=mysql_fetch_array($result); 
+$row = mysql_fetch_array($result); 
 ?>
 
 
@@ -49,8 +47,11 @@ $row=mysql_fetch_array($result);
 <table width="100%" border="0" align="center">
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center" class="Estilo18">ULTIMA ACTUALIZACI&Oacute;N - 27/04/2014
-	<?php if ($_SESSION['delcod'] == "3200") { 
+    <td colspan="3" align="right" class="Estilo3"><div align="center" class="Estilo18">ULTIMA ACTUALIZACI&Oacute;N 
+	<?php 
+	$fechaActua=substr($row['fechaactualizacion'], 8, 2)."-".substr($row['fechaactualizacion'], 5, 2)."-".substr($row['fechaactualizacion'], 0, 4);
+	echo $fechaActua;
+	if ($_SESSION['delcod'] == "3200") { 
 		print ("<a href='controlActua.php'>(control Actualizaci&oacute;n) </a>");
     } 
 	?>

@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -33,7 +32,6 @@ body {
 </head>
 
 <?php
-include ("conexion.php");
 $cuil = $_GET['cuil'];
 $sql2 = "select * from titular where nrcuil = '$cuil'";
 $result2 = mysql_query($sql2,$db); 

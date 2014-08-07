@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,9 +34,6 @@ $delegaciones = array(1002, 1101, 1102 ,1103, 1106, 1107, 1108, 1109,
 					  2101, 2102, 2103, 2201, 2301, 2401, 2402, 2403,
 					  2501, 2602, 2603, 2604, 2701, 2801, 2902, 3001, 
 					  3101);
-
-include ("conexion.php");
-
 ?>
 
 

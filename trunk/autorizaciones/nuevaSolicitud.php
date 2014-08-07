@@ -1,10 +1,7 @@
 <?php session_save_path("../sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: ../logintranet.php?err=2");
-	
+include ("verificaSesionAutorizaciones.php");
 include ("lib/funciones.php");
-include ("../conexion.php");
 include ("lib/funcionesCarga.php");
 $fechaSolicitud = date("d/m/Y"); 
 $cartel = 0;

@@ -10,19 +10,27 @@ $clave = $datos[1];
 $sql = "select * from usuarios where delcod = '$delcod' and claves = '$clave'";
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
+$redire = '';
 if ($cant > 0) {
-				$_SESSION['delcod'] = $delcod;
-				$_SESSION['aut'] = 'pepepascual';
-				if ($delcod >= "3200") {
-					if ($delcod  < "4000") {
-						header ('location:menuControl.php');
-					} else {
-						header('location:autorizaciones/listadoAuto.php');
-					}
-				} else {
-					header ('location:menu.php');
-				}
+	$rowUsuario = mysql_fetch_assoc($result); 
+	if ($rowUsuario['acceso'] == 0) {
+		$redire = 'location:actualizando.php';
+	} else {
+		$_SESSION['delcod'] = $delcod;
+		$_SESSION['aut'] = 'pepepascual';
+		if ($delcod >= "3200") {
+			if ($delcod  < "4000") {
+				$redire = 'location:menuControl.php';
+			} else {
+				$redire = 'location:autorizaciones/listadoAuto.php';
+			}
+		} else {
+			$redire = 'location:menu.php';
+		}
+	}
 } else {
-	header ('location:logintranet.php?err=1');
+	$redire = 'location:logintranet.php?err=1';
 }
+
+header($redire);
 ?>

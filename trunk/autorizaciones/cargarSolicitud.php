@@ -1,7 +1,6 @@
 <?php session_save_path("../sesiones");
 session_start();
-if($_SESSION['delcod'] == NULL) 
-	header ("Location: ../logintranet.php?err=2");
+include ("verificaSesionAutorizaciones.php");
 	
 
 	// maximo 512KB
@@ -163,7 +162,6 @@ if($delcod == 0 || $delcod == NULL)
 	
 	if ($todoOk == 0 and $delcod != 0 and $delcod != NULL) {
 		try {
-			include("../conexion.php");
 			$dbname = "sistem22_intranet";
 			$dbh = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
