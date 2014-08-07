@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 	
 $habilitados = array("1002","1102","1103","1106","1107","1108","1109","1701","1703","2603","2604","1301","1302","2001","2501","2602","2101","2102","2103","1401","1402","1402","1501","1601","1110","1202","1901","2201","2301","1802");
 $estaHabilitado = false;
@@ -57,7 +56,6 @@ body {
 <body onUnload="logout.php">
 
 <?php
-include ("conexion.php");
 $sql = "select * from usuarios where delcod = $delcod";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result); 
@@ -72,7 +70,8 @@ $row = mysql_fetch_array($result);
     <td width="72%" align="right" class="Estilo3"><div align="center" class="Estilo13">
 	<?php
 	if ($_SESSION['aut'] != "pepe") {
-		print("ÚLTIMA ACTUALIZACIÓN - 27/04/2014"); 
+		$fechaActua=substr($row['fechaactualizacion'], 8, 2)."-".substr($row['fechaactualizacion'], 5, 2)."-".substr($row['fechaactualizacion'], 0, 4);
+		print("ÚLTIMA ACTUALIZACIÓN ".$fechaActua); 
 	}
 	?></div></td>
     <td>&nbsp;</td>
@@ -141,8 +140,8 @@ if ($_SESSION['aut'] != "pepe") {
 	print("<a href='consulta.php'>Envianos tu consulta</a>");
 }
 ?>
- <div align="center">
-    <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
+ <div align="center">  <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
+  
   </div>
   </label>
 </body>

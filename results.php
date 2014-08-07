@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -30,11 +29,9 @@ body {
 </head>
 
 <?php
-include ("conexion.php");
 $delcod = $_SESSION['delcod'];
 $where = $_POST['orden'];
 $like = $_POST['condicion'];
-
 ?>
 </html>
 <html xmlns="http://www.w3.org/1999/xhtml">

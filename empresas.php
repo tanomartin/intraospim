@@ -1,7 +1,6 @@
 <?php session_save_path("sesiones");
 session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+include ("verificaSesion.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,7 +33,6 @@ if (isset($_POST['orden'])) {
 } else {
 	$orden = "delcod";
 }
-include ("conexion.php");
 $sql = "select * from empresa where delcod = $delcod order by $orden";
 $result = mysql_query($sql,$db); 
 ?>
