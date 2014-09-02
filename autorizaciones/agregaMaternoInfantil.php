@@ -193,11 +193,11 @@ $(document).ready(function(){
 		var vacunasaldia = $(this).val();
 		if(vacunasaldia=="0") {
 			$("#vacunasfaltantes").val("");
-			$("#vacunasfaltantes").attr('disabled', true);
+			$("#vacunasfaltantes").attr('disabled', false);
 		}
 		else {
 			$("#vacunasfaltantes").val("");
-			$("#vacunasfaltantes").attr('disabled', false);
+			$("#vacunasfaltantes").attr('disabled', true);
 		}
 	});
 });
@@ -289,7 +289,7 @@ function validar(formulario) {
 		document.getElementById("vacunasaldia").focus();
 		return false;
 	}
-	if (formulario.vacunasaldia.options[formulario.vacunasaldia.selectedIndex].value == "1") {
+	if (formulario.vacunasaldia.options[formulario.vacunasaldia.selectedIndex].value == "0") {
 		if (formulario.vacunasfaltantes.value == "") {
 			alert("Debe ingresar un detalle de las Vacunas Faltantes");
 			document.getElementById("vacunasfaltantes").focus();
