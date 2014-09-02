@@ -124,8 +124,11 @@ $row = mysql_fetch_array($result);
     <td width="14%"></td>
   </tr>
 </table>
-<table width="724" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="997" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
+   	<?php if ($estaHabilitado) {?>
+   		 <td width="243"><div align="center"><a href=javascript:void(window.open("autorizaciones/menuPrevencion.php")) class="Estilo9">Prevenci&oacute;n de la Salud</a></div></td>
+    <?php } ?>
     <td width="273"><div align="center" class="Estilo9"><a href="buscador.php">Beneficiarios</a> </div></td>
     <td width="208"><div align="center" class="Estilo9"><a href="empresas.php">Empresas</a></div></td>
    	<?php if ($estaHabilitado) {?>
@@ -140,9 +143,9 @@ if ($_SESSION['aut'] != "pepe") {
 	print("<a href='consulta.php'>Envianos tu consulta</a>");
 }
 ?>
- <div align="center">  <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
+<div align="center">  <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
   
-  </div>
+</div>
   </label>
 </body>
 </html>
