@@ -349,7 +349,7 @@ function validar(formulario) {
     </div>
       </td>
     <td width="421"><div align="right">
-        <input type="button" name="volver" value="Volver a Programa de Detección Precoz del Cáncer de Cuello Uterino" onclick="location.href='listadoCancerUterino.php'"/>
+        <input type="button" name="volver" value="Volver a Programa de Detección Precoz del Cáncer de Cuello Uterino" onclick="location.href='listadoCanceUterino.php'"/>
       </div>
     </td>
   </tr>
