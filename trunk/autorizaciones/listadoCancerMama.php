@@ -1,88 +1,124 @@
 <?php session_save_path("../sesiones");
 session_start();
 include ("verificaSesionAutorizaciones.php");
+include ("lib/funciones.php");
+$delcod = $_SESSION['delcod'];
+$sql = "SELECT * FROM cancermama WHERE delcod = $delcod ORDER BY id DESC";
+$result = mysql_query($sql,$db);
+$cantidad = mysql_num_rows($result);
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Mama</title>
-<style type="text/css">
-<!--
-.Estilo3 {
-	font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-	font-size: 24px;
-}
-body {
-	background-color: #CCCCCC;
-}
--->
-</style>
+<link rel="stylesheet" href="lib/jquery.tablesorter/themes/theme.blue.css" type="text/css" id="" media="print, projection, screen" />
+<link rel="stylesheet" type="text/css" href="css/general.css" />
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.tablesorter/jquery.tablesorter.js" type="text/javascript"></script>
+<script src="lib/jquery.tablesorter/jquery.tablesorter.widgets.js" type="text/javascript"></script>
+<script src="/lib/jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#listado")
+	.tablesorter({
+		theme: 'blue', 
+		widthFixed: true, 
+		widgets: ["zebra", "filter"], 
+		headers:{},
+		widgetOptions : { 
+			filter_cssFilter   : '',
+			filter_childRows   : false,
+			filter_hideFilters : false,
+			filter_ignoreCase  : true,
+			filter_searchDelay : 300,
+			filter_startsWith  : false,
+			filter_hideFilters : false,
+		}
+	})
+	.tablesorterPager({container: $("#paginador")}); 
+});
+</script>
 </head>
-
 <body>
+<div align="center">
 <table width="1020" border="0">
-  
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
-    <td width="740" scope="row"><div align="left">
-      <p class="Estilo3">Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Mama</p>
+    <td width="660" scope="row"><div align="left">
+      <p class="style_titulo">Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Mama</p>
     </div></td>
-    <td width="174" scope="row"><div align="left">
-      <p class="Estilo3">
-        <input type="button" name="volver" value="Volver a Programa de Prevención" onclick="location.href='menuPrevencion.php'"/>
-      </p>
+    <td width="250" scope="row"><div align="right">
+	<a class="style_boton3" href="#" onClick="location.href='menuPrevencion.php'">Volver a Programa de Prevención</a>
     </div></td>
   </tr>
 </table>
 <form id="listadoCancerMama" name="listadoCancerMama" method="post" action="agregaCancerMama.php">
 <table width="1020" border="0">
     <tr>
-      <th width="499" scope="row"><div align="left"><b><font face="Verdana" size="2">
-        <input name="back" type="submit" id="back" value="Nuevo Registro" />
-     </font></b></div>
-      <div align="center"></div></th>
-      <th width="511" scope="row"><div align="right">
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div></th>
+      <td width="510" scope="row"><div align="left">
+        <input type="submit" name="nuevoregistro" id="nuevoregistro" class="style_boton4" value="Nuevo Registro" />
+      </div></td>
+      <td width="510" scope="row"><div align="right">
+        <input type="button" name="imprimir" id="imprimir" class="style_boton4" value="Imprimir" onclick="window.print();" />
+      </div></td>
     </tr>
 </table>
-  
-<table border="1" width="1020" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
-  <tr>
-    <td width="93"><div align="center"><strong><font size="1" face="Verdana">Registro</font></strong></div></td>
-    <td width="110"><div align="center"><strong><font size="1" face="Verdana">Profesional</font></strong></div></td>
-    <td width="183"><div align="center"><strong><font size="1" face="Verdana">Fecha</font></strong></div></td>
-	<td width="128"><div align="center"><strong><font size="1" face="Verdana">C.U.I.L Beneficiario </font></strong></div></td>
-    <td width="353"><div align="center"><strong><font size="1" face="Verdana">Nombre Beneficiario </font></strong></div></td>
-	<td width="115"><div align="center"><strong><font size="1" face="Verdana">Tipo Afiliado</font></strong></div></td>
-  </tr>
-  <p>
-<?php
-include ("lib/funciones.php");
-$delcod = $_SESSION['delcod'];
-$sql = "SELECT * FROM cancermama WHERE delcod = $delcod ORDER BY id DESC";
-$result = mysql_query($sql,$db);
-while ($row = mysql_fetch_array($result)) {
-	if($row['codpar']==1) {
-		$codpar="Titular";
-	} else {
-		$codpar="Familiar";
+<table class="tablesorter" id="listado">
+	<thead>
+		<tr align="center">
+			<th>Registro</th>
+			<th>Profesional</th>
+			<th>Fecha</th>
+			<th>C.U.I.L Beneficiario</th>
+			<th>Nombre Beneficiario</th>
+			<th>Tipo Afiliado</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+	while ($row = mysql_fetch_array($result)) {
+		if($row['codpar']==1) {
+			$codpar="Titular";
+		} else {
+			$codpar="Familiar";
+		}
+	?>
+		<tr align="center">
+			<td><a id="editaRegistro" title="Click para Editar el Registro" href='modificaCancerMama.php?nrosolicitud=<?php echo $row['id']; ?>'><?php echo $row['id']; ?></a></td>
+			<td><?php echo $row['profesional']; ?></td>
+			<td><?php echo invertirFecha($row['fechaatencion']); ?></td>
+			<td><?php echo $row['nrcuil']; ?></td>
+			<td><?php echo $row['nombre']; ?></td>
+			<td><?php echo $codpar; ?></td>
+		</tr>
+	<?php
 	}
-	print ("<td width=93><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('modificaCancerMama.php?nrosolicitud=".$row['id']."'))>".$row['id']."</font></div></td>");
-	print ("<td width=110><div align=center><font face=Verdana size=1>".$row['profesional']."</font></div></td>");
-	print ("<td width=183><div align=center><font face=Verdana size=1><b>".invertirFecha($row['fechaatencion'])."</b></font></div></td>");
-	print ("<td width=128><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
-	print ("<td width=353><div align=center><font face=Verdana size=1>".$row['nombre']."</font></div></td>");
-	print ("<td width=115><div align=center><font face=Verdana size=1>".$codpar."</font></div></td>");
-	print ("</tr>");
-}
-?>
-</p>
+	?>
+	</tbody>
 </table>
 </form>
+<table width="245" border="0">
+      <tr>
+        <td width="239">
+		<div id="paginador" class="pager">
+		  <form>
+			<p align="center">
+			  <img src="img/first.png" width="16" height="16" class="first"/> <img src="img/prev.png" width="16" height="16" class="prev"/>
+			  <input name="text" type="text" class="pagedisplay" style="background:#CCCCCC; text-align:center" size="8" readonly="readonly"/>
+		    <img src="img/next.png" width="16" height="16" class="next"/> <img src="img/last.png" width="16" height="16" class="last"/>
+		    <select name="select" class="pagesize">
+		      <option selected="selected" value="10">10 por pagina</option>
+		      <option value="20">20 por pagina</option>
+		      <option value="30">30 por pagina</option>
+		      <option value="<?php echo $cantidad;?>">Todos</option>
+		      </select>
+		    </p>
+		  </form>
+		</div>
+	</td>
+      </tr>
+  </table>
+</div>
 </body>
 </html>
