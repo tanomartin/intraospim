@@ -12,20 +12,8 @@ $cantidad = mysql_num_rows($result);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Cuello Uterino</title>
-<style type="text/css">
-<!--
-.Estilo3 {
-	font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-	font-size: 24px;
-}
-body {
-	background-color: #CCCCCC;
-}
--->
-</style>
 <link rel="stylesheet" href="lib/jquery.tablesorter/themes/theme.blue.css" type="text/css" id="" media="print, projection, screen" />
+<link rel="stylesheet" type="text/css" href="css/general.css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="lib/jquery.tablesorter/jquery.tablesorter.js" type="text/javascript"></script>
 <script src="lib/jquery.tablesorter/jquery.tablesorter.widgets.js" type="text/javascript"></script>
@@ -57,25 +45,23 @@ $(document).ready(function(){
 <table width="1020" border="0">
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
-    <td scope="row"><div align="left">
-      <p class="Estilo3">Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Cuello Uterino</p>
+    <td width="660" scope="row"><div align="left">
+      <p class="style_titulo">Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Cuello Uterino</p>
     </div></td>
-    <td width="174" scope="row"><div align="left">
-      <p class="Estilo3">
-        <input type="button" name="volver" value="Volver a Programa de Prevención" onclick="location.href='menuPrevencion.php'"/>
-      </p>
+    <td width="250" scope="row"><div align="right">
+	<a class="style_boton3" href="#" onClick="location.href='menuPrevencion.php'">Volver a Programa de Prevención</a>
     </div></td>
   </tr>
 </table>
+<form id="listadoCancerMama" name="listadoCancerMama" method="post" action="agregaCancerUterino.php">
 <table width="1020" border="0">
     <tr>
-      <th width="499" scope="row"><div align="left"><b><font face="Verdana" size="2">
-        <input name="back" type="submit" id="back" value="Nuevo Registro" />
-     </font></b></div>
-      <div align="center"></div></th>
-      <th width="511" scope="row"><div align="right">
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div></th>
+      <td width="510" scope="row"><div align="left">
+        <input type="submit" name="nuevoregistro" id="nuevoregistro" class="style_boton4" value="Nuevo Registro" />
+      </div></td>
+      <td width="510" scope="row"><div align="right">
+        <input type="button" name="imprimir" id="imprimir" class="style_boton4" value="Imprimir" onclick="window.print();" />
+      </div></td>
     </tr>
 </table>
 <table class="tablesorter" id="listado">
@@ -111,6 +97,7 @@ $(document).ready(function(){
 	?>
 	</tbody>
 </table>
+</form>
 <table width="245" border="0">
       <tr>
         <td width="239">
