@@ -30,6 +30,49 @@ $(document).ready(function(){
 	$("#guardar").hide();
 //	$("#guardar").attr('disabled', true);
 
+	$("#capitulo").click(function(){
+		alert("va a buscar");
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaCapitulos.php",
+			data: {capitulo:1},
+		}).done(function(respuesta){
+			if(respuesta) {
+				alert("volvio");
+			}
+			$("#capitulo").html(respuesta);
+			if(respuesta) {
+			}
+		});
+	});
+//	$.ajax({
+//		type: "POST",
+//		dataType: "html",
+//		url: "buscaGrupos.php",
+//	}).done(function(respuesta){
+//		if(respuesta.nroafi) {
+//		}
+//	});
+
+//	$.ajax({
+//		type: "POST",
+//		dataType: "html",
+//		url: "buscaCategorias.php",
+//	}).done(function(respuesta){
+//		if(respuesta.nroafi) {
+//		}
+//	});
+
+//	$.ajax({
+//		type: "POST",
+//		dataType: "html",
+//		url: "buscaSubcategorias.php",
+//	}).done(function(respuesta){
+//		if(respuesta.nroafi) {
+//		}
+//	});
+
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
 		var fechanac = $("#fechanacimiento").val();
@@ -62,7 +105,7 @@ $(document).ready(function(){
 			$("#edad").attr("readonly", true);
 			$("#edad").css({"background-color": "#cccccc"});
 		}
-	})
+	});
 
 	$("#nrcuil").change(function(){
 		//$("#guardar").attr('disabled', true);
@@ -327,14 +370,14 @@ function validar(formulario) {
 <body>
 <form id="agregaCancerMama" name="agregaCancerMama" method="POST" action="guardarCancerMama.php" onSubmit="return validar(this)" enctype="multipart/form-data" >
 <div align="center">
-<table width="978" border="0">
+<table width="979" border="0">
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
     <td colspan="2" scope="row"><div align="left">
       <p class="style_titulo">Nuevo Registro Detecci&oacute;n C&aacute;ncer de Mama</p>
     </div>
       </td>
-    <td width="421"><div align="right">
+    <td width="489"><div align="right">
 		<a class="style_boton3" href="#" onClick="location.href='listadoCancerMama.php'">Volver a Programa de Detección Precoz del Cáncer de Mama</a>
       </div>
     </td>
@@ -343,87 +386,122 @@ function validar(formulario) {
 </div>
 <div align="center">
 <table width="979" border="0">
-  <tr>
-    <td width="506" valign="top"><p align="left"><span class="style_subtitulo">Informaci&oacute;n del Profesional</span></p>
-      <p align="left" class="style_texto_input"><strong>Nombre :</strong>
-          <input name="profesional" type="text" id="profesional" value="" size="60" placeholder="Tratamiento, Apellido y Nombre (Ej: Dr. Gonzalez Mario)" class="style_input"/>
-      </p>
-      <p align="left" class="style_texto_input"><strong>Fecha Atenci&oacute;n :</strong>
-          <input name="fechaatencion" type="text" id="fechaatencion" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
-      </p>
-      </td>
-    <td width="463" valign="top"><p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
-	  <p align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
-          <label>
-          <input name="nrcuil" type="text" id="nrcuil" value="" size="11" placeholder="Sin guiones" class="style_input"/>
-          </label>
-          <label>
-          <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
-          </label>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
-          <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" class="style_input_readonly"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Tipo de Afiliado :</strong>
-          <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
-          <label>
-          <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
-          <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
-          </label>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
-          <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Edad: </strong>
-        <input name="edad" type="text" id="edad" value="" size="5" maxlength="5" class="style_input"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
-          <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" placeholder="DDN" class="style_input"/>
-          <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" placeholder="Número" class="style_input"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Antecedentes CCa Mama :</strong>
-          <select name="antecedentes" id="antecedentes" class="style_input">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Familiar con Antecedente  :</strong>
-          <select name="personaantecedente" id="personaantecedente" class="style_input">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Abuela" value="1">Abuela</option>
-            <option title="Madre" value="2">Madre</option>
-            <option title="T&iacute;a" value="3">T&iacute;a</option>
-            <option title="Hermana" value="4">Hermana</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Examen Mamario  :</strong>
-          <select name="examenmamario" id="examenmamario" class="style_input">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Fecha &Uacute;ltimo Examen Mamario :</strong>
-          <input name="ultimoexamenmamario" type="text" id="ultimoexamenmamario" value="" size="12" class="style_input"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Mamograf&iacute;a  :</strong>
-          <select name="mamografia" id="mamografia" class="style_input">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Fecha &Uacute;ltima Mamograf&iacute;a :</strong>
-          <input name="ultimamamografia" type="text" id="ultimamamografia" value="" size="12" class="style_input"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Diagn&oacute;stico           :</strong>
-          <textarea name="diagnostico" cols="60" rows="3" id="diagnostico" class="style_input"></textarea>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
-          <textarea name="observaciones" cols="60" rows="3" id="observaciones" class="style_input"></textarea>
-      </p></td>
-  </tr>
+	<tr>
+		<td valign="top">
+		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Profesional</span></p>
+		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+			  <input name="profesional" type="text" id="profesional" value="" size="60" placeholder="Tratamiento, Apellido y Nombre (Ej: Dr. Gonzalez Mario)" class="style_input"/>
+		 </span>
+		  <span align="left" class="style_texto_input"><strong>Fecha de Atenci&oacute;n :</strong>
+			  <input name="fechaatencion" type="text" id="fechaatencion" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		</td>
+	</tr>
+</table>
+<table width="979" border="0">
+	<tr>
+		<td valign="top">
+		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
+		  <span align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
+			  <input name="nrcuil" type="text" id="nrcuil" value="" size="11" placeholder="Sin guiones" class="style_input"/>
+			  <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
+			  <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" class="style_input_readonly"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Tipo de Afiliado :</strong>
+			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
+			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+			  <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Edad: </strong>
+			<input name="edad" type="text" id="edad" value="" size="5" maxlength="5" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
+			  <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" placeholder="DDN" class="style_input"/>
+			  <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" placeholder="Número" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Antecedentes CCa Mama :</strong>
+			  <select name="antecedentes" id="antecedentes" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		 <span align="left" class="style_texto_input"><strong>Familiar con Antecedente :</strong>
+			  <select name="personaantecedente" id="personaantecedente" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Abuela" value="1">Abuela</option>
+				<option title="Madre" value="2">Madre</option>
+				<option title="T&iacute;a" value="3">T&iacute;a</option>
+				<option title="Hermana" value="4">Hermana</option>
+			  </select>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Examen Mamario  :</strong>
+			  <select name="examenmamario" id="examenmamario" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Fecha &Uacute;ltimo Examen Mamario :</strong>
+			  <input name="ultimoexamenmamario" type="text" id="ultimoexamenmamario" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Mamograf&iacute;a  :</strong>
+			  <select name="mamografia" id="mamografia" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Fecha &Uacute;ltima Mamograf&iacute;a :</strong>
+			  <input name="ultimamamografia" type="text" id="ultimamamografia" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Diagnosticar seg&uacute;n Norma CEI 10 :</strong>
+			  <select name="capitulo" id="capitulo" class="style_input">
+        	  </select>
+			  <select name="grupo" id="grupo" class="style_input">
+	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
+        	  </select>
+			  <select name="categoria" id="categoria" class="style_input">
+	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
+        	  </select>
+			  <select name="subcategoria" id="subcategoria" class="style_input">
+	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
+        	  </select>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico :</strong>
+			  <p><textarea name="diagnostico" cols="135" rows="3" id="diagnostico" class="style_input"></textarea></p>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Sub Diagn&oacute;stico :</strong>
+			  <p><textarea name="subdiagnostico" cols="135" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
+			  <p><textarea name="observaciones" cols="135" rows="3" id="observaciones" class="style_input"></textarea></p>
+		  </span>
+		</td>
+	</tr>
 </table>
 </div>
 <div align="center">
