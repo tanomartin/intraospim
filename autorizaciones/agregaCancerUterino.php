@@ -26,9 +26,25 @@ jQuery(function($){
  
 $(document).ready(function(){
 	$("#verCuil").attr('disabled', true);
-
 	$("#guardar").hide();
-//	$("#guardar").attr('disabled', true);
+	$("#personaantecedente option[value='']").prop('selected',true);
+	$("#personaantecedente").attr('disabled', true);
+	$("#ultimopap").val("");
+	$("#ultimopap").attr('disabled', true);
+	$("#ultimacolpo").val("");
+	$("#ultimacolpo").attr('disabled', true);
+	$("#capitulo option[value='']").prop('selected',true);
+	$("#capitulo").attr('disabled', true);
+	$("#grupo option[value='']").prop('selected',true);
+	$("#grupo").attr('disabled', true);
+	$("#categoria option[value='']").prop('selected',true);
+	$("#categoria").attr('disabled', true);
+	$("#subcategoria option[value='']").prop('selected',true);
+	$("#subcategoria").attr('disabled', true);
+	$("#diagnostico").val("");
+	$("#diagnostico").attr('disabled', true);
+	$("#subdiagnostico").val("");
+	$("#subdiagnostico").attr('disabled', true);
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -179,39 +195,134 @@ $(document).ready(function(){
 
 	$("#antecedentes").change(function(){
 		var antecedentes = $(this).val();
-		if(antecedentes=="0") {
-			$("#personaantecedente option[value='']").prop('selected',true);
-			$("#personaantecedente").attr('disabled', true);
-		}
-		else {
+		if(antecedentes=="1") {
 			$("#personaantecedente option[value='']").prop('selected',true);
 			$("#personaantecedente").attr('disabled', false);
 		}
-	});
+		else {
+			$("#personaantecedente option[value='']").prop('selected',true);
+			$("#personaantecedente").attr('disabled', true);
+		}
+	})
 
 	$("#pap").change(function(){
 		var pap = $(this).val();
-		if(pap=="0") {
+		if(pap=="1") {
 			$("#ultimopap").val("");
-			$("#ultimopap").attr('disabled', true);
+			$("#ultimopap").attr('disabled', false);
 		}
 		else {
 			$("#ultimopap").val("");
-			$("#ultimopap").attr('disabled', false);
+			$("#ultimopap").attr('disabled', true);
 		}
 	});
 
 	$("#colpo").change(function(){
 		var colpo = $(this).val();
-		if(colpo=="0") {
-			$("#ultimacolpo").val("");
-			$("#ultimacolpo").attr('disabled', true);
-		}
-		else {
+		if(colpo=="1") {
 			$("#ultimacolpo").val("");
 			$("#ultimacolpo").attr('disabled', false);
 		}
+		else {
+			$("#ultimacolpo").val("");
+			$("#ultimacolpo").attr('disabled', true);
+		}
 	});
+
+	$("#cie10").change(function(){
+		var cie10 = $(this).val();
+		if(cie10=="1") {
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', false);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', false);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', false);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', false);
+			$("#diagnostico").val("");
+			$("#diagnostico").attr('disabled', true);
+			$("#subdiagnostico").val("");
+			$("#subdiagnostico").attr('disabled', true);
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "buscaCapitulos.php",
+			}).done(function(respuesta){
+				$("#capitulo").html(respuesta);
+			});
+		}
+		else {
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', true);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', true);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', true);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', true);
+			if(cie10=="0") {
+				$("#diagnostico").val("");
+				$("#diagnostico").attr('disabled', false);
+				$("#subdiagnostico").val("");
+				$("#subdiagnostico").attr('disabled', false);
+			} else {
+				$("#diagnostico").val("");
+				$("#diagnostico").attr('disabled', true);
+				$("#subdiagnostico").val("");
+				$("#subdiagnostico").attr('disabled', true);
+			}
+		}
+	});
+
+	$("#capitulo").change(function(){
+		var capitulo = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaGrupos.php",
+			data: {capitulo:capitulo},
+		}).done(function(respuesta){
+			$("#grupo").html(respuesta);
+		});
+	})
+
+	$("#grupo").change(function(){
+		var grupo = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaCategorias.php",
+			data: {grupo:grupo},
+		}).done(function(respuesta){
+			$("#categoria").html(respuesta);
+		});
+	})
+
+	$("#categoria").change(function(){
+		var descategoria = $("#categoria option:selected").text();
+		var separacodigo = $("#categoria option:selected").attr("title").split(' ');
+		var titcategoria = separacodigo[1];
+		var codcategoria = titcategoria+' - '+descategoria;
+		$("#diagnostico").val(codcategoria);
+		var categoria = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaSubcategorias.php",
+			data: {categoria:categoria},
+		}).done(function(respuesta){
+			$("#subcategoria").html(respuesta);
+		});
+	})
+
+	$("#subcategoria").change(function(){
+		var desscategoria = $("#subcategoria option:selected").text();
+		var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
+		var titscategoria = separascodigo[1];
+		var codscategoria = titscategoria+' - '+desscategoria;
+		$("#subdiagnostico").val(codscategoria);		
+	})
 });
 
 function validar(formulario) {
@@ -356,74 +467,121 @@ function validar(formulario) {
   </tr>
 </table>
 <table width="979" border="0">
-  <tr>
-    <td valign="top">
-	  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
-	  <p align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
-          <input name="nrcuil" type="text" id="nrcuil" value="" size="11" />
-          <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
-      </p>
-	  <p align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
-          <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" style="background:#CCCCCC"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Tipo de Afiliado :</strong>
-          <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" style="background:#CCCCCC" value=""/>
-          <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
-          <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
-          <input name="nombre" type="text" id="nombre" value="" size="60"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Edad :</strong>
-        <input name="edad" type="text" id="edad" value="" size="5" maxlength="5" />
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
-          <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" />
-          <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" />
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Antecedentes CCa Cuello Uterino :</strong>
-          <select name="antecedentes" id="antecedentes">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Familiar con Antecedente :</strong>
-          <select name="personaantecedente" id="personaantecedente">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Abuela" value="1">Abuela</option>
-            <option title="Madre" value="2">Madre</option>
-            <option title="T&iacute;a" value="3">T&iacute;a</option>
-            <option title="Hermana" value="4">Hermana</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>PAP :</strong>
-          <select name="pap" id="pap">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Fecha &Uacute;ltimo PAP :</strong>
-          <input name="ultimopap" type="text" id="ultimopap" value="" size="12"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Colposcop&iacute;a  : </strong>
-          <select name="colpo" id="colpo">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Fecha &Uacute;ltima Colposcop&iacute;a :</strong>
-          <input name="ultimacolpo" type="text" id="ultimacolpo" value="" size="12"/>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Diagn&oacute;stico           :</strong>
-          <textarea name="diagnostico" cols="60" rows="3" id="diagnostico"></textarea>
-      </p>
-	  <p align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
-          <textarea name="observaciones" cols="60" rows="3" id="observaciones"></textarea>
-      </p></td>
-  </tr>
+	<tr>
+		<td valign="top">
+		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
+		  <span align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
+			  <input name="nrcuil" type="text" id="nrcuil" value="" size="11" placeholder="Sin guiones" class="style_input"/>
+			  <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
+			  <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" class="style_input_readonly"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Tipo de Afiliado :</strong>
+			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
+			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+			  <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Edad :</strong>
+			<input name="edad" type="text" id="edad" value="" size="5" maxlength="5"  class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
+			  <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" placeholder="DDN" class="style_input"/>
+			  <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" placeholder="Número" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Antecedentes CCa Cuello Uterino :</strong>
+			  <select name="antecedentes" id="antecedentes" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Familiar con Antecedente :</strong>
+			  <select name="personaantecedente" id="personaantecedente" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Abuela" value="1">Abuela</option>
+				<option title="Madre" value="2">Madre</option>
+				<option title="T&iacute;a" value="3">T&iacute;a</option>
+				<option title="Hermana" value="4">Hermana</option>
+			  </select>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>PAP :</strong>
+			  <select name="pap" id="pap" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Fecha de &Uacute;ltimo PAP :</strong>
+			  <input name="ultimopap" type="text" id="ultimopap" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Colposcop&iacute;a :</strong>
+			  <select name="colpo" id="colpo" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Fecha de &Uacute;ltima Colposcop&iacute;a :</strong>
+			  <input name="ultimacolpo" type="text" id="ultimacolpo" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
+			  <select name="cie10" id="cie10" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <p align="left" class="style_texto_input">
+			  <select name="capitulo" id="capitulo" class="style_input">
+	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
+        	  </select>
+		  </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="grupo" id="grupo" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="categoria" id="categoria" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="subcategoria" id="subcategoria" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
+			  <p><textarea name="diagnostico" cols="135" rows="3" id="diagnostico" class="style_input"></textarea></p>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Secundario :</strong>
+			  <p><textarea name="subdiagnostico" cols="135" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
+			  <p><textarea name="observaciones" cols="135" rows="3" id="observaciones" class="style_input"></textarea></p>
+		  </span>
+		</td>
+	</tr>
 </table>
 </div>
 <div align="center">
