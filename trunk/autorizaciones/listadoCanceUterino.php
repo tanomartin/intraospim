@@ -12,6 +12,9 @@ $cantidad = mysql_num_rows($result);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Cuello Uterino</title>
+<style type="text/css" media="print">
+.nover {display:none}
+</style>
 <link rel="stylesheet" href="lib/jquery.tablesorter/themes/theme.blue.css" type="text/css" id="" media="print, projection, screen" />
 <link rel="stylesheet" type="text/css" href="css/general.css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
@@ -49,7 +52,7 @@ $(document).ready(function(){
       <p class="style_titulo">Programa de Detecci&oacute;n Precoz del C&aacute;ncer de Cuello Uterino</p>
     </div></td>
     <td width="250" scope="row"><div align="right">
-	<a class="style_boton3" href="#" onClick="location.href='menuPrevencion.php'">Volver a Programa de Prevención</a>
+	<a class="style_boton3 nover" href="#" onClick="location.href='menuPrevencion.php'">Volver a Programa de Prevención</a>
     </div></td>
   </tr>
 </table>
@@ -57,16 +60,16 @@ $(document).ready(function(){
 <table width="1020" border="0">
     <tr>
       <td width="510" scope="row"><div align="left">
-        <input type="submit" name="nuevoregistro" id="nuevoregistro" class="style_boton4" value="Nuevo Registro" />
+        <input type="submit" name="nuevoregistro" id="nuevoregistro" class="style_boton4 nover" value="Nuevo Registro" />
       </div></td>
       <td width="510" scope="row"><div align="right">
-        <input type="button" name="imprimir" id="imprimir" class="style_boton4" value="Imprimir" onclick="window.print();" />
+        <input type="button" name="imprimir" id="imprimir" class="style_boton4 nover" value="Imprimir" onclick="window.print();" />
       </div></td>
     </tr>
 </table>
 <table class="tablesorter" id="listado">
 	<thead>
-		<tr>
+		<tr align="center">
 			<th>Registro</th>
 			<th>Profesional</th>
 			<th>Fecha</th>
@@ -102,7 +105,7 @@ $(document).ready(function(){
       <tr>
         <td width="239">
 		<div id="paginador" class="pager">
-		  <form>
+		  <form class="nover">
 			<p align="center">
 			  <img src="img/first.png" width="16" height="16" class="first"/> <img src="img/prev.png" width="16" height="16" class="prev"/>
 			  <input name="text" type="text" class="pagedisplay" style="background:#CCCCCC; text-align:center" size="8" readonly="readonly"/>

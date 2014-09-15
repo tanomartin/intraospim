@@ -4,33 +4,12 @@ include ("verificaSesionAutorizaciones.php");
 include ("lib/funciones.php");
 $delcod = $_SESSION['delcod'];
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Nuevo Registro Prevenci&oacute;n Odontol&oacute;gica</title>
-<style type="text/css">
-<!--
-.Estilo3 {
-	font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-	font-size: 24px;
-}
-body {
-	background-color: #CCCCCC;
-}
-.Estilo4 {
-	color: #990000;
-	font-weight: bold;
-}
-.Estilo6 {
-	font-size: 12px;
-	font-weight: bold;
-}
--->
-</style>
+<link rel="stylesheet" type="text/css" href="css/general.css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="lib/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="lib/funcionControl.js" type="text/javascript"></script>
@@ -44,8 +23,21 @@ jQuery(function($){
  
 $(document).ready(function(){
 	$("#verCuil").attr('disabled', true);
-
-	$("#guardar").attr('disabled', true);
+	$("#guardar").hide();
+	$("#semanaembarazo").val("");
+	$("#semanaembarazo").attr('disabled', true);
+	$("#capitulo option[value='']").prop('selected',true);
+	$("#capitulo").attr('disabled', true);
+	$("#grupo option[value='']").prop('selected',true);
+	$("#grupo").attr('disabled', true);
+	$("#categoria option[value='']").prop('selected',true);
+	$("#categoria").attr('disabled', true);
+	$("#subcategoria option[value='']").prop('selected',true);
+	$("#subcategoria").attr('disabled', true);
+	$("#diagnostico").val("");
+	$("#diagnostico").attr('disabled', true);
+	$("#subdiagnostico").val("");
+	$("#subdiagnostico").attr('disabled', true);
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -79,10 +71,11 @@ $(document).ready(function(){
 			$("#edad").attr("readonly", true);
 			$("#edad").css({"background-color": "#cccccc"});
 		}
-	})
+	});
 
 	$("#nrcuil").change(function(){
-		$("#guardar").attr('disabled', true);
+		//$("#guardar").attr('disabled', true);
+		$("#guardar").hide();
 		var cuil = $("#nrcuil").val();
 		var aMult = '5432765432';
     	var aMult = aMult.split('');
@@ -100,7 +93,8 @@ $(document).ready(function(){
 				$("#verCuil").attr('disabled', false);
 			} else {
 				$("#verCuil").attr('disabled', true);
-				$("#guardar").attr('disabled', true);
+				//$("#guardar").attr('disabled', true);
+				$("#guardar").hide();
 				$("#nrafil").val("");
 				$("#tipoafiliado").val("");
 				$("#codpar").val("");
@@ -165,9 +159,11 @@ $(document).ready(function(){
 						$("#edad").attr("readonly", true);
 						$("#edad").css({"background-color": "#cccccc"});
 					}
-					$("#guardar").attr('disabled', false);
+					//$("#guardar").attr('disabled', false);
+					$("#guardar").show();
 				} else {
-					$("#guardar").attr('disabled', false);
+					//$("#guardar").attr('disabled', false);
+					$("#guardar").show();
 					alert("Beneficiario no empadronado o perteneciente a otra delegacion. Debe completar Apellido y Nombre");
 					$("#nrafil").val("");
 					$("#tipoafiliado").val("");
@@ -183,7 +179,8 @@ $(document).ready(function(){
 				}
 			});
 		} else {
-			$("#guardar").attr('disabled', true);
+			//$("#guardar").attr('disabled', true);
+			$("#guardar").hide();
 			alert("Debe Ingresar un C.U.I.L. para verificar la existencia");
 			$("#nrcuil").focus();
 		}
@@ -191,15 +188,110 @@ $(document).ready(function(){
 
 	$("#embarazo").change(function(){
 		var embarazo = $(this).val();
-		if(embarazo=="0") {
-			$("#semanaembarazo").val("");
-			$("#semanaembarazo").attr('disabled', true);
-		}
-		else {
+		if(embarazo=="1") {
 			$("#semanaembarazo").val("");
 			$("#semanaembarazo").attr('disabled', false);
 		}
+		else {
+			$("#semanaembarazo").val("");
+			$("#semanaembarazo").attr('disabled', true);
+		}
 	});
+
+	$("#cie10").change(function(){
+		var cie10 = $(this).val();
+		if(cie10=="1") {
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', false);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', false);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', false);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', false);
+			$("#diagnostico").val("");
+			$("#diagnostico").attr('disabled', true);
+			$("#subdiagnostico").val("");
+			$("#subdiagnostico").attr('disabled', true);
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "buscaCapitulos.php",
+			}).done(function(respuesta){
+				$("#capitulo").html(respuesta);
+			});
+		}
+		else {
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', true);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', true);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', true);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', true);
+			if(cie10=="0") {
+				$("#diagnostico").val("");
+				$("#diagnostico").attr('disabled', false);
+				$("#subdiagnostico").val("");
+				$("#subdiagnostico").attr('disabled', false);
+			} else {
+				$("#diagnostico").val("");
+				$("#diagnostico").attr('disabled', true);
+				$("#subdiagnostico").val("");
+				$("#subdiagnostico").attr('disabled', true);
+			}
+		}
+	});
+
+	$("#capitulo").change(function(){
+		var capitulo = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaGrupos.php",
+			data: {capitulo:capitulo},
+		}).done(function(respuesta){
+			$("#grupo").html(respuesta);
+		});
+	})
+
+	$("#grupo").change(function(){
+		var grupo = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaCategorias.php",
+			data: {grupo:grupo},
+		}).done(function(respuesta){
+			$("#categoria").html(respuesta);
+		});
+	})
+
+	$("#categoria").change(function(){
+		var descategoria = $("#categoria option:selected").text();
+		var separacodigo = $("#categoria option:selected").attr("title").split(' ');
+		var titcategoria = separacodigo[1];
+		var codcategoria = titcategoria+' - '+descategoria;
+		$("#diagnostico").val(codcategoria);
+		var categoria = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaSubcategorias.php",
+			data: {categoria:categoria},
+		}).done(function(respuesta){
+			$("#subcategoria").html(respuesta);
+		});
+	})
+
+	$("#subcategoria").change(function(){
+		var desscategoria = $("#subcategoria option:selected").text();
+		var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
+		var titscategoria = separascodigo[1];
+		var codscategoria = titscategoria+' - '+desscategoria;
+		$("#subdiagnostico").val(codscategoria);		
+	})
 });
 
 function validar(formulario) {
@@ -274,6 +366,11 @@ function validar(formulario) {
 			return false;
 		}
 	}
+	if (formulario.diagnostico.value == "") {
+		alert("Debe ingresar un valor en el campo Diagnostico");
+		document.getElementById("diagnostico").focus();
+		return false;
+	}
 	if (formulario.observaciones.value == "") {
 		alert("Debe ingresar un valor en el campo Observaciones/Indicaciones");
 		document.getElementById("observaciones").focus();
@@ -285,87 +382,138 @@ function validar(formulario) {
 </script>
 </head>
 <body>
-
 <form id="agregaOdontologica" name="agregaOdontologica" method="POST" action="guardarOdontologica.php" onSubmit="return validar(this)" enctype="multipart/form-data" >
-<table width="978" border="0">
+<div align="center">
+<table width="979" border="0">
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
     <td colspan="2" scope="row"><div align="left">
-      <p class="Estilo3">Nuevo Registro Prevenci&oacute;n Odontol&oacute;gica</p>
+      <p class="style_titulo">Nuevo Registro Prevenci&oacute;n Odontol&oacute;gica</p>
     </div>
       </td>
-    <td width="421"><div align="right">
-        <input type="button" name="volver" value="Volver a Programa de Prevención Odontológica" onclick="location.href='listadoOdontologica.php'"/>
+    <td width="489"><div align="right">
+		<a class="style_boton3" href="#" onClick="location.href='listadoOdontologica.php'">Volver a Programa de Prevención Odontológica</a>
       </div>
     </td>
   </tr>
 </table>
+</div>
+<div align="center">
 <table width="979" border="0">
-  <tr>
-    <td width="506" valign="top"><p><span class="Estilo4">Informaci&oacute;n del Profesional</span></p>
-      <p><strong>Nombre:</strong>
-          <input name="profesional" type="text" id="profesional" value="" size="60"/>
-      </p>
-      <p><strong>Fecha Atenci&oacute;n:</strong>
-          <input name="fechaatencion" type="text" id="fechaatencion" value="" size="12"/>
-      </p>
-      </td>
-    <td width="463" valign="top"><p><span class="Estilo4">Informaci&oacute;n del Beneficiario </span></p>
-	  <p><strong> C.U.I.L.:</strong>
-          <label>
-          <input name="nrcuil" type="text" id="nrcuil" value="" size="11" />
-          </label>
-          <label>
-          <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
-          </label>
-      </p>
-	  <p><strong>N&uacute;mero de Afiliado:</strong>
-          <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" style="background:#CCCCCC"/>
-      </p>
-	  <p><strong>Tipo de Afiliado: </strong>
-          <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" style="background:#CCCCCC" value=""/>
-          <label>
-          <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
-          <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
-          </label>
-      </p>
-	  <p><strong>Apellido y Nombre: </strong>
-          <input name="nombre" type="text" id="nombre" value="" size="60"/>
-      </p>
-	  <p>
-        <strong>Edad: </strong>
-        <input name="edad" type="text" id="edad" value="" size="5" maxlength="5" />
-	  </p>
-	  <p><strong>Telefono: DDN </strong>
-          <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" />
-          <strong>N&uacute;mero </strong>
-          <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" />
-      </p>
-	  <p><strong>Consulta Nro.: </strong>
-	    <input name="consultanro" type="text" id="consultanro" value="" size="3" maxlength="2" />
-	  </p>
-	  <p><strong>Embarazada: </strong>
-          <select name="embarazo" id="embarazo">
-            <option title="Seleccione un valor" value="">Seleccione un valor</option>
-            <option title="Si" value="1">Si</option>
-            <option title="No" value="0">No</option>
-          </select>
-      </p>
-	  <p><strong>Semana de Embarazo:</strong>
-        <input name="semanaembarazo" type="text" id="semanaembarazo" value="" size="3" maxlength="2" />
-	  </p>
-	  <p><strong>Observaciones/Indicaciones:</strong>
-          <textarea name="observaciones" cols="60" rows="3" id="observaciones"></textarea>
-      </p>
-	  </td>
-  </tr>
-  <tr>
-    <td colspan="2" valign="top">
-      <div align="right">
-        <input name="guardar" type="submit" id="guardar" value="Guardar Registro" />
-        </div></td>
+	<tr>
+		<td valign="top">
+		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Profesional</span></p>
+		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+			  <input name="profesional" type="text" id="profesional" value="" size="60" placeholder="Tratamiento, Apellido y Nombre (Ej: Dr. Gonzalez Mario)" class="style_input"/>
+		 </span>
+		  <span align="left" class="style_texto_input"><strong>Fecha de Atenci&oacute;n :</strong>
+			  <input name="fechaatencion" type="text" id="fechaatencion" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		</td>
+	</tr>
+</table>
+<table width="979" border="0">
+	<tr>
+		<td valign="top">
+		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
+		  <span align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
+			  <input name="nrcuil" type="text" id="nrcuil" value="" size="11" placeholder="Sin guiones" class="style_input"/>
+			  <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
+			  <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" class="style_input_readonly"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Tipo de Afiliado :</strong>
+			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
+			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+			  <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Edad : </strong>
+			<input name="edad" type="text" id="edad" value="" size="5" maxlength="5" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
+			  <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" placeholder="DDN" class="style_input"/>
+			  <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" placeholder="Número" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Consulta Nro. :</strong>
+			<input name="consultanro" type="text" id="consultanro" value="" size="3" maxlength="2" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Embarazada :</strong>
+			  <select name="embarazo" id="embarazo" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Semana de Embarazo :</strong>
+			<input name="semanaembarazo" type="text" id="semanaembarazo" value="" size="3" maxlength="2" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
+			  <select name="cie10" id="cie10" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <p align="left" class="style_texto_input">
+			  <select name="capitulo" id="capitulo" class="style_input">
+	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
+        	  </select>
+		  </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="grupo" id="grupo" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="categoria" id="categoria" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="subcategoria" id="subcategoria" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
+			  <p><textarea name="diagnostico" cols="135" rows="3" id="diagnostico" class="style_input"></textarea></p>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Secundario :</strong>
+			  <p><textarea name="subdiagnostico" cols="135" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
+			  <p><textarea name="observaciones" cols="135" rows="3" id="observaciones" class="style_input"></textarea></p>
+		  </span>
+		</td>
+	</tr>
+</table>
+</div>
+<div align="center">
+<table>
+	<tr>
+		<td valign="top">
+        	<input name="guardar" type="submit" id="guardar" class="style_boton4" value="Guardar Registro" />
+        </td>
     </tr>
 </table>
+</div>
 </form>
 </body>
 </html>

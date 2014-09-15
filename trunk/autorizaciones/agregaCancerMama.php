@@ -26,52 +26,25 @@ jQuery(function($){
  
 $(document).ready(function(){
 	$("#verCuil").attr('disabled', true);
-
 	$("#guardar").hide();
-//	$("#guardar").attr('disabled', true);
-
-	$("#capitulo").click(function(){
-		alert("va a buscar");
-		$.ajax({
-			type: "POST",
-			dataType: "html",
-			url: "buscaCapitulos.php",
-			data: {capitulo:1},
-		}).done(function(respuesta){
-			if(respuesta) {
-				alert("volvio");
-			}
-			$("#capitulo").html(respuesta);
-			if(respuesta) {
-			}
-		});
-	});
-//	$.ajax({
-//		type: "POST",
-//		dataType: "html",
-//		url: "buscaGrupos.php",
-//	}).done(function(respuesta){
-//		if(respuesta.nroafi) {
-//		}
-//	});
-
-//	$.ajax({
-//		type: "POST",
-//		dataType: "html",
-//		url: "buscaCategorias.php",
-//	}).done(function(respuesta){
-//		if(respuesta.nroafi) {
-//		}
-//	});
-
-//	$.ajax({
-//		type: "POST",
-//		dataType: "html",
-//		url: "buscaSubcategorias.php",
-//	}).done(function(respuesta){
-//		if(respuesta.nroafi) {
-//		}
-//	});
+	$("#personaantecedente option[value='']").prop('selected',true);
+	$("#personaantecedente").attr('disabled', true);
+	$("#ultimoexamenmamario").val("");
+	$("#ultimoexamenmamario").attr('disabled', true);
+	$("#ultimamamografia").val("");
+	$("#ultimamamografia").attr('disabled', true);
+	$("#capitulo option[value='']").prop('selected',true);
+	$("#capitulo").attr('disabled', true);
+	$("#grupo option[value='']").prop('selected',true);
+	$("#grupo").attr('disabled', true);
+	$("#categoria option[value='']").prop('selected',true);
+	$("#categoria").attr('disabled', true);
+	$("#subcategoria option[value='']").prop('selected',true);
+	$("#subcategoria").attr('disabled', true);
+	$("#diagnostico").val("");
+	$("#diagnostico").attr('disabled', true);
+	$("#subdiagnostico").val("");
+	$("#subdiagnostico").attr('disabled', true);
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -222,39 +195,134 @@ $(document).ready(function(){
 
 	$("#antecedentes").change(function(){
 		var antecedentes = $(this).val();
-		if(antecedentes=="0") {
+		if(antecedentes=="1") {
 			$("#personaantecedente option[value='']").prop('selected',true);
-			$("#personaantecedente").attr('disabled', true);
+			$("#personaantecedente").attr('disabled', false);
 		}
 		else {
 			$("#personaantecedente option[value='']").prop('selected',true);
-			$("#personaantecedente").attr('disabled', false);
+			$("#personaantecedente").attr('disabled', true);
 		}
 	});
 
 	$("#examenmamario").change(function(){
 		var examenmamario = $(this).val();
-		if(examenmamario=="0") {
+		if(examenmamario=="1") {
 			$("#ultimoexamenmamario").val("");
-			$("#ultimoexamenmamario").attr('disabled', true);
+			$("#ultimoexamenmamario").attr('disabled', false);
 		}
 		else {
 			$("#ultimoexamenmamario").val("");
-			$("#ultimoexamenmamario").attr('disabled', false);
+			$("#ultimoexamenmamario").attr('disabled', true);
 		}
 	});
 
 	$("#mamografia").change(function(){
 		var mamografia = $(this).val();
-		if(mamografia=="0") {
-			$("#ultimamamografia").val("");
-			$("#ultimamamografia").attr('disabled', true);
-		}
-		else {
+		if(mamografia=="1") {
 			$("#ultimamamografia").val("");
 			$("#ultimamamografia").attr('disabled', false);
 		}
+		else {
+			$("#ultimamamografia").val("");
+			$("#ultimamamografia").attr('disabled', true);
+		}
 	});
+
+	$("#cie10").change(function(){
+		var cie10 = $(this).val();
+		if(cie10=="1") {
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', false);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', false);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', false);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', false);
+			$("#diagnostico").val("");
+			$("#diagnostico").attr('disabled', true);
+			$("#subdiagnostico").val("");
+			$("#subdiagnostico").attr('disabled', true);
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "buscaCapitulos.php",
+			}).done(function(respuesta){
+				$("#capitulo").html(respuesta);
+			});
+		}
+		else {
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', true);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', true);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', true);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', true);
+			if(cie10=="0") {
+				$("#diagnostico").val("");
+				$("#diagnostico").attr('disabled', false);
+				$("#subdiagnostico").val("");
+				$("#subdiagnostico").attr('disabled', false);
+			} else {
+				$("#diagnostico").val("");
+				$("#diagnostico").attr('disabled', true);
+				$("#subdiagnostico").val("");
+				$("#subdiagnostico").attr('disabled', true);
+			}
+		}
+	});
+
+	$("#capitulo").change(function(){
+		var capitulo = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaGrupos.php",
+			data: {capitulo:capitulo},
+		}).done(function(respuesta){
+			$("#grupo").html(respuesta);
+		});
+	})
+
+	$("#grupo").change(function(){
+		var grupo = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaCategorias.php",
+			data: {grupo:grupo},
+		}).done(function(respuesta){
+			$("#categoria").html(respuesta);
+		});
+	})
+
+	$("#categoria").change(function(){
+		var descategoria = $("#categoria option:selected").text();
+		var separacodigo = $("#categoria option:selected").attr("title").split(' ');
+		var titcategoria = separacodigo[1];
+		var codcategoria = titcategoria+' - '+descategoria;
+		$("#diagnostico").val(codcategoria);
+		var categoria = $(this).val();
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: "buscaSubcategorias.php",
+			data: {categoria:categoria},
+		}).done(function(respuesta){
+			$("#subcategoria").html(respuesta);
+		});
+	})
+
+	$("#subcategoria").change(function(){
+		var desscategoria = $("#subcategoria option:selected").text();
+		var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
+		var titscategoria = separascodigo[1];
+		var codscategoria = titscategoria+' - '+desscategoria;
+		$("#subdiagnostico").val(codscategoria);		
+	})
 });
 
 function validar(formulario) {
@@ -419,7 +487,7 @@ function validar(formulario) {
 		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
 			  <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Edad: </strong>
+		  <span align="left" class="style_texto_input"><strong>Edad : </strong>
 			<input name="edad" type="text" id="edad" value="" size="5" maxlength="5" class="style_input"/>
 		  </span>
 		  <p>
@@ -455,7 +523,7 @@ function validar(formulario) {
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Fecha &Uacute;ltimo Examen Mamario :</strong>
+		  <span align="left" class="style_texto_input"><strong>Fecha de &Uacute;ltimo Examen Mamario :</strong>
 			  <input name="ultimoexamenmamario" type="text" id="ultimoexamenmamario" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
 		  </span>
 		  <p>
@@ -467,32 +535,44 @@ function validar(formulario) {
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Fecha &Uacute;ltima Mamograf&iacute;a :</strong>
+		  <span align="left" class="style_texto_input"><strong>Fecha de &Uacute;ltima Mamograf&iacute;a :</strong>
 			  <input name="ultimamamografia" type="text" id="ultimamamografia" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Diagnosticar seg&uacute;n Norma CEI 10 :</strong>
-			  <select name="capitulo" id="capitulo" class="style_input">
-        	  </select>
-			  <select name="grupo" id="grupo" class="style_input">
-	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
-        	  </select>
-			  <select name="categoria" id="categoria" class="style_input">
-	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
-        	  </select>
-			  <select name="subcategoria" id="subcategoria" class="style_input">
-	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
-        	  </select>
+		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
+			  <select name="cie10" id="cie10" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
 		  </span>
-		  <p>
+		  <p align="left" class="style_texto_input">
+			  <select name="capitulo" id="capitulo" class="style_input">
+	        	<option title="Seleccione un valor" value="">Seleccione un valor</option>
+        	  </select>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico :</strong>
+		  <p align="left" class="style_texto_input">
+		    <select name="grupo" id="grupo" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="categoria" id="categoria" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <p align="left" class="style_texto_input">
+		    <select name="subcategoria" id="subcategoria" class="style_input">
+		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
+		      </select>
+	      </p>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
 			  <p><textarea name="diagnostico" cols="135" rows="3" id="diagnostico" class="style_input"></textarea></p>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Sub Diagn&oacute;stico :</strong>
+		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Secundario :</strong>
 			  <p><textarea name="subdiagnostico" cols="135" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
 		  </span>
 		  <p>
