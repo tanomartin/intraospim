@@ -371,6 +371,39 @@ function validar(formulario) {
 		document.getElementById("presion").focus();
 		return false;
 	}
+	if (formulario.mca.value == ""){
+		alert("Debe ingresar un valor para Medida Abdominal");
+		document.getElementById("mca").focus();
+		return false;
+	} else {
+		if (!isNumberPositivo(formulario.mca.value)){
+			alert("El valor ingresado para Medida Abdominal es incorrecto");
+			document.getElementById("mca").focus();
+			return false;
+		}
+	}
+	if (formulario.imm.value == ""){
+		alert("Debe ingresar un valor para Indice de Masa Muscular");
+		document.getElementById("imm").focus();
+		return false;
+	} else {
+		if (!isNumberPositivo(formulario.imm.value)){
+			alert("El valor ingresado para Indice de Masa Muscular es incorrecto");
+			document.getElementById("imm").focus();
+			return false;
+		}
+	}
+	if (formulario.imc.value == ""){
+		alert("Debe ingresar un valor para Indice de Masa Corporal");
+		document.getElementById("imc").focus();
+		return false;
+	} else {
+		if (!isNumberPositivo(formulario.imc.value)){
+			alert("El valor ingresado para Indice de Masa Corporal es incorrecto");
+			document.getElementById("imc").focus();
+			return false;
+		}
+	}
 	if (formulario.antecedentes.options[formulario.antecedentes.selectedIndex].value == "") {
 		alert("Debe seleccionar si posee o no Antecedentes de Diabetes");
 		document.getElementById("antecedentes").focus();
@@ -480,6 +513,15 @@ function validar(formulario) {
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>Presi&oacute;n Arterial :</strong>
 			<input name="presion" type="text" id="presion" value="" size="7" maxlength="7" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Medida Abdominal :</strong>
+			<input name="mca" type="text" id="mca" value="" size="6" maxlength="6" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>IMM :</strong>
+			<input name="imm" type="text" id="imm" value="" size="6" maxlength="6" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>IMC :</strong>
+			<input name="imc" type="text" id="imc" value="" size="6" maxlength="6" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
