@@ -20,9 +20,9 @@ if($delcod != 0 and $delcod != NULL) {
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$dbh->beginTransaction();
 				
-			$sqlCarga = "INSERT INTO odontologica (delcod,profesional,fechaatencion,nrcuil,nrafil,codpar,nombre,ddntelefono,nrotelefono,edad,embarazo,semanaembarazo,consultanro,observaciones) VALUES (:delcod,:profesional,:fechaatencion,:nrcuil,:nrafil,:codpar,:nombre,:ddntelefono,:nrotelefono,:edad,:embarazo,:semanaembarazo,:consultanro,:observaciones)";
+			$sqlCarga = "INSERT INTO odontologica (delcod,profesional,fechaatencion,nrcuil,nrafil,codpar,nombre,ddntelefono,nrotelefono,edad,embarazo,semanaembarazo,consultanro,diagnostico,subdiagnostico,observaciones) VALUES (:delcod,:profesional,:fechaatencion,:nrcuil,:nrafil,:codpar,:nombre,:ddntelefono,:nrotelefono,:edad,:embarazo,:semanaembarazo,:consultanro,:diagnostico,:subdiagnostico,:observaciones)";
 			$resCarga = $dbh->prepare($sqlCarga);
-			if($resCarga->execute(array(':delcod' => $delcod, ':profesional' => strtoupper($_POST['profesional']), ':fechaatencion' => fechaParaGuardar($_POST['fechaatencion']), ':nrcuil' => $_POST['nrcuil'], ':nrafil' => $_POST['nrafil'], ':codpar' => $_POST['codpar'], ':nombre' => strtoupper($_POST['nombre']), ':ddntelefono' => $_POST['ddntelefono'], ':nrotelefono' => $_POST['nrotelefono'], ':edad' => $_POST['edad'], ':embarazo' => $_POST['embarazo'], ':semanaembarazo' => $semanaembarazo, ':consultanro' => $_POST['consultanro'],':observaciones' => $_POST['observaciones'])))
+			if($resCarga->execute(array(':delcod' => $delcod, ':profesional' => strtoupper($_POST['profesional']), ':fechaatencion' => fechaParaGuardar($_POST['fechaatencion']), ':nrcuil' => $_POST['nrcuil'], ':nrafil' => $_POST['nrafil'], ':codpar' => $_POST['codpar'], ':nombre' => strtoupper($_POST['nombre']), ':ddntelefono' => $_POST['ddntelefono'], ':nrotelefono' => $_POST['nrotelefono'], ':edad' => $_POST['edad'], ':embarazo' => $_POST['embarazo'], ':semanaembarazo' => $semanaembarazo, ':consultanro' => $_POST['consultanro'], ':diagnostico' => $_POST['diagnostico'], ':subdiagnostico' => $_POST['subdiagnostico'], ':observaciones' => $_POST['observaciones'])))
 			$dbh->commit();
 			$pagina = "listadoOdontologica.php";
 			Header("Location: $pagina");
