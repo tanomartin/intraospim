@@ -36,9 +36,9 @@ $(document).ready(function(){
 	$("#subcategoria option[value='']").prop('selected',true);
 	$("#subcategoria").attr('disabled', true);
 	$("#diagnostico").val("");
-	$("#diagnostico").attr('disabled', true);
+	$("#diagnostico").attr('readonly', true);
 	$("#subdiagnostico").val("");
-	$("#subdiagnostico").attr('disabled', true);
+	$("#subdiagnostico").attr('readonly', true);
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -211,9 +211,9 @@ $(document).ready(function(){
 			$("#subcategoria option[value='']").prop('selected',true);
 			$("#subcategoria").attr('disabled', false);
 			$("#diagnostico").val("");
-			$("#diagnostico").attr('disabled', true);
+			$("#diagnostico").attr('readonly', true);
 			$("#subdiagnostico").val("");
-			$("#subdiagnostico").attr('disabled', true);
+			$("#subdiagnostico").attr('readonly', true);
 			$.ajax({
 				type: "POST",
 				dataType: "html",
@@ -233,14 +233,14 @@ $(document).ready(function(){
 			$("#subcategoria").attr('disabled', true);
 			if(cie10=="0") {
 				$("#diagnostico").val("");
-				$("#diagnostico").attr('disabled', false);
+				$("#diagnostico").attr('readonly', false);
 				$("#subdiagnostico").val("");
-				$("#subdiagnostico").attr('disabled', false);
+				$("#subdiagnostico").attr('readonly', false);
 			} else {
 				$("#diagnostico").val("");
-				$("#diagnostico").attr('disabled', true);
+				$("#diagnostico").attr('readonly', true);
 				$("#subdiagnostico").val("");
-				$("#subdiagnostico").attr('disabled', true);
+				$("#subdiagnostico").attr('readonly', true);
 			}
 		}
 	});
@@ -564,17 +564,17 @@ function validar(formulario) {
 		      </select>
 	      </p>
 		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
-			  <p><textarea name="diagnostico" cols="135" rows="3" id="diagnostico" class="style_input"></textarea></p>
+			  <p><textarea name="diagnostico" cols="120" rows="3" id="diagnostico" class="style_input"></textarea></p>
 		  </span>
 		  <p>
 		  </p>
 		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Secundario :</strong>
-			  <p><textarea name="subdiagnostico" cols="135" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
+			  <p><textarea name="subdiagnostico" cols="120" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
 		  </span>
 		  <p>
 		  </p>
 		  <span align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
-			  <p><textarea name="observaciones" cols="135" rows="3" id="observaciones" class="style_input"></textarea></p>
+			  <p><textarea name="observaciones" cols="120" rows="3" id="observaciones" class="style_input"></textarea></p>
 		  </span>
 		</td>
 	</tr>

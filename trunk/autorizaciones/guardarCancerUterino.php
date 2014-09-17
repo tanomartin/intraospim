@@ -30,11 +30,11 @@ if($delcod != 0 and $delcod != NULL) {
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$dbh->beginTransaction();
 				
-			$sqlCarga = "INSERT INTO canceruterino (delcod,profesional,fechaatencion,nrcuil,nrafil,codpar,nombre,ddntelefono,nrotelefono,edad,antecedentes,personaantecedente,pap,ultimopap,colpo,ultimacolpo,diagnostico,observaciones) VALUES (:delcod,:profesional,:fechaatencion,:nrcuil,:nrafil,:codpar,:nombre,:ddntelefono,:nrotelefono,:edad,:antecedentes,:personaantecedente,:pap,:ultimopap,:colpo,:ultimacolpo,:diagnostico,:observaciones)";
+			$sqlCarga = "INSERT INTO canceruterino (delcod,profesional,fechaatencion,nrcuil,nrafil,codpar,nombre,ddntelefono,nrotelefono,edad,antecedentes,personaantecedente,pap,ultimopap,colpo,ultimacolpo,diagnostico,subdiagnostico,observaciones) VALUES (:delcod,:profesional,:fechaatencion,:nrcuil,:nrafil,:codpar,:nombre,:ddntelefono,:nrotelefono,:edad,:antecedentes,:personaantecedente,:pap,:ultimopap,:colpo,:ultimacolpo,:diagnostico,:subdiagnostico,:observaciones)";
 			$resCarga = $dbh->prepare($sqlCarga);
-			if($resCarga->execute(array(':delcod' => $delcod, ':profesional' => strtoupper($_POST['profesional']), ':fechaatencion' => fechaParaGuardar($_POST['fechaatencion']), ':nrcuil' => $_POST['nrcuil'], ':nrafil' => $_POST['nrafil'], ':codpar' => $_POST['codpar'], ':nombre' => strtoupper($_POST['nombre']), ':ddntelefono' => $_POST['ddntelefono'], ':nrotelefono' => $_POST['nrotelefono'], ':edad' => $_POST['edad'], ':antecedentes' => $_POST['antecedentes'], ':personaantecedente' => $personaantecedente, ':pap' => $_POST['pap'], ':ultimopap' => $ultimopap, ':colpo' => $_POST['colpo'], ':ultimacolpo' => $ultimacolpo, ':diagnostico' => $_POST['diagnostico'], ':observaciones' => $_POST['observaciones'])))
+			if($resCarga->execute(array(':delcod' => $delcod, ':profesional' => strtoupper($_POST['profesional']), ':fechaatencion' => fechaParaGuardar($_POST['fechaatencion']), ':nrcuil' => $_POST['nrcuil'], ':nrafil' => $_POST['nrafil'], ':codpar' => $_POST['codpar'], ':nombre' => strtoupper($_POST['nombre']), ':ddntelefono' => $_POST['ddntelefono'], ':nrotelefono' => $_POST['nrotelefono'], ':edad' => $_POST['edad'], ':antecedentes' => $_POST['antecedentes'], ':personaantecedente' => $personaantecedente, ':pap' => $_POST['pap'], ':ultimopap' => $ultimopap, ':colpo' => $_POST['colpo'], ':ultimacolpo' => $ultimacolpo, ':diagnostico' => $_POST['diagnostico'], ':subdiagnostico' => $_POST['subdiagnostico'], ':observaciones' => $_POST['observaciones'])))
 			$dbh->commit();
-			$pagina = "listadoCancerUterino.php";
+			$pagina = "listadoCanceUterino.php";
 			Header("Location: $pagina");
 		} catch (PDOException $e) {
 			echo $e->getMessage();
