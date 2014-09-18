@@ -20,12 +20,6 @@ for ($i=0; $i < sizeof($habilitados); $i++) {
 <title>O.S.P.I.M. Men&uacute; principal de consulta para delegaciones</title>
 <style type="text/css">
 <!--
-.Estilo2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 12px;
-	color: #666666;
-}
 .Estilo3 {
 	font-family: Papyrus;
 	font-weight: bold;
@@ -49,6 +43,7 @@ body {
 	font-weight: bold;
 	color: #000000;
 }
+.Estilo16 {font-size: 18px}
 -->
 </style>
 </head>
@@ -90,7 +85,7 @@ $row = mysql_fetch_array($result);
   </tr>
   <tr>
     <td height="21">&nbsp;</td>
-    <td align="right"><div align="center"><span class="Estilo12"><span class="Estilo13">El instructivo y las Preguntas Frecuentes esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://www.adobe.com/es/products/acrobat/readstep2.html")) target="_top">Descargar aqui</a></span> </div></td>
+    <td align="right"><div align="center"><span class="Estilo12"><span class="Estilo13">El instructivo y las Preguntas Frecuentes esta en extension pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://get.adobe.com/es/reader/")) target="_top">Descargar aqui</a></span> </div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -116,12 +111,15 @@ $row = mysql_fetch_array($result);
 	?> </p></td>
     <td width="14%">&nbsp;</td>
   </tr>
-  
-  
   <tr>
-    <td width="14%"></td>
-    <td align="right"><p align="center"><a href="clave.htm" class="Estilo2"></a></p></td>
-    <td width="14%"></td>
+    <td></td>
+    <td align="right">&nbsp;</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td align="right"><p><div align="center"><a href=javascript:void(window.open("discapacidad/menuDiscapacidad.php")) class="Estilo16">Formularios e Instructivos para Discapacidad</a></div></p></td>
+    <td></td>
   </tr>
 </table>
 <table width="997" border="0" align="center" cellpadding="0" cellspacing="0">
