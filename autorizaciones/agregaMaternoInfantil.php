@@ -27,6 +27,8 @@ $(document).ready(function(){
 	$("#guardar").hide();
 	$("#vacunasfaltantes option[value='']").prop('selected',true);
 	$("#vacunasfaltantes").attr('disabled', true);
+	$("#cie10 option[value='']").prop('selected',true);
+	$("#cie10").attr('disabled', true);
 	$("#capitulo option[value='']").prop('selected',true);
 	$("#capitulo").attr('disabled', true);
 	$("#grupo option[value='']").prop('selected',true);
@@ -37,8 +39,10 @@ $(document).ready(function(){
 	$("#subcategoria").attr('disabled', true);
 	$("#diagnostico").val("");
 	$("#diagnostico").attr('readonly', true);
+	$("#diagnostico").css({"background-color": "#cccccc"});
 	$("#subdiagnostico").val("");
 	$("#subdiagnostico").attr('readonly', true);
+	$("#subdiagnostico").css({"background-color": "#cccccc"});
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -75,7 +79,6 @@ $(document).ready(function(){
 	});
 
 	$("#nrcuil").change(function(){
-		//$("#guardar").attr('disabled', true);
 		$("#guardar").hide();
 		var cuil = $("#nrcuil").val();
 		var aMult = '5432765432';
@@ -94,7 +97,6 @@ $(document).ready(function(){
 				$("#verCuil").attr('disabled', false);
 			} else {
 				$("#verCuil").attr('disabled', true);
-				//$("#guardar").attr('disabled', true);
 				$("#guardar").hide();
 				$("#nrafil").val("");
 				$("#tipoafiliado").val("");
@@ -160,10 +162,8 @@ $(document).ready(function(){
 						$("#edad").attr("readonly", true);
 						$("#edad").css({"background-color": "#cccccc"});
 					}
-					//$("#guardar").attr('disabled', false);
 					$("#guardar").show();
 				} else {
-					//$("#guardar").attr('disabled', false);
 					$("#guardar").show();
 					alert("Beneficiario no empadronado o perteneciente a otra delegacion. Debe completar Apellido y Nombre");
 					$("#nrafil").val("");
@@ -180,7 +180,6 @@ $(document).ready(function(){
 				}
 			});
 		} else {
-			//$("#guardar").attr('disabled', true);
 			$("#guardar").hide();
 			alert("Debe Ingresar un C.U.I.L. para verificar la existencia");
 			$("#nrcuil").focus();
@@ -199,7 +198,41 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#emitediagnostico").change(function(){
+		$('#capitulo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#grupo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		var emitediagnostico = $(this).val();
+		if(emitediagnostico=="1") {
+			$("#cie10 option[value='']").prop('selected',true);
+			$("#cie10").attr('disabled', false);
+		}
+		else {
+			$("#cie10 option[value='']").prop('selected',true);
+			$("#cie10").attr('disabled', true);
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', true);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', true);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', true);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', true);
+			$("#diagnostico").val("");
+			$("#diagnostico").attr('readonly', true);
+			$("#diagnostico").css({"background-color": "#cccccc"});
+			$("#subdiagnostico").val("");
+			$("#subdiagnostico").attr('readonly', true);
+			$("#subdiagnostico").css({"background-color": "#cccccc"});
+		}
+	});
+
 	$("#cie10").change(function(){
+		$('#capitulo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#grupo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
 		var cie10 = $(this).val();
 		if(cie10=="1") {
 			$("#capitulo option[value='']").prop('selected',true);
@@ -212,8 +245,10 @@ $(document).ready(function(){
 			$("#subcategoria").attr('disabled', false);
 			$("#diagnostico").val("");
 			$("#diagnostico").attr('readonly', true);
+			$("#diagnostico").css({"background-color": "#cccccc"});
 			$("#subdiagnostico").val("");
 			$("#subdiagnostico").attr('readonly', true);
+			$("#subdiagnostico").css({"background-color": "#cccccc"});
 			$.ajax({
 				type: "POST",
 				dataType: "html",
@@ -234,18 +269,25 @@ $(document).ready(function(){
 			if(cie10=="0") {
 				$("#diagnostico").val("");
 				$("#diagnostico").attr('readonly', false);
+				$("#diagnostico").css({"background-color": "#ffffff"});
 				$("#subdiagnostico").val("");
 				$("#subdiagnostico").attr('readonly', false);
+				$("#subdiagnostico").css({"background-color": "#ffffff"});
 			} else {
 				$("#diagnostico").val("");
 				$("#diagnostico").attr('readonly', true);
+				$("#diagnostico").css({"background-color": "#cccccc"});
 				$("#subdiagnostico").val("");
 				$("#subdiagnostico").attr('readonly', true);
+				$("#subdiagnostico").css({"background-color": "#cccccc"});
 			}
 		}
 	});
 
 	$("#capitulo").change(function(){
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$("#grupo option[value='']").prop('selected',true);
 		var capitulo = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -255,9 +297,17 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#grupo").html(respuesta);
 		});
-	})
+		$("#categoria option[value='']").prop('selected',true);
+		$("#subcategoria option[value='']").prop('selected',true);
+		var codcategoria  = "";
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#grupo").change(function(){
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$("#categoria option[value='']").prop('selected',true);
 		var grupo = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -267,14 +317,15 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#categoria").html(respuesta);
 		});
-	})
+		$("#subcategoria option[value='']").prop('selected',true);
+		var codcategoria  = "";
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#categoria").change(function(){
-		var descategoria = $("#categoria option:selected").text();
-		var separacodigo = $("#categoria option:selected").attr("title").split(' ');
-		var titcategoria = separacodigo[1];
-		var codcategoria = titcategoria+' - '+descategoria;
-		$("#diagnostico").val(codcategoria);
+		$("#subcategoria option[value='']").prop('selected',true);
 		var categoria = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -284,15 +335,28 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#subcategoria").html(respuesta);
 		});
-	})
+		var codcategoria = "";
+		if(categoria != "") {
+			var descategoria = $("#categoria option:selected").text();
+			var separacodigo = $("#categoria option:selected").attr("title").split(' ');
+			var titcategoria = separacodigo[1];
+			var codcategoria = titcategoria+' - '+descategoria;
+		}
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#subcategoria").change(function(){
-		var desscategoria = $("#subcategoria option:selected").text();
-		var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
-		var titscategoria = separascodigo[1];
-		var codscategoria = titscategoria+' - '+desscategoria;
+		var codscategoria = "";
+		if($(this).val() != "") {
+			var desscategoria = $("#subcategoria option:selected").text();
+			var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
+			var titscategoria = separascodigo[1];
+			var codscategoria = titscategoria+' - '+desscategoria;
+		}
 		$("#subdiagnostico").val(codscategoria);		
-	})
+	});
 });
 
 function validar(formulario) {
@@ -344,6 +408,17 @@ function validar(formulario) {
 	} else {
 		formulario.nrotelefono.value = "0";
 	}
+	if (formulario.controlnro.value == ""){
+		alert("Debe ingresar un valor para Control Nro.");
+		document.getElementById("controlnro").focus();
+		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.controlnro.value)){
+			alert("El valor ingresado para Control Nro. es incorrecto");
+			document.getElementById("controlnro").focus();
+			return false;
+		}
+	}
 	if (formulario.talla.value == ""){
 		alert("Debe ingresar un valor para Talla");
 		document.getElementById("talla").focus();
@@ -366,14 +441,14 @@ function validar(formulario) {
 			return false;
 		}
 	}
-	if (formulario.controlnro.value == ""){
-		alert("Debe ingresar un valor para Control Nro.");
-		document.getElementById("controlnro").focus();
+	if (formulario.perimetrocefalico.value == ""){
+		alert("Debe ingresar un valor para Perímetro Cefálico");
+		document.getElementById("perimetrocefalico").focus();
 		return false;
 	} else {
-		if (!esEnteroPositivo(formulario.controlnro.value)){
-			alert("El valor ingresado para Control Nro. es incorrecto");
-			document.getElementById("controlnro").focus();
+		if (!isNumberPositivo(formulario.perimetrocefalico.value)){
+			alert("El valor ingresado para Perímetro Cefálico es incorrecto");
+			document.getElementById("perimetrocefalico").focus();
 			return false;
 		}
 	}
@@ -394,15 +469,17 @@ function validar(formulario) {
 		document.getElementById("lactanciamaterna").focus();
 		return false;
 	}
-	if (formulario.diagnostico.value == "") {
-		alert("Debe ingresar un valor en el campo Diagnostico");
-		document.getElementById("diagnostico").focus();
+	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "") {
+		alert("Debe seleccionar si emite o no Diagnostico");
+		document.getElementById("emitediagnostico").focus();
 		return false;
 	}
-	if (formulario.observaciones.value == "") {
-		alert("Debe ingresar un valor en el campo Observaciones/Indicaciones");
-		document.getElementById("observaciones").focus();
-		return false;
+	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "1") {
+		if (formulario.diagnostico.value == "") {
+			alert("Debe ingresar un valor en el campo Diagnostico Principal");
+			document.getElementById("diagnostico").focus();
+			return false;
+		}
 	}
 	$.blockUI({ message: "<h1>Guardando Registro. Aguarde por favor...</h1>" });
 	return true;
@@ -446,7 +523,7 @@ function validar(formulario) {
 		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
 		  <span align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
 			  <input name="nrcuil" type="text" id="nrcuil" value="" size="11" placeholder="Sin guiones" class="style_input"/>
-			  <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
+			  <input name="verCuil" type="button" id="verCuil" value="Verificar CUIL"/>
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
 			  <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" class="style_input_readonly"/>
@@ -461,7 +538,7 @@ function validar(formulario) {
 		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
 			  <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Edad : </strong>
+		  <span align="left" class="style_texto_input"><strong>Edad :</strong>
 			<input name="edad" type="text" id="edad" value="" size="5" maxlength="5" class="style_input"/>
 		  </span>
 		  <p>
@@ -472,19 +549,46 @@ function validar(formulario) {
 		  </span>
 		  <p>
 		  </p>
+		  <span align="left" class="style_texto_input"><strong>Control Nro.:</strong>
+			<input name="controlnro" type="text" id="controlnro" value="" size="3" maxlength="2" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
 		  <span align="left" class="style_texto_input"><strong>Talla :</strong>
 			<input name="talla" type="text" id="talla" value="" size="4" maxlength="4" class="style_input"/>
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>Peso :</strong>
 			<input name="peso" type="text" id="peso" value="" size="6" maxlength="6" class="style_input"/>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Control Nro.: </strong>
-			<input name="controlnro" type="text" id="controlnro" value="" size="3" maxlength="2" class="style_input"/>
+		  <span align="left" class="style_texto_input"><strong>P.C. :</strong>
+			<input name="perimetrocefalico" type="text" id="perimetrocefalico" value="" size="5" maxlength="6" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>FEI :</strong>
+			  <select name="estudiofei" id="estudiofei" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="+" value="1">Positivo</option>
+				<option title="-" value="0">Negativo</option>
+			  </select>
+		  </span>
+		 <span align="left" class="style_texto_input"><strong>OeA :</strong>
+			  <select name="otoemisionesacusticas" id="otoemisionesacusticas" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Pasa el Examen" value="1">Pasa el Examen</option>
+				<option title="No pasa el Examen" value="0">No pasa el Examen</option>
+				<option title="Exceso de Ruido" value="2">Exceso de Ruido</option>
+			  </select>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Vacunas al D&iacute;a: </strong>
-			  <select name="vacunasaldia" id="vacunasaldia" class="style_input">
+		  <span align="left" class="style_texto_input"><strong>F.O. :</strong>
+			  <select name="fondodeojo" id="fondodeojo" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Ecograf&iacute;a de Cadera :</strong>
+			  <select name="ecocadera" id="ecocadera" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
 				<option title="No" value="0">No</option>
@@ -492,12 +596,17 @@ function validar(formulario) {
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Vacunas Faltantes :</strong>
-			  <p><textarea name="vacunasfaltantes" cols="100" rows="3" id="vacunasfaltantes" class="style_input"></textarea></p>
+		  <span align="left" class="style_texto_input"><strong>Vacunas al D&iacute;a :</strong>
+			  <select name="vacunasaldia" id="vacunasaldia" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+			  <input name="vacunasfaltantes" type="text" id="vacunasfaltantes" value="" size="95" placeholder="Vacunas Faltantes" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Lactancia Materna: </strong>
+		  <span align="left" class="style_texto_input"><strong>Lactancia Materna :</strong>
 			  <select name="lactanciamaterna" id="lactanciamaterna" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
@@ -506,6 +615,13 @@ function validar(formulario) {
 		  </span>
 		  <p>
 		  </p>
+		  <span align="left" class="style_texto_input"><strong>Emite Diagn&oacute;stico  :</strong>
+			  <select name="emitediagnostico" id="emitediagnostico" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
 		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
 			  <select name="cie10" id="cie10" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
