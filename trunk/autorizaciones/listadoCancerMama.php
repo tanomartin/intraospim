@@ -88,7 +88,7 @@ $(document).ready(function(){
 		}
 	?>
 		<tr align="center">
-			<td><a id="editaRegistro" title="Click para Editar el Registro" class="style_botoneditar chico azul redondo" href='modificaCancerMama.php?nrosolicitud=<?php echo $row['id']; ?>'><?php echo $row['id']; ?></a></td>
+			<td><a id="editaRegistro" title="Click para Editar el Registro" class="style_botoneditar chico azul redondo" href='modificaCancerMama.php?id=<?php echo $row['id']; ?>'><?php echo $row['id']; ?></a></td>
 			<td><?php echo $row['profesional']; ?></td>
 			<td><?php echo invertirFecha($row['fechaatencion']); ?></td>
 			<td><?php echo $row['nrcuil']; ?></td>
