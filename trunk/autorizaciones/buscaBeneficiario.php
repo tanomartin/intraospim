@@ -3,7 +3,7 @@ session_start();
 include ("verificaSesionAutorizaciones.php");
 $delcod = $_SESSION['delcod'];
 if (isset($_POST['cuil'])) {
-	$respuesta = array("nroafi" => NULL, "tipo" => NULL, "codigo" => NULL, "fecnac" =>NULL, "nombre" => NULL);
+	$respuesta = array("nroafi" => NULL, "tipo" => NULL, "codigo" => NULL, "fecnac" => NULL, "nombre" => NULL, "sexo" => NULL);
 	$cuil = $_POST['cuil'];
 	if ($delcod >= "4000") {
 		$queryTitu = "SELECT * FROM titular WHERE nrcuil = $cuil";
@@ -22,6 +22,7 @@ if (isset($_POST['cuil'])) {
 			$codigo = 1;
 			$fecnac = $row['fecnac'];
 			$nombre = $row['nombre'];
+			$sexo = $row['ssexxo'];
 		} else {
 			$result = mysql_query($queryFami,$db); 
 			$cant = mysql_num_rows($result);
@@ -32,9 +33,10 @@ if (isset($_POST['cuil'])) {
 				$codigo = $row['codpar'];
 				$fecnac = $row['fecnac'];
 				$nombre = $row['nombre'];
+				$sexo = $row['ssexxo'];
 			}
 		}
-		$respuesta = array("nroafi" => $nroafi, "tipo" => $tipo, "codigo" => $codigo, "fecnac" => $fecnac, "nombre" => $nombre);
+		$respuesta = array("nroafi" => $nroafi, "tipo" => $tipo, "codigo" => $codigo, "fecnac" => $fecnac, "nombre" => $nombre, "sexo" => $sexo);
 	} 
 	echo json_encode($respuesta);
 }

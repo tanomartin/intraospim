@@ -25,6 +25,14 @@ jQuery(function($){
 $(document).ready(function(){
 	$("#verCuil").attr('disabled', true);
 	$("#guardar").hide();
+	$("#eligemetodo").hide();
+	$("#preservativos").prop("checked",false);
+	$("#diu").prop("checked",false);
+	$("#anticonceptivos").prop("checked",false);
+	$("#especificamotivo").hide();
+	$("#motivonoentrega").val("");
+	$("#cie10 option[value='']").prop('selected',true);
+	$("#cie10").attr('disabled', true);
 	$("#capitulo option[value='']").prop('selected',true);
 	$("#capitulo").attr('disabled', true);
 	$("#grupo option[value='']").prop('selected',true);
@@ -35,8 +43,10 @@ $(document).ready(function(){
 	$("#subcategoria").attr('disabled', true);
 	$("#diagnostico").val("");
 	$("#diagnostico").attr('readonly', true);
+	$("#diagnostico").css({"background-color": "#cccccc"});
 	$("#subdiagnostico").val("");
 	$("#subdiagnostico").attr('readonly', true);
+	$("#subdiagnostico").css({"background-color": "#cccccc"});
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -73,7 +83,6 @@ $(document).ready(function(){
 	});
 
 	$("#nrcuil").change(function(){
-		//$("#guardar").attr('disabled', true);
 		$("#guardar").hide();
 		var cuil = $("#nrcuil").val();
 		var aMult = '5432765432';
@@ -92,12 +101,12 @@ $(document).ready(function(){
 				$("#verCuil").attr('disabled', false);
 			} else {
 				$("#verCuil").attr('disabled', true);
-				//$("#guardar").attr('disabled', true);
 				$("#guardar").hide();
 				$("#nrafil").val("");
 				$("#tipoafiliado").val("");
 				$("#codpar").val("");
 				$("#fechanacimiento").val("");
+				$("#sexo").val("");
 				$("#nombre").val("");
 				$("#edad").val("");
 				$("#nombre").attr("readonly", false);
@@ -124,6 +133,7 @@ $(document).ready(function(){
 					$("#tipoafiliado").val(respuesta.tipo);
 					$("#codpar").val(respuesta.codigo);
 					$("#fechanacimiento").val(respuesta.fecnac);
+					$("#sexo").val(respuesta.sexo);
 					$("#nombre").val(respuesta.nombre);
 					$("#nombre").attr("readonly", true);
 					$("#nombre").css({"background-color": "#cccccc"});
@@ -158,16 +168,15 @@ $(document).ready(function(){
 						$("#edad").attr("readonly", true);
 						$("#edad").css({"background-color": "#cccccc"});
 					}
-					//$("#guardar").attr('disabled', false);
 					$("#guardar").show();
 				} else {
-					//$("#guardar").attr('disabled', false);
 					$("#guardar").show();
 					alert("Beneficiario no empadronado o perteneciente a otra delegacion. Debe completar Apellido y Nombre");
 					$("#nrafil").val("");
 					$("#tipoafiliado").val("");
 					$("#codpar").val("");
 					$("#fechanacimiento").val("");
+					$("#sexo").val("");
 					$("#nombre").val("");
 					$("#edad").val("");
 					$("#nombre").attr("readonly", false);
@@ -178,14 +187,76 @@ $(document).ready(function(){
 				}
 			});
 		} else {
-			//$("#guardar").attr('disabled', true);
 			$("#guardar").hide();
 			alert("Debe Ingresar un C.U.I.L. para verificar la existencia");
 			$("#nrcuil").focus();
 		}
 	});
 
+	$("#metodoanticonceptivo").change(function(){
+		var metodoanticonceptivo = $(this).val();
+		if(metodoanticonceptivo=="") {
+			$("#eligemetodo").hide();
+			$("#preservativos").prop("checked",false);
+			$("#diu").prop("checked",false);
+			$("#anticonceptivos").prop("checked",false);
+			$("#especificamotivo").hide();
+			$("#motivonoentrega").val("");
+		} else {
+			if(metodoanticonceptivo=="1") {
+				$("#eligemetodo").show();
+				$("#preservativos").prop("checked",false);
+				$("#diu").prop("checked",false);
+				$("#anticonceptivos").prop("checked",false);
+				$("#especificamotivo").hide();
+				$("#motivonoentrega").val("");
+			}
+			if(metodoanticonceptivo=="0") {
+				$("#eligemetodo").hide();
+				$("#preservativos").prop("checked",false);
+				$("#diu").prop("checked",false);
+				$("#anticonceptivos").prop("checked",false);
+				$("#especificamotivo").show();
+				$("#motivonoentrega").val("");
+			}
+		}
+	});	
+
+	$("#emitediagnostico").change(function(){
+		$('#capitulo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#grupo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		var emitediagnostico = $(this).val();
+		if(emitediagnostico=="1") {
+			$("#cie10 option[value='']").prop('selected',true);
+			$("#cie10").attr('disabled', false);
+		}
+		else {
+			$("#cie10 option[value='']").prop('selected',true);
+			$("#cie10").attr('disabled', true);
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', true);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', true);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', true);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', true);
+			$("#diagnostico").val("");
+			$("#diagnostico").attr('readonly', true);
+			$("#diagnostico").css({"background-color": "#cccccc"});
+			$("#subdiagnostico").val("");
+			$("#subdiagnostico").attr('readonly', true);
+			$("#subdiagnostico").css({"background-color": "#cccccc"});
+		}
+	});
+
 	$("#cie10").change(function(){
+		$('#capitulo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#grupo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
 		var cie10 = $(this).val();
 		if(cie10=="1") {
 			$("#capitulo option[value='']").prop('selected',true);
@@ -198,8 +269,10 @@ $(document).ready(function(){
 			$("#subcategoria").attr('disabled', false);
 			$("#diagnostico").val("");
 			$("#diagnostico").attr('readonly', true);
+			$("#diagnostico").css({"background-color": "#cccccc"});
 			$("#subdiagnostico").val("");
 			$("#subdiagnostico").attr('readonly', true);
+			$("#subdiagnostico").css({"background-color": "#cccccc"});
 			$.ajax({
 				type: "POST",
 				dataType: "html",
@@ -220,18 +293,25 @@ $(document).ready(function(){
 			if(cie10=="0") {
 				$("#diagnostico").val("");
 				$("#diagnostico").attr('readonly', false);
+				$("#diagnostico").css({"background-color": "#ffffff"});
 				$("#subdiagnostico").val("");
 				$("#subdiagnostico").attr('readonly', false);
+				$("#subdiagnostico").css({"background-color": "#ffffff"});
 			} else {
 				$("#diagnostico").val("");
 				$("#diagnostico").attr('readonly', true);
+				$("#diagnostico").css({"background-color": "#cccccc"});
 				$("#subdiagnostico").val("");
 				$("#subdiagnostico").attr('readonly', true);
+				$("#subdiagnostico").css({"background-color": "#cccccc"});
 			}
 		}
 	});
 
 	$("#capitulo").change(function(){
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$("#grupo option[value='']").prop('selected',true);
 		var capitulo = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -241,9 +321,17 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#grupo").html(respuesta);
 		});
-	})
+		$("#categoria option[value='']").prop('selected',true);
+		$("#subcategoria option[value='']").prop('selected',true);
+		var codcategoria  = "";
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#grupo").change(function(){
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$("#categoria option[value='']").prop('selected',true);
 		var grupo = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -253,14 +341,15 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#categoria").html(respuesta);
 		});
-	})
+		$("#subcategoria option[value='']").prop('selected',true);
+		var codcategoria  = "";
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#categoria").change(function(){
-		var descategoria = $("#categoria option:selected").text();
-		var separacodigo = $("#categoria option:selected").attr("title").split(' ');
-		var titcategoria = separacodigo[1];
-		var codcategoria = titcategoria+' - '+descategoria;
-		$("#diagnostico").val(codcategoria);
+		$("#subcategoria option[value='']").prop('selected',true);
 		var categoria = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -270,15 +359,28 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#subcategoria").html(respuesta);
 		});
-	})
+		var codcategoria = "";
+		if(categoria != "") {
+			var descategoria = $("#categoria option:selected").text();
+			var separacodigo = $("#categoria option:selected").attr("title").split(' ');
+			var titcategoria = separacodigo[1];
+			var codcategoria = titcategoria+' - '+descategoria;
+		}
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#subcategoria").change(function(){
-		var desscategoria = $("#subcategoria option:selected").text();
-		var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
-		var titscategoria = separascodigo[1];
-		var codscategoria = titscategoria+' - '+desscategoria;
+		var codscategoria = "";
+		if($(this).val() != "") {
+			var desscategoria = $("#subcategoria option:selected").text();
+			var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
+			var titscategoria = separascodigo[1];
+			var codscategoria = titscategoria+' - '+desscategoria;
+		}
 		$("#subdiagnostico").val(codscategoria);		
-	})
+	});
 });
 
 function validar(formulario) {
@@ -311,6 +413,12 @@ function validar(formulario) {
 		alert("Debe ingresar la Edad del Beneficiario");
 		document.getElementById("edad").focus();
 		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.edad.value)){
+			alert("El valor ingresado para Edad es incorrecto");
+			document.getElementById("edad").focus();
+			return false;
+		}
 	}
 	if (formulario.ddntelefono.value != "") {
 		if (!esEnteroPositivo(formulario.ddntelefono.value)) {
@@ -335,30 +443,51 @@ function validar(formulario) {
 		document.getElementById("informacion").focus();
 		return false;
 	}
-	if (formulario.preservativos.options[formulario.preservativos.selectedIndex].value == "") {
-		alert("Debe seleccionar si se le entrega o no Preservativos");
-		document.getElementById("preservativos").focus();
+	if (formulario.metodoanticonceptivo.options[formulario.metodoanticonceptivo.selectedIndex].value == "") {
+		alert("Debe seleccionar si se entrega o no Método Anticonceptivo");
+		document.getElementById("metodoanticonceptivo").focus();
 		return false;
 	}
-	if (formulario.diu.options[formulario.diu.selectedIndex].value == "") {
-		alert("Debe seleccionar si tiene o no DIU");
-		document.getElementById("diu").focus();
+	if (formulario.metodoanticonceptivo.options[formulario.metodoanticonceptivo.selectedIndex].value == "0") {
+		if (formulario.motivonoentrega.value == "") {
+			alert("Debe especificar el motivo por el que no entrega Método Anticonceptivo");
+			document.getElementById("motivonoentrega").focus();
+			return false;
+		}
+	}
+	if (formulario.metodoanticonceptivo.options[formulario.metodoanticonceptivo.selectedIndex].value == "1") {
+		if (formulario.preservativos.checked == false && formulario.diu.checked == false && formulario.anticonceptivos.checked == false) {
+			alert("Debe seleccionar cual o cuales Métodos Anticonceptivos fueron entregados");
+			document.getElementById("preservativos").focus();
+			return false;
+		}
+	}
+//	if (formulario.preservativos.options[formulario.preservativos.selectedIndex].value == "") {
+//		alert("Debe seleccionar si se le entrega o no Preservativos");
+//		document.getElementById("preservativos").focus();
+//		return false;
+//	}
+//	if (formulario.diu.options[formulario.diu.selectedIndex].value == "") {
+//		alert("Debe seleccionar si tiene o no DIU");
+//		document.getElementById("diu").focus();
+//		return false;
+//	}
+//	if (formulario.anticonceptivos.options[formulario.anticonceptivos.selectedIndex].value == "") {
+//		alert("Debe seleccionar si se le entrega o no Anticonceptivos");
+//		document.getElementById("anticonceptivos").focus();
+//		return false;
+//	}
+	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "") {
+		alert("Debe seleccionar si emite o no Diagnostico");
+		document.getElementById("emitediagnostico").focus();
 		return false;
 	}
-	if (formulario.anticonceptivos.options[formulario.anticonceptivos.selectedIndex].value == "") {
-		alert("Debe seleccionar si se le entrega o no Anticonceptivos");
-		document.getElementById("anticonceptivos").focus();
-		return false;
-	}
-	if (formulario.diagnostico.value == "") {
-		alert("Debe ingresar un valor en el campo Diagnostico");
-		document.getElementById("diagnostico").focus();
-		return false;
-	}
-	if (formulario.observaciones.value == "") {
-		alert("Debe ingresar un valor en el campo Observaciones/Indicaciones");
-		document.getElementById("observaciones").focus();
-		return false;
+	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "1") {
+		if (formulario.diagnostico.value == "") {
+			alert("Debe ingresar un valor en el campo Diagnostico Principal");
+			document.getElementById("diagnostico").focus();
+			return false;
+		}
 	}
 	$.blockUI({ message: "<h1>Guardando Registro. Aguarde por favor...</h1>" });
 	return true;
@@ -376,7 +505,7 @@ function validar(formulario) {
     </div>
       </td>
     <td width="489"><div align="right">
-		<a class="style_boton3" href="#" onClick="location.href='listadoSaludSexual.php'">Volver a Programa de Salud Sexual y Procreaciónn Responsable</a>
+		<a class="style_boton3" href="#" onClick="location.href='listadoSaludSexual.php'">Volver a Programa de Salud Sexual y Procreación Responsable</a>
       </div>
     </td>
   </tr>
@@ -411,6 +540,7 @@ function validar(formulario) {
 			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
 			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
 			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="sexo" type="text" id="sexo" size="2" readonly="true" style="visibility:hidden" value=""/>
 		  </span>
 		  <p>
 		  </p>
@@ -428,7 +558,7 @@ function validar(formulario) {
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Se le Brinda Informaci&oacute;n?: </strong>
+		  <span align="left" class="style_texto_input"><strong>Se le Brinda Informaci&oacute;n? :</strong>
 			  <select name="informacion" id="informacion" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
@@ -437,29 +567,35 @@ function validar(formulario) {
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Entrega de Preservativos?: </strong>
-			  <select name="preservativos" id="preservativos" class="style_input">
+		  <span align="left" class="style_texto_input"><strong>Entrega de M&eacute;todo Anticonceptivo? :</strong>
+			  <select name="metodoanticonceptivo" id="metodoanticonceptivo" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>DIU: </strong>
-			  <select name="diu" id="diu" class="style_input">
-				<option title="Seleccione un valor" value="">Seleccione un valor</option>
-				<option title="Si" value="1">Si</option>
-				<option title="No" value="0">No</option>
-			  </select>
-		  </span>
-		 <span align="left" class="style_texto_input"><strong>Entrega de Anticonceptivos?: </strong>
-			  <select name="anticonceptivos" id="anticonceptivos" class="style_input">
-				<option title="Seleccione un valor" value="">Seleccione un valor</option>
-				<option title="Si" value="1">Si</option>
-				<option title="No" value="0">No</option>
-			  </select>
+		  <span id="eligemetodo" align="left" class="style_texto_input">
+		  	<strong>Preservativos</strong>
+			  <input name="preservativos" type="checkbox" id="preservativos" value="1" class="style_input"/>
+			<strong>D.I.U.</strong>
+			  <input name="diu" type="checkbox" id="diu" value="1" class="style_input"/>
+			<strong>Anticonceptivos</strong>
+			  <input name="anticonceptivos" type="checkbox" id="anticonceptivos" value="1" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
+		  <span id="especificamotivo" align="left" class="style_texto_input"><strong>Por Que? :</strong>
+			  <input name="motivonoentrega" type="text" id="motivonoentrega" value="" size="120" placeholder="Especificar motivo" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Emite Diagn&oacute;stico  :</strong>
+			  <select name="emitediagnostico" id="emitediagnostico" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
+		  </span>
 		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
 			  <select name="cie10" id="cie10" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
@@ -475,17 +611,17 @@ function validar(formulario) {
 		  <p align="left" class="style_texto_input">
 		    <select name="grupo" id="grupo" class="style_input">
 		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
-		      </select>
+	        </select>
 	      </p>
 		  <p align="left" class="style_texto_input">
 		    <select name="categoria" id="categoria" class="style_input">
 		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
-		      </select>
+	        </select>
 	      </p>
 		  <p align="left" class="style_texto_input">
 		    <select name="subcategoria" id="subcategoria" class="style_input">
 		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
-		      </select>
+	        </select>
 	      </p>
 		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
 			  <p><textarea name="diagnostico" cols="120" rows="3" id="diagnostico" class="style_input"></textarea></p>
