@@ -19,14 +19,27 @@ $delcod = $_SESSION['delcod'];
 jQuery(function($){
 	$("#nrcuil").mask("99999999999");
 	$("#fechaatencion").mask("99-99-9999");
+	$("#talla").mask("9.99");
+	$("#peso").mask("999.999");
 	$("#presion").mask("999/999");
+	$("#gestas").mask("9?9");
+	$("#vivos").mask("9?9");
+	$("#fum").mask("99-99-9999");
+	$("#alturauterina").mask("99.99");
+	$("#fpp").mask("99-99-9999");
 });
  
 $(document).ready(function(){
 	$("#verCuil").attr('disabled', true);
 	$("#guardar").hide();
-	$("#cantidadembarazoanterior").val("");
-	$("#cantidadembarazoanterior").attr('disabled', true);
+	$("#vivos").val("");
+	$("#vivos").attr('disabled', true);
+	$("#vivos").css({"background-color": "#cccccc"});
+	$("#abortos").val("");
+	$("#abortos").attr('disabled', true);
+	$("#abortos").css({"background-color": "#cccccc"});
+	$("#cie10 option[value='']").prop('selected',true);
+	$("#cie10").attr('disabled', true);
 	$("#capitulo option[value='']").prop('selected',true);
 	$("#capitulo").attr('disabled', true);
 	$("#grupo option[value='']").prop('selected',true);
@@ -37,8 +50,10 @@ $(document).ready(function(){
 	$("#subcategoria").attr('disabled', true);
 	$("#diagnostico").val("");
 	$("#diagnostico").attr('readonly', true);
+	$("#diagnostico").css({"background-color": "#cccccc"});
 	$("#subdiagnostico").val("");
 	$("#subdiagnostico").attr('readonly', true);
+	$("#subdiagnostico").css({"background-color": "#cccccc"});
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -75,7 +90,6 @@ $(document).ready(function(){
 	});
 
 	$("#nrcuil").change(function(){
-		//$("#guardar").attr('disabled', true);
 		$("#guardar").hide();
 		var cuil = $("#nrcuil").val();
 		var aMult = '5432765432';
@@ -94,12 +108,12 @@ $(document).ready(function(){
 				$("#verCuil").attr('disabled', false);
 			} else {
 				$("#verCuil").attr('disabled', true);
-				//$("#guardar").attr('disabled', true);
 				$("#guardar").hide();
 				$("#nrafil").val("");
 				$("#tipoafiliado").val("");
 				$("#codpar").val("");
 				$("#fechanacimiento").val("");
+				$("#sexo").val("");
 				$("#nombre").val("");
 				$("#edad").val("");
 				$("#nombre").attr("readonly", false);
@@ -126,6 +140,7 @@ $(document).ready(function(){
 					$("#tipoafiliado").val(respuesta.tipo);
 					$("#codpar").val(respuesta.codigo);
 					$("#fechanacimiento").val(respuesta.fecnac);
+					$("#sexo").val(respuesta.sexo);
 					$("#nombre").val(respuesta.nombre);
 					$("#nombre").attr("readonly", true);
 					$("#nombre").css({"background-color": "#cccccc"});
@@ -160,16 +175,15 @@ $(document).ready(function(){
 						$("#edad").attr("readonly", true);
 						$("#edad").css({"background-color": "#cccccc"});
 					}
-					//$("#guardar").attr('disabled', false);
 					$("#guardar").show();
 				} else {
-					//$("#guardar").attr('disabled', false);
 					$("#guardar").show();
 					alert("Beneficiario no empadronado o perteneciente a otra delegacion. Debe completar Apellido y Nombre");
 					$("#nrafil").val("");
 					$("#tipoafiliado").val("");
 					$("#codpar").val("");
 					$("#fechanacimiento").val("");
+					$("#sexo").val("");
 					$("#nombre").val("");
 					$("#edad").val("");
 					$("#nombre").attr("readonly", false);
@@ -180,26 +194,100 @@ $(document).ready(function(){
 				}
 			});
 		} else {
-			//$("#guardar").attr('disabled', true);
 			$("#guardar").hide();
 			alert("Debe Ingresar un C.U.I.L. para verificar la existencia");
 			$("#nrcuil").focus();
 		}
 	});
 
-	$("#embarazoanterior").change(function(){
-		var embarazoanterior = $(this).val();
-		if(embarazoanterior=="1") {
-			$("#cantidadembarazoanterior").val("");
-			$("#cantidadembarazoanterior").attr('disabled', false);
+	$("#gestas").change(function(){
+		var gestas = $(this).val();
+		if(gestas=="") {
+			$("#vivos").val("");
+			$("#vivos").attr('disabled', true);
+			$("#vivos").css({"background-color": "#cccccc"});
+			$("#abortos").val("");
+			$("#abortos").attr('disabled', true);
+			$("#abortos").css({"background-color": "#cccccc"});
+		} else {
+			if(gestas<=0) {
+				$("#vivos").val("");
+				$("#vivos").attr('disabled', true);
+				$("#vivos").css({"background-color": "#cccccc"});
+				$("#abortos").val("");
+				$("#abortos").attr('disabled', true);
+				$("#abortos").css({"background-color": "#cccccc"});
+			} else {
+				$("#vivos").val("");
+				$("#vivos").attr('disabled', false);
+				$("#vivos").css({"background-color": "#ffffff"});
+			}
+		}
+	});
+
+	$("#vivos").change(function(){
+		var gestas = $("#gestas").val();
+		var vivos = $(this).val();
+		if(vivos=="") {
+			$("#abortos").val("");
+			$("#abortos").attr('disabled', true);
+			$("#abortos").css({"background-color": "#cccccc"});
+		} else {
+			if(vivos<0) {
+				$("#abortos").val("");
+				$("#abortos").attr('disabled', true);
+				$("#abortos").css({"background-color": "#cccccc"});
+			} else {
+				if(vivos>gestas) {
+					$("#abortos").val("");
+					$("#abortos").attr('disabled', true);
+					$("#abortos").css({"background-color": "#cccccc"});
+				} else {
+					var abortos = gestas-vivos;
+					$("#abortos").val(abortos);
+					$("#abortos").attr('disabled', false);
+					$("#abortos").attr('readonly', true);
+					$("#abortos").css({"background-color": "#cccccc"});
+				}
+			}
+		}
+	});
+
+	$("#emitediagnostico").change(function(){
+		$('#capitulo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#grupo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		var emitediagnostico = $(this).val();
+		if(emitediagnostico=="1") {
+			$("#cie10 option[value='']").prop('selected',true);
+			$("#cie10").attr('disabled', false);
 		}
 		else {
-			$("#cantidadembarazoanterior").val("");
-			$("#cantidadembarazoanterior").attr('disabled', true);
+			$("#cie10 option[value='']").prop('selected',true);
+			$("#cie10").attr('disabled', true);
+			$("#capitulo option[value='']").prop('selected',true);
+			$("#capitulo").attr('disabled', true);
+			$("#grupo option[value='']").prop('selected',true);
+			$("#grupo").attr('disabled', true);
+			$("#categoria option[value='']").prop('selected',true);
+			$("#categoria").attr('disabled', true);
+			$("#subcategoria option[value='']").prop('selected',true);
+			$("#subcategoria").attr('disabled', true);
+			$("#diagnostico").val("");
+			$("#diagnostico").attr('readonly', true);
+			$("#diagnostico").css({"background-color": "#cccccc"});
+			$("#subdiagnostico").val("");
+			$("#subdiagnostico").attr('readonly', true);
+			$("#subdiagnostico").css({"background-color": "#cccccc"});
 		}
 	});
 
 	$("#cie10").change(function(){
+		$('#capitulo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#grupo').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
 		var cie10 = $(this).val();
 		if(cie10=="1") {
 			$("#capitulo option[value='']").prop('selected',true);
@@ -212,8 +300,10 @@ $(document).ready(function(){
 			$("#subcategoria").attr('disabled', false);
 			$("#diagnostico").val("");
 			$("#diagnostico").attr('readonly', true);
+			$("#diagnostico").css({"background-color": "#cccccc"});
 			$("#subdiagnostico").val("");
 			$("#subdiagnostico").attr('readonly', true);
+			$("#subdiagnostico").css({"background-color": "#cccccc"});
 			$.ajax({
 				type: "POST",
 				dataType: "html",
@@ -234,18 +324,25 @@ $(document).ready(function(){
 			if(cie10=="0") {
 				$("#diagnostico").val("");
 				$("#diagnostico").attr('readonly', false);
+				$("#diagnostico").css({"background-color": "#ffffff"});
 				$("#subdiagnostico").val("");
 				$("#subdiagnostico").attr('readonly', false);
+				$("#subdiagnostico").css({"background-color": "#ffffff"});
 			} else {
 				$("#diagnostico").val("");
 				$("#diagnostico").attr('readonly', true);
+				$("#diagnostico").css({"background-color": "#cccccc"});
 				$("#subdiagnostico").val("");
 				$("#subdiagnostico").attr('readonly', true);
+				$("#subdiagnostico").css({"background-color": "#cccccc"});
 			}
 		}
 	});
 
 	$("#capitulo").change(function(){
+		$('#categoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$("#grupo option[value='']").prop('selected',true);
 		var capitulo = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -255,9 +352,17 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#grupo").html(respuesta);
 		});
-	})
+		$("#categoria option[value='']").prop('selected',true);
+		$("#subcategoria option[value='']").prop('selected',true);
+		var codcategoria  = "";
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#grupo").change(function(){
+		$('#subcategoria').find('option').remove().end().append('<option title="Seleccione un valor" value="">Seleccione un valor</option>').val('');
+		$("#categoria option[value='']").prop('selected',true);
 		var grupo = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -267,14 +372,15 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#categoria").html(respuesta);
 		});
-	})
+		$("#subcategoria option[value='']").prop('selected',true);
+		var codcategoria  = "";
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#categoria").change(function(){
-		var descategoria = $("#categoria option:selected").text();
-		var separacodigo = $("#categoria option:selected").attr("title").split(' ');
-		var titcategoria = separacodigo[1];
-		var codcategoria = titcategoria+' - '+descategoria;
-		$("#diagnostico").val(codcategoria);
+		$("#subcategoria option[value='']").prop('selected',true);
 		var categoria = $(this).val();
 		$.ajax({
 			type: "POST",
@@ -284,15 +390,28 @@ $(document).ready(function(){
 		}).done(function(respuesta){
 			$("#subcategoria").html(respuesta);
 		});
-	})
+		var codcategoria = "";
+		if(categoria != "") {
+			var descategoria = $("#categoria option:selected").text();
+			var separacodigo = $("#categoria option:selected").attr("title").split(' ');
+			var titcategoria = separacodigo[1];
+			var codcategoria = titcategoria+' - '+descategoria;
+		}
+		var codscategoria = "";
+		$("#diagnostico").val(codcategoria);
+		$("#subdiagnostico").val(codscategoria);
+	});
 
 	$("#subcategoria").change(function(){
-		var desscategoria = $("#subcategoria option:selected").text();
-		var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
-		var titscategoria = separascodigo[1];
-		var codscategoria = titscategoria+' - '+desscategoria;
+		var codscategoria = "";
+		if($(this).val() != "") {
+			var desscategoria = $("#subcategoria option:selected").text();
+			var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
+			var titscategoria = separascodigo[1];
+			var codscategoria = titscategoria+' - '+desscategoria;
+		}
 		$("#subdiagnostico").val(codscategoria);		
-	})
+	});
 });
 
 function validar(formulario) {
@@ -316,6 +435,11 @@ function validar(formulario) {
 		document.getElementById("nrcuil").focus();
 		return false;
 	}
+	if (formulario.sexo.value == "M") {
+		alert("El beneficiario no puede ser un Hombre");
+		document.getElementById("nrcuil").focus();
+		return false;
+	}
 	if (formulario.nombre.value == "") {
 		alert("Debe ingresar el nombre del Beneficiario");
 		document.getElementById("nombre").focus();
@@ -325,6 +449,12 @@ function validar(formulario) {
 		alert("Debe ingresar la Edad del Beneficiario");
 		document.getElementById("edad").focus();
 		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.edad.value)){
+			alert("El valor ingresado para Edad es incorrecto");
+			document.getElementById("edad").focus();
+			return false;
+		}
 	}
 	if (formulario.ddntelefono.value != "") {
 		if (!esEnteroPositivo(formulario.ddntelefono.value)) {
@@ -343,6 +473,17 @@ function validar(formulario) {
 		}
 	} else {
 		formulario.nrotelefono.value = "0";
+	}
+	if (formulario.controlnro.value == ""){
+		alert("Debe ingresar un valor para Control Nro.");
+		document.getElementById("controlnro").focus();
+		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.controlnro.value)){
+			alert("El valor ingresado para Control Nro. es incorrecto");
+			document.getElementById("controlnro").focus();
+			return false;
+		}
 	}
 	if (formulario.talla.value == ""){
 		alert("Debe ingresar un valor para Talla");
@@ -371,37 +512,83 @@ function validar(formulario) {
 		document.getElementById("presion").focus();
 		return false;
 	}
-	if (formulario.controlnro.value == ""){
-		alert("Debe ingresar un valor para Control Nro.");
-		document.getElementById("controlnro").focus();
+	if (formulario.serologia.value == ""){
+		alert("Debe seleccionar un valor para Serología");
+		document.getElementById("serologia").focus();
 		return false;
-	} else {
-		if (!esEnteroPositivo(formulario.controlnro.value)){
-			alert("El valor ingresado para Control Nro. es incorrecto");
-			document.getElementById("controlnro").focus();
+	}
+	if (formulario.gestas.value != "" && formulario.gestas.value > 0 ) {
+		if (!esEnteroPositivo(formulario.gestas.value)){
+			alert("El valor ingresado para Gestas es incorrecto");
+			document.getElementById("gestas").focus();
 			return false;
 		}
 	}
-	if (formulario.semanaembarazo.value == ""){
-		alert("Debe ingresar un valor para Semana de Embarazo");
-		document.getElementById("semanaembarazo").focus();
+	if (formulario.gestas.value != "" && formulario.gestas.value > 0 ) {
+		if (formulario.vivos.value == "") {
+			alert("Debe ingresar un valor para Nacimientos");
+			document.getElementById("vivos").focus();
+			return false;
+		} else {
+			if (!esEnteroPositivo(formulario.vivos.value)){
+				alert("El valor ingresado para Nacimientos es incorrecto");
+				document.getElementById("vivos").focus();
+				return false;
+			}
+		}
+	}
+	if (formulario.gestas.value != "" && formulario.gestas.value > 0 ) {
+		if (formulario.abortos.value == "") {
+			alert("No se ha podido calcular el valor para Abortos, verifique Gestas y Nacimientos");
+			document.getElementById("gestas").focus();
+			return false;
+		} else {
+			if (!esEnteroPositivo(formulario.abortos.value)){
+				alert("El valor calculado para Abortos es incorrecto, verifique Gestas y Nacimientos");
+				document.getElementById("gestas").focus();
+				return false;
+			}
+		}
+	}
+	if (formulario.fum.value == "") {
+		alert("Debe ingresar la fecha de la Última Menstruación");
+		document.getElementById("fum").focus();
 		return false;
 	} else {
-		if (!esEnteroPositivo(formulario.semanaembarazo.value)){
-			alert("El valor ingresado para Semana de Embarazo es incorrecto");
-			document.getElementById("semanaembarazo").focus();
+		if (!esFechaValida(formulario.fum.value)) {
+			document.getElementById("fum").focus();
 			return false;
 		}
 	}
-	if (formulario.embarazoanterior.options[formulario.embarazoanterior.selectedIndex].value == "") {
-		alert("Debe seleccionar si tuvo Embarazos Anteriores");
-		document.getElementById("embarazoanterior").focus();
+	if (formulario.edadgestacional.value == ""){
+		alert("Debe ingresar un valor para Edad Gestacional");
+		document.getElementById("edadgestacional").focus();
 		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.edadgestacional.value)){
+			alert("El valor ingresado para Edad Gestacional es incorrecto");
+			document.getElementById("edadgestacional").focus();
+			return false;
+		}
 	}
-	if (formulario.embarazoanterior.options[formulario.embarazoanterior.selectedIndex].value == "1") {
-		if (formulario.cantidadembarazoanterior.value == "") {
-			alert("Debe ingresar un valor para Cantidad de Embarazos Anteriores");
-			document.getElementById("cantidadembarazoanterior").focus();
+	if (formulario.alturauterina.value == ""){
+		alert("Debe ingresar un valor para Altura Uterina");
+		document.getElementById("alturauterina").focus();
+		return false;
+	} else {
+		if (!isNumberPositivo(formulario.alturauterina.value)){
+			alert("El valor ingresado para Altura Uterina es incorrecto");
+			document.getElementById("alturauterina").focus();
+			return false;
+		}
+	}
+	if (formulario.fpp.value == "") {
+		alert("Debe ingresar la fecha Probable de Parto");
+		document.getElementById("fpp").focus();
+		return false;
+	} else {
+		if (!esFechaValida(formulario.fpp.value)) {
+			document.getElementById("fpp").focus();
 			return false;
 		}
 	}
@@ -416,20 +603,17 @@ function validar(formulario) {
 			return false;
 		}
 	}
-	if (formulario.enfermedadesdelembarazo.value == "") {
-		alert("Debe ingresar un detalle en Enfermedades Relacionadas con el Embarazo");
-		document.getElementById("enfermedadesdelembarazo").focus();
+	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "") {
+		alert("Debe seleccionar si emite o no Diagnostico");
+		document.getElementById("emitediagnostico").focus();
 		return false;
 	}
-	if (formulario.diagnostico.value == "") {
-		alert("Debe ingresar un valor en el campo Diagnostico");
-		document.getElementById("diagnostico").focus();
-		return false;
-	}
-	if (formulario.observaciones.value == "") {
-		alert("Debe ingresar un valor en el campo Observaciones/Indicaciones");
-		document.getElementById("observaciones").focus();
-		return false;
+	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "1") {
+		if (formulario.diagnostico.value == "") {
+			alert("Debe ingresar un valor en el campo Diagnostico Principal");
+			document.getElementById("diagnostico").focus();
+			return false;
+		}
 	}
 	$.blockUI({ message: "<h1>Guardando Registro. Aguarde por favor...</h1>" });
 	return true;
@@ -482,6 +666,7 @@ function validar(formulario) {
 			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
 			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
 			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="sexo" type="text" id="sexo" size="2" readonly="true" style="visibility:hidden" value=""/>
 		  </span>
 		  <p>
 		  </p>
@@ -499,42 +684,79 @@ function validar(formulario) {
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Talla :</strong>
-			<input name="talla" type="text" id="talla" value="" size="4" maxlength="4" class="style_input"/>
-		  </span>
-		  <span align="left" class="style_texto_input"><strong>Peso :</strong>
-			<input name="peso" type="text" id="peso" value="" size="6" maxlength="6" class="style_input"/>
-		  </span>
-		  <span align="left" class="style_texto_input"><strong>Presi&oacute;n Arterial :</strong>
-			<input name="presion" type="text" id="presion" value="" size="7" maxlength="7" class="style_input"/>
-		  </span>
-		  <p>
-		  </p>
 		  <span align="left" class="style_texto_input"><strong>Control Nro. :</strong>
 			<input name="controlnro" type="text" id="controlnro" value="" size="3" maxlength="2" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Semana de Embarazo :</strong>
-			<input name="semanaembarazo" type="text" id="semanaembarazo" value="" size="3" maxlength="2" />
+		  <span align="left" class="style_texto_input"><strong>Talla :</strong>
+			<input name="talla" type="text" id="talla" value="" size="4" maxlength="4" class="style_input"/>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Embarazos Anteriores :</strong>
-			  <select name="embarazoanterior" id="embarazoanterior" class="style_input">
+		  <span align="left" class="style_texto_input"><strong>Peso :</strong>
+			<input name="peso" type="text" id="peso" value="" size="7" maxlength="7" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Presi&oacute;n Arterial :</strong>
+			<input name="presion" type="text" id="presion" value="" size="7" maxlength="7" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Serolog&iacute;a :</strong>
+			  <select name="serologia" id="serologia" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
-				<option title="Si" value="1">Si</option>
-				<option title="No" value="0">No</option>
+				<option title="+" value="1">Positivo</option>
+				<option title="-" value="0">Negativo</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Cantidad de Embarazos Anteriores :</strong>
-			<input name="cantidadembarazoanterior" type="text" id="cantidadembarazoanterior" value="" size="3" maxlength="2" />
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Gestas :</strong>
+			<input name="gestas" type="text" id="gestas" value="" size="3" maxlength="2" placeholder="1 a 99" class="style_input"/>
 		  </span>
+		  <span align="left" class="style_texto_input"><strong>Nacimientos :</strong>
+			<input name="vivos" type="text" id="vivos" value="" size="3" maxlength="2" placeholder="0 a 99" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Abortos :</strong>
+			<input name="abortos" type="text" id="abortos" value="" size="3" maxlength="2" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>F.U.M. :</strong>
+			  <input name="fum" type="text" id="fum" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Edad Gestacional :</strong>
+			<input name="edadgestacional" type="text" id="edadgestacional" value="" size="3" maxlength="2" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>Altura Uterina :</strong>
+			<input name="alturauterina" type="text" id="alturauterina" value="" size="5" maxlength="5" class="style_input"/>
+		  </span>
+		  <span align="left" class="style_texto_input"><strong>F.P.P. :</strong>
+			  <input name="fpp" type="text" id="fpp" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
 		  <span align="left" class="style_texto_input"><strong>Cantidad de Ecograf&iacute;as :</strong>
-			<input name="cantidadecografias" type="text" id="cantidadecografias" value="" size="3" maxlength="2" />
+			<input name="cantidadecografias" type="text" id="cantidadecografias" value="" size="3" maxlength="2" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
 		  <span align="left" class="style_texto_input"><strong>Enfermedades Relacionadas con el Embarazo :</strong>
-			  <p><textarea name="enfermedadesdelembarazo" cols="100" rows="3" id="enfermedadesdelembarazo" class="style_input"></textarea></p>
+		  	<strong>Toxoplasmosis</strong>
+			  <input name="toxoplasmosis" type="checkbox" id="toxoplasmosis" value="1" class="style_input"/>
+			<strong>Chagas</strong>
+			  <input name="chagas" type="checkbox" id="chagas" value="1" class="style_input"/>
+			<strong>V.D.R.L.</strong>
+			  <input name="vdrl" type="checkbox" id="vdrl" value="1" class="style_input"/>
+			<strong>Hepatitis</strong>
+			  <input name="hepatitis" type="checkbox" id="hepatitis" value="1" class="style_input"/>
+			<strong>H.I.V.</strong>
+			  <input name="hiv" type="checkbox" id="hiv" value="1" class="style_input"/>
+		  </span>
+		  <p>
+		  </p>
+		  <span align="left" class="style_texto_input"><strong>Emite Diagn&oacute;stico  :</strong>
+			  <select name="emitediagnostico" id="emitediagnostico" class="style_input">
+				<option title="Seleccione un valor" value="">Seleccione un valor</option>
+				<option title="Si" value="1">Si</option>
+				<option title="No" value="0">No</option>
+			  </select>
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
 			  <select name="cie10" id="cie10" class="style_input">

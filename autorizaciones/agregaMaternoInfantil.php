@@ -20,6 +20,9 @@ $delcod = $_SESSION['delcod'];
 jQuery(function($){
 	$("#nrcuil").mask("99999999999");
 	$("#fechaatencion").mask("99-99-9999");
+	$("#talla").mask("9.99");
+	$("#peso").mask("999.999");
+	$("#perimetrocefalico").mask("99.99");
 });
  
 $(document).ready(function(){
@@ -102,6 +105,7 @@ $(document).ready(function(){
 				$("#tipoafiliado").val("");
 				$("#codpar").val("");
 				$("#fechanacimiento").val("");
+				$("#sexo").val("");
 				$("#nombre").val("");
 				$("#edad").val("");
 				$("#nombre").attr("readonly", false);
@@ -128,6 +132,7 @@ $(document).ready(function(){
 					$("#tipoafiliado").val(respuesta.tipo);
 					$("#codpar").val(respuesta.codigo);
 					$("#fechanacimiento").val(respuesta.fecnac);
+					$("#sexo").val(respuesta.sexo);
 					$("#nombre").val(respuesta.nombre);
 					$("#nombre").attr("readonly", true);
 					$("#nombre").css({"background-color": "#cccccc"});
@@ -170,6 +175,7 @@ $(document).ready(function(){
 					$("#tipoafiliado").val("");
 					$("#codpar").val("");
 					$("#fechanacimiento").val("");
+					$("#sexo").val("");
 					$("#nombre").val("");
 					$("#edad").val("");
 					$("#nombre").attr("readonly", false);
@@ -380,6 +386,11 @@ function validar(formulario) {
 		document.getElementById("nrcuil").focus();
 		return false;
 	}
+	if (formulario.codpar.value < 9) {
+		alert("El beneficiario debe ser un Familiar Hijo o Nieto");
+		document.getElementById("nrcuil").focus();
+		return false;
+	}
 	if (formulario.nombre.value == "") {
 		alert("Debe ingresar el nombre del Beneficiario");
 		document.getElementById("nombre").focus();
@@ -389,6 +400,12 @@ function validar(formulario) {
 		alert("Debe ingresar la Edad del Beneficiario");
 		document.getElementById("edad").focus();
 		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.edad.value)){
+			alert("El valor ingresado para Edad es incorrecto");
+			document.getElementById("edad").focus();
+			return false;
+		}
 	}
 	if (formulario.ddntelefono.value != "") {
 		if (!esEnteroPositivo(formulario.ddntelefono.value)) {
@@ -532,6 +549,7 @@ function validar(formulario) {
 			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
 			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
 			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="sexo" type="text" id="sexo" size="2" readonly="true" style="visibility:hidden" value=""/>
 		  </span>
 		  <p>
 		  </p>
@@ -558,10 +576,10 @@ function validar(formulario) {
 			<input name="talla" type="text" id="talla" value="" size="4" maxlength="4" class="style_input"/>
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>Peso :</strong>
-			<input name="peso" type="text" id="peso" value="" size="6" maxlength="6" class="style_input"/>
+			<input name="peso" type="text" id="peso" value="" size="7" maxlength="7" class="style_input"/>
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>P.C. :</strong>
-			<input name="perimetrocefalico" type="text" id="perimetrocefalico" value="" size="5" maxlength="6" class="style_input"/>
+			<input name="perimetrocefalico" type="text" id="perimetrocefalico" value="" size="5" maxlength="5" class="style_input"/>
 		  </span>
 		  <span align="left" class="style_texto_input"><strong>FEI :</strong>
 			  <select name="estudiofei" id="estudiofei" class="style_input">

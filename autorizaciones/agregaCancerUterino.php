@@ -108,6 +108,7 @@ $(document).ready(function(){
 				$("#tipoafiliado").val("");
 				$("#codpar").val("");
 				$("#fechanacimiento").val("");
+				$("#sexo").val("");
 				$("#nombre").val("");
 				$("#edad").val("");
 				$("#nombre").attr("readonly", false);
@@ -134,6 +135,7 @@ $(document).ready(function(){
 					$("#tipoafiliado").val(respuesta.tipo);
 					$("#codpar").val(respuesta.codigo);
 					$("#fechanacimiento").val(respuesta.fecnac);
+					$("#sexo").val(respuesta.sexo);
 					$("#nombre").val(respuesta.nombre);
 					$("#nombre").attr("readonly", true);
 					$("#nombre").css({"background-color": "#cccccc"});
@@ -176,6 +178,7 @@ $(document).ready(function(){
 					$("#tipoafiliado").val("");
 					$("#codpar").val("");
 					$("#fechanacimiento").val("");
+					$("#sexo").val("");
 					$("#nombre").val("");
 					$("#edad").val("");
 					$("#nombre").attr("readonly", false);
@@ -410,10 +413,26 @@ function validar(formulario) {
 		document.getElementById("nrcuil").focus();
 		return false;
 	}
+	if (formulario.sexo.value == "M") {
+		alert("El beneficiario no puede ser un Hombre");
+		document.getElementById("nrcuil").focus();
+		return false;
+	}
 	if (formulario.nombre.value == "") {
 		alert("Debe ingresar el nombre del Beneficiario");
 		document.getElementById("nombre").focus();
 		return false;
+	}
+	if (formulario.edad.value == "") {
+		alert("Debe ingresar la Edad del Beneficiario");
+		document.getElementById("edad").focus();
+		return false;
+	} else {
+		if (!esEnteroPositivo(formulario.edad.value)){
+			alert("El valor ingresado para Edad es incorrecto");
+			document.getElementById("edad").focus();
+			return false;
+		}
 	}
 	if (formulario.ddntelefono.value != "") {
 		if (!esEnteroPositivo(formulario.ddntelefono.value)) {
@@ -432,11 +451,6 @@ function validar(formulario) {
 		}
 	} else {
 		formulario.nrotelefono.value = "0";
-	}
-	if (formulario.edad.value == "") {
-		alert("Debe ingresar la Edad del Beneficiario");
-		document.getElementById("edad").focus();
-		return false;
 	}
 	if (formulario.antecedentes.options[formulario.antecedentes.selectedIndex].value == "") {
 		alert("Debe seleccionar si posee o no Antecedentes Cca Cuello Uterino");
@@ -547,6 +561,7 @@ function validar(formulario) {
 			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
 			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
 			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
+			  <input name="sexo" type="text" id="sexo" size="2" readonly="true" style="visibility:hidden" value=""/>
 		  </span>
 		  <p>
 		  </p>

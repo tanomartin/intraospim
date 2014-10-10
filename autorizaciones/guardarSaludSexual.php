@@ -9,15 +9,31 @@ if($delcod == 0 || $delcod == NULL)
 if($delcod != 0 and $delcod != NULL) {
 	if(isset($_POST)) {
 		//var_dump($_POST);
+		if(isset($_POST['preservativos'])) {
+			$preservativos=$_POST['preservativos'];
+		} else {
+			$preservativos="0";
+		}
+		if(isset($_POST['diu'])) {
+			$diu=$_POST['diu'];
+		} else {
+			$diu="0";
+		}
+		if(isset($_POST['anticonceptivos'])) {
+			$anticonceptivos=$_POST['anticonceptivos'];
+		} else {
+			$anticonceptivos="0";
+		}
+
 		try {
 			$dbname = "sistem22_intranet";
 			$dbh = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$dbh->beginTransaction();
-				
-			$sqlCarga = "INSERT INTO saludsexual (delcod,profesional,fechaatencion,nrcuil,nrafil,codpar,nombre,ddntelefono,nrotelefono,edad,informacion,preservativos,diu,anticonceptivos,diagnostico,subdiagnostico,observaciones) VALUES (:delcod,:profesional,:fechaatencion,:nrcuil,:nrafil,:codpar,:nombre,:ddntelefono,:nrotelefono,:edad,:informacion,:preservativos,:diu,:anticonceptivos,:diagnostico,:subdiagnostico,:observaciones)";
+
+			$sqlCarga = "INSERT INTO saludsexual (delcod,profesional,fechaatencion,nrcuil,nrafil,codpar,nombre,ddntelefono,nrotelefono,edad,informacion,metodoanticonceptivo,preservativos,diu,anticonceptivos,motivonoentrega,emitediagnostico,diagnostico,subdiagnostico,observaciones) VALUES (:delcod,:profesional,:fechaatencion,:nrcuil,:nrafil,:codpar,:nombre,:ddntelefono,:nrotelefono,:edad,:informacion,:metodoanticonceptivo,:preservativos,:diu,:anticonceptivos,:motivonoentrega,:emitediagnostico,:diagnostico,:subdiagnostico,:observaciones)";
 			$resCarga = $dbh->prepare($sqlCarga);
-			if($resCarga->execute(array(':delcod' => $delcod, ':profesional' => strtoupper($_POST['profesional']), ':fechaatencion' => fechaParaGuardar($_POST['fechaatencion']), ':nrcuil' => $_POST['nrcuil'], ':nrafil' => $_POST['nrafil'], ':codpar' => $_POST['codpar'], ':nombre' => strtoupper($_POST['nombre']), ':ddntelefono' => $_POST['ddntelefono'], ':nrotelefono' => $_POST['nrotelefono'], ':edad' => $_POST['edad'], ':informacion' => $_POST['informacion'], ':preservativos' => $_POST['preservativos'], ':diu' => $_POST['diu'], ':anticonceptivos' => $_POST['anticonceptivos'], ':diagnostico' => $_POST['diagnostico'], ':subdiagnostico' => $_POST['subdiagnostico'], ':observaciones' => $_POST['observaciones'])))
+			if($resCarga->execute(array(':delcod' => $delcod, ':profesional' => strtoupper($_POST['profesional']), ':fechaatencion' => fechaParaGuardar($_POST['fechaatencion']), ':nrcuil' => $_POST['nrcuil'], ':nrafil' => $_POST['nrafil'], ':codpar' => $_POST['codpar'], ':nombre' => strtoupper($_POST['nombre']), ':ddntelefono' => $_POST['ddntelefono'], ':nrotelefono' => $_POST['nrotelefono'], ':edad' => $_POST['edad'], ':informacion' => $_POST['informacion'], ':metodoanticonceptivo' => $_POST['metodoanticonceptivo'], ':preservativos' => $preservativos, ':diu' => $diu, ':anticonceptivos' => $anticonceptivos, ':motivonoentrega' => $_POST['motivonoentrega'], ':emitediagnostico' => $_POST['emitediagnostico'], ':diagnostico' => $_POST['diagnostico'], ':subdiagnostico' => $_POST['subdiagnostico'], ':observaciones' => $_POST['observaciones'])))
 			$dbh->commit();
 			$pagina = "listadoSaludSexual.php";
 			Header("Location: $pagina");
