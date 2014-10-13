@@ -10,15 +10,13 @@ $delcod = $_SESSION['delcod'];
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Nuevo Registro Detecci&oacute;n C&aacute;ncer de Mama</title>
-<link rel="stylesheet" type="text/css" href="css/general.css" />
 <link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet">
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="lib/jquery.maskedinput.js" type="text/javascript"></script>
-<script src="lib/funcionControl.js" type="text/javascript"></script>
 <script src="lib/jquery-ui-1.11.1/jquery-ui.js" type="text/javascript"></script>
 <script src="lib/jquery-ui-1.11.1/ui.datepicker-es.js"></script>
+<script src="lib/funcionControl.js" type="text/javascript"></script>
 <script src="lib/jquery.blockUI.js" type="text/javascript"></script>
-<script src="lib/jquery.maskedinput.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 jQuery(function($){
 	$("#nrcuil").mask("99999999999");
@@ -147,7 +145,7 @@ $(document).ready(function(){
 				$("#edad").attr("readonly", false);
 				$("#edad").css({"background-color": "#ffffff"});
 				$("#mensajes").empty();
-				var mensaje = "C.U.I.L Invalido";
+				var mensaje = "C.U.I.L. Invalido";
 				var contenidodialogo = "<span style='float:left; margin:0 7px 20px 0;'>"+mensaje+"</span>";
 				$("#mensajes").html(contenidodialogo);
 				$("#avisos").dialog("open");
@@ -270,6 +268,7 @@ $(document).ready(function(){
 		else {
 			$("#ultimoexamenmamario").val("");
 			$("#ultimoexamenmamario").attr('disabled', true);
+			$("#ultimoexamenmamario").datepicker("destroy");
 		}
 	});
 
@@ -293,6 +292,7 @@ $(document).ready(function(){
 		else {
 			$("#ultimamamografia").val("");
 			$("#ultimamamografia").attr('disabled', true);
+			$("#ultimamamografia").datepicker("destroy");
 		}
 	});
 
@@ -542,7 +542,7 @@ function validar(formulario) {
 			return false;
 		} else {
 			if (!FechaValida(formulario.ultimoexamenmamario.value)) {
-				var cajadialogo = $('<div title="Aviso"><p>La Fecha de Último Examen Mamario ingresada no es válida.</p></div>');
+				var cajadialogo = $('<div title="Aviso"><p>La Fecha del Último Examen Mamario ingresada no es válida.</p></div>');
 				cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ultimoexamenmamario').focus(); }});
 				return false;
 			}
@@ -560,7 +560,7 @@ function validar(formulario) {
 			return false;
 		} else {
 			if (!FechaValida(formulario.ultimamamografia.value)) {
-				var cajadialogo = $('<div title="Aviso"><p>La Fecha de Última Mamografia ingresada no es válida.</p></div>');
+				var cajadialogo = $('<div title="Aviso"><p>La Fecha de la Última Mamografia ingresada no es válida.</p></div>');
 				cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ultimamamografia').focus(); }});
 				return false;
 			}
