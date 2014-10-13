@@ -11,17 +11,19 @@ $delcod = $_SESSION['delcod'];
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Nuevo Registro Detecci&oacute;n C&aacute;ncer de Cuello Uterino</title>
 <link rel="stylesheet" type="text/css" href="css/general.css" />
+<link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet">
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="lib/jquery.maskedinput.js" type="text/javascript"></script>
+<script src="lib/jquery-ui-1.11.1/jquery-ui.js" type="text/javascript"></script>
+<script src="lib/jquery-ui-1.11.1/ui.datepicker-es.js"></script>
 <script src="lib/funcionControl.js" type="text/javascript"></script>
 <script src="lib/jquery.blockUI.js" type="text/javascript"></script>
-<script src="lib/jquery.maskedinput.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 jQuery(function($){
 	$("#nrcuil").mask("99999999999");
-	$("#fechaatencion").mask("99-99-9999");
-	$("#ultimopap").mask("99-99-9999");
-	$("#ultimacolpo").mask("99-99-9999");
+	$("#fechaatencion").mask("99/99/9999");
+	$("#ultimopap").mask("99/99/9999");
+	$("#ultimacolpo").mask("99/99/9999");
 });
  
 $(document).ready(function(){
@@ -49,6 +51,34 @@ $(document).ready(function(){
 	$("#subdiagnostico").val("");
 	$("#subdiagnostico").attr('readonly', true);
 	$("#subdiagnostico").css({"background-color": "#cccccc"});
+	$("#avisos").dialog({
+		autoOpen: false,
+		modal: true,
+		height: "auto",
+		show: {
+			effect: "blind",
+			duration: 250
+		},
+		hide: {
+			effect: "blind",
+			duration: 250
+		},
+		closeOnEscape:false
+	});
+
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+
+	$("#fechaatencion").datepicker({
+		firstDay: 1,
+		maxDate: "+0d",
+		showButtonPanel: true,
+		showOn: "button",
+		buttonImage: "img/calendar.png",
+		buttonImageOnly: true,
+		buttonText: "Seleccione la fecha",
+		changeMonth: true,
+		changeYear: true
+    });
 
 	$("#fechaatencion").change(function(){
 		var fechacar = $("#fechaatencion").val();
@@ -59,7 +89,7 @@ $(document).ready(function(){
 			var mesnac = parseInt(array_fechanac[1]);
 			var dianac = parseInt(array_fechanac[2]);
 
-			var array_fechacar = fechacar.split("-");
+			var array_fechacar = fechacar.split("/");
 			var anocar = parseInt(array_fechacar[2]);
 			var mescar = parseInt(array_fechacar[1]);
 			var diacar = parseInt(array_fechacar[0]);
@@ -115,7 +145,11 @@ $(document).ready(function(){
 				$("#nombre").css({"background-color": "#ffffff"});
 				$("#edad").attr("readonly", false);
 				$("#edad").css({"background-color": "#ffffff"});
-				alert("CUIL INVALIDO");
+				$("#mensajes").empty();
+				var mensaje = "C.U.I.L. Invalido";
+				var contenidodialogo = "<span style='float:left; margin:0 7px 20px 0;'>"+mensaje+"</span>";
+				$("#mensajes").html(contenidodialogo);
+				$("#avisos").dialog("open");
 				$("#nrcuil").focus();
 			}
 		}
@@ -147,7 +181,7 @@ $(document).ready(function(){
 						var mesnac = parseInt(array_fechanac[1]);
 						var dianac = parseInt(array_fechanac[2]);
 
-						var array_fechacar = fechacar.split("-");
+						var array_fechacar = fechacar.split("/");
 						var anocar = parseInt(array_fechacar[2]);
 						var mescar = parseInt(array_fechacar[1]);
 						var diacar = parseInt(array_fechacar[0]);
@@ -173,7 +207,11 @@ $(document).ready(function(){
 					$("#guardar").show();
 				} else {
 					$("#guardar").show();
-					alert("Beneficiario no empadronado o perteneciente a otra delegacion. Debe completar Apellido y Nombre");
+					$("#mensajes").empty();
+					var mensaje = "Beneficiario no empadronado o perteneciente a otra delegacion. Debe completar Apellido y Nombre";
+					var contenidodialogo = "<span style='float:left; margin:0 7px 20px 0;'>"+mensaje+"</span>";
+					$("#mensajes").html(contenidodialogo);
+					$("#avisos").dialog("open");
 					$("#nrafil").val("");
 					$("#tipoafiliado").val("");
 					$("#codpar").val("");
@@ -190,7 +228,11 @@ $(document).ready(function(){
 			});
 		} else {
 			$("#guardar").hide();
-			alert("Debe Ingresar un C.U.I.L. para verificar la existencia");
+			$("#mensajes").empty();
+			var mensaje = "Debe Ingresar un C.U.I.L. para verificar la existencia";
+			var contenidodialogo = "<span style='float:left; margin:0 7px 20px 0;'>"+mensaje+"</span>";
+			$("#mensajes").html(contenidodialogo);
+			$("#avisos").dialog("open");
 			$("#nrcuil").focus();
 		}
 	});
@@ -212,10 +254,22 @@ $(document).ready(function(){
 		if(pap=="1") {
 			$("#ultimopap").val("");
 			$("#ultimopap").attr('disabled', false);
+			$("#ultimopap").datepicker({
+				firstDay: 1,
+				maxDate: "+0d",
+				showButtonPanel: true,
+				showOn: "button",
+				buttonImage: "img/calendar.png",
+				buttonImageOnly: true,
+				buttonText: "Seleccione la fecha",
+				changeMonth: true,
+				changeYear: true
+			});
 		}
 		else {
 			$("#ultimopap").val("");
 			$("#ultimopap").attr('disabled', true);
+			$("#ultimopap").datepicker("destroy");
 		}
 	});
 
@@ -224,10 +278,22 @@ $(document).ready(function(){
 		if(colpo=="1") {
 			$("#ultimacolpo").val("");
 			$("#ultimacolpo").attr('disabled', false);
+			$("#ultimacolpo").datepicker({
+				firstDay: 1,
+				maxDate: "+0d",
+				showButtonPanel: true,
+				showOn: "button",
+				buttonImage: "img/calendar.png",
+				buttonImageOnly: true,
+				buttonText: "Seleccione la fecha",
+				changeMonth: true,
+				changeYear: true
+			});
 		}
 		else {
 			$("#ultimacolpo").val("");
 			$("#ultimacolpo").attr('disabled', true);
+			$("#ultimacolpo").datepicker("destroy");
 		}
 	});
 
@@ -394,50 +460,51 @@ $(document).ready(function(){
 
 function validar(formulario) {
 	if (formulario.profesional.value == "") {
-		alert("Debe ingresar Apellido y Nombre del Profesional que Realizó la Atención");
-		document.getElementById("profesional").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe ingresar Apellido y Nombre del Profesional que Realizó la Atención.</p></div>');
+   		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#profesional').focus(); }});
 		return false;
 	}
 	if (formulario.fechaatencion.value == "") {
-		alert("Debe ingresar la Fecha Atención del Beneficiario");
-		document.getElementById("fechaatencion").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe ingresar la Fecha Atención del Beneficiario.</p></div>');
+		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#fechaatencion').focus(); }});
 		return false;
 	} else {
-		if (!esFechaValida(formulario.fechaatencion.value)) {
-			document.getElementById("fechaatencion").focus();
+		if (!FechaValida(formulario.fechaatencion.value)) {
+			var cajadialogo = $('<div title="Aviso"><p>La Fecha de Atencion ingresada no es válida.</p></div>');
+			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#fechaatencion').focus(); }});
 			return false;
 		}
 	}
 	if (formulario.nrcuil.value == "") {
-		alert("Debe ingresar numero de CUIL");
-		document.getElementById("nrcuil").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe ingresar un C.U.I.L.</p></div>');
+   		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#nrcuil').focus(); }});
 		return false;
 	}
 	if (formulario.sexo.value == "M") {
-		alert("El beneficiario no puede ser un Hombre");
-		document.getElementById("nrcuil").focus();
+		var cajadialogo = $('<div title="Aviso"><p>El beneficiario no puede ser un Hombre.</p></div>');
+   		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#nrcuil').focus(); }});
 		return false;
 	}
 	if (formulario.nombre.value == "") {
-		alert("Debe ingresar el nombre del Beneficiario");
-		document.getElementById("nombre").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe ingresar el nombre del Beneficiario.</p></div>');
+   		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#nombre').focus(); }});
 		return false;
 	}
 	if (formulario.edad.value == "") {
-		alert("Debe ingresar la Edad del Beneficiario");
-		document.getElementById("edad").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe ingresar la Edad del Beneficiario.</p></div>');
+   		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#edad').focus(); }});
 		return false;
 	} else {
 		if (!esEnteroPositivo(formulario.edad.value)){
-			alert("El valor ingresado para Edad es incorrecto");
-			document.getElementById("edad").focus();
+			var cajadialogo = $('<div title="Aviso"><p>El valor ingresado para Edad es incorrecto.</p></div>');
+   			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#edad').focus(); }});
 			return false;
 		}
 	}
 	if (formulario.ddntelefono.value != "") {
 		if (!esEnteroPositivo(formulario.ddntelefono.value)) {
-			alert("El codigo de area debe ser numerico");
-			document.getElementById("ddntelefono").focus();
+			var cajadialogo = $('<div title="Aviso"><p>El codigo de area debe ser numerico.</p></div>');
+   			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ddntelefono').focus(); }});
 			return false;
 		}
 	} else {
@@ -445,68 +512,71 @@ function validar(formulario) {
 	}
 	if (formulario.nrotelefono.value != "") {
 		if (!esEnteroPositivo(formulario.nrotelefono.value)) {
-			alert("El telefono debe ser numerico");
-			document.getElementById("nrotelefono").focus();
+			var cajadialogo = $('<div title="Aviso"><p>El telefono debe ser numerico.</p></div>');
+   			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#nrotelefono').focus(); }});
 			return false;
 		}
 	} else {
 		formulario.nrotelefono.value = "0";
 	}
 	if (formulario.antecedentes.options[formulario.antecedentes.selectedIndex].value == "") {
-		alert("Debe seleccionar si posee o no Antecedentes Cca Cuello Uterino");
-		document.getElementById("antecedentes").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe seleccionar si posee o no Antecedentes Cca Cuello Uterino.</p></div>');
+		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#antecedentes').focus(); }});
 		return false;
 	}
 	if (formulario.antecedentes.options[formulario.antecedentes.selectedIndex].value == "1") {
 		if (formulario.personaantecedente.options[formulario.personaantecedente.selectedIndex].value == "") {
-			alert("Debe ingresar el Familiar que presenta Antecedentes Cca Cuello Uterino");
-			document.getElementById("personaantecedente").focus();
+			var cajadialogo = $('<div title="Aviso"><p>Debe seleccionar el Familiar que presenta Antecedentes Cca Cuello Uterino.</p></div>');
+			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#personaantecedente').focus(); }});
 			return false;
 		}
 	}
 	if (formulario.pap.options[formulario.pap.selectedIndex].value == "") {
-		alert("Debe seleccionar si efectuo o no PAP");
-		document.getElementById("pap").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe seleccionar si efectuo o no PAP.</p></div>');
+		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#pap').focus(); }});
 		return false;
 	}
 	if (formulario.pap.options[formulario.pap.selectedIndex].value == "1") {
 		if (formulario.ultimopap.value == "") {
-			alert("Debe ingresar la fecha del Último Examen Mamario");
-			document.getElementById("ultimopap").focus();
+			var cajadialogo = $('<div title="Aviso"><p>Debe ingresar la fecha del Último PAP.</p></div>');
+			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ultimopap').focus(); }});
 			return false;
 		} else {
-			if (!esFechaValida(formulario.ultimopap.value)) {
+			if (!FechaValida(formulario.ultimopap.value)) {
+				var cajadialogo = $('<div title="Aviso"><p>La Fecha del Último PAP ingresada no es válida.</p></div>');
+				cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ultimopap').focus(); }});
 				document.getElementById("ultimopap").focus();
 				return false;
 			}
 		}
 	}
 	if (formulario.colpo.options[formulario.colpo.selectedIndex].value == "") {
-		alert("Debe seleccionar si efectuo o no Colposcopia");
-		document.getElementById("colpo").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe seleccionar si efectuo o no Colposcopia.</p></div>');
+		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#colpo').focus(); }});
 		return false;
 	}
 	if (formulario.colpo.options[formulario.colpo.selectedIndex].value == "1") {
 		if (formulario.ultimamacolpo.value == "") {
-			alert("Debe ingresar la fecha de la Última Colposcopia");
-			document.getElementById("ultimamacolpo").focus();
+			var cajadialogo = $('<div title="Aviso"><p>Debe ingresar la fecha de la Última Colposcopia.</p></div>');
+			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ultimamacolpo').focus(); }});
 			return false;
 		} else {
-			if (!esFechaValida(formulario.ultimamacolpo.value)) {
-				document.getElementById("ultimamacolpo").focus();
+			if (!FechaValida(formulario.ultimamacolpo.value)) {
+				var cajadialogo = $('<div title="Aviso"><p>La Fecha de la Última Colposcopia ingresada no es válida.</p></div>');
+				cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#ultimamacolpo').focus(); }});
 				return false;
 			}
 		}
 	}
 	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "") {
-		alert("Debe seleccionar si emite o no Diagnostico");
-		document.getElementById("emitediagnostico").focus();
+		var cajadialogo = $('<div title="Aviso"><p>Debe seleccionar si emite o no Diagnostico.</p></div>');
+		cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#emitediagnostico').focus(); }});
 		return false;
 	}
 	if (formulario.emitediagnostico.options[formulario.emitediagnostico.selectedIndex].value == "1") {
 		if (formulario.diagnostico.value == "") {
-			alert("Debe ingresar un valor en el campo Diagnostico Principal");
-			document.getElementById("diagnostico").focus();
+			var cajadialogo = $('<div title="Aviso"><p>Debe ingresar informacion en el campo Diagnostico Principal.</p></div>');
+			cajadialogo.dialog({modal: true, height: "auto", show: {effect: "blind",duration: 250}, hide: {effect: "blind",duration: 250}, closeOnEscape:false, close: function(event, ui) { $('#diagnostico').focus(); }});
 			return false;
 		}
 	}
@@ -682,5 +752,8 @@ function validar(formulario) {
 </table>
 </div>
 </form>
+<div id="avisos" title="Aviso">
+  <p id="mensajes"></p>
+</div>
 </body>
 </html>
