@@ -11,7 +11,7 @@ $delcod = $_SESSION['delcod'];
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Nuevo Registro Prevenci&oacute;n de Diabetes</title>
 <link rel="stylesheet" type="text/css" href="css/general.css" />
-<link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.11.1/jquery-ui.css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="lib/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="lib/jquery-ui-1.11.1/jquery-ui.js" type="text/javascript"></script>
