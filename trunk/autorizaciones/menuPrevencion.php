@@ -20,7 +20,7 @@ include ("verificaSesionAutorizaciones.php");
     </div></td>
     <td width="129" scope="row"><div align="center"><span class="style_tutorial">Tutorial</span></div></td>
     <td width="83" colspan="2"><div align="center">
-	<a class="style_boton2" href="#" onClick="window.open('../tuto/escaneo.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Descargar</a>
+	<a class="style_boton2" href="#" onClick="window.open('../tuto/prevencion.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Descargar</a>
     </div></td>
   </tr>
 </table>

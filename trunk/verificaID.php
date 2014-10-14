@@ -22,7 +22,11 @@ if ($cant > 0) {
 			if ($delcod  < "4000") {
 				$redire = 'location:menuControl.php';
 			} else {
-				$redire = 'location:autorizaciones/listadoAuto.php';
+				if ($delcod  < "5000") {
+					$redire = 'location:autorizaciones/listadoAuto.php';
+				} else {
+					$redire = 'location:menu.php';
+				}
 			}
 		} else {
 			$redire = 'location:menu.php';

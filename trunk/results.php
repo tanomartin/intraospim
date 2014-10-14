@@ -67,12 +67,20 @@ $like = $_POST['condicion'];
     <td width="200"><strong>Nro. Afiliado</strong></td>
   </tr>
 <?php
-$sql = "SELECT nombre, nrodoc, nrcuil, nrafil, empcod  FROM `titular` WHERE delcod = '$delcod' and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by '$where'";
+if ($delcod >= "4000") {
+	$sql = "SELECT nombre, nrodoc, nrcuil, nrafil, empcod  FROM `titular` WHERE $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by '$where'";
+} else {
+	$sql = "SELECT nombre, nrodoc, nrcuil, nrafil, empcod  FROM `titular` WHERE delcod = '$delcod' and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by '$where'";
+}
 $result = mysql_query($sql,$db); 
 
 // TABLA DE TITULARES
 while ($row = mysql_fetch_array($result)){
-	print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row['nrcuil'] . "&nrafil=" . $row['nrafil'] . "&empcod=" . $row['empcod'] . "'))>".$row['nombre']."</td>");
+	if ($delcod >= "4000") {
+		print("<td width=237>".$row['nombre']."</td>");
+	} else {
+		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row['nrcuil'] . "&nrafil=" . $row['nrafil'] . "&empcod=" . $row['empcod'] . "'))>".$row['nombre']."</td>");
+	}
 	print("<td width=227>".$row['nrodoc']."</td>");
 	print("<td width=200>".$row['nrcuil']."</td>");
 	print("<td width=200>".$row['nrafil']."</td>");	
@@ -88,33 +96,38 @@ if(mysql_num_rows($result) == 0)
 <p>
 <table width="1025" border="1" id="fami">
   <tr>
-    <td colspan="3"><strong>FAMILIARES</strong></td>
+    <td colspan="4"><strong>FAMILIARES</strong></td>
   </tr>
   <tr>
     <td width="237"><strong>Apellido y nombre </strong></td>
     <td width="227"><strong>Nro. Documento</strong></td>
-    <td width="227"><strong>Nro. Afiliado del familiar titular</strong></td>		
+    <td width="200"><strong>C.U.I.L.</strong></td>
+    <td width="200"><strong>Nro. Afiliado del titular</strong></td>		
   </tr>
 
 
 <?php
-$sql2 =   "	SELECT familia.nombre, familia.nrodoc, titular.empcod, titular.nrcuil, titular.nrafil, titular.delcod 
-			FROM familia, titular
-			WHERE 
-			familia.nrafil = titular.nrafil and 
-			titular.delcod = '$delcod' and 
-			familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre"; 				
+if ($delcod >= "4000") {
+	$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.empcod as empcod, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod FROM familia, titular WHERE familia.nrafil = titular.nrafil and familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre";
+} else {
+	$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.empcod as empcod, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod	FROM familia, titular WHERE familia.nrafil = titular.nrafil and titular.delcod = '$delcod' and familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre";
+}
 $result2 = mysql_query($sql2,$db);
 
 // TABLA DE FAMILIARES
 while ($row2 = mysql_fetch_array($result2)){	
-	print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row2['nrcuil'] . "&nrafil=" . $row2['nrafil'] . "&empcod=" . $row2['empcod'] . "'))>".$row2['nombre']."</td>");
+	if ($delcod >= "4000") {
+		print("<td width=237>".$row2['nombre']."</td>");
+	} else {
+		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row2['nrcuil'] . "&nrafil=" . $row2['nrafil'] . "&empcod=" . $row2['empcod'] . "'))>".$row2['nombre']."</td>");
+	}
 	print("<td width=227>".$row2['nrodoc']."</td>");
-	print("<td width=227>".$row2['nrafil']."</td>");
+	print("<td width=200>".$row2['cuifam']."</td>");
+	print("<td width=200>".$row2['nrafil']."</td>");
 	print("</tr>");
 }
 if(mysql_num_rows($result2) == 0) 
-	print("<tr><td colspan='3' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
+	print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
 ?>
 </table> 
 </p>
@@ -131,16 +144,21 @@ if(mysql_num_rows($result2) == 0)
     <td width="200"><strong>C.U.I.L.</strong></td>
     <td width="200"><strong>Nro. Afiliado</strong></td>	
   </tr>
-
-
 <?php
-$sql3 = "SELECT nombre, nrafil, nrodoc, nrcuil, empcod FROM bajatit WHERE delcod = $delcod and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by nombre"; 				
+if ($delcod >= "4000") {
+	$sql3 = "SELECT nombre, nrafil, nrodoc, nrcuil, empcod FROM bajatit WHERE $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by nombre";
+} else {
+	$sql3 = "SELECT nombre, nrafil, nrodoc, nrcuil, empcod FROM bajatit WHERE delcod = $delcod and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by nombre";
+}
 $result3 = mysql_query($sql3,$db);
 
 // TABLA DE TITULARES DE BAJA
 while ($row3 = mysql_fetch_array($result3)){	
-
-print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row3['nrcuil'] . "&nrafil=" . $row3['nrafil'] . "&empcod=" . $row3['empcod'] . "'))>".$row3['nombre']."</td>");
+	if ($delcod >= "4000") {
+		print("<td width=237>" . $row3['nombre'] . "</td>");
+	} else {
+		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row3['nrcuil'] . "&nrafil=" . $row3['nrafil'] . "&empcod=" . $row3['empcod'] . "'))>".$row3['nombre']."</td>");
+	}
 	print("<td width=227>" . $row3['nrodoc'] . "</td>");
 	print("<td width=200>" . $row3['nrcuil'] . "</td>");
 	print("<td width=200>" . $row3['nrafil'] . "</td>");	
@@ -156,41 +174,45 @@ if(mysql_num_rows($result3) == 0)
 <p>
 <table width="1025" border="1" id="fami">
   <tr>
-    <td colspan="3"><strong>FAMILIARES INACTIVOS DEL TITULAR </strong></td>
+    <td colspan="4"><strong>FAMILIARES INACTIVOS DEL TITULAR </strong></td>
   </tr>
   <tr>
     <td width="237"><strong>Apellido y nombre </strong></td>
     <td width="227"><strong>Nro. Documento</strong></td>
-    <td width="227"><strong>Nro. Afiliado del familiar titular</strong></td>	
+    <td width="200"><strong>C.U.I.L.</strong></td>
+    <td width="200"><strong>Nro. Afiliado del titular</strong></td>
   </tr>
 
 
 <?php
-$sql4 = "SELECT bajafam.nombre, bajafam.nrodoc, bajatit.delcod, bajatit.nrafil, bajatit.empcod, bajatit.nrcuil
-       	FROM bajafam, bajatit 
-		WHERE (bajafam.nrafil = bajatit.nrafil and bajatit.delcod = $delcod and bajafam.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci) 
-		ORDER BY bajafam.nombre"; 			
+if ($delcod >= "4000") {
+	$sql4 = "SELECT bajafam.nombre as nombre, bajafam.nrodoc as nrodoc, bajafam.nrcuil as cuifam, bajatit.delcod as delcod, bajatit.nrafil as nrafil, bajatit.empcod as empcod, bajatit.nrcuil as nrcuil FROM bajafam, bajatit WHERE (bajafam.nrafil = bajatit.nrafil and bajafam.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci) ORDER BY bajafam.nombre";
+} else {
+	$sql4 = "SELECT bajafam.nombre as nombre, bajafam.nrodoc as nrodoc, bajafam.nrcuil as cuifam, bajatit.delcod as delcod, bajatit.nrafil as nrafil, bajatit.empcod as empcod, bajatit.nrcuil as nrcuil FROM bajafam, bajatit WHERE (bajafam.nrafil = bajatit.nrafil and bajatit.delcod = $delcod and bajafam.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci) ORDER BY bajafam.nombre";
+}
 		
 $result4 = mysql_query($sql4,$db);
 
 if(mysql_num_rows($result4) == 0) {
-	$sql4 = "SELECT bajafam.nombre, bajafam.nrodoc, titular.delcod, titular.nrafil, titular.empcod, titular.nrcuil
-			FROM bajafam, titular
-			WHERE (bajafam.nrafil = titular.nrafil and titular.delcod = '$delcod' and bajafam.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci)
-			ORDER BY bajafam.nombre"; 			
+	$sql4 = "SELECT bajafam.nombre as nombre, bajafam.nrodoc as nrodoc, bajafam.nrcuil as cuifam, titular.delcod as delcod, titular.nrafil as nrafil, titular.empcod as empcod, titular.nrcuil as nrcuil FROM bajafam, titular WHERE (bajafam.nrafil = titular.nrafil and titular.delcod = '$delcod' and bajafam.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci) ORDER BY bajafam.nombre"; 			
 		
 	$result4 = mysql_query($sql4,$db);
 
 	if(mysql_num_rows($result4) == 0) {
-		print("<tr><td colspan='3' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
+		print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
 	}
 }
 
 // TABLA DE FAMILIARES DE TITULARES DE BAJA
 while ($row4 = mysql_fetch_array($result4)){	
-print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row4['nrcuil'] . "&nrafil=" . $row4['nrafil'] . "&empcod=" . $row4['empcod'] . "'))>".$row4['nombre']."</td>");
+	if ($delcod >= "4000") {
+		print("<td width=237>" . $row4['nombre'] . "</td>");
+	} else {
+		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row4['nrcuil'] . "&nrafil=" . $row4['nrafil'] . "&empcod=" . $row4['empcod'] . "'))>".$row4['nombre']."</td>");
+	}
 	print("<td width=227>" . $row4['nrodoc'] . "</td>");
-	print("<td width=227>" . $row4['nrafil'] . "</td>");	
+	print("<td width=200>" . $row4['cuifam'] . "</td>");
+	print("<td width=200>" . $row4['nrafil'] . "</td>");
 	print("</tr>");
 }
 
