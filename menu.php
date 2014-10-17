@@ -11,8 +11,7 @@ for ($i=0; $i < sizeof($habilitados); $i++) {
 	}
 }
 
-//$prevencion = array("1002","1102","1106","1107","1108","5000","5001");
-$prevencion = array("5000","5001");
+$prevencion = array("1002","1102","1106","1107","1108","5000","5001");
 $tienePrevencion = false;
 for ($i=0; $i < sizeof($prevencion); $i++) {
 	if ($prevencion[$i] == $_SESSION['delcod']) {
