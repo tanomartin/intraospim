@@ -6,7 +6,7 @@ $sql = "select * from usuarios where delcod = $delcod and emails = '$mail'";
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
 
-if ($cant > 0) {
+if ($cant == 1) {
 	$row=mysql_fetch_array($result);
 	$asunto = "Recordatorio de Contraseña del sitio www.ospim.com.ar";
 	
