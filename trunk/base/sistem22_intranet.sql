@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2014 a las 12:44:09
+-- Tiempo de generación: 17-11-2014 a las 13:49:16
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.9
 
@@ -932,13 +932,14 @@ CREATE TABLE IF NOT EXISTS `cabacuer` (
 --
 
 CREATE TABLE IF NOT EXISTS `cabjur` (
+  `delcod` int(4) NOT NULL,
   `nrcuit` char(11) NOT NULL DEFAULT '',
   `anotra` int(4) NOT NULL DEFAULT '0',
   `mestra` int(2) NOT NULL DEFAULT '0',
   `canper` int(4) NOT NULL DEFAULT '0',
   `totrem` double(10,2) NOT NULL DEFAULT '0.00',
   `totdec` double(10,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`nrcuit`,`anotra`,`mestra`)
+  PRIMARY KEY (`delcod`,`nrcuit`,`anotra`,`mestra`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
