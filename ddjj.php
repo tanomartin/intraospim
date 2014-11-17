@@ -30,16 +30,16 @@ body {
 <body>
 <div align="center">
 <?php
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['nrcuit'];
 $delcod = $_SESSION['delcod'];
 $ano = $_GET['ano'];
 $mes = $_GET['mes'];
 
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
+$sql = "select * from empresa where nrcuit = $nrcuit and empcod = '$empcod'";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 
-$sql3 = "select * from cabjur where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";
+$sql3 = "select * from cabjur where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";
 $result3 = mysql_query($sql3,$db); 
 $row3=mysql_fetch_array($result3);
 $empleados=$row3['canper'];
@@ -60,7 +60,7 @@ $declarado=$row3['totrem'];
   <p>
     <?php
 $tablaCuij = "cuij".$_SESSION['delcod'];
-$sql2 = "select * from $tablaCuij where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";;
+$sql2 = "select * from $tablaCuij where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";;
 $result2 = mysql_query($sql2,$db); 
 while ($row2=mysql_fetch_array($result2)) {
 		$c=$row2['nrcuil'];

@@ -30,31 +30,31 @@ body {
 </head>
 
 <?php
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['cuit'];
 $delcod = $_SESSION['delcod'];
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
+$sql = "select * from empresa where delcod = $delcod and nrcuit = '$nrcuit'";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 
-function estado($del,$emp,$ano, $me, $db) {	
-	$sql1 = "select * from pagos where delcod = $del and empcod = $emp and anotra = $ano and mestra = $me";
+function estado($del,$nrcuit,$ano, $me, $db) {	
+	$sql1 = "select * from pagos where delcod = $del and nrcuit = $nrcuit and anotra = $ano and mestra = $me";
 	$result1 = mysql_query($sql1,$db); 
 	$row1 = mysql_fetch_array($result1);
 	if($row1!=null) {
 		$des = "PAGO";
-		} else { $sql6 = "select * from juicios where delcod = $del and empcod = $emp and anojui = $ano and mesjui = $me" ;
+		} else { $sql6 = "select * from juicios j, empresa e where e.delcod = $del and e.nrcuit = $nrcuit and j.nrcuit = e.nrcuit and j.anojui = $ano and j.mesjui = $me" ;
 				 $result6 = mysql_query($sql6,$db); 
 				 $row6 = mysql_fetch_array($result6);
 				 if ($row6 != null) {
 				 	$des = "JUICI.";
 				 } else {
-							$sql2 = "select d.* from detacuer d, empresa e where e.delcod = $del and e.empcod = $emp and d.nrcuit = e.nrcuit and d.anoacu = $ano and d.mesacu = $me" ;
+							$sql2 = "select d.* from detacuer d, empresa e where e.delcod = $del and e.nrcuit = $nrcuit and d.nrcuit = e.nrcuit and d.anoacu = $ano and d.mesacu = $me" ;
 							$result2 = mysql_query($sql2,$db); 
 							$row2 = mysql_fetch_array($result2);
 							if($row2!=null) {
 								$des = "ACUER.";
 							} else {
-										$sql9 = "select * from cabjur where delcod = $del and empcod = $emp and anotra = $ano and mestra = $me" ;
+										$sql9 = "select * from cabjur c, empresa e where e.delcod = $del and e.nrcuit = $nrcuit and c.nrcuit = e.nrcuit and c.anotra = $ano and c.mestra = $me" ;
 										$result9 = mysql_query($sql9,$db); 
 										$row9 = mysql_fetch_array($result9);
 										if($row9!=null) {
@@ -116,15 +116,15 @@ while($año<=$añofin) {
     <td width="52"> <div align="left"><strong><?php echo $año; ?></strong></div></td>
 <?php 
 	for ($i=1;$i<13;$i++){
-		$descri = estado($delcod,$empcod,$año,$i,$db);
+		$descri = estado($delcod,$nrcuit,$año,$i,$db);
 		if ($descri == "PAGO") {
-			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('pagos.php?empcod=".$empcod."&ano=".$año."&mes=".$i."'))>".$descri."</font></div></td>");
+			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('pagos.php?nrcuit=".$nrcuit."&ano=".$año."&mes=".$i."'))>".$descri."</font></div></td>");
 		}
 		if ($descri == "ACUER.") {
-			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('acuerdos.php?empcod=".$empcod."&ano=".$año."&mes=".$i."'))>".$descri."</font></div></td>");
+			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('acuerdos.php?nrcuit=".$nrcuit."&ano=".$año."&mes=".$i."'))>".$descri."</font></div></td>");
 		}
 		if ($descri == "NO PAGO") {
-			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('ddjj.php?empcod=".$empcod."&ano=".$año."&mes=".$i."'))>".$descri."</font></div></td>");
+			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('ddjj.php?nrcuit=".$nrcuit."&ano=".$año."&mes=".$i."'))>".$descri."</font></div></td>");
 		}
 		if ($descri == "JUICI.") {
 			print ("<td width=81><div align=center><font face=Verdana size=1>".$descri."</font></div></td>");

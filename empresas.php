@@ -51,9 +51,8 @@ $result = mysql_query($sql,$db);
   <tr>
     <td width="142"><strong>Seleccione el orden: </strong></td>
     <td width="93"><select name="orden" id="orden">
-        <option value="empcod" selected="selected">C&oacute;digo</option>
-        <option value="nombre">Nombre</option>
-        <option value="nrcuit">C.U.I.T.</option>
+		<option value="nrcuit">C.U.I.T.</option>       
+	    <option value="nombre">Nombre</option>
 		<option value="copole">Cod. Pos.</option>
     </select></td>
     <td width="296">
@@ -65,24 +64,22 @@ $result = mysql_query($sql,$db);
 </table>
 <table border="1" width="1145" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="111"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
-    <td width="333"><div align="center"><strong><font size="1" face="Verdana">Raz&oacute;n Social </font></strong></div></td>
-    <td width="220"><div align="center"><strong><font size="1" face="Verdana">CUIT</font></strong></div></td>
-	<td width="120"><div align="center"><strong><font size="1" face="Verdana">Cod. Pos.</font></strong></div></td>
-    <td width="120"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
-	<td width="120"><div align="center"><strong><font size="1" face="Verdana">Estado de Cuenta </font></strong></div></td>
-	<td width="120"><div align="center"><strong><font size="1" face="Verdana">Listado de Titulares </font></strong></div></td>
+  	<td><div align="center"><strong><font size="1" face="Verdana">CUIT</font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana">Raz&oacute;n Social </font></strong></div></td> 
+	<td><div align="center"><strong><font size="1" face="Verdana">Cod. Pos.</font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
+	<td><div align="center"><strong><font size="1" face="Verdana">Estado de Cuenta </font></strong></div></td>
+	<td><div align="center"><strong><font size="1" face="Verdana">Listado de Titulares </font></strong></div></td>
   </tr>
   <p>
 <?php
 while ($row=mysql_fetch_array($result)) {
-	print ("<td width=111><font face=Verdana size=1>".$row['empcod']."</font></td>");
-	print ("<td width=333><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-	print ("<td width=220><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-	print ("<td width=120><div align=center><font face=Verdana size=1>".$row['copole']."</font></td>");
-	print ("<td width=120><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoEmpresas.php?cuit=".$row['nrcuit']."'))>".FICHA."</font></div></td>");
-	print ("<td width=120><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('cuenta.php?empcod=".$row['empcod']."'))>".CUENTA."</font></div></td>");
-	print ("<td width=120><div align=center><font face=Verdana size=1><a href=titulares.php?empcod=".$row['empcod'].">".TITULARES."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
+	print ("<td><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>".$row['copole']."</font></td>");
+	print ("<td><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoEmpresas.php?cuit=".$row['nrcuit']."'))>".FICHA."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('cuenta.php?cuit=".$row['nrcuit']."'))>".CUENTA."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1><a href=titulares.php?cuit=".$row['nrcuit'].">".TITULARES."</font></div></td>");
 	print ("</tr>");
 }
 ?>

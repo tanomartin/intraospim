@@ -34,16 +34,16 @@ body {
 <body>
 <div align="center">
 <?php  
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['nrcuit'];
 $delcod = $_SESSION['delcod'];
 $ano = $_GET['ano'];
 $mes = $_GET['mes'];
 
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
+$sql = "select * from empresa where delcod = $delcod and nrcuit = '$nrcuit'";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 
-$sql4 = "select * from pagos where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";
+$sql4 = "select * from pagos where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";
 $result4 = mysql_query($sql4,$db); 
 while ($row4=mysql_fetch_array($result4)) {
 	if ($row4['contra'] == "REM") {
@@ -72,7 +72,7 @@ while ($row4=mysql_fetch_array($result4)) {
   <p>
   
 <?php
-$sql1 = "select * from pagos where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";
+$sql1 = "select * from pagos where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";
 $result1 = mysql_query($sql1,$db); 
 while ($row1=mysql_fetch_array($result1)) {
 	$descri="OTROS";
@@ -94,7 +94,7 @@ while ($row1=mysql_fetch_array($result1)) {
   </p>
 </table>
 <?php
-$sql3 = "select * from cabjur where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";
+$sql3 = "select * from cabjur where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";
 $result3 = mysql_query($sql3,$db); 
 $row3=mysql_fetch_array($result3);
 $empleados=$row3['canper'];
@@ -111,7 +111,7 @@ $declarado=$row3['totrem'];
   <p>
 <?php
 $tablaCuij = "cuij".$_SESSION['delcod'];	
-$sql2 = "select * from $tablaCuij where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";;
+$sql2 = "select * from $tablaCuij where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";;
 $result2 = mysql_query($sql2,$db); 
 while ($row2=mysql_fetch_array($result2)) {
 		
@@ -134,14 +134,14 @@ while ($row2=mysql_fetch_array($result2)) {
 
 		if (mysql_num_rows($result5) != 0) {
 			print ("<td width=140><div align=center><font face=Verdana size=1>".$row2['mestra']."/".$row2['anotra']."</font></div></td>");
-			print ("<td width=182><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row2['nrcuil']."&nrafil=".$row5['nrafil']."&empcod=".$empcod."'))>".$row2['nrcuil']."</font></div></td>");
+			print ("<td width=182><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row2['nrcuil']."&nrafil=".$row5['nrafil']."&=nrcuit".$nrcuit."'))>".$row2['nrcuil']."</font></div></td>");
 			print ("<td width=154><div align=center><font face=Verdana size=1>".$row2['remimp']."</font></div></td>");
 			print ("</tr>");
 		}
 		
 		 if(mysql_num_rows($result6) != 0) {
 		 	print ("<td width=140><div align=center><font face=Verdana size=1>".$row2['mestra']."/".$row2['anotra']."</font></div></td>");
-			print ("<td width=182><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row2['nrcuil']."&nrafil=".$row6['nrafil']."&empcod=".$empcod."'))>".$row2['nrcuil']."</font></div></td>");
+			print ("<td width=182><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row2['nrcuil']."&nrafil=".$row6['nrafil']."&nrcuit=".$nrcuit."'))>".$row2['nrcuil']."</font></div></td>");
 			print ("<td width=154><div align=center><font face=Verdana size=1>".$row2['remimp']."</font></div></td>");
 			print ("</tr>");
 		 }
