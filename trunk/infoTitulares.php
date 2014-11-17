@@ -30,12 +30,12 @@ body {
 
 <?php
 $cuil = $_GET['cuil'];
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['nrcuit'];
 $nrafil = $_GET['nrafil'];
 
 $sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc
 		FROM titular t, delega d, empresa e, provin p, tipodocu tip
-		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.empcod = e.empcod and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo";
+		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 $est = "ACTIVO";
@@ -43,11 +43,12 @@ $est = "ACTIVO";
 if (mysql_num_rows($result) == 0) {
 	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc
 		FROM bajatit t, delega d, empresa e, provin p, tipodocu tip
-		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.empcod = e.empcod and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo";
+		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo";
 	$result = mysql_query($sql,$db); 
 	$row = mysql_fetch_array($result);
 	$est = "DE BAJA - Desde: ".$row['fecbaj'];
 }
+
 ?>
 
 

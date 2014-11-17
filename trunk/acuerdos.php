@@ -29,22 +29,22 @@ body {
 <div align="center">
 <span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></p>
 <?php
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['nrcuit'];
 $delcod = $_SESSION['delcod'];
 $ano = $_GET['ano'];
 $mes = $_GET['mes'];
 
 
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
+$sql = "select * from empresa where delcod = $delcod and nrcuit = '$nrcuit'";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 
-$sql2 = "select d.* from detacuer d, empresa e where e.delcod = $delcod and e.empcod = '$empcod' and e.nrcuit = d.nrcuit and d.anoacu = '$ano' and d.mesacu = '$mes'" ;
+$sql2 = "select d.* from detacuer d, empresa e where e.delcod = $delcod and e.nrcuit = '$nrcuit' and e.nrcuit = d.nrcuit and d.anoacu = '$ano' and d.mesacu = '$mes'" ;
 $result2 = mysql_query($sql2,$db); 
 $row2 = mysql_fetch_array($result2);
 $nroacu = $row2['nroacu'];
 				
-$sql3 = "select c.* from cabacuer c, empresa e where e.delcod = $delcod and e.empcod = '$empcod' and e.nrcuit = c.nrcuit and c.nroacu = $nroacu" ;
+$sql3 = "select c.* from cabacuer c, empresa e where e.delcod = $delcod and e.nrcuit = '$nrcuit' and e.nrcuit = c.nrcuit and c.nroacu = $nroacu" ;
 $result3 = mysql_query($sql3,$db); 
 $row3 = mysql_fetch_array($result3);
 $tipoAcu="Acuerdo";

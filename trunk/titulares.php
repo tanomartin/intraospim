@@ -28,27 +28,24 @@ body {
 </head>
 
 <?php
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['cuit'];
 $delcod = $_SESSION['delcod'];
-$sql1 = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
+$sql1 = "select * from empresa where delcod = $delcod and nrcuit = '$nrcuit'";
 $result1 = mysql_query($sql1,$db); 
 $row1 = mysql_fetch_array($result1);
-$nrocuit = $row1['nrcuit'];
-
 
 if (isset($_POST['orden'])) {
 	$orden = $_POST['orden'];
 } else {
 	$orden = "nrafil";
 }
-$sql = "select * from titular where delcod = $delcod and empcod = '$empcod' order by $orden";
+$sql = "select * from titular where delcod = $delcod and nrcuit = '$nrcuit' order by $orden";
 $result = mysql_query($sql,$db); 
-$row = mysql_fetch_array($result);
 ?>
 
 
 <body>
-<form id="form1" name="form1" method="post" action="titulares.php?empcod=<?php echo $row1["empcod"]; ?>">
+<form id="form1" name="form1" method="post" action="titulares.php?nrcuit=<?php echo $row1["nrcuit"]; ?>">
 <table width="1025" border="0">
   <tr>
     <td scope="row"><div align="center"><span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></div></td>
@@ -107,7 +104,7 @@ while ($row=mysql_fetch_array($result)) {
 	print ("<td width=187><font face=Verdana size=1><b>".$row['nombre']."</b></font></td>");
 	print ("<td width=170><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
 	print ("<td width=208><div align=center><font face=Verdana size=1>".$row2['descri']."-".$row['nrodoc']."</font></div></td>");
-	print ("<td width=118><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row['nrcuil']."&nrafil=".$row['nrafil']."&empcod=".$empcod."'))>".FICHA."</font></div></td>");
+	print ("<td width=118><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row['nrcuil']."&nrafil=".$row['nrafil']."&nrcuit=".$nrcuit."'))>".FICHA."</font></div></td>");
 	print ("<td width=180><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('aporteIndividual.php?cuil=".$row['nrcuil']."'))>".APORTES."</font></div></td>");
 	print ("</tr>");
 }

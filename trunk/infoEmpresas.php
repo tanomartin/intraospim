@@ -40,11 +40,11 @@ $row=mysql_fetch_array($result);
     </tr>
     </table>
     <table width="548" border="1">
-      <tr>
-        <th width="167" scope="row"><div align="left">C&oacute;digo Empresa </div></th>
-      	<td width="365"><?php print ($row['empcod']);?></td>
+       <tr>
+        <th scope="row"><div align="left">CUIT</div></th>
+      <td><?php print ($row['nrcuit']);?></td>
     </tr>
-      <tr>
+	  <tr>
         <th scope="row"><div align="left">Domicilio</div></th>
      	<td><?php print ($row['domile']);?></td>
     </tr>
@@ -63,10 +63,6 @@ $row=mysql_fetch_array($result);
       <tr>
         <th scope="row"><div align="left">Tel&eacute;fono</div></th>
       <td><?php print ($row['telef1']);?></td>
-    </tr>
-      <tr>
-        <th scope="row"><div align="left">CUIT</div></th>
-      <td><?php print ($row['nrcuit']);?></td>
     </tr>
       <tr>
         <th scope="row"><div align="left">Fecha Inicio </div></th>

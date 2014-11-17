@@ -131,7 +131,6 @@ for ($ano=$anoincio;$ano<$anofinal;$ano++){
 			while ($row3=mysql_fetch_array($result3)) {
 				$remu=$row3['remimp'];
 				$cuit=$row3['nrcuit'];
-				$emp=$row3['empcod'];
 	
 				$sql = "select * from $tabla where nrcuit = '$cuit' and nrcuil = '$cuil' and mestra = '$mes' and anotra = '$ano'";
 				$result = mysql_query($sql,$db); 
