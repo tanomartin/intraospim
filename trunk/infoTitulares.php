@@ -33,17 +33,17 @@ $cuil = $_GET['cuil'];
 $nrcuit = $_GET['nrcuit'];
 $nrafil = $_GET['nrafil'];
 
-$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc
-		FROM titular t, delega d, empresa e, provin p, tipodocu tip
-		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo";
+$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
+		FROM titular t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
+		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and t.estciv = civ.codestciv";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 $est = "ACTIVO";
 
 if (mysql_num_rows($result) == 0) {
-	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc
-		FROM bajatit t, delega d, empresa e, provin p, tipodocu tip
-		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo";
+	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
+		FROM bajatit t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
+		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and  t.estciv = civ.codestciv";
 	$result = mysql_query($sql,$db); 
 	$row = mysql_fetch_array($result);
 	$est = "DE BAJA - Desde: ".$row['fecbaj'];
@@ -64,8 +64,12 @@ if (mysql_num_rows($result) == 0) {
   </table>
   <table width="548" border="1">
     <tr>
-      <th width="167" scope="row"><div align="left">Documento</div></th>
+      <th scope="row"><div align="left">Documento</div></th>
         <td width="365"><?php print ($row['tipdoc'].": ".$row['nrodoc']);?></td>
+    </tr>
+	<tr>
+      <th scope="row"><div align="left">Estado Civil</div></th>
+        <td width="365"><?php print ($row['estcivil']);?></td>
     </tr>
     <tr>
       <th scope="row"><div align="left">Domicilio</div></th>
@@ -120,54 +124,37 @@ if (mysql_num_rows($result) == 0) {
   </table>
   <p class="Estilo6">*Si el empleado pertenece a su Delegacion. Haciendo click sobre su CUIL se motrar&aacute;n sus aportes individuales </p>
   <p class="Estilo5">Familiares</p>
-
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
-<tr>
-    <td width="329"><div align="center"><strong><font size="1" face="Verdana">Nombre y Apellido </font></strong></div></td>
-    <td width="177"><div align="center"><strong><font size="1" face="Verdana">Documento </font></strong></div></td>
-	<td width="156"><div align="center"><strong><font size="1" face="Verdana">Parentesco </font></strong></div></td>
-	<td width="157"><div align="center"><strong><font size="1" face="Verdana">Sexo </font></strong></div></td>
-	<td width="174"><div align="center"><strong><font size="1" face="Verdana">Fecha de Nacimiento </font></strong></div></td>
-	<td width="174"><div align="center"><strong><font size="1" face="Verdana">C.U.I.L. </font></strong></div></td>
-</tr>
 <p>
 <?php
 if ($est == "ACTIVO") {
-	$sql1 = "select f.*, t.descri as tipdoc from familia f, tipodocu t where f.nrafil = '$nrafil' and f.tipdoc = t.codigo";
+	$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from familia f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
 	$result1 = mysql_query($sql1,$db); 
 } else {
-	$sql1 = "select f.*, t.descri as tipdoc from bajafam f, tipodocu t where f.nrafil = '$nrafil' and f.tipdoc = t.codigo";
+	$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from bajafam f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
 	$result1 = mysql_query($sql1,$db); 
 }
-
-
-while ($row1=mysql_fetch_array($result1)) {
-	if ($row1['codpar'] == 4 ) {
-		$despare="Madre";
+$cantFami = mysql_num_rows($result1);
+if ($cantFami > 0) { ?>
+		<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+		<tr>
+			<td width="329"><div align="center"><strong><font size="1" face="Verdana">Nombre y Apellido </font></strong></div></td>
+			<td width="177"><div align="center"><strong><font size="1" face="Verdana">Documento </font></strong></div></td>
+			<td width="156"><div align="center"><strong><font size="1" face="Verdana">Parentesco </font></strong></div></td>
+			<td width="157"><div align="center"><strong><font size="1" face="Verdana">Sexo </font></strong></div></td>
+			<td width="174"><div align="center"><strong><font size="1" face="Verdana">Fecha de Nacimiento </font></strong></div></td>
+			<td width="174"><div align="center"><strong><font size="1" face="Verdana">C.U.I.L. </font></strong></div></td>
+		</tr>
+<?php while ($row1=mysql_fetch_array($result1)) {	
+	    print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['nombre']."</font></td>");
+		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['tipdoc'].": ".$row1['nrodoc']."</font></td>");
+		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['despare']."</font></td>");
+		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['ssexxo']."</font></td>");
+		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['fecnac']."</font></td>");
+		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['nrcuil']."</font></td>");
+		print ("</tr>");
 	}
-	if ($row1['codpar'] == 5 ) {
-		$despare="Padre";
-	}
-	if ($row1['codpar'] == 6 ) {
-		$despare="Conyuge";
-	}
-	if ($row1['codpar'] == 7 ) {
-		$despare="Concubino";
-	}
-	if ($row1['codpar'] == 8 ||  $row1['codpar'] == 9) {
-		$despare="A cargo";
-	}
-	if ($row1['codpar'] >= 10 ) {
-		$despare="Hijo";
-	}
-
-	print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['nombre']."</font></td>");
-	print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['tipdoc'].": ".$row1['nrodoc']."</font></td>");
-	print ("<td width=111><div align=center><font face=Verdana size=1>".$despare."</font></td>");
-	print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['ssexxo']."</font></td>");
-	print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['fecnac']."</font></td>");
-	print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['nrcuil']."</font></td>");
-	print ("</tr>");
+} else {
+	print("<div aling='center'><b> No hay familiares informados</b></div>");
 }
 ?>
 </p>
