@@ -28,13 +28,16 @@ include ("../verificaSesion.php");
     <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('DISCAPACIDAD INSTRUCTIVO BENEFICIARIO.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Instructivo Para Trámites por Prestaciones</a></div></td>
   </tr>
   <tr>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('CONSENTIMIENTO DE TRANSPORTE DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Transporte</a></div>
-    </td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('CONSENTIMIENTO DE TRANSPORTE DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Transporte</a></div>    </td>
     <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('CONSENTIMIENTO DE TRATAMIENTO DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Tratamiento</a></div></td>
   </tr>
   <tr>
     <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('PLANILLA ASISTENCIA PRESTADORES OSPIM.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Asistencia Mensual Prestadores</a></div></td>
     <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('PLANILLA ASISTENCIA TRANSPORTE OSPIM.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Asistencia Mensual Transporte</a></div></td>
+  </tr>
+  <tr>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('PLANILLA DE MEDIDA DE INDEPENDENCIA FUNCIONAL.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Medida de Independencia Funcional</a></div></td>
+    <td height="54">&nbsp;</td>
   </tr>
 </table>
 </div>
