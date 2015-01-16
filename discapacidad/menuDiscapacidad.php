@@ -37,7 +37,7 @@ include ("../verificaSesion.php");
   </tr>
   <tr>
     <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('PLANILLA DE MEDIDA DE INDEPENDENCIA FUNCIONAL.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Medida de Independencia Funcional</a></div></td>
-    <td height="54">&nbsp;</td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('RESUMEN DE HISTORIA CLINICA PARA EL BENEFICIARIO.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Resumen de Historia Clinica</a></div></td>
   </tr>
 </table>
 </div>
