@@ -24,7 +24,7 @@ if (isset($_GET['cuil'])) {
 		if ($cant != 0) {
 			$row = mysql_fetch_array($result);
 			$tipo = "Titular";
-			$codigo = 1;
+			$codigo = 0;
 		} else {
 			$result = mysql_query($queryFami,$db); 
 			$cant = mysql_num_rows($result);
