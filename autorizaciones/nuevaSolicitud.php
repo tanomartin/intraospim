@@ -34,6 +34,7 @@ if (isset($_GET['cuil'])) {
 				$codigo = $row['codpar'];
 			} else { 
 				$cartel = 1;
+				$codigo = -1;
 			}
 		}
 	} 
