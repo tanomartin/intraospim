@@ -21,7 +21,7 @@ if (isset($_POST['cuil'])) {
 			$tipo = "Titular";
 			$codigo = 1;
 			$fecnac = $row['fecnac'];
-			$nombre = $row['nombre'];
+			$nombre = utf8_encode($row['nombre']);
 			$sexo = $row['ssexxo'];
 		} else {
 			$result = mysql_query($queryFami,$db); 
@@ -32,7 +32,7 @@ if (isset($_POST['cuil'])) {
 				$tipo = "Familiar";
 				$codigo = $row['codpar'];
 				$fecnac = $row['fecnac'];
-				$nombre = $row['nombre'];
+				$nombre = utf8_encode($row['nombre']);
 				$sexo = $row['ssexxo'];
 			}
 		}
