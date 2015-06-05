@@ -1,0 +1,1 @@
+Sistema vía Internet para consultas para delegaciones de O.S.P.I.M.
