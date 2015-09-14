@@ -600,7 +600,7 @@ function validar(formulario) {
     </td>
   </tr>
 </table>
-<table width="1067" style="width: 1000">
+<table style="width: 1000">
     <tr>
 	    <td width="1059" valign="top">
 		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Profesional</span></p>
