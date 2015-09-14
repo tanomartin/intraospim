@@ -395,9 +395,9 @@ body {
       </label>
 	<?php
 		if ($todoOk != 0) { ?>
-			<input type="button" name="volver" value="Volver a carga de Solicitud" onClick="location.href='nuevaSolicitud.php'"/>
+			<input type="button" name="volver" value="Volver a carga de Solicitud" onclick="location.href='nuevaSolicitud.php'"/>
 <?php	} else { ?>
-			<input type="button" name="volver" value="Volver a listado de Solicitudes" onClick="location.href='listadoAuto.php'"/>
+			<input type="button" name="volver" value="Volver a listado de Solicitudes" onclick="location.href='listadoAuto.php'"/>
 <?php	} ?>
 	</p>
   </div>

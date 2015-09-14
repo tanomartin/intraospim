@@ -48,7 +48,7 @@ body {
   </tr>
 </table>
 <form id="listadoSoli" name="listadoSoli" method="post" action="nuevaSolicitud.php">
-<table width="1020" border="0">
+<table width="1020" border="0" style="margin-bottom: 10px">
     <tr>
       <th width="499" scope="row"><div align="left"><b><font face="Verdana" size="2">
         <input name="back" type="submit" id="back" value="Nueva Solicitud" />
@@ -60,32 +60,30 @@ body {
     </tr>
 </table>
   
-<table border="1" width="1020" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1020" style="border-color: #D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center;" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="93"><div align="center"><strong><font size="1" face="Verdana">N&uacute;mero</font></strong></div></td>
-    <td width="110"><div align="center"><strong><font size="1" face="Verdana">Fecha</font></strong></div></td>
-    <td width="183"><div align="center"><strong><font size="1" face="Verdana">Estado</font></strong></div></td>
-	<td width="128"><div align="center"><strong><font size="1" face="Verdana">C.U.I.L Beneficiario </font></strong></div></td>
-    <td width="353"><div align="center"><strong><font size="1" face="Verdana">Nombre Beneficiario </font></strong></div></td>
-	<td width="115"><div align="center"><strong><font size="1" face="Verdana">Tipo</font></strong></div></td>
+    <th>N&uacute;mero</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+	<th>C.U.I.L Beneficiario </th>
+    <th>Nombre Beneficiario </th>
+	<th>Tipo</th>
   </tr>
-  <p>
 <?php
 include ("lib/funciones.php");
 $delcod = $_SESSION['delcod'];
 $sql = "select * from autorizacionprocesada where delcod = $delcod order by nrosolicitud DESC";
 $result = mysql_query($sql,$db);
-while ($row = mysql_fetch_array($result)) {
-	print ("<td width=93><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoAuto.php?nrosolicitud=".$row['nrosolicitud']."'))>".$row['nrosolicitud']."</font></div></td>");
-	print ("<td width=110><div align=center><font face=Verdana size=1>".invertirFecha($row['fechasolicitud'])."</font></div></td>");
-	print ("<td width=183><div align=center><font face=Verdana size=1><b>".estado($row['statusverificacion'],$row['statusautorizacion'])."</b></font></div></td>");
-	print ("<td width=128><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
-	print ("<td width=353><div align=center><font face=Verdana size=1>".$row['nombre']."</font></div></td>");
-	print ("<td width=115><div align=center><font face=Verdana size=1>".tipo($row['tiposolicitud'])."</font></div></td>");
-	print ("</tr>");
-}
-?>
-</p>
+while ($row = mysql_fetch_array($result)) { ?>
+	<tr>
+		<td><a href="javascript:void(window.open('infoAuto.php?nrosolicitud=<?php echo $row['nrosolicitud'] ?>'))"><?php echo $row['nrosolicitud'] ?></a></td>
+		<td><?php echo invertirFecha($row['fechasolicitud']) ?></td>
+		<td><b><?php echo estado($row['statusverificacion'],$row['statusautorizacion']) ?></b></td>
+		<td><?php echo $row['nrcuil'] ?></td>
+		<td><?php echo $row['nombre'] ?></td>
+		<td><?php echo tipo($row['tiposolicitud']) ?></td>
+	</tr>
+<?php } ?>
 </table>
 </form>
 </body>

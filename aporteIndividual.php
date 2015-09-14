@@ -47,8 +47,7 @@ if (mysql_num_rows($result2) == 0) {
 ?>
 <body>
 <div align="center">
-<p>
-  <table width="1025" border="0">
+  <table style="width: 1025;">
     <tr>
       <td scope="row"><div align="center"><span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></div></td>
       <td colspan="2" scope="row"><div align="left">
@@ -57,7 +56,7 @@ if (mysql_num_rows($result2) == 0) {
       <td width="635"><div align="right" class="Estilo3"></div></td>
     </tr>
   </table>
-  <table width="573" border="0">
+  <table width="573" border="0" style="margin-bottom: 10px">
     <tr>
       <th width="508" scope="row"><div align="left"><span class="Estilo4">O.S.P.I.M.</span></div></th>
       <th width="508" scope="row"><div align="right">
@@ -65,32 +64,27 @@ if (mysql_num_rows($result2) == 0) {
       </div></th>
     </tr>
   </table>
-  <table width="573" height="79" border="1">
+  <table width="573" style="height: 79;" border="1">
     <tr>
-      <td width="214" height="23"><div><strong>Nro. Afiliado: </strong></div></td>
+      <td width="214" height="23"><strong>Nro. Afiliado: </strong></td>
       <td><?php print ($row2['nrafil']." - ".$estado); ?></td>
     </tr>
     <tr>
-      <td><div><strong>Nombre y Apellido:</strong></div></td>
+      <td><strong>Nombre y Apellido:</strong></td>
       <td><?php print $row2['nombre']; ?>	</td>
     </tr>
     <tr>
       <td><div><strong>Cuil:</strong></div></td>
       <td><?php print "$cuil"; ?></td>
     </tr>
-  </table>
-</p>
-
-<p>
-<table border="1" width="771" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
-<tr>
-    <td width="191"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo </font></strong></div>      
-      <div align="center"></div></td>
-    <td width="208"><div align="center"><strong><font size="1" face="Verdana">CUIT</font></strong></div></td>
-	<td width="173"><div align="center"><strong><font size="1" face="Verdana">Remuneraci&oacute;n</font></strong></div></td>
-	<td width="173"><div align="center"><strong><font size="1" face="Verdana">Aporte</font></strong></div></td>
+  </table>	
+<table border="1" width="771" style="border-color:#D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center; " cellpadding="2" cellspacing="0">
+	<tr>
+	    <th>Per&iacute;odo </th>
+	    <th>CUIT</th>
+		<th>Remuneraci&oacute;n</th>
+		<th>Aporte</th>
 	</tr>
-<p>
 <?php
 if (!isset($global['timezone'])) {
 	$global['timezone'] = "";
@@ -120,14 +114,14 @@ for ($ano=$anoincio;$ano<$anofinal;$ano++){
 			$row6 = mysql_fetch_array($result6);
 			if (mysql_num_rows($result6)!=0) {
 				$cuit="ANSES - S.D.";
-			}
-			
-			print ("<td width=191><div align=center><font face=Verdana size=1>".$mes."/".$ano."</font></div></td>");
-			print ("<td width=208><div align=center><font face=Verdana size=1>".$cuit."</font></div></td>");
-			print ("<td width=173><div align=center><font face=Verdana size=1><b>".$remu."</b></font></div></td>");
-			print ("<td width=173><div align=center><font face=Verdana size=1><b>".$impo."</b></font></div></td>");
-			print ("</tr>");
-		} else {
+			}?>
+			<tr>
+				<td><?php echo $mes."/".$ano ?></td>
+				<td><?php echo $cuit ?></td>
+				<td><b><?php echo $remu ?></b></td>
+				<td><b><?php echo $impo ?></b></td>
+			</tr>
+<?php		} else {
 			while ($row3=mysql_fetch_array($result3)) {
 				$remu=$row3['remimp'];
 				$cuit=$row3['nrcuit'];
@@ -140,22 +134,20 @@ for ($ano=$anoincio;$ano<$anofinal;$ano++){
 					$impo="-";
 				} else {
 					$impo=$row['imptra'];
-				}
-				
-				print ("<td width=191><div align=center><font face=Verdana size=1>".$mes."/".$ano."</font></div></td>");
-				print ("<td width=208><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoEmpresas.php?cuit=".$cuit."'))>".$cuit."</font></div></td>");
-				print ("<td width=173><div align=center><font face=Verdana size=1><b>".$remu."</b></font></div></td>");
-				print ("<td width=173><div align=center><font face=Verdana size=1><b>".$impo."</b></font></div></td>");
-				print ("</tr>");
-			}
+				} ?>
+				<tr>
+					<td><?php echo $mes."/".$ano ?></td>
+					<td><a href="javascript:void(window.open('infoEmpresas.php?cuit=<?php echo $cuit ?>'))"><?php echo $cuit ?></a></td>
+					<td><b><?php $remu ?></b></td>
+					<td><b><?php $impo ?></b></td>
+				</tr>
+<?php		}
 		}
 	}
 }
 
 ?>
-</p>
 </table>
-</p>
 <p align="center" class="Estilo5">	* ANSES - S.D.: Cobrando para el per&iacute;odo subsidio para desempleados. </p>
 </div>
 </body>

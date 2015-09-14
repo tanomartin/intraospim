@@ -27,7 +27,7 @@ body {
 </head>
 <body>
 <div align="center">
-<span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></p>
+<span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span>
 <?php
 $nrcuit = $_GET['nrcuit'];
 $delcod = $_SESSION['delcod'];
@@ -63,7 +63,7 @@ print ("<p><b><font size='3' face='Papyrus'>".$row['nombre']."</font></b></p>");
   <p class="Estilo3">Acuerdo</p>
 </div>
 <div align="center">
-  <table width="548" border="1">
+  <table width="548" border="1" style="margin-bottom: 10px">
     <tr>
       <th width="167" scope="row"><div align="left">Per&iacute;odo</div></th>
       <td width="365"><?php print ($mes."-".$ano);?></td>
@@ -97,28 +97,26 @@ print ("<p><b><font size='3' face='Papyrus'>".$row['nombre']."</font></b></p>");
 </div>
 <p align="center" class="Estilo3">	Cuotas del Acuerdo</p>
 <div align="center">
-  <table border="1" width="794" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+  <table border="1" width="794" style="border-color: #D08C35; font-family: Verdana, Geneva, sans-serif; text-align: center; font-size: 11px " cellpadding="2" cellspacing="0">
     <tr>
-      <td width="123"><div align="center"><strong><font size="1" face="Verdana">N&uacute;mero </font></strong></div></td>
-      <td width="160"><div align="center"><strong><font size="1" face="Verdana">Monto de Cuota </font></strong></div></td>
-      <td width="163"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Fecha de Vencimiento </font> </font></strong></div></td>
-      <td width="167"><div align="center"><strong><font size="1" face="Verdana">Monto Pagado </font></strong></div></td>
-      <td width="149"><div align="center"><strong><font size="1" face="Verdana">Fecha de Pago </font></strong></div></td>
+      <th>N&uacute;mero </th>
+      <th>Monto de Cuota </th>
+      <th><font size="1">Fecha de Vencimiento </font> </th>
+      <th>Monto Pagado </th>
+      <th>Fecha de Pago </th>
     </tr>
-    <p>
       <?php 
 	$sql4 = "select c.* from cuoacuer c, empresa e where e.delcod = $delcod and e.empcod = '$empcod' and e.nrcuit = c.nrcuit and nroacu = $nroacu";
 	$result4 = mysql_query($sql4,$db); 
-	while ($row4=mysql_fetch_array($result4)) {
-		print ("<td width=80><div align=center><font face=Verdana size=1>".$row4['nrocuo']."</font></div></td>");
-		print ("<td width=136><div align=center><font face=Verdana size=1>".$row4['moncuo']."</font></div></td>");
-		print ("<td width=136><div align=center><font face=Verdana size=1>".$row4['fecvto']."</font></div></td>");
-		print ("<td width=121><div align=center><font face=Verdana size=1>".$row4['monpag']."</font></div></td>");
-		print ("<td width=124><div align=center><font face=Verdana size=1>".$row4['fecpag']."</font></div></td>");
-		print ("</tr>");
-}
-?>
-    </p>
+	while ($row4=mysql_fetch_array($result4)) { ?>
+		<tr>
+			<td><?php echo $row4['nrocuo'] ?></td>
+			<td><?php echo $row4['moncuo'] ?></td>
+			<td><?php echo $row4['fecvto'] ?></td>
+			<td><?php echo $row4['monpag'] ?></td>
+			<td><?php echo $row4['fecpag'] ?></td>
+		</tr>
+<?php } ?>
   </table>
   <p align="center" class="Estilo3">
   <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />

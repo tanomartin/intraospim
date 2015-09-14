@@ -53,7 +53,7 @@ body {
    </td>
     </tr>
   <tr>
-    <td width="30%" height="30" align="right"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0" align="right"><b><font face="Verdana" size="2">Usuario</font></td>
+    <td width="30%" height="30" align="right"><b><font face="Verdana" size="2">Usuario</font></b></td>
     <td width="30%">
       <input  type="text" name="delcod" id="delcod" style="background-color: #FFFFFF" size="20" />
     </td>

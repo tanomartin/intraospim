@@ -15,7 +15,7 @@ body {
 </head>
 <body>
 <div align="center">
-  <table border="0" width="100%" height="100%">
+  <table style="width: 100%; height: 100%">
     <tr>
       <td width="100%">
         <p align="center" class="Estilo1">Estamos actualizando...

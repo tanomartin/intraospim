@@ -52,7 +52,7 @@ $(document).ready(function(){
       <p class="style_titulo">Programa de Prevenci&oacute;n de Diabetes</p>
     </div></td>
     <td width="250" scope="row"><div align="right">
-	<a class="style_boton3 nover" href="#" onClick="location.href='menuPrevencion.php'">Volver a Programa de Prevención</a>
+	<a class="style_boton3 nover" href="#" onclick="location.href='menuPrevencion.php'">Volver a Programa de Prevención</a>
     </div></td>
   </tr>
 </table>

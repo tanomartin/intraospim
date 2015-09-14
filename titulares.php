@@ -84,31 +84,30 @@ $result = mysql_query($sql,$db);
     </tr>
 </table>
 
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1025" style="border-color:#D08C35; font-size: 11px; font-family: Verdana, Geneva, sans-serif; text-align: center;" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="116"><div align="center"><strong><font size="1" face="Verdana">N&uacute;mero Afiliado </font></strong></div></td>
-    <td width="220"><div align="center"><strong><font size="1" face="Verdana">Apellido, Nombre </font></strong></div></td>
-    <td width="145"><div align="center"><strong><font size="1" face="Verdana">CUIL </font></strong></div></td>
-    <td width="208"><div align="center"><strong><font size="1" face="Verdana">Documento (Tipo - N&uacute;mero) </font></strong></div></td>
-    <td width="118"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
-	<td width="180"><div align="center"><strong><font size="1" face="Verdana">Aportes Individuales </font></strong></div>	  <div align="center"></div></td>
+    <th>N&uacute;mero Afiliado </th>
+    <th>Apellido, Nombre </th>
+    <th>CUIL </th>
+    <th>Documento (Tipo - N&uacute;mero) </th>
+    <th>+ Informacion </th>
+	<th>Aportes Individuales </th>
   </tr>
 <?php
-while ($row=mysql_fetch_array($result)) {
-	$des=$row['tipdoc'];
-	$sql2 = "select * from tipodocu where codigo = '$des'";
-	$result2 = mysql_query($sql2,$db); 
-	$row2 = mysql_fetch_array($result2);
-	
-	print ("<td width=124><div align=center><font face=Verdana size=1>".$row['nrafil']."</font></div></td>");
-	print ("<td width=187><font face=Verdana size=1><b>".$row['nombre']."</b></font></td>");
-	print ("<td width=170><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
-	print ("<td width=208><div align=center><font face=Verdana size=1>".$row2['descri']."-".$row['nrodoc']."</font></div></td>");
-	print ("<td width=118><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row['nrcuil']."&nrafil=".$row['nrafil']."&nrcuit=".$nrcuit."'))>".FICHA."</font></div></td>");
-	print ("<td width=180><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('aporteIndividual.php?cuil=".$row['nrcuil']."'))>".APORTES."</font></div></td>");
-	print ("</tr>");
-}
-?>
+	while ($row=mysql_fetch_array($result)) {
+		$des=$row['tipdoc'];
+		$sql2 = "select * from tipodocu where codigo = '$des'";
+		$result2 = mysql_query($sql2,$db); 
+		$row2 = mysql_fetch_array($result2); ?>
+		<tr>
+			<td><?php echo $row['nrafil'] ?></td>
+			<td><b><?php echo $row['nombre'] ?></b></td>
+			<td><?php echo $row['nrcuil'] ?></td>
+			<td><?php echo $row2['descri']."-".$row['nrodoc'] ?></td>
+			<td><a href="javascript:void(window.open('infoTitulares.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>'))"><?php echo FICHA ?></a></td>
+			<td><a href="javascript:void(window.open('aporteIndividual.php?cuil=<?php echo $row['nrcuil'] ?>'))"><?php echo APORTES ?></a></td>
+		</tr>
+<?php } ?>
 </table>
 </body>
 </html>

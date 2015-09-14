@@ -7,8 +7,8 @@ include ("verificaSesionAutorizaciones.php");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Programa Prevencion de la Salud</title>
-<link rel="stylesheet" type="text/css" href="css/general.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/general.css"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 </head>
 <body>
 <div align="center">
@@ -20,7 +20,7 @@ include ("verificaSesionAutorizaciones.php");
     </div></td>
     <td width="129" scope="row"><div align="center"><span class="style_tutorial">Tutorial</span></div></td>
     <td width="83" colspan="2"><div align="center">
-	<a class="style_boton2" href="#" onClick="window.open('../tuto/prevencion.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Descargar</a>
+	<a class="style_boton2" href="#" onclick="window.open('../tuto/prevencion.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Descargar</a>
     </div></td>
   </tr>
 </table>

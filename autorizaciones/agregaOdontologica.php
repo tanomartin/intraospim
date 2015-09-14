@@ -5,7 +5,7 @@ include ("lib/funciones.php");
 $delcod = $_SESSION['delcod'];
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -18,7 +18,7 @@ $delcod = $_SESSION['delcod'];
 <script src="lib/jquery-ui-1.11.1/ui.datepicker-es.js"></script>
 <script src="lib/funcionControl.js" type="text/javascript"></script>
 <script src="lib/jquery.blockUI.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 jQuery(function($){
 	$("#nrcuil").mask("99999999999");
 	$("#fechaatencion").mask("99/99/9999");
@@ -112,12 +112,11 @@ $(document).ready(function(){
 		$("#guardar").hide();
 		var cuil = $("#nrcuil").val();
 		var aMult = '5432765432';
-    	var aMult = aMult.split('');
+    	aMult = aMult.split('');
 	    if (cuil && cuil.length == 11) {
 			var aCUIL = cuil.split('');
 			var iResult = 0;
-			var resAux = 0;
-			for(i = 0; i <= 9; i++) {
+			for(var i = 0; i <= 9; i++) {
 				iResult += aCUIL[i] * aMult[i];
 			}
 			iResult = (iResult % 11);
@@ -385,7 +384,7 @@ $(document).ready(function(){
 			var descategoria = $("#categoria option:selected").text();
 			var separacodigo = $("#categoria option:selected").attr("title").split(' ');
 			var titcategoria = separacodigo[1];
-			var codcategoria = titcategoria+' - '+descategoria;
+			codcategoria = titcategoria+' - '+descategoria;
 		}
 		var codscategoria = "";
 		$("#diagnostico").val(codcategoria);
@@ -398,7 +397,7 @@ $(document).ready(function(){
 			var desscategoria = $("#subcategoria option:selected").text();
 			var separascodigo = $("#subcategoria option:selected").attr("title").split(' ');
 			var titscategoria = separascodigo[1];
-			var codscategoria = titscategoria+' - '+desscategoria;
+			codscategoria = titscategoria+' - '+desscategoria;
 		}
 		$("#subdiagnostico").val(codscategoria);		
 	});
@@ -511,9 +510,9 @@ function validar(formulario) {
 </script>
 </head>
 <body>
-<form id="agregaOdontologica" name="agregaOdontologica" method="POST" action="guardarOdontologica.php" onSubmit="return validar(this)" enctype="multipart/form-data" >
+<form id="agregaOdontologica" name="agregaOdontologica" method="post" action="guardarOdontologica.php" onsubmit="return validar(this)" enctype="multipart/form-data" >
 <div align="center">
-<table width="979" border="0">
+<table style="width: 979">
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
     <td colspan="2" scope="row"><div align="left">
@@ -521,108 +520,106 @@ function validar(formulario) {
     </div>
       </td>
     <td width="489"><div align="right">
-		<a class="style_boton3" href="#" onClick="location.href='listadoOdontologica.php'">Volver a Programa de Prevención Odontológica</a>
+		<a class="style_boton3" href="#" onclick="location.href='listadoOdontologica.php'">Volver a Programa de Prevención Odontológica</a>
       </div>
     </td>
   </tr>
 </table>
 </div>
 <div align="center">
-<table width="979" border="0">
+<table style="width: 979">
 	<tr>
 		<td valign="top">
 		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Profesional</span></p>
-		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+		  <span class="style_texto_input"><strong>Apellido y Nombre :</strong>
 			  <input name="profesional" type="text" id="profesional" value="" size="60" placeholder="Tratamiento, Apellido y Nombre (Ej: Dr. Gonzalez Mario)" class="style_input"/>
 		 </span>
-		  <span align="left" class="style_texto_input"><strong>Fecha de Atenci&oacute;n :</strong>
+		  <span class="style_texto_input"><strong>Fecha de Atenci&oacute;n :</strong>
 			  <input name="fechaatencion" type="text" id="fechaatencion" value="" size="12" placeholder="DD/MM/AAAA" class="style_input"/>
 		  </span>
 		</td>
 	</tr>
-</table>
-<table width="979" border="0">
 	<tr>
 		<td valign="top">
 		  <p align="left"><span class="style_subtitulo">Informaci&oacute;n del Beneficiario</span></p>
-		  <span align="left" class="style_texto_input"><strong>C.U.I.L. :</strong>
+		  <span class="style_texto_input"><strong>C.U.I.L. :</strong>
 			  <input name="nrcuil" type="text" id="nrcuil" value="" size="11" placeholder="Sin guiones" class="style_input"/>
 			  <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" />
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
-			  <input name="nrafil" type="text" id="nrafil" size="9" readonly="true" value="" class="style_input_readonly"/>
+		  <span class="style_texto_input"><strong>N&uacute;mero de Afiliado :</strong>
+			  <input name="nrafil" type="text" id="nrafil" size="9" readonly="readonly" value="" class="style_input_readonly"/>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Tipo de Afiliado :</strong>
-			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="true" value="" class="style_input_readonly"/>
-			  <input name="codpar" type="text" id="codpar" size="4" readonly="true" style="visibility:hidden" value=""/>
-			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="true" style="visibility:hidden" value=""/>
-			  <input name="sexo" type="text" id="sexo" size="2" readonly="true" style="visibility:hidden" value=""/>
+		  <span class="style_texto_input"><strong>Tipo de Afiliado :</strong>
+			  <input name="tipoafiliado" type="text" id="tipoafiliado" size="8" readonly="readonly" value="" class="style_input_readonly"/>
+			  <input name="codpar" type="text" id="codpar" size="4" readonly="readonly" style="visibility:hidden" value=""/>
+			  <input name="fechanacimiento" type="text" id="fechanacimiento" size="12" readonly="readonly" style="visibility:hidden" value=""/>
+			  <input name="sexo" type="text" id="sexo" size="2" readonly="readonly" style="visibility:hidden" value=""/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Apellido y Nombre :</strong>
+		  <span class="style_texto_input"><strong>Apellido y Nombre :</strong>
 			  <input name="nombre" type="text" id="nombre" value="" size="60" class="style_input"/>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Edad : </strong>
+		  <span class="style_texto_input"><strong>Edad : </strong>
 			<input name="edad" type="text" id="edad" value="" size="5" maxlength="5" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
+		  <span class="style_texto_input"><strong>Tel&eacute;fono o Celular :</strong>
 			  <input name="ddntelefono" type="text" id="ddntelefono" value="" size="5" maxlength="5" placeholder="DDN" class="style_input"/>
 			  <input name="nrotelefono" type="text" id="nrotelefono" value="" size="12" maxlength="10" placeholder="Número" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Consulta Nro. :</strong>
+		  <span class="style_texto_input"><strong>Consulta Nro. :</strong>
 			<input name="consultanro" type="text" id="consultanro" value="" size="3" maxlength="2" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Fluor :</strong>
+		  <span class="style_texto_input"><strong>Fluor :</strong>
 			  <select name="fluor" id="fluor" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Cepillado :</strong>
+		  <span class="style_texto_input"><strong>Cepillado :</strong>
 			  <select name="cepillado" id="cepillado" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Pasta :</strong>
+		  <span class="style_texto_input"><strong>Pasta :</strong>
 			  <input name="pasta" type="text" id="pasta" value="" size="65" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Fosas y/o Fisuras :</strong>
-			  <p><textarea name="fosasyfisuras" cols="120" rows="3" id="fosasyfisuras" class="style_input"></textarea></p>
+		  <span class="style_texto_input"><strong>Fosas y/o Fisuras :</strong>
+			  <textarea name="fosasyfisuras" cols="120" rows="3" id="fosasyfisuras" class="style_input"></textarea>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Embarazada :</strong>
+		  <span class="style_texto_input"><strong>Embarazada :</strong>
 			  <select name="embarazo" id="embarazo" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Semana de Embarazo :</strong>
+		  <span class="style_texto_input"><strong>Semana de Embarazo :</strong>
 			<input name="semanaembarazo" type="text" id="semanaembarazo" value="" size="3" maxlength="2" class="style_input"/>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Emite Diagn&oacute;stico  :</strong>
+		  <span class="style_texto_input"><strong>Emite Diagn&oacute;stico  :</strong>
 			  <select name="emitediagnostico" id="emitediagnostico" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
 				<option title="No" value="0">No</option>
 			  </select>
 		  </span>
-		  <span align="left" class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
+		  <span class="style_texto_input"><strong>Diagnosticar Seg&uacute;n C&oacute;digos CEI 10? :</strong>
 			  <select name="cie10" id="cie10" class="style_input">
 				<option title="Seleccione un valor" value="">Seleccione un valor</option>
 				<option title="Si" value="1">Si</option>
@@ -649,18 +646,18 @@ function validar(formulario) {
 		      <option title="Seleccione un valor" value="">Seleccione un valor</option>
 		      </select>
 	      </p>
-		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
-			  <p><textarea name="diagnostico" cols="120" rows="3" id="diagnostico" class="style_input"></textarea></p>
+		  <span class="style_texto_input"><strong>Diagn&oacute;stico Principal :</strong>
+			  <textarea name="diagnostico" cols="120" rows="3" id="diagnostico" class="style_input"></textarea>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Diagn&oacute;stico Secundario :</strong>
-			  <p><textarea name="subdiagnostico" cols="120" rows="3" id="subdiagnostico" class="style_input"></textarea></p>
+		  <span class="style_texto_input"><strong>Diagn&oacute;stico Secundario :</strong>
+			 <textarea name="subdiagnostico" cols="120" rows="3" id="subdiagnostico" class="style_input"></textarea>
 		  </span>
 		  <p>
 		  </p>
-		  <span align="left" class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
-			  <p><textarea name="observaciones" cols="120" rows="3" id="observaciones" class="style_input"></textarea></p>
+		  <span class="style_texto_input"><strong>Observaciones / Indicaciones :</strong>
+			  <textarea name="observaciones" cols="120" rows="3" id="observaciones" class="style_input"></textarea>
 		  </span>
 		</td>
 	</tr>

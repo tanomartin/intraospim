@@ -1,6 +1,12 @@
 <?php session_save_path("sesiones");
 session_start();
 include ("verificaSesion.php");
+
+$hoy = date("Ymd");
+$hora = date("H:i:s");
+$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod";
+$result = mysql_db_query("uv0471_intranet",$sql,$db);
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -65,12 +71,12 @@ $row = mysql_fetch_array($result);
   </tr>
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center"><strong><span class="Estilo19">Preguntas Frecuentes  - </span><a href=javascript:void(window.open(&quot;http://www.ospim.com.ar/intranet/tuto/pregFrec.pdf&quot;)) target="_top">Descargar</a></strong> </div></td>
+    <td colspan="3" align="right" class="Estilo3"><div align="center"><strong><span class="Estilo19">Preguntas Frecuentes  - </span><a href="javascript:void(window.open(&quot;http://www.ospim.com.ar/intranet/tuto/pregFrec.pdf&quot;))" target="_top">Descargar</a></strong> </div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center"><span class="Estilo25"><span class="Estilo19">El instructivo esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://www.adobe.com/es/products/acrobat/readstep2.html")) target="_top">Descargar aqui</a></span> </div></td>
+    <td colspan="3" align="right" class="Estilo3"><div align="center"><span class="Estilo25"><span class="Estilo19">El instructivo esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href="javascript:void(window.open('http://www.adobe.com/es/products/acrobat/readstep2.html'))" target="_top">Descargar aqui</a></span> </div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -187,21 +193,10 @@ $row = mysql_fetch_array($result);
 </table>
 <!--<p align="center" class="Estilo11"><td width="243"><div align="center" class="Estilo9"><a href=javascript:void(window.open("autorizaciones/listadoAuto.php")) class="Estilo9">Autorizaciones</a></div></td>
 <p align="center" class="Estilo11"><a href=javascript:void(window.open("consulta.php"))>Envianos tu consulta</a> </p>-->
-<label>
+
   <div align="center">
-    <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
+  	<label><input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/></label>
   </div>
-  </label>
 </body>
 </html>
-
-<p>
-  <?
-//update de la fecha y la hora
-$hoy = date("Ymd"); 
-$hora = date("H:i:s"); 
-$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod"; 
-$result = mysql_db_query("uv0471_intranet",$sql,$db);
-?>
-</p>
 

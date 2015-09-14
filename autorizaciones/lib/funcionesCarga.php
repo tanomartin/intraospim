@@ -1,4 +1,4 @@
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 	
 function limpiarInputfile(id) {
         var input = $('#' + id);
@@ -7,8 +7,8 @@ function limpiarInputfile(id) {
 }
 
 function ocultarPresu(){
-	for (i=1; i<=5; i++) {		
-		nombre = "presu"+i;
+	for (var i=1; i<=5; i++) {		
+		var nombre = "presu"+i;
 		limpiarInputfile(nombre);
 		document.getElementById(nombre).style.visibility = "hidden";
 		document.forms.nuevaSolicitud.maximo.value="0";
@@ -38,13 +38,12 @@ function limpiarFormulario(sCUIT){
 
 function verificaCuil(sCUIT) {
 	var aMult = '5432765432';
-    var aMult = aMult.split('');
+    aMult = aMult.split('');
     
     if (sCUIT && sCUIT.length == 11) {
         aCUIT = sCUIT.split('');
         var iResult = 0;
-		var resAux = 0;
-        for(i = 0; i <= 9; i++) {
+        for(var i = 0; i <= 9; i++) {
             iResult += aCUIT[i] * aMult[i];
         }
         iResult = (iResult % 11);

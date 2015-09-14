@@ -43,7 +43,7 @@ $row=mysql_fetch_array($result)
     <td colspan="2" scope="row"><div align="left">
       <p class="Estilo3">Solicitud N&uacute;mero <?php echo $nrosolicitud ?></p>
     </div></td>
-    <td width="328"><table width="328" height="60" border="2">
+    <td width="328"><table style="width: 328; height: 60" border="2">
       <tr>
         <td height="25"><div align="center"><strong>Fecha Solicitud</strong> </div></td>
         <td><div align="center"><?php echo  invertirFecha($row['fechasolicitud']);?></div></td>

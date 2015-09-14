@@ -62,7 +62,7 @@ if (mysql_num_rows($result) == 0) {
         </font></div></th>
       </tr>
   </table>
-  <table width="548" border="1">
+  <table width="548" border="1" style="margin-bottom: 10px">
     <tr>
       <th scope="row"><div align="left">Documento</div></th>
         <td width="365"><?php print ($row['tipdoc'].": ".$row['nrodoc']);?></td>
@@ -124,7 +124,7 @@ if (mysql_num_rows($result) == 0) {
   </table>
   <p class="Estilo6">*Si el empleado pertenece a su Delegacion. Haciendo click sobre su CUIL se motrar&aacute;n sus aportes individuales </p>
   <p class="Estilo5">Familiares</p>
-<p>
+
 <?php
 if ($est == "ACTIVO") {
 	$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from familia f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
@@ -135,29 +135,30 @@ if ($est == "ACTIVO") {
 }
 $cantFami = mysql_num_rows($result1);
 if ($cantFami > 0) { ?>
-		<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+		<table border="1" width="1025" style="border-color: #D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center;" cellpadding="2" cellspacing="0">
 		<tr>
-			<td width="329"><div align="center"><strong><font size="1" face="Verdana">Nombre y Apellido </font></strong></div></td>
-			<td width="177"><div align="center"><strong><font size="1" face="Verdana">Documento </font></strong></div></td>
-			<td width="156"><div align="center"><strong><font size="1" face="Verdana">Parentesco </font></strong></div></td>
-			<td width="157"><div align="center"><strong><font size="1" face="Verdana">Sexo </font></strong></div></td>
-			<td width="174"><div align="center"><strong><font size="1" face="Verdana">Fecha de Nacimiento </font></strong></div></td>
-			<td width="174"><div align="center"><strong><font size="1" face="Verdana">C.U.I.L. </font></strong></div></td>
+			<th>Nombre y Apellido </th>
+			<th>Documento </th>
+			<th>Parentesco </th>
+			<th>Sexo </th>
+			<th>Fecha de Nacimiento </th>
+			<th>C.U.I.L. </th>
 		</tr>
-<?php while ($row1=mysql_fetch_array($result1)) {	
-	    print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['nombre']."</font></td>");
-		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['tipdoc'].": ".$row1['nrodoc']."</font></td>");
-		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['despare']."</font></td>");
-		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['ssexxo']."</font></td>");
-		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['fecnac']."</font></td>");
-		print ("<td width=111><div align=center><font face=Verdana size=1>".$row1['nrcuil']."</font></td>");
-		print ("</tr>");
-	}
-} else {
-	print("<div aling='center'><b> No hay familiares informados</b></div>");
-}
+<?php while ($row1=mysql_fetch_array($result1)) { ?>
+		<tr>
+		    <td><?php echo $row1['nombre'] ?></td>
+			<td><?php echo $row1['tipdoc'].": ".$row1['nrodoc'] ?> </td>
+			<td><?php echo $row1['despare'] ?></td>
+			<td><?php echo $row1['ssexxo'] ?></td>
+			<td><?php echo $row1['fecnac'] ?></td>
+			<td><?php echo $row1['nrcuil'] ?></td>
+		</tr>
+<?php	}
+} else { ?>
+		<tr><td colspan="6"><b> No hay familiares informados</b></td></tr>
+<?php }
 ?>
-</p>
+
 </table>
 <p><input type="button" name="imprimir" value="Imprimir" onclick="window.print();" /></p>
 </div>

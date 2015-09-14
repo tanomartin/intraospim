@@ -43,7 +43,7 @@ body {
 	}
 ?>
 </p>
-<form method="POST" action="verificaID.php">
+<form method="post" action="verificaID.php">
   <table width="100%" border="0">
   <tr>
     <td width="19%"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>

@@ -30,7 +30,7 @@ $row=mysql_fetch_array($result);
 ?>
 
 
-<body onUnload="logout.php">
+<body>
 <form id="form1" name="form1">
   <div align="center">
     <table width="546" border="0">

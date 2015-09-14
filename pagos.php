@@ -59,39 +59,37 @@ while ($row4=mysql_fetch_array($result4)) {
 </font></span></p>
 <p align="center" class="Estilo10"><strong><font size="3" face="Papyrus">
 <?php print ($row['nombre']);?>
-</font></span></strong></p>
+</font></strong></p>
 <p align="center"><span class="Estilo3">Detalle de Pago </span></p>
 <p align="center" class="Estilo5 Estilo9">Total de Empleados: <?php echo $osp ?> - Total de Remuneraciones: <?php echo $rem ?> </p>
-<table width="694" border="1" align="center" cellpadding="2" cellspacing="0" bordercolor="#CD8C34" bordercolorlight="#D08C35" bordercolordark="#D08C35">
+<table width="700" border="1" align="center" cellpadding="2" cellspacing="0" style="border-color: #CD8C34; text-align: center; font-family:  Verdana, Geneva, sans-serif; font-size: 11px">
   <tr>
-    <td width="140"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo</font></strong></div></td>
-    <td width="192"><div align="center"><strong><font size="1" face="Verdana">Fecha de Deposito </font></strong></div></td>
-    <td width="182"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Total Depositado </font> </font></strong></div></td>
-    <td width="154"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Descripci&oacute;n</font> </font></strong></div></td>
+    <th>Per&iacute;odo</th>
+    <th>Fecha de Deposito </th>
+    <th>Total Depositado </th>
+    <th>Descripci&oacute;n </th>
   </tr>
-  <p>
   
 <?php
 $sql1 = "select * from pagos where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";
 $result1 = mysql_query($sql1,$db); 
 while ($row1=mysql_fetch_array($result1)) {
-	$descri="OTROS";
-	if ($row1['contra'] == "381") {
-		$descri="APORTE";
-	}
-	if ($row1['contra'] == "401") {
-		$descri="CONTRIBUCIÓN";
-	}
-	if (($row1['contra'] != "REM") && ($row1['contra'] != "OSP")) {
-		print ("<td width=140><div align=center><font face=Verdana size=1>".$row1['mestra']."/".$row1['anotra']."</font></div></td>");
-		print ("<td width=192><div align=center><font face=Verdana size=1>".$row1['fecdep']."</font></div></td>");
-		print ("<td width=182><div align=center><font face=Verdana size=1>".$row1['totdep']."</font></div></td>");
-		print ("<td width=154><div align=center><font face=Verdana size=1>".$descri."</font></div></td>");
-		print ("</tr>");
-	}
-}
-?>
-  </p>
+		$descri="OTROS";
+		if ($row1['contra'] == "381") {
+			$descri="APORTE";
+		}
+		if ($row1['contra'] == "401") {
+			$descri="CONTRIBUCIÓN";
+		}
+		if (($row1['contra'] != "REM") && ($row1['contra'] != "OSP")) { ?>
+			<tr>
+				<td><?php echo $row1['mestra']."/".$row1['anotra'] ?></td>
+				<td><?php echo $row1['fecdep'] ?></td>
+				<td><?php echo $row1['totdep'] ?></td>
+				<td><?php echo $descri ?></td>
+			</tr>
+<?php	}
+ 	} ?>
 </table>
 <?php
 $sql3 = "select * from cabjur where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";
@@ -102,13 +100,13 @@ $declarado=$row3['totrem'];
 ?>
 <p align="center"><span class="Estilo3">Detalle de D.D.J.J. </span></p>
 <p align="center"><span class="Estilo8">Total de Empleados: <?php echo $empleados ?> - Total de Remuneraciones: <?php echo $declarado ?> </span></p>
-<table width="496" border="1" align="center" cellpadding="2" cellspacing="0" bordercolor="#CD8C34" bordercolorlight="#D08C35" bordercolordark="#D08C35">
+<table width="496" border="1" align="center" cellpadding="2" cellspacing="0" style="border-color: #CD8C34">
   <tr>
     <td width="140"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo</font></strong></div></td>
     <td width="182"><div align="center"><strong><font size="1" face="Verdana"><font size="1">CUIL</font> </font></strong></div></td>
     <td width="154"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Remuneraci&oacute;n</font> </font></strong></div></td>
   </tr>
-  <p>
+
 <?php
 $tablaCuij = "cuij".$_SESSION['delcod'];	
 $sql2 = "select * from $tablaCuij where delcod = $delcod and nrcuit = '$nrcuit' and anotra = '$ano' and mestra = '$mes'";;
@@ -125,36 +123,35 @@ while ($row2=mysql_fetch_array($result2)) {
 		$result6 = mysql_query($sql6,$db); 
 		$row6=mysql_fetch_array($result6);
 		
-		if ((mysql_num_rows($result5) == 0) &&  (mysql_num_rows($result6) == 0)){
-			print ("<td width=140><div align=center><font face=Verdana size=1>".$row2['mestra']."/".$row2['anotra']."</font></div></td>");
-			print ("<td width=182><div align=center><font face=Verdana size=1>".$row2['nrcuil']."</font></div></td>");
-			print ("<td width=154><div align=center><font face=Verdana size=1>".$row2['remimp']."</font></div></td>");
-			print ("</tr>");
-		}
-
-		if (mysql_num_rows($result5) != 0) {
-			print ("<td width=140><div align=center><font face=Verdana size=1>".$row2['mestra']."/".$row2['anotra']."</font></div></td>");
-			print ("<td width=182><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row2['nrcuil']."&nrafil=".$row5['nrafil']."&=nrcuit".$nrcuit."'))>".$row2['nrcuil']."</font></div></td>");
-			print ("<td width=154><div align=center><font face=Verdana size=1>".$row2['remimp']."</font></div></td>");
-			print ("</tr>");
-		}
+		if ((mysql_num_rows($result5) == 0) &&  (mysql_num_rows($result6) == 0)){ ?>
+			<tr>
+				<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
+				<td><?php echo $row2['nrcuil'] ?></td>
+				<td><?php echo $row2['remimp'] ?></td>
+			</tr>
+<?php 	}
+		if (mysql_num_rows($result5) != 0) { ?>
+			<tr>
+			<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
+			<td><a href="javascript:void(window.open('infoTitulares.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row5['nrafil'] ?>&=nrcuit<?php echo $nrcuit ?>'))"><?php echo $row2['nrcuil'] ?></a></td>
+			<td><?php echo$row2['remimp'] ?></td>
+			</tr>
+<?php	}
 		
-		 if(mysql_num_rows($result6) != 0) {
-		 	print ("<td width=140><div align=center><font face=Verdana size=1>".$row2['mestra']."/".$row2['anotra']."</font></div></td>");
-			print ("<td width=182><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('infoTitulares.php?cuil=".$row2['nrcuil']."&nrafil=".$row6['nrafil']."&nrcuit=".$nrcuit."'))>".$row2['nrcuil']."</font></div></td>");
-			print ("<td width=154><div align=center><font face=Verdana size=1>".$row2['remimp']."</font></div></td>");
-			print ("</tr>");
-		 }
-		
-		
+		 if(mysql_num_rows($result6) != 0) { ?>
+		 	<tr>
+		 	<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
+			<td><a href="javascript:void(window.open('infoTitulares.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row6['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>'))"><?php echo $row2['nrcuil'] ?></a></td>
+			<td><?php echo $row2['remimp'] ?></td>
+			</tr>
+<?php	}	
 }
 ?>
-  </p>
+
 </table>
 <p align="center"><span class="Estilo10">* Los cuiles sin hiperv&iacute;nculos se corresponden con beneficiarios no afiliados </span></p>
 <div align="center">
   <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
 </div>
-<p>&nbsp;</p>
 </body>
 </html>

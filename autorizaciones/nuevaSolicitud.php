@@ -167,7 +167,7 @@ function validar(formulario) {
 </head>
 <body>
 
-<form id="nuevaSolicitud" name="nuevaSolicitud" method="POST" action="cargarSolicitud.php" onSubmit="return validar(this)" enctype="multipart/form-data" >
+<form id="nuevaSolicitud" name="nuevaSolicitud" method="post" action="cargarSolicitud.php" onsubmit="return validar(this)" enctype="multipart/form-data" >
 <table width="965" border="0">
   <tr>
     <td width="92" scope="row"><div align="center"><span class="Estilo3"><img src="../logoSolo.JPG" width="92" height="81" /></span></div></td>
@@ -179,7 +179,7 @@ function validar(formulario) {
       <p>
         <input type="button" name="volver" value="Volver a listado de Solicitudes" onclick="location.href='listadoAuto.php'"/>
       </p>
-      <table width="328" height="33" border="2">
+      <table style="width: 328; height: 33" border="2">
         <tr>
           <td width="112" height="25"><div align="center"><strong>Fecha</strong> </div></td>
           <td width="198"><div align="center"><?php echo $fechaSolicitud ;?></div></td>
@@ -194,19 +194,19 @@ function validar(formulario) {
     <td width="535" valign="top"><p><span class="Estilo4">Informaci&oacute;n del Beneficiario </span></p>
       <p><strong>* C.U.I.L.:</strong> 
          <label>
-          <input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onBlur="limpiarFormulario(this.value)" />
+          <input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onblur="limpiarFormulario(this.value)" />
             </label>
         <label>
-          <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onClick="location.href='nuevaSolicitud.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
+          <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onclick="location.href='nuevaSolicitud.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
           </label>
         </p>
       <p><strong>N&uacute;mero de Afiliado:</strong> 
-        <input name="textNroAfil" type="text" id="textNroAfil" readonly="true" value="<?php echo $row['nrafil'] ?>" style="background:#CCCCCC"/>
+        <input name="textNroAfil" type="text" id="textNroAfil" readonly="readonly" value="<?php echo $row['nrafil'] ?>" style="background:#CCCCCC"/>
       </p>
       <p><strong>Tipo de Afiliado: </strong>
-        <input name="textCodPar" type="text" id="textCodPar" readonly="true" style="background:#CCCCCC" value="<?php echo $tipo; ?>"/>
+        <input name="textCodPar" type="text" id="textCodPar" readonly="readonly" style="background:#CCCCCC" value="<?php echo $tipo; ?>"/>
         <label>
-        <input name="codPar" type="text" id="codPar" size="4" readonly="true" style="visibility:hidden" value="<?php echo $codigo ?>"/>
+        <input name="codPar" type="text" id="codPar" size="4" readonly="readonly" style="visibility:hidden" value="<?php echo $codigo ?>"/>
         </label>
         </p>
       <p>
@@ -223,7 +223,7 @@ function validar(formulario) {
       <p><span class="Estilo4">Información Obligatoria Pedido de Materiales - Presupuestos </span></p>
       <p>Tipo de Material
         <select name="tipoSolicitud" size="1" id="tipoSolicitud" onchange="controlCantidad(document.forms.nuevaSolicitud.tipoSolicitud[selectedIndex].value)" disabled="disabled">
-            <option value=0 selected="selected">Seleccione un valor </option>
+            <option value='0' selected="selected">Seleccione un valor </option>
             <?php 
 					$query="select * from clasificamaterial order by codigo ASC";
 					$result = mysql_query($query,$db); 
@@ -237,7 +237,7 @@ function validar(formulario) {
                   </label>
       </p>
       <p>
-        <input name="notaCantidad" type="text" id="notaCantidad" size="50" style="background:#CCCCCC" readonly="true" />
+        <input name="notaCantidad" type="text" id="notaCantidad" size="50" style="background:#CCCCCC" readonly="readonly" />
         <label></label>
       </p>
       <p id="presu1" style="visibility:hidden">Presupuesto 1 -
@@ -271,7 +271,6 @@ function validar(formulario) {
       <label><input name="tipo" id="tipoMaterial" type="radio" value="2" onchange="mostrarPresu(1)"/>Material </label>
 	  <br />
 	  <label><input name="tipo" id="tipoMedicamento" type="radio" value="3" onchange="mostrarPresu(0)"/>Medicamento </label>
-      </p>
       <p><strong>* Pedido Medico:</strong> <input name="pedidoMedico" id="pedidoMedico" type="file" /> </p>
       
 	  <div id="obligatorioPedido" style="visibility:hidden; color:#0033FF">

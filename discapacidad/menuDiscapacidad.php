@@ -8,7 +8,7 @@ include ("../verificaSesion.php");
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Formularios e Instructivos para Discapacidad</title>
 <link rel="stylesheet" type="text/css" href="../autorizaciones/css/general.css" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 </head>
 <body>
 <div align="center">
@@ -24,16 +24,16 @@ include ("../verificaSesion.php");
 <p>&nbsp;</p>
 <table width="1020" border="0" cellpadding="2" cellspacing="0">
   <tr>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('DISCAPACIDAD INSTRUCTIVO FACTURACION.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Instructivo Para Facturación de Prestadores</a></div></td>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('DISCAPACIDAD INSTRUCTIVO BENEFICIARIO.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Instructivo Para Trámites por Prestaciones</a></div></td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('DISCAPACIDAD INSTRUCTIVO FACTURACION.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Instructivo Para Facturación de Prestadores</a></div></td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('DISCAPACIDAD INSTRUCTIVO BENEFICIARIO.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Instructivo Para Trámites por Prestaciones</a></div></td>
   </tr>
   <tr>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('CONSENTIMIENTO DE TRANSPORTE DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Transporte</a></div>    </td>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('CONSENTIMIENTO DE TRATAMIENTO DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Tratamiento</a></div></td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('CONSENTIMIENTO DE TRANSPORTE DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Transporte</a></div>    </td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('CONSENTIMIENTO DE TRATAMIENTO DISCAPACIDAD.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Consentimiento de Tratamiento</a></div></td>
   </tr>
   <tr>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('PLANILLA ASISTENCIA PRESTADORES OSPIM.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Asistencia Mensual Prestadores</a></div></td>
-    <td height="54"><div align="center"><a class="style_boton2" href="#" onClick="window.open('PLANILLA ASISTENCIA TRANSPORTE OSPIM.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Asistencia Mensual Transporte</a></div></td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('PLANILLA ASISTENCIA PRESTADORES OSPIM.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Asistencia Mensual Prestadores</a></div></td>
+    <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('PLANILLA ASISTENCIA TRANSPORTE OSPIM.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Asistencia Mensual Transporte</a></div></td>
   </tr>
   <tr>
     <td height="54"><div align="center"><a class="style_boton2" href="#" onclick="window.open('PLANILLA DE MEDIDA DE INDEPENDENCIA FUNCIONAL.pdf','Info','resizable=YES, Scrollbars=YES', width=800,height=600, top=150, left=100)">Planilla de Medida de Independencia Funcional</a></div></td>

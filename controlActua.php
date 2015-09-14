@@ -37,8 +37,8 @@ $delegaciones = array(1002, 1101, 1102 ,1103, 1106, 1107, 1108, 1109,
 ?>
 
 
-<body onUnload="logout.php">
-<table width="1142" border="0">
+<body>
+<table width="1142" border="0" style="margin-bottom: 10px">
   <tr>
     <td height="28" scope="row"><div align="left"><span class="Estilo3">Control Actualizaci&oacute;n </span></div></td>
     <td scope="row"><div align="right"><span class="Estilo4"> O.S.P.I.M.</span></div></td>
@@ -53,98 +53,97 @@ $delegaciones = array(1002, 1101, 1102 ,1103, 1106, 1107, 1108, 1109,
   </tr>
 </table>
 
-<table border="1" width="1145" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1145" style="border-color: #D08C35; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Empresa</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Titular</font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Familia</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Bajatit</font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Bajafam </font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Cabacuer</font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Detacuer</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Cuoacuer</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Cabjur</font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Cuijur</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Pagos</font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Apoind</font></strong></div></td>
-	<td width="81"><div align="center"><strong><font size="1" face="Verdana">Juicios</font></strong></div></td>
+    <th>C&oacute;digo</th>
+    <th>Empresa</th>
+    <th>Titular</th>
+	<th>Familia</th>
+    <th>Bajatit</th>
+	<th>Bajafam </th>
+	<th>Cabacuer</th>
+	<th>Detacuer</th>
+    <th>Cuoacuer</th>
+    <th>Cabjur</th>
+	<th>Cuijur</th>
+    <th>Pagos</th>
+	<th>Apoind</th>
+	<th>Juicios</th>
   </tr>
-  <p>
+
 <?php
 for($i=0; $i<sizeof($delegaciones); $i++) {
 	$sql = "select count(*) from empresa where delcod = $delegaciones[$i]";
 	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81 align='center'><font face=Verdana size=1><b>".$delegaciones[$i]."</b></font></td>");
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$countEmp = mysql_fetch_array($result); 
 	
 	$sql = "select count(*) from titular where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countTit = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from familia where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countFam = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from bajatit where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countBTit = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from bajafam where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countBFam = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from cabacuer where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countCab = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from detacuer where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countDet = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from cuoacuer where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countCuo = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from cabjur where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countCabj = mysql_fetch_array($result);
 	
 	$tabla="cuij".$delegaciones[$i];
 	$sql = "select count(*) from $tabla where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countCuij = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from pagos where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countPag = mysql_fetch_array($result);
 	
 	$tabla="apoi".$delegaciones[$i];
 	$sql = "select count(*) from $tabla where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
+	$result = mysql_query($sql,$db);
+	$countApoi = mysql_fetch_array($result);
 	
 	$sql = "select count(*) from juicios where delcod = $delegaciones[$i]";
-	$result = mysql_query($sql,$db); 
-	$count = mysql_fetch_array($result); 
-	print ("<td width=81><font face=Verdana size=1>".$count['0']."</font></td>");
-	
-	print ("</tr>");
-}
+	$result = mysql_query($sql,$db);
+	$countJui = mysql_fetch_array($result); ?>
+	<tr>
+		<td><b>".$delegaciones[$i]."</b></td>
+		<td><?php echo $countEmp['0'] ?></td>
+		<td><?php echo $countTit['0'] ?></td>
+		<td><?php echo $countFam['0'] ?></td>
+		<td><?php echo $countBTit['0'] ?></td>
+		<td><?php echo $countBFam['0'] ?></td>
+		<td><?php echo $countCab['0'] ?></td>
+		<td><?php echo $countDet['0'] ?></td>
+		<td><?php echo $countCuo['0'] ?></td>
+		<td><?php echo $countCabj['0'] ?></td>
+		<td><?php echo $countCuij['0'] ?></td>
+		<td><?php echo $countPag['0'] ?></td>
+		<td><?php echo $countApoi['0'] ?></td>
+		<td><?php echo $countJui['0'] ?></td>
+	</tr>
+<?php }
 ?>
-</p>
 </table>
 </body>
 </html>

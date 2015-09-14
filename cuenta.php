@@ -69,7 +69,7 @@ function estado($del,$nrcuit,$ano, $me, $db) {
 }
 ?>
 
-<body onUnload="logout.php">
+<body>
 
 <table width="1023" border="0">
   <tr>
@@ -86,7 +86,7 @@ function estado($del,$nrcuit,$ano, $me, $db) {
   </tr>
 </table>
 
-<table width="1024" border="1" bordercolor="#000000">
+<table width="1024" border="1" style="margin-bottom: 10px">
   <tr>
     <td width="52" rowspan="2"><div align="center"><strong>A&Ntilde;OS</strong></div></td>
     <td colspan="12"><div align="center"><strong>MESES</strong></div></td>
@@ -105,9 +105,6 @@ function estado($del,$nrcuit,$ano, $me, $db) {
     <td width="81"><div align="center"><strong><font size="1" face="Verdana">Noviembre</font></strong></div></td>
     <td width="81"><div align="center"><strong><font size="1" face="Verdana">Diciembre</font></strong></div></td>
   </tr>
-
-<p>
-</p>
 <?php $año = date("Y")-9;
 $añofin = date("Y");
 while($año<=$añofin) {
@@ -133,9 +130,9 @@ while($año<=$añofin) {
 			print ("<td width=81><div align=center><font face=Verdana size=1>".$descri."</font></div></td>");
 		}
 	}
-$año++;
-print("</tr>");
-}
+$año++; ?>
+	</tr>
+<?php  }
 ?>
 </table>
 <table width="1027" border="0">

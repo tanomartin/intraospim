@@ -31,7 +31,8 @@ for ($i=0; $i < sizeof($prevencion); $i++) {
 .Estilo3 {
 	font-family: Papyrus;
 	font-weight: bold;
-	color: #999999;
+	color: #000000;
+	font-size:20px;
 }
 body {
 	background-color: #CCCCCC;
@@ -56,7 +57,7 @@ body {
 </style>
 </head>
 
-<body onUnload="logout.php">
+<body>
 
 <?php
 $sql = "select * from usuarios where delcod = $delcod";
@@ -67,104 +68,64 @@ $row = mysql_fetch_array($result);
 
 <h3 align="center" class="Estilo3"><span class="Estilo15"><span class="Estilo5">SISTEMA DE CONSULTA PARA DELEGACIONES</span></span></h3>
 <p align="center"><img src="ospimgris.jpg" width="308" height="350" /></p>
-<table width="100%" border="0" align="center">
+<table width="100%" border="0" style="text-align:center">
   <tr>
-    <td height="33">&nbsp;</td>
-    <td width="72%" align="right" class="Estilo3"><div align="center" class="Estilo13">
+		<td class="Estilo3">
+		<?php 
+		if ($_SESSION['aut'] != "pepe") {
+			print("Bienvenido ".$row['nombre']); 
+		} else {
+			print("Se accedio al menú de la Delegación ".$row['nombre']); 
+		}
+		?>
+		</td>
+  </tr>
+  <tr>
+	<td class="Estilo15">
 	<?php
 	if ($_SESSION['aut'] != "pepe") {
 		$fechaActua=substr($row['fechaactualizacion'], 8, 2)."-".substr($row['fechaactualizacion'], 5, 2)."-".substr($row['fechaactualizacion'], 0, 4);
-		print("ÚLTIMA ACTUALIZACIÓN ".$fechaActua); 
+		print("Última actualización: ".$fechaActua." - Último ingreso: ".$row['fecuac']." a las ".$row['horuac']); 
 	}
-	?></div></td>
-    <td>&nbsp;</td>
+	?></td>
   </tr>
   <tr>
-    <td height="33">&nbsp;</td>
-    <td align="right" class="Estilo3"><div align="center"><span class="Estilo14">Instructivo de uso </span> - <a href="javascript:void(window.open(&quot;http://www.ospim.com.ar/intranet/tuto/tutorial.pdf&quot;))" target="_top">Descargar</a></div></td>
-    <td>&nbsp;</td>
+    <td>
+    	<span class="Estilo14">| Instructivo de uso </span> - <a href="javascript:void(window.open(&quot;http://www.ospim.com.ar/intranet/tuto/tutorial.pdf&quot;))" target="_top">Descargar</a> |
+    	<span class="Estilo14">Preguntas Frecuentes </span> - <a href="javascript:void(window.open(&quot;http://www.ospim.com.ar/intranet/tuto/pregFrec.pdf&quot;))" target="_top">Descargar</a> |  </td>
   </tr>
   <tr>
-    <td height="33">&nbsp;</td>
-    <td align="right" class="Estilo3"><div align="center"> 
-      <p><span class="Estilo14">Preguntas Frecuentes </span> - <a href="javascript:void(window.open(&quot;http://www.ospim.com.ar/intranet/tuto/pregFrec.pdf&quot;))" target="_top">Descargar</a></p>
-      </div></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="21">&nbsp;</td>
-    <td align="right"><div align="center"><span class="Estilo12"><span class="Estilo13">El instructivo y las Preguntas Frecuentes esta en extension pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://get.adobe.com/es/reader/")) target="_top">Descargar aqui</a></span> </div></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="14%" height="33"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
-    <td align="right" class="Estilo3"><p align="center" class="Estilo14"> 
-	<?php 
-	if ($_SESSION['aut'] != "pepe") {
-		print("Bienvenido ".$row['nombre']); 
-	} else {
-		print("Se accedio al menú de la Delegación ".$row['nombre']); 
-	}
-	?>
-	</p></td>
-    <td width="14%">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="14%">&nbsp;</td>
-    <td align="right"><p align="center" class="Estilo15">
-	<?php
-	if ($_SESSION['aut'] != "pepe") {
-		print("Ultimo ingreso registrado el día ".$row['fecuac']." a las ".$row['horuac']); 
-	}
-	?> </p></td>
-    <td width="14%">&nbsp;</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td align="right">&nbsp;</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td align="right"><p><div align="center"><a href=javascript:void(window.open("discapacidad/menuDiscapacidad.php")) class="Estilo16">Formularios e Instructivos para Discapacidad</a></div></p></td>
-    <td></td>
+    <td><a href="javascript:void(window.open('discapacidad/menuDiscapacidad.php'))" class="Estilo16">Formularios e Instructivos para Discapacidad</a></td>
   </tr>
 </table>
-<table width="997" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="75%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 10px">
   <tr>
    	<?php if ($tienePrevencion) {?>
-   		 <td width="243"><div align="center"><a href=javascript:void(window.open("autorizaciones/menuPrevencion.php")) class="Estilo9">Prevenci&oacute;n de la Salud</a></div></td>
+   		 <td width="33%"><div align="center"><a href="javascript:void(window.open('autorizaciones/menuPrevencion.php'))" class="Estilo9">Prevenci&oacute;n de la Salud</a></div></td>
     <?php } ?>
-    <td width="273"><div align="center" class="Estilo9"><a href="buscador.php">Beneficiarios</a> </div></td>
-    <td width="208"><div align="center" class="Estilo9"><a href="empresas.php">Empresas</a></div></td>
+    <td><div align="center" class="Estilo9"><a href="buscador.php">Beneficiarios</a> </div></td>
+    <td><div align="center" class="Estilo9"><a href="empresas.php">Empresas</a></div></td>
    	<?php if ($estaHabilitado) {?>
-   		 <td width="243"><div align="center"><a href=javascript:void(window.open("autorizaciones/listadoAuto.php")) class="Estilo9">Autorizaciones</a></div></td>
+   		 <td><div align="center"><a href="javascript:void(window.open('autorizaciones/listadoAuto.php'))" class="Estilo9">Autorizaciones</a></div></td>
     <?php } ?>
   </tr>
 </table>
 
-<p align="center" class="Estilo11">
+<div align="center">
+	<p><input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/></p>
  <?php
-if ($_SESSION['aut'] != "pepe") {
-	print("<a href='consulta.php'>Envianos tu consulta</a>");
-}
-?>
-<div align="center">  <input type="button" name="Submit" value="Salir" onclick="location.href='logout.php'"/>
-  
-</div>
-  </label>
-</body>
-</html>
-
-<p>
-<?php
-if ($_SESSION['aut'] != "pepe") {
-	//update de la fecha y la hora
-	$hoy = date("Ymd"); 
+if ($_SESSION['aut'] != "pepe") { ?>
+	<a href='consulta.php'>Envianos tu consulta</a>
+<?php	
+    $hoy = date("Ymd"); 
 	$hora = date("H:i:s"); 
 	$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod"; 
 	$result = mysql_query($sql,$db);
 }
 ?>
-</p>
+</div>
+</body>
+</html>
+
+
 

@@ -33,10 +33,9 @@ $delcod = $_SESSION['delcod'];
 $where = $_POST['orden'];
 $like = $_POST['condicion'];
 ?>
-</html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
 <body>
-<table width="1025" border="0">
+<table width="1025" border="0" style="margin-bottom: 10px">
   <tr>
     <td scope="row"><div align="center"><span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></div></td>
     <td colspan="2" scope="row"><div align="left">
@@ -55,8 +54,8 @@ $like = $_POST['condicion'];
     </div></td>
   </tr>
 </table>
-<p>
-<table width="1025" border="1" id="titu">
+
+<table style="width: 1025; margin-bottom: 10px" border="1" id="titu">
   <tr>
     <td colspan="4"><strong>TITULARES</strong></td>
   </tr>
@@ -76,6 +75,7 @@ $result = mysql_query($sql,$db);
 
 // TABLA DE TITULARES
 while ($row = mysql_fetch_array($result)){
+	print("<tr>");
 	if ($delcod >= "4000") {
 		print("<td width=237>".$row['nombre']."</td>");
 	} else {
@@ -91,10 +91,9 @@ if(mysql_num_rows($result) == 0)
 	print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
 ?>
 </table> 
-</p>
 <!--#fin de la tabla de titulares -->
-<p>
-<table width="1025" border="1" id="fami">
+
+<table style="margin-bottom: 10px" width="1025" border="1" id="fami">
   <tr>
     <td colspan="4"><strong>FAMILIARES</strong></td>
   </tr>
@@ -116,6 +115,7 @@ $result2 = mysql_query($sql2,$db);
 
 // TABLA DE FAMILIARES
 while ($row2 = mysql_fetch_array($result2)){	
+	print("<tr>");	
 	if ($delcod >= "4000") {
 		print("<td width=237>".$row2['nombre']."</td>");
 	} else {
@@ -130,11 +130,9 @@ if(mysql_num_rows($result2) == 0)
 	print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
 ?>
 </table> 
-</p>
 <!--#fin de la tabla de familiares -->
 
-<p>
-<table width="1025" border="1" id="fami">
+<table style="margin-bottom: 10px" width="1025" border="1" id="fami">
   <tr>
     <td colspan="4"><strong>TITULARES INACTIVOS </strong></td>
   </tr>
@@ -154,6 +152,7 @@ $result3 = mysql_query($sql3,$db);
 
 // TABLA DE TITULARES DE BAJA
 while ($row3 = mysql_fetch_array($result3)){	
+	print("<tr>");
 	if ($delcod >= "4000") {
 		print("<td width=237>" . $row3['nombre'] . "</td>");
 	} else {
@@ -168,11 +167,9 @@ if(mysql_num_rows($result3) == 0)
 	print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
 ?>
 </table> 
-</p>
 <!--#fin de la tabla de familiares -->
 
-<p>
-<table width="1025" border="1" id="fami">
+<table style="margin-bottom: 10px" width="1025" border="1" id="fami">
   <tr>
     <td colspan="4"><strong>FAMILIARES INACTIVOS DEL TITULAR </strong></td>
   </tr>
@@ -205,6 +202,7 @@ if(mysql_num_rows($result4) == 0) {
 
 // TABLA DE FAMILIARES DE TITULARES DE BAJA
 while ($row4 = mysql_fetch_array($result4)){	
+	print("<tr>");
 	if ($delcod >= "4000") {
 		print("<td width=237>" . $row4['nombre'] . "</td>");
 	} else {
@@ -218,9 +216,5 @@ while ($row4 = mysql_fetch_array($result4)){
 
 ?>
 </table> 
-<!--#fin de la tabla de familiares -->
-</p>
-
-
 </body>
 </html>
