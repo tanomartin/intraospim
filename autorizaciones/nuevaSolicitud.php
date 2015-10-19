@@ -131,10 +131,6 @@ function validar(formulario) {
 		alert("Debe adjuntar el Pedido Medico");
 		return false;
 	} 
-/*	if (formulario.historiaClinica.value == "") {
-		alert("Debe adjuntar la Historia Clinica");
-		return false;
-	}*/
 	if (formulario.tipoMaterial.checked == true) {
 		if(document.getElementById("tipoSolicitud").value == 0) {
 			alert("Debe seleccionar un tipo de Material");
@@ -283,10 +279,16 @@ function validar(formulario) {
       <p><strong>Estudios:</strong> 
           <input name="estudios" id="estudios" type="file" />
         </p>
-      <p>&nbsp;</p>
-      <p>
-        <input name="generar" type="submit" id="generar" value="Generar Solicitud" />
-      </p></td>
+         <br />
+        <p>
+         <?php if (isset($_GET['cuil'])) {?>
+         	<input name="generar" type="submit" id="generar" value="Generar Solicitud"/>
+         <?php } else {?>
+         	<span class="Estilo4">Debe Verificar CUIL -></span> 
+         	<input name="generar" type="submit" id="generar" value="Generar Solicitud" disabled="disabled"/>
+         <?php }?>
+        </p>
+      </td>
   </tr>
 </table>
 </form>
