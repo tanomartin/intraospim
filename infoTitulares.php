@@ -49,6 +49,15 @@ if (mysql_num_rows($result) == 0) {
 	$est = "DE BAJA - Desde: ".$row['fecbaj'];
 }
 
+$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nrafil and nroord = 0";
+$resDisca = mysql_query($sqlDisca,$db);
+$canDisca = mysql_num_rows($resDisca);
+if ($canDisca == 0) {
+	$disca = 'NO';
+} else {
+	$disca = 'SI';
+}
+
 ?>
 
 
@@ -121,6 +130,10 @@ if (mysql_num_rows($result) == 0) {
       <th scope="row"><div align="left">Feche de ingreso </div></th>
         <td><?php print ($row['fecing']); ?></td>
     </tr>
+    <tr>
+     <th scope="row"><div align="left">Discapacitado</div></th>
+        <td><?php print ($disca); ?></td>
+    </tr>
   </table>
   <p class="Estilo6">*Si el empleado pertenece a su Delegacion. Haciendo click sobre su CUIL se motrar&aacute;n sus aportes individuales </p>
   <p class="Estilo5">Familiares</p>
@@ -135,7 +148,7 @@ if ($est == "ACTIVO") {
 }
 $cantFami = mysql_num_rows($result1);
 if ($cantFami > 0) { ?>
-		<table border="1" width="1025" style="border-color: #D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center;" cellpadding="2" cellspacing="0">
+		<table border="1" width="1030" style="border-color: #D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center;" cellpadding="2" cellspacing="0">
 		<tr>
 			<th>Nombre y Apellido </th>
 			<th>Documento </th>
@@ -143,8 +156,19 @@ if ($cantFami > 0) { ?>
 			<th>Sexo </th>
 			<th>Fecha de Nacimiento </th>
 			<th>C.U.I.L. </th>
+			<th>Discapacitado</th>
 		</tr>
-<?php while ($row1=mysql_fetch_array($result1)) { ?>
+<?php while ($row1=mysql_fetch_array($result1)) { 
+			$nroorden = $row1['nroord'];
+			$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nrafil and nroord = $nroorden";
+			$resDisca = mysql_query($sqlDisca,$db);
+			$canDisca = mysql_num_rows($resDisca);
+			if ($canDisca == 0) {
+				$disca = 'NO';
+			} else {
+				$disca = 'SI';
+			}
+?>
 		<tr>
 		    <td><?php echo $row1['nombre'] ?></td>
 			<td><?php echo $row1['tipdoc'].": ".$row1['nrodoc'] ?> </td>
@@ -152,10 +176,11 @@ if ($cantFami > 0) { ?>
 			<td><?php echo $row1['ssexxo'] ?></td>
 			<td><?php echo $row1['fecnac'] ?></td>
 			<td><?php echo $row1['nrcuil'] ?></td>
+			<td><?php echo $disca ?></td>
 		</tr>
 <?php	}
 } else { ?>
-		<tr><td colspan="6"><b> No hay familiares informados</b></td></tr>
+		<tr><td colspan="7"><b> No hay familiares informados</b></td></tr>
 <?php }
 ?>
 

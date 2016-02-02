@@ -55,7 +55,7 @@ $like = $_POST['condicion'];
   </tr>
 </table>
 
-<table style="width: 1025; margin-bottom: 10px" border="1" id="titu">
+<table style="margin-bottom: 10px" width="1025" border="1" id="titu">
   <tr>
     <td colspan="4"><strong>TITULARES</strong></td>
   </tr>
@@ -77,13 +77,13 @@ $result = mysql_query($sql,$db);
 while ($row = mysql_fetch_array($result)){
 	print("<tr>");
 	if ($delcod >= "4000") {
-		print("<td width=237>".$row['nombre']."</td>");
+		print("<td>".$row['nombre']."</td>");
 	} else {
-		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row['nrcuil'] . "&nrafil=" . $row['nrafil'] . "&nrcuit=" . $row['nrcuit'] . "'))>".$row['nombre']."</td>");
+		print("<td> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row['nrcuil'] . "&nrafil=" . $row['nrafil'] . "&nrcuit=" . $row['nrcuit'] . "'))>".$row['nombre']."</td>");
 	}
-	print("<td width=227>".$row['nrodoc']."</td>");
-	print("<td width=200>".$row['nrcuil']."</td>");
-	print("<td width=200>".$row['nrafil']."</td>");	
+	print("<td>".$row['nrodoc']."</td>");
+	print("<td>".$row['nrcuil']."</td>");
+	print("<td>".$row['nrafil']."</td>");	
 	print("</tr>");
 }
 
@@ -109,7 +109,7 @@ if(mysql_num_rows($result) == 0)
 if ($delcod >= "4000") {
 	$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.nrcuit as nrcuit, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod FROM familia, titular WHERE familia.nrafil = titular.nrafil and familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre";
 } else {
-	$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.nrcuit as nrcuit, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod	FROM familia, titular WHERE familia.nrafil = titular.nrafil and titular.delcod = '$delcod' and familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre";
+	$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.nrcuit as nrcuit, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod FROM familia, titular WHERE familia.nrafil = titular.nrafil and titular.delcod = '$delcod' and familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre";
 }
 $result2 = mysql_query($sql2,$db);
 
@@ -117,13 +117,13 @@ $result2 = mysql_query($sql2,$db);
 while ($row2 = mysql_fetch_array($result2)){	
 	print("<tr>");	
 	if ($delcod >= "4000") {
-		print("<td width=237>".$row2['nombre']."</td>");
+		print("<td>".$row2['nombre']."</td>");
 	} else {
-		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row2['nrcuil'] . "&nrafil=" . $row2['nrafil'] . "&nrcuit=" . $row2['nrcuit'] . "'))>".$row2['nombre']."</td>");
+		print("<td> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row2['nrcuil'] . "&nrafil=" . $row2['nrafil'] . "&nrcuit=" . $row2['nrcuit'] . "'))>".$row2['nombre']."</td>");
 	}
-	print("<td width=227>".$row2['nrodoc']."</td>");
-	print("<td width=200>".$row2['cuifam']."</td>");
-	print("<td width=200>".$row2['nrafil']."</td>");
+	print("<td>".$row2['nrodoc']."</td>");
+	print("<td>".$row2['cuifam']."</td>");
+	print("<td>".$row2['nrafil']."</td>");
 	print("</tr>");
 }
 if(mysql_num_rows($result2) == 0) 
@@ -154,13 +154,13 @@ $result3 = mysql_query($sql3,$db);
 while ($row3 = mysql_fetch_array($result3)){	
 	print("<tr>");
 	if ($delcod >= "4000") {
-		print("<td width=237>" . $row3['nombre'] . "</td>");
+		print("<td>" . $row3['nombre'] . "</td>");
 	} else {
-		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row3['nrcuil'] . "&nrafil=" . $row3['nrafil'] . "&nrcuit=" . $row3['nrcuit'] . "'))>".$row3['nombre']."</td>");
+		print("<td> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row3['nrcuil'] . "&nrafil=" . $row3['nrafil'] . "&nrcuit=" . $row3['nrcuit'] . "'))>".$row3['nombre']."</td>");
 	}
-	print("<td width=227>" . $row3['nrodoc'] . "</td>");
-	print("<td width=200>" . $row3['nrcuil'] . "</td>");
-	print("<td width=200>" . $row3['nrafil'] . "</td>");	
+	print("<td>" . $row3['nrodoc'] . "</td>");
+	print("<td>" . $row3['nrcuil'] . "</td>");
+	print("<td>" . $row3['nrafil'] . "</td>");	
 	print("</tr>");
 }
 if(mysql_num_rows($result3) == 0)
@@ -208,9 +208,9 @@ while ($row4 = mysql_fetch_array($result4)){
 	} else {
 		print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row4['nrcuil'] . "&nrafil=" . $row4['nrafil'] . "&nrcuit=" . $row4['nrcuit'] . "'))>".$row4['nombre']."</td>");
 	}
-	print("<td width=227>" . $row4['nrodoc'] . "</td>");
-	print("<td width=200>" . $row4['cuifam'] . "</td>");
-	print("<td width=200>" . $row4['nrafil'] . "</td>");
+	print("<td>" . $row4['nrodoc'] . "</td>");
+	print("<td>" . $row4['cuifam'] . "</td>");
+	print("<td>" . $row4['nrafil'] . "</td>");
 	print("</tr>");
 }
 
