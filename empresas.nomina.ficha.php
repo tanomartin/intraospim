@@ -1,9 +1,35 @@
-<?php session_save_path("sesiones");
-session_start();
-include ("verificaSesion.php");
+<?php include ("verificaSesion.php"); 
+$cuil = $_GET['cuil'];
+$nrcuit = $_GET['nrcuit'];
+$nrafil = $_GET['nrafil'];
+
+$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
+FROM titular t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
+WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and t.estciv = civ.codestciv";
+$result = mysql_query($sql,$db);
+$row = mysql_fetch_array($result);
+$est = "ACTIVO";
+
+if (mysql_num_rows($result) == 0) {
+	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
+	FROM bajatit t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
+	WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and  t.estciv = civ.codestciv";
+	$result = mysql_query($sql,$db);
+	$row = mysql_fetch_array($result);
+	$est = "DE BAJA - Desde: ".$row['fecbaj'];
+}
+
+$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nrafil and nroord = 0";
+$resDisca = mysql_query($sqlDisca,$db);
+$canDisca = mysql_num_rows($resDisca);
+if ($canDisca == 0) {
+	$disca = 'NO';
+} else {
+	$disca = 'SI';
+}
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -28,50 +54,16 @@ body {
 </style>
 </head>
 
-<?php
-$cuil = $_GET['cuil'];
-$nrcuit = $_GET['nrcuit'];
-$nrafil = $_GET['nrafil'];
-
-$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
-		FROM titular t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
-		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and t.estciv = civ.codestciv";
-$result = mysql_query($sql,$db); 
-$row = mysql_fetch_array($result);
-$est = "ACTIVO";
-
-if (mysql_num_rows($result) == 0) {
-	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
-		FROM bajatit t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
-		WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and  t.estciv = civ.codestciv";
-	$result = mysql_query($sql,$db); 
-	$row = mysql_fetch_array($result);
-	$est = "DE BAJA - Desde: ".$row['fecbaj'];
-}
-
-$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nrafil and nroord = 0";
-$resDisca = mysql_query($sqlDisca,$db);
-$canDisca = mysql_num_rows($resDisca);
-if ($canDisca == 0) {
-	$disca = 'NO';
-} else {
-	$disca = 'SI';
-}
-
-?>
-
-
 <body>
 <div align="center">
-  <table width="546" border="0">
+  <table style="width: 546px">
     <tr>
-      <th width="44" scope="row"><span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></th>
         <th scope="row"><div align="right"><font size="3" face="Papyrus">
           <?php print ("Afiliado Nro: ".$row['nrafil']." - ".$row['nombre']); ?>
         </font></div></th>
       </tr>
   </table>
-  <table width="548" border="1" style="margin-bottom: 10px">
+  <table style="width: 548px; border: 1px solid; margin-bottom: 10px">
     <tr>
       <th scope="row"><div align="left">Documento</div></th>
         <td width="365"><?php print ($row['tipdoc'].": ".$row['nrodoc']);?></td>
@@ -104,7 +96,7 @@ if ($canDisca == 0) {
       <th scope="row"><div align="left">CUIL</div></th>
         <td><?php
 		if ($_SESSION['delcod'] == $row['delcod']) {
-			print("<a href=javascript:void(window.open('aporteIndividual.php?cuil=".$row['nrcuil']."'))>".$row['nrcuil']."</a>");
+			print("<a href=javascript:void(window.open('empresas.nomina.aportes.php?cuil=".$row['nrcuil']."'))>".$row['nrcuil']."</a>");
 		} else {
  			print ($row['nrcuil']);
 		}
@@ -148,7 +140,7 @@ if ($est == "ACTIVO") {
 }
 $cantFami = mysql_num_rows($result1);
 if ($cantFami > 0) { ?>
-		<table border="1" width="1030" style="border-color: #D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center;" cellpadding="2" cellspacing="0">
+		<table style="width: 1030px; border: 1px solid; font-family: Verdana, Geneva, sans-serif; text-align: center; font-size: 12px" >
 		<tr>
 			<th>Nombre y Apellido </th>
 			<th>Documento </th>

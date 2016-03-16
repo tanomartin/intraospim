@@ -4,19 +4,16 @@ ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_httponly', 1);
 include ("conexion.php");
 
-$redirec = false;
 if(empty($_SESSION) || $_SESSION['delcod'] == null || $_SESSION['delcod'] == ''){
-	$redirec = true;
+	header("Location: logout.php");
+	exit(0);
 } else {
 	$sql = "select acceso from usuarios where delcod = '$delcod'";
 	$result = mysql_query($sql,$db);
 	$rowUsuario = mysql_fetch_assoc($result);
 	if ($rowUsuario['acceso'] == 0) {
-		$redirec = true;
+		header("Location: actualizando.php");
+		exit(0);
 	}
-}
-if ($redirec) {
-	header("Location: logout.php?error=2");
-	exit(0);
 }
 ?>

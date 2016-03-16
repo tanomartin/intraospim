@@ -1,9 +1,18 @@
-<?php session_save_path("sesiones");
-session_start();
-include ("verificaSesion.php");
+<?php include ("verificaSesion.php");
+$cuil = $_GET['cuil'];
+$sql2 = "select * from titular where nrcuil = '$cuil'";
+$result2 = mysql_query($sql2,$db);
+$row2 = mysql_fetch_array($result2);
+$estado="ACTIVO";
+if (mysql_num_rows($result2) == 0) {
+	$sql2 = "select * from bajatit where nrcuil = '$cuil'";
+	$result2 = mysql_query($sql2,$db);
+	$row2 = mysql_fetch_array($result2);
+	$estado="DE BAJA - Desde: ".$row2['fecbaj'];
+}
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -31,40 +40,16 @@ body {
 </style>
 </head>
 
-<?php
-$cuil = $_GET['cuil'];
-$sql2 = "select * from titular where nrcuil = '$cuil'";
-$result2 = mysql_query($sql2,$db); 
-$row2 = mysql_fetch_array($result2);
-$estado="ACTIVO";
-if (mysql_num_rows($result2) == 0) {
-	$sql2 = "select * from bajatit where nrcuil = '$cuil'";
-	$result2 = mysql_query($sql2,$db); 
-	$row2 = mysql_fetch_array($result2);
-	$estado="DE BAJA - Desde: ".$row2['fecbaj'];
-}
-
-?>
 <body>
 <div align="center">
-  <table style="width: 1025;">
+  <table style="width: 771px">
     <tr>
-      <td scope="row"><div align="center"><span class="Estilo3"><img src="logoSolo.JPG" width="76" height="62" /></span></div></td>
-      <td colspan="2" scope="row"><div align="left">
-          <p class="Estilo3">APORTE INDIVIDUAL </p>
-      </div></td>
-      <td width="635"><div align="right" class="Estilo3"></div></td>
-    </tr>
+        <th scope="row"><div align="right"><font size="3" face="Papyrus">
+          APORTE INDIVIDUAL
+        </font></div></th>
+      </tr>
   </table>
-  <table width="573" border="0" style="margin-bottom: 10px">
-    <tr>
-      <th width="508" scope="row"><div align="left"><span class="Estilo4">O.S.P.I.M.</span></div></th>
-      <th width="508" scope="row"><div align="right">
-          <input type="button" align="middle" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div></th>
-    </tr>
-  </table>
-  <table width="573" style="height: 79;" border="1">
+  <table style="width: 771px; border: 1px solid; height: 79px" >
     <tr>
       <td width="214" height="23"><strong>Nro. Afiliado: </strong></td>
       <td><?php print ($row2['nrafil']." - ".$estado); ?></td>
@@ -78,8 +63,8 @@ if (mysql_num_rows($result2) == 0) {
       <td><?php print "$cuil"; ?></td>
     </tr>
   </table>	
-<table border="1" width="771" style="border-color:#D08C35; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center; " cellpadding="2" cellspacing="0">
-	<tr>
+<table style="width: 771px; border: 1px solid; border-collapse: collapse; font-family: Verdana, Geneva, sans-serif; font-size: 11px; text-align: center;"> 	
+<tr>
 	    <th>Per&iacute;odo </th>
 	    <th>CUIT</th>
 		<th>Remuneraci&oacute;n</th>
@@ -148,7 +133,8 @@ for ($ano=$anoincio;$ano<$anofinal;$ano++){
 
 ?>
 </table>
-<p align="center" class="Estilo5">	* ANSES - S.D.: Cobrando para el per&iacute;odo subsidio para desempleados. </p>
+<p class="Estilo5">	* ANSES - S.D.: Cobrando para el per&iacute;odo subsidio para desempleados. </p>
+<input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
 </div>
 </body>
 </html>
