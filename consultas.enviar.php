@@ -1,6 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-include ("verificaSesion.php");
+<?php include ("verificaSesion.php");
 
 $nombre = $_POST["nombre"];
 $email = $_POST["email"];	
@@ -19,5 +17,5 @@ $mymail='intranet@ospim.com.ar';
 $subject="Formulario recibido";
 mail($mymail, $subject, utf8_decode($cuerpo), $header);
 
-header("location: envio_consulta.php");
+header ("Location: consultas.enviada.php");
 ?>

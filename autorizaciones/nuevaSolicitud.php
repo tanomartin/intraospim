@@ -114,8 +114,7 @@ function controlCantidad(tipo) {
 	}	
 }
  
-function validar(formulario) {
-	var i;		
+function validar(formulario) {	
 	if (formulario.textCuil.value == "") {
 		alert("Debe ingresar numero de CUIL");
 		return false;
@@ -284,7 +283,7 @@ function validar(formulario) {
          <?php if (isset($_GET['cuil'])) {?>
          	<input name="generar" type="submit" id="generar" value="Generar Solicitud"/>
          <?php } else {?>
-         	<span class="Estilo4">Debe Verificar CUIL -></span> 
+         	<span class="Estilo4">Debe Verificar CUIL </span> 
          	<input name="generar" type="submit" id="generar" value="Generar Solicitud" disabled="disabled"/>
          <?php }?>
         </p>

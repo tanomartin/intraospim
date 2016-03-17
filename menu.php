@@ -33,7 +33,7 @@ include ("verificaSesion.php");
 				</div>
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="empresas.php">Empresas</a></li>
-					<li><a href="#">Beneficiarios</a></li>
+					<li><a href="beneficiarios.php">Beneficiarios</a></li>
 					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
 					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="#">Autorizaciones</a></li><?php } ?>
 					<li><a href="#">Inst. y Forms.</a></li>
@@ -65,7 +65,7 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-user"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="empresas.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="beneficiarios.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div> 
