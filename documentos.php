@@ -44,7 +44,7 @@ include ("verificaSesion.php");
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-book"></i><br>Instructivos</h2>
 			
 			<div class="row">
-				<div class="col-md-3" style="margin-left: 50px">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Intranet</h3>
@@ -58,7 +58,7 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3 col-md-offset-1">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Autorizaciones</h3>
@@ -80,7 +80,7 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3 col-md-offset-1">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Prevención de la Salud</h3>
