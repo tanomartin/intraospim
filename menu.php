@@ -36,7 +36,7 @@ include ("verificaSesion.php");
 					<li><a href="beneficiarios.php">Beneficiarios</a></li>
 					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
 					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="#">Autorizaciones</a></li><?php } ?>
-					<li><a href="#">Inst. y Forms.</a></li>
+					<li><a href="documentos.php">Inst. y Forms.</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
@@ -82,7 +82,7 @@ include ("verificaSesion.php");
 						<ul class="list-group">
 							<li class="list-group-item">
 								<?php if ($_SESSION['tienePrevencion']) {?>
-									<a href="files/tutorialIntra.pdf" class="btn btn-primary" target="_blanck">Ingresar</a>	
+									<a href="#" class="btn btn-primary">Ingresar</a>	
 							   <?php } else { ?>
 							    	<div style="color: red">PEDIR AUTORIZACION</div>
 							  <?php  } ?>
@@ -102,7 +102,7 @@ include ("verificaSesion.php");
 						<ul class="list-group">
 							<li class="list-group-item">
 								<?php if ($_SESSION['tieneAutorizacion']) {?>
-									<a href="consultas.php" class="btn btn-primary">Ingresar</a>
+									<a href="#" class="btn btn-primary">Ingresar</a>
 							   <?php } else { ?>
 							    	<div style="color: red">PEDIR AUTORIZACION</div>
 							  <?php  } ?>
@@ -118,9 +118,10 @@ include ("verificaSesion.php");
 						</div>
 						<div class="panel-body">
 							<i style="font-size: 100px"  class="glyphicon glyphicon-book"></i>
+							<i style="font-size: 100px"  class="glyphicon glyphicon-list-alt"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/tutorialIntra.pdf" class="btn btn-primary" target="_blanck">Ingresar</a></li>
+							<li class="list-group-item"><a href="documentos.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
