@@ -55,8 +55,6 @@ while ($row4=mysql_fetch_array($result4)) {
 }
 ?>
 </div>
-<p align="center"><span class="Estilo3"><font size="3" face="Papyrus"><img src="logoSolo.JPG" width="72" height="62" />
-</font></span></p>
 <p align="center" class="Estilo10"><strong><font size="3" face="Papyrus">
 <?php print ($row['nombre']);?>
 </font></strong></p>
@@ -100,7 +98,7 @@ $declarado=$row3['totrem'];
 ?>
 <p align="center"><span class="Estilo3">Detalle de D.D.J.J. </span></p>
 <p align="center"><span class="Estilo8">Total de Empleados: <?php echo $empleados ?> - Total de Remuneraciones: <?php echo $declarado ?> </span></p>
-<table width="496" border="1" align="center" cellpadding="2" cellspacing="0" style="border-color: #CD8C34">
+<table width="496" border="1" align="center" cellpadding="2" cellspacing="0"  style="border-color: #CD8C34; text-align: center; font-family:  Verdana, Geneva, sans-serif; font-size: 11px">
   <tr>
     <td width="140"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo</font></strong></div></td>
     <td width="182"><div align="center"><strong><font size="1" face="Verdana"><font size="1">CUIL</font> </font></strong></div></td>
@@ -133,7 +131,7 @@ while ($row2=mysql_fetch_array($result2)) {
 		if (mysql_num_rows($result5) != 0) { ?>
 			<tr>
 			<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
-			<td><a href="javascript:void(window.open('infoTitulares.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row5['nrafil'] ?>&=nrcuit<?php echo $nrcuit ?>'))"><?php echo $row2['nrcuil'] ?></a></td>
+			<td><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row5['nrafil'] ?>&=nrcuit<?php echo $nrcuit ?>'"><?php echo $row2['nrcuil'] ?></a></td>
 			<td><?php echo$row2['remimp'] ?></td>
 			</tr>
 <?php	}
@@ -141,7 +139,7 @@ while ($row2=mysql_fetch_array($result2)) {
 		 if(mysql_num_rows($result6) != 0) { ?>
 		 	<tr>
 		 	<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
-			<td><a href="javascript:void(window.open('infoTitulares.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row6['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>'))"><?php echo $row2['nrcuil'] ?></a></td>
+			<td><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row6['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>'"><?php echo $row2['nrcuil'] ?></a></td>
 			<td><?php echo $row2['remimp'] ?></td>
 			</tr>
 <?php	}	

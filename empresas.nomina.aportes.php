@@ -83,6 +83,7 @@ if (function_exists('date_default_timezone_set')) {
 
 $anoincio=date("Y")-1;
 $anofinal=date("Y")+1;
+
 $tabla="apoi".$_SESSION['delcod'];
 $tablaCuij = "cuij".$_SESSION['delcod'];
 for ($ano=$anoincio;$ano<$anofinal;$ano++){

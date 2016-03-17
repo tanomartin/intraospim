@@ -141,10 +141,10 @@ function estado($ano, $me, $db) {
 						<?php		} else {
 										$descri = estado($ano,$mes,$db);
 										if ($descri == "PAGO") { ?>
-											<td><a href="javascript:mypopup('cuentas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('empresas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if ($descri == "ACUER.") { ?>
-											<td><a href="javascript:mypopup('cuentas.sabana.acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('empresas.sabana.acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
 											<td><?php echo $descri ?></td>
