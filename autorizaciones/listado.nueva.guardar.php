@@ -401,7 +401,6 @@ if($delcod == 0 || $delcod == NULL)
 						if ($todoOk != 0) { ?>
 							<input type="button" class="btn btn-primary" name="volver" value="Volver a carga de Solicitud" onclick="location.href='listado.nueva.php'"/>
 				 <?php	} ?>
-					</p>
 				</div>
 				<div class="col-md-12 panel-footer">
 					<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
