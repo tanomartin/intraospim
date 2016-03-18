@@ -57,7 +57,7 @@ $(function() {
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
 					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
-					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
+					<a style="margin: 11px 10px 0 0"  href="../logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="../empresas.php">Empresas</a></li>
