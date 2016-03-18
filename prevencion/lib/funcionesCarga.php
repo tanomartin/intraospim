@@ -10,7 +10,7 @@ function ocultarPresu(){
 	for (var i=1; i<=5; i++) {		
 		var nombre = "presu"+i;
 		limpiarInputfile(nombre);
-		document.getElementById(nombre).style.display = "none";
+		document.getElementById(nombre).style.visibility = "hidden";
 		document.forms.nuevaSolicitud.maximo.value="0";
 		document.forms.nuevaSolicitud.minimo.value="0";
 	}
@@ -24,9 +24,7 @@ function mostrarPresu(muestra) {
 		document.forms.nuevaSolicitud.tipoSolicitud.disabled=true;
 		document.forms.nuevaSolicitud.notaCantidad.value = "";
 		document.forms.nuevaSolicitud.tipoSolicitud.selectedIndex="0";	
-		document.forms.nuevaSolicitud.tipoSolicitud.style.backgroundColor = "#f5f5f5";
 	} else {
-		document.forms.nuevaSolicitud.tipoSolicitud.style.backgroundColor = "#ffffff";
 		document.forms.nuevaSolicitud.tipoSolicitud.disabled=false;
 	}	
 }	

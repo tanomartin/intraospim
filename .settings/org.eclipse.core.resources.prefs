@@ -1,9 +1,9 @@
 eclipse.preferences.version=1
-encoding//autorizaciones/agregaCancerMama.php=ISO-8859-1
-encoding//autorizaciones/agregaCancerUterino.php=ISO-8859-1
-encoding//autorizaciones/agregaDiabetes.php=ISO-8859-1
-encoding//autorizaciones/agregaHipertension.php=ISO-8859-1
-encoding//autorizaciones/agregaMaternoInfantil.php=ISO-8859-1
-encoding//autorizaciones/agregaOdontologica.php=ISO-8859-1
+encoding//prevencion/agregaCancerMama.php=ISO-8859-1
+encoding//prevencion/agregaCancerUterino.php=ISO-8859-1
+encoding//prevencion/agregaDiabetes.php=ISO-8859-1
+encoding//prevencion/agregaHipertension.php=ISO-8859-1
+encoding//prevencion/agregaMaternoInfantil.php=ISO-8859-1
+encoding//prevencion/agregaOdontologica.php=ISO-8859-1
 encoding/index.php=ISO-8859-1
 encoding/menu.php=ISO-8859-1

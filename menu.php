@@ -1,7 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-include ("verificaSesion.php");
-?>
+<?php include ("verificaSesion.php"); ?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +32,7 @@ include ("verificaSesion.php");
 					<li><a href="empresas.php">Empresas</a></li>
 					<li><a href="beneficiarios.php">Beneficiarios</a></li>
 					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
-					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="#">Autorizaciones</a></li><?php } ?>
+					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="autorizaciones/listado.php">Autorizaciones</a></li><?php } ?>
 					<li><a href="documentos.php">Inst. y Forms.</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
@@ -102,7 +99,7 @@ include ("verificaSesion.php");
 						<ul class="list-group">
 							<li class="list-group-item">
 								<?php if ($_SESSION['tieneAutorizacion']) {?>
-									<a href="#" class="btn btn-primary">Ingresar</a>
+									<a href="autorizaciones/listado.php" class="btn btn-primary">Ingresar</a>
 							   <?php } else { ?>
 							    	<div style="color: red">PEDIR AUTORIZACION</div>
 							  <?php  } ?>
