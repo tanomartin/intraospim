@@ -169,11 +169,11 @@ if($delcod == 0 || $delcod == NULL)
 			
 			$sqlCarga = "INSERT INTO autorizacionpedida VALUE (DEFAULT,'$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$practica','$material','$medicamento','$tipoMaterial','$contenido_pm', '$contenido_hc', '$contenido_e', '$contenido_p1', '$contenido_p2', '$contenido_p3', '$contenido_p4', '$contenido_p5')";
 			
-			//$dbh->exec($sqlCarga);
+			$dbh->exec($sqlCarga);
 			
 			$ultimo_id = $dbh->lastInsertId();
 			$sqlSoli = "INSERT INTO autorizacionprocesada (nrosolicitud,delcod,fechasolicitud,nrcuil,nrafil,codpar,nombre,tiposolicitud, tipomaterial) VALUES  ('$ultimo_id','$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$select', '$tipoMaterial')";
-			//$dbh->exec($sqlSoli);	
+			$dbh->exec($sqlSoli);	
 			
 			$sqlNombre = "select * from usuarios where delcod = $delcod";
 			$row = $dbh->query($sqlNombre)->fetch();
@@ -187,7 +187,7 @@ if($delcod == 0 || $delcod == NULL)
 			$cabecera .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 			$cabecera .= "From: ".$nombre." <".$emailRepli.">" . "\r\n";
 
-			//mail($mails,$asunto,$cuerpo,$cabecera); 
+			mail($mails,$asunto,$cuerpo,$cabecera); 
 			$dbh->commit();
 			
 		} catch (PDOException $e) {

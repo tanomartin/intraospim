@@ -35,7 +35,7 @@ include ("verificaSesion.php");
 					<li><a href="empresas.php">Empresas</a></li>
 					<li><a href="beneficiarios.php">Beneficiarios</a></li>
 					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
-					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="#">Autorizaciones</a></li><?php } ?>
+					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="autorizaciones/listado.php">Autorizaciones</a></li><?php } ?>
 					<li><a href="documentos.php">Inst. y Forms.</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
