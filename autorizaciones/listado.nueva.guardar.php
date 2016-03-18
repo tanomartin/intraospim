@@ -169,13 +169,11 @@ if($delcod == 0 || $delcod == NULL)
 			
 			$sqlCarga = "INSERT INTO autorizacionpedida VALUE (DEFAULT,'$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$practica','$material','$medicamento','$tipoMaterial','$contenido_pm', '$contenido_hc', '$contenido_e', '$contenido_p1', '$contenido_p2', '$contenido_p3', '$contenido_p4', '$contenido_p5')";
 			
-			$dbh->exec($sqlCarga);
+			//$dbh->exec($sqlCarga);
 			
 			$ultimo_id = $dbh->lastInsertId();
 			$sqlSoli = "INSERT INTO autorizacionprocesada (nrosolicitud,delcod,fechasolicitud,nrcuil,nrafil,codpar,nombre,tiposolicitud, tipomaterial) VALUES  ('$ultimo_id','$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$select', '$tipoMaterial')";
-			$dbh->exec($sqlSoli);
-			
-			$dbh->commit();
+			//$dbh->exec($sqlSoli);	
 			
 			$sqlNombre = "select * from usuarios where delcod = $delcod";
 			$row = $dbh->query($sqlNombre)->fetch();
@@ -187,9 +185,10 @@ if($delcod == 0 || $delcod == NULL)
 			$cuerpo = "Ha sido ingresada al Sistema de Autorizaciones la solicitud nro ".$ultimo_id." de fecha ".$fechaSolicitud." perteneciente a la Delegacion ".$delcod."-".$nombre;
 			$cabecera = "MIME-Version: 1.0" . "\r\n";
 			$cabecera .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-			$cabecera .= "From: ".$nombre." <$emailRepli>" . "\r\n";
-			
-			mail($mails,$asunto,$cuerpo,$cabecera); 
+			$cabecera .= "From: ".$nombre." <".$emailRepli.">" . "\r\n";
+
+			//mail($mails,$asunto,$cuerpo,$cabecera); 
+			$dbh->commit();
 			
 		} catch (PDOException $e) {
 			echo $e->getMessage();
@@ -234,7 +233,7 @@ if($delcod == 0 || $delcod == NULL)
 					<li><a href="../empresas.php">Empresas</a></li>
 					<li><a href="../beneficiarios.php">Beneficiarios</a></li>
 					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
-					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="../autorizaciones/listadoAuto.php">Autorizaciones</a></li><?php } ?>
+					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="../autorizaciones/listado.php">Autorizaciones</a></li><?php } ?>
 					<li><a href="../documentos.php">Inst. y Forms.</a></li>
 					<li><a href="../consultas.php">Consultas</a></li>
 				</ul>
@@ -244,172 +243,170 @@ if($delcod == 0 || $delcod == NULL)
 			<h3>Resultado Carga Solicitud</h3>
 
 			<div align="center">
-			    <table>
-			      <tr>
-			        <td><img src="img/ok.png" width="20" height="20" /></td>
-			        <td>Correcto </td>
-			        <td><img src="img/nook.png" width="20" height="20" /></td>
-			        <td>Error</td>
-			        <td><img src="img/noreq.png" width="20" height="20" /></td>
-			        <td>No Requerido </td>
-			      </tr>
-			    </table>
+			   
 			    
-			    <table>
-			      <tr>
-			        <td width="166"><div align="center"><strong>ARCHIVOS</strong></div></td>
-			        <td width="75"><div align="center"><strong>ESTADO</strong></div></td>
-			        <td width="317"><div align="center"><strong>OBSERVACIONES</strong></div></td>
-			      </tr>
-			      <tr>
-			        <td><div align="right">Archivo Pedido Medico </div></td>
-			        <td><div align="center">
-			          <?php if($error_pm == ""){ 
-								print("<img src='img/ok.png' width='20' height='20' />") ;
-							  } else {
-							  	print("<img src='img/nook.png' width='20' height='20' />");
-							  } 
-					?>
-			        </div></td>
-			        <td><?php echo $error_pm ?></td>
-			      </tr>
-			      <tr>
-			        <td><div align="right">Archivo Historia Clinica </div></td>
-			        <td><div align="center">
-			          <?php 
-					  		if($error_hc == "ns"){ 
-								print("<img src='img/noreq.png' width='20' height='20' />") ;
-							} else { 
-								if ($error_hc == ""){
-							  		print("<img src='img/ok.png' width='20' height='20' />");
-								} else {
-									print("<img src='img/nook.png' width='20' height='20' />");
-								}		 
-							}
-					?>
-			        </div></td>
-			        <td><?php 
-						if ($error_hc != "ns") { 
-							echo $error_hc;
-						}
-						?></td>
-			      </tr>
-			      <tr>
-			        <td><div align="right">Archivo Estudios </div></td>
-			        <td><div align="center">
-						 <?php 
-						 	if($error_e == "ns"){ 
-								print("<img src='img/noreq.png' width='20' height='20' />") ;
-							} else { 
-								if ($error_e == ""){
-							  		print("<img src='img/ok.png' width='20' height='20' />");
-								} else {
-									print("<img src='img/nook.png' width='20' height='20' />");
-								}		 
-							}
-						?>
-					</div></td>
-			        <td><?php if ($error_e != "ns") { 
-								echo $error_e;
-						} ?></td>
-			      </tr>
-			      <tr>
-				  <?php if ($maxPresu >=1) { ?>
-						<td><div align="right"><?php print("Presupuesto n° 1") ?></div></td>
-						<td><div align="center">
-						 <?php if($error_p1 == ""){ 
-								print("<img src='img/ok.png' width='20' height='20' />") ;
-							    } else { 
-							  		if ($error_p1 == "nc") {
-							  			print("<img src='img/noreq.png' width='20' height='20' />") ;
-							  		} else  {
-							  			print("<img src='img/nook.png' width='20' height='20' />");
-							  		}
-								} 
-						?>
-							</div></td>
-						<td><?php if ($error_p1 != "nc") echo $error_p1 ?></td>
-				<?php } ?>
-			      </tr>
-			      <tr>
-			        <?php if ($maxPresu >=2) { ?>
-						<td><div align="right"><?php print("Presupuesto n° 2") ?></div></td>
-						<td><div align="center">
-						 <?php if($error_p2 == ""){ 
-								print("<img src='img/ok.png' width='20' height='20' />") ;
-							    } else { 
-							  		if ($error_p2 == "nc") {
-							  			print("<img src='img/noreq.png' width='20' height='20' />") ;
-							  		} else  {
-							  			print("<img src='img/nook.png' width='20' height='20' />");
-							  		}
-								} 
-						?>
-							</div></td>
-						<td><?php if ($error_p2 != "nc") echo $error_p2 ?></td>
-				<?php } ?>
-			      </tr>
-			      <tr>
-			         <?php if ($maxPresu >=3) { ?>
-						<td><div align="right"><?php print("Presupuesto n° 3") ?></div></td>
-						<td><div align="center">
-						 <?php if($error_p3 == ""){ 
-								print("<img src='img/ok.png' width='20' height='20' />") ;
-							    } else { 
-							  		if ($error_p3 == "nc") {
-							  			print("<img src='img/noreq.png' width='20' height='20' />") ;
-							  		} else  {
-							  			print("<img src='img/nook.png' width='20' height='20' />");
-							  		}
-								} 
-						?>
-							</div></td>
-						<td><?php if ($error_p3 != "nc") echo $error_p3  ?></td>
-				<?php } ?>
-			      </tr>
-			      <tr>
-			         <?php if ($maxPresu >=4) { ?>
-						<td><div align="right"><?php print("Presupuesto n° 4") ?></div></td>
-						<td><div align="center">
-						 <?php if($error_p4 == ""){ 
-								print("<img src='img/ok.png' width='20' height='20' />") ;
-							    } else { 
-							  		if ($error_p4 == "nc") {
-							  			print("<img src='img/noreq.png' width='20' height='20' />") ;
-							  		} else  {
-							  			print("<img src='img/nook.png' width='20' height='20' />");
-							  		}
-								} 
-						?>
-							</div></td>
-						<td><?php if ($error_p4 != "nc") echo $error_p4 ?></td>
-				<?php } ?>
-			      </tr>
-			      <tr>
-			        <?php if ($maxPresu >=5) { ?>
-						<td><div align="right"><?php print("Presupuesto n° 5") ?></div></td>
-						<td><div align="center">
-						 <?php if($error_p5 == ""){ 
-								print("<img src='img/ok.png' width='20' height='20' />") ;
-							    } else { 
-							  		if ($error_p5 == "nc") {
-							  			print("<img src='img/noreq.png' width='20' height='20' />") ;
-							  		} else  {
-							  			print("<img src='img/nook.png' width='20' height='20' />");
-							  		}
-								} 
-						?>
-							</div></td>
-						<td><?php if ($error_p5 != "nc") echo $error_p5 ?></td>
-				<?php } ?>
-			      </tr>
-			    </table>
-			    <p>
-				<?php
-					if ($todoOk != 0) { ?>
-						<input type="button" name="volver" value="Volver a carga de Solicitud" onclick="location.href='nuevaSolicitud.php'"/>
-			<?php	} ?>
-				</p>
+			    <div class="col-md-8 col-md-offset-2"> 		    
+				    <table class="table" style="text-align: center">
+				      <thead>
+				      	  <tr>
+				      	  	 <th style="text-align: center; width: 33%"><h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i>Correcto</h4></th>
+						     <th style="text-align: center; width: 33%"><h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i>Error</h4></th>
+						     <th style="text-align: center; width: 33%"><h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i>No Requerido</h4></th>
+				      	  </tr>
+					      <tr>
+					        <th style="text-align: center">ARCHIVOS</th>
+					        <th style="text-align: center">ESTADO</th>
+					        <th style="text-align: center">OBSERVACIONES</th>
+					      </tr>
+				      </thead>
+				      <tbody>
+					      <tr>
+					        <td>Archivo Pedido Medico</td>
+					        <td>
+					          <?php if($error_pm == ""){ ?>
+										<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+							 <?php	} else { ?>
+									  	<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+						   <?php	  }  ?>
+					        </td>
+					        <td><?php echo $error_pm ?></td>
+					      </tr>
+					      <tr>
+					        <td>Archivo Historia Clinica</td>
+					        <td>
+					          <?php 
+							  		if($error_hc == "ns"){ ?>
+										<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+							<?php	} else {  
+										if ($error_hc == ""){ ?>
+									  		<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+							<?php		} else { ?>
+											<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+							<?php		}		 
+									} ?>
+					        </td>
+					        <td><?php if ($error_hc != "ns") { 
+										echo $error_hc;
+									  } ?>
+							</td>
+					      </tr>
+					      <tr>
+					        <td>Archivo Estudios</td>
+					        <td>
+								 <?php  
+								 	if($error_e == "ns"){  ?>
+										<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+							<?php	} else {  
+										if ($error_e == ""){ ?>
+									  		<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+						<?php			} else { ?>
+											<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+						<?php			}		 
+									} ?>
+							</td>
+					        <td><?php if ($error_e != "ns") { 
+										echo $error_e;
+								} ?></td>
+					      </tr>
+					      <tr>
+						  <?php if ($maxPresu >=1) { ?>
+								<td>Presupuesto n° 1</td>
+								<td>
+								 <?php if($error_p1 == ""){   ?>
+								 			<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+								<?php  } else { 
+									  		if ($error_p1 == "nc") { ?>
+									  			<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+							<?php		  	} else  { ?>
+									  			<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+							<?php		  	}
+										} ?>
+								</td>
+								<td><?php if ($error_p1 != "nc") echo $error_p1 ?></td>
+						<?php } ?>
+					      </tr>
+					      <tr>
+					        <?php if ($maxPresu >=2) { ?>
+								<td>Presupuesto n° 2</td>
+								<td>
+								 <?php if($error_p2 == ""){  ?>
+											<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+								<?php  } else { 
+									  		if ($error_p2 == "nc") { ?>
+									  			<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+								<?php 	  	} else  { ?>
+									  			<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+								<?php	  	}
+										} ?>
+								</td>
+								<td><?php if ($error_p2 != "nc") echo $error_p2 ?></td>
+						<?php } ?>
+					      </tr>
+					      <tr>
+					         <?php if ($maxPresu >=3) { ?>
+								<td>Presupuesto n° 3</td>
+								<td>
+								 <?php if($error_p3 == ""){ ?>
+											<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+							 <?php	   } else {  
+									  		if ($error_p3 == "nc") { ?>
+									  			<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+							<?php		  	} else  { ?>
+									  			<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+							<?php			}
+										} ?>
+								</td>
+								<td><?php if ($error_p3 != "nc") echo $error_p3  ?></td>
+						<?php } ?>
+					      </tr>
+					      <tr>
+					         <?php if ($maxPresu >=4) { ?>
+								<td>Presupuesto n° 4</td>
+								<td>
+								 <?php if($error_p4 == ""){  ?>
+											<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+							 <?php	 	} else {  
+									  		if ($error_p4 == "nc") { ?>
+									  			<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+								 <?php		} else  { ?>
+									  			<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+							<?php	 		}
+										} ?>
+								</td>
+								<td><?php if ($error_p4 != "nc") echo $error_p4 ?></td>
+						<?php } ?>
+					      </tr>
+					      <tr>
+					        <?php if ($maxPresu >=5) { ?>
+								<td>Presupuesto n° 5</td>
+								<td>
+								 <?php if($error_p5 == ""){  ?>
+											<h4><i style="font-size: 25px; color: green"  class="glyphicon glyphicon-ok"></i></h4>
+								<?php  } else { 
+									  		if ($error_p5 == "nc") { ?>
+									  			<h4><i style="font-size: 25px; color: blue"  class="glyphicon glyphicon-minus"></i></h4>
+								<?php	  	} else  {  ?>
+									  			<h4><i style="font-size: 25px; color: red"  class="glyphicon glyphicon-remove"></i></h4>
+								<?phP	  	}
+										}  ?>
+								</td>
+								<td><?php if ($error_p5 != "nc") echo $error_p5 ?></td>
+						<?php } ?>
+					      </tr>
+				      </tbody>
+				    </table>
+			    </div>  
+			    <div class="col-md-8 col-md-offset-2"> 
+					<?php
+						if ($todoOk != 0) { ?>
+							<input type="button" class="btn btn-primary" name="volver" value="Volver a carga de Solicitud" onclick="location.href='listado.nueva.php'"/>
+				 <?php	} ?>
+					</p>
+				</div>
+				<div class="col-md-12 panel-footer">
+					<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
+					<p>&copy; 2016 O.S.P.I.M.<p>
+				</div>
   			</div>
   		</div>
   	</div>
