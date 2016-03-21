@@ -14,7 +14,7 @@
 	rel='stylesheet' type='text/css'/>
 <script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="include/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 		<div class="row" align="center" style="background-color: #f5f5f5;">
 			<nav class="navbar navbar-default navbar-static-top">
 				<div class="navbar-header" style="margin-left: 10px">
-					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png"></a>
+					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png" /></a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
 					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
@@ -31,7 +31,7 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="empresas.php">Empresas</a></li>
 					<li><a href="beneficiarios.php">Beneficiarios</a></li>
-					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
+					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="prevencion/menuPrevencion.php">Prev. Salud</a></li><?php } ?>
 					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="autorizaciones/listado.php">Autorizaciones</a></li><?php } ?>
 					<li><a href="documentos.php">Inst. y Forms.</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
@@ -79,7 +79,7 @@
 						<ul class="list-group">
 							<li class="list-group-item">
 								<?php if ($_SESSION['tienePrevencion']) {?>
-									<a href="#" class="btn btn-primary">Ingresar</a>	
+									<a href="prevencion/menuPrevencion.php" class="btn btn-primary">Ingresar</a>	
 							   <?php } else { ?>
 							    	<div style="color: red">PEDIR AUTORIZACION</div>
 							  <?php  } ?>
@@ -139,7 +139,7 @@
 			
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
-				<p>&copy; 2016 O.S.P.I.M.<p>
+				<p>&copy; 2016 O.S.P.I.M.</p>
 			</div>
 		</div>
 	</div>

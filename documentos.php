@@ -53,7 +53,7 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-book"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/instructivos/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>

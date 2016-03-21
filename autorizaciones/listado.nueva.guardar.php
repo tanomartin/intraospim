@@ -399,7 +399,7 @@ if($delcod == 0 || $delcod == NULL)
 			    <div class="col-md-8 col-md-offset-2"> 
 					<?php
 						if ($todoOk != 0) { ?>
-							<input type="button" class="btn btn-primary" name="volver" value="Volver a carga de Solicitud" onclick="location.href='listado.nueva.php'"/>
+							<input type="button" style="margin-bottom: 15px" class="btn btn-primary" name="volver" value="Volver a carga de Solicitud" onclick="location.href='listado.nueva.php'"/>
 				 <?php	} ?>
 				</div>
 				<div class="col-md-12 panel-footer">
