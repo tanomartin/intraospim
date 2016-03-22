@@ -607,7 +607,7 @@ $delcod = $_SESSION['delcod'];
 			
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a class="nover" href="listadoCanceUterino.php"><i title="volver" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
+					<a class="nover" href="listadoDiabetes.php"><i title="volver" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;">Nuevo Registro</h3>
 				</div>
 	
