@@ -99,7 +99,7 @@ include ("verificaSesion.php");
 			<h3>Discapacidad</h3>
 			
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Facturación de Prestadores</h3>
@@ -113,7 +113,7 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Trámites por Prestaciones</h3>
@@ -127,13 +127,13 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Transporte</h3>
 						</div>
 						<div class="panel-body">
-							<p>Consentimiento de Transporte<br><br></p>
+							<p>Consentimiento de Transporte</p>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/discapacidad/CONSENTIMIENTO DE TRANSPORTE DISCAPACIDAD.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
@@ -141,7 +141,7 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Tratamiento</h3>
@@ -155,21 +155,35 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Asistencia</h3>
 						</div>
 						<div class="panel-body">
-							<p>Planilla de Asistencia Mensual Prestadores</p>
+							<p>Planilla de Asistencia Mensual Prestadores / Ambulatorio</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM_AMBULATORIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">Asistencia</h3>
+						</div>
+						<div class="panel-body">
+							<p>Planilla de Asistencia Mensual Prestadores / Instituciones</p>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM_INSTITUCIONES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Transporte</h3>
@@ -183,7 +197,7 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Independencia Funcional</h3>
@@ -197,13 +211,13 @@ include ("verificaSesion.php");
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Historia Clinica</h3>
 						</div>
 						<div class="panel-body">
-							<p>Resumen de Historia Clinica<br><br></p>
+							<p>Resumen de Historia Clinica</p>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/discapacidad/RESUMEN DE HISTORIA CLINICA PARA EL BENEFICIARIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
