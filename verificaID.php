@@ -36,4 +36,5 @@ if ($cant > 0) {
 	$result = mysql_query($sql,$db);
 }
 echo $cant;
+
 ?>
