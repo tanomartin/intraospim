@@ -47,7 +47,7 @@ include ("verificaSesion.php");
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Intranet</h3>
+							<h3 class="panel-title">Consultas</h3>
 						</div>
 						<div class="panel-body">
 							<i style="font-size: 100px"  class="glyphicon glyphicon-book"></i>
