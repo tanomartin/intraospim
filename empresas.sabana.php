@@ -146,7 +146,10 @@ function estado($ano, $me, $db) {
 										if ($descri == "ACUER.") { ?>
 											<td><a href="javascript:mypopup('empresas.sabana.acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
-										if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
+										if ($descri == "NO PAGO") { ?>
+											<td><a href="javascript:mypopup('empresas.sabana.ddjj.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+						<?php			}
+										if (($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
 											<td><?php echo $descri ?></td>
 						<?php			}
 									}
