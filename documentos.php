@@ -1,7 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-include ("verificaSesion.php");
-?>
+<?php include ("verificaSesion.php"); ?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

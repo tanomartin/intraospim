@@ -25,7 +25,7 @@ $result = mysql_query($sql,$db);
 <?php 	} else {
 			while ($row = mysql_fetch_array($result)){ ?>
 				<tr>
-					<td> <a target="_black" href="empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil']?>&nrcuit=<?php echo $row['nrcuit']?>"><?php echo $row['nombre'] ?></a></td>
+					<td> <a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil']?>&nrcuit=<?php echo $row['nrcuit']?>"><?php echo $row['nombre'] ?></a></td>
 					<td><?php echo $row['nrodoc'] ?></td>
 					<td><?php echo $row['nrcuil'] ?></td>
 					<td><?php echo $row['nrafil'] ?></td>
@@ -53,17 +53,17 @@ $sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcu
 $result2 = mysql_query($sql2,$db);
 
 // TABLA DE FAMILIARES
-while ($row2 = mysql_fetch_array($result2)){	
-	print("<tr>");	
-	print("<td> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row2['nrcuil'] . "&nrafil=" . $row2['nrafil'] . "&nrcuit=" . $row2['nrcuit'] . "'))>".$row2['nombre']."</td>");
-	print("<td>".$row2['nrodoc']."</td>");
-	print("<td>".$row2['cuifam']."</td>");
-	print("<td>".$row2['nrafil']."</td>");
-	print("</tr>");
-}
-if(mysql_num_rows($result2) == 0) 
-	print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
-?>
+while ($row2 = mysql_fetch_array($result2)) {	?>
+	<tr>
+		<td> <a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row2['nrafil']?>&nrcuit=<?php echo $row2['nrcuit']?>"><?php echo $row2['nombre'] ?></a></td>
+		<td><?php echo $row2['nrodoc'] ?></td>
+		<td><?php echo $row2['cuifam'] ?></td>
+		<td><?php echo $row2['nrafil'] ?></td>
+	</tr>
+<?php }
+if(mysql_num_rows($result2) == 0) { ?>
+	<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>
+<?php } ?>
 </table> 
 <!--#fin de la tabla de familiares -->
 
@@ -82,17 +82,17 @@ $sql3 = "SELECT nombre, nrafil, nrodoc, nrcuil, nrcuit FROM bajatit WHERE delcod
 $result3 = mysql_query($sql3,$db);
 
 // TABLA DE TITULARES DE BAJA
-while ($row3 = mysql_fetch_array($result3)){	
-	print("<tr>");
-	print("<td> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row3['nrcuil'] . "&nrafil=" . $row3['nrafil'] . "&nrcuit=" . $row3['nrcuit'] . "'))>".$row3['nombre']."</td>");
-	print("<td>" . $row3['nrodoc'] . "</td>");
-	print("<td>" . $row3['nrcuil'] . "</td>");
-	print("<td>" . $row3['nrafil'] . "</td>");	
-	print("</tr>");
-}
-if(mysql_num_rows($result3) == 0)
-	print("<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>");
-?>
+while ($row3 = mysql_fetch_array($result3)){	?>
+	<tr>
+		<td> <a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row3['nrcuil'] ?>&nrafil=<?php echo $row3['nrafil']?>&nrcuit=<?php echo $row3['nrcuit']?>"><?php echo $row3['nombre'] ?></a></td>
+		<td><?php echo $row3['nrodoc'] ?></td>
+		<td><?php echo $row3['nrcuil'] ?></td>
+		<td><?php echo $row3['nrafil'] ?></td>
+	</tr>
+<?php }
+if(mysql_num_rows($result3) == 0) { ?>
+	<tr><td colspan='4' align='center' class='Estilo4'> Consulta sin resultados </td></tr>
+<?php } ?>
 </table> 
 <!--#fin de la tabla de familiares -->
 
@@ -121,14 +121,12 @@ if(mysql_num_rows($result4) == 0) {
 }
 
 // TABLA DE FAMILIARES DE TITULARES DE BAJA
-while ($row4 = mysql_fetch_array($result4)){	
-	print("<tr>");
-	print("<td width=237> <a href=javascript:void(window.open('infoTitulares.php?cuil=" . $row4['nrcuil'] . "&nrafil=" . $row4['nrafil'] . "&nrcuit=" . $row4['nrcuit'] . "'))>".$row4['nombre']."</td>");
-	print("<td>" . $row4['nrodoc'] . "</td>");
-	print("<td>" . $row4['cuifam'] . "</td>");
-	print("<td>" . $row4['nrafil'] . "</td>");
-	print("</tr>");
-}
-
-?>
+while ($row4 = mysql_fetch_array($result4)){	 ?>
+	<tr>
+		<td> <a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row4['nrcuil'] ?>&nrafil=<?php echo $row4['nrafil']?>&nrcuit=<?php echo $row4['nrcuit']?>"><?php echo $row4['nombre'] ?></a></td>
+		<td><?php echo $row4['nrodoc'] ?></td>
+		<td><?php echo $row4['cuifam'] ?></td>
+		<td><?php echo $row4['nrafil'] ?></td>
+	</tr>
+<?php } ?>
 </table> 

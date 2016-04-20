@@ -12,7 +12,7 @@ if ($cant > 0) {
 	$_SESSION['nombre'] = $row['nombre'];
 	
 
-	$habilitados = array("1002","1102","1103","1106","1107","1108","1109","1701","1702","1703","2603","2604","1301","1302","2001","2501","2602","2101","2102","2103","1401","1402","1402","1501","1601","1110","1202","1901","2201","2301","1802","2401","2402","2701","2801");
+	$habilitados = array("1002","1102","1103","1106","1107","1108","1109","1701","1702","1703","2603","2604","1301","1302","2001","2501","2602","2101","2102","2103","1401","1402","1402","1501","1601","1110","1202","1901","2201","2301","1802","2401","2402","2701","2801","2403");
 	$_SESSION['tieneAutorizacion'] = false;
 	for ($i=0; $i < sizeof($habilitados); $i++) {
 		if ($habilitados[$i] == $_SESSION['delcod']) {
@@ -21,7 +21,7 @@ if ($cant > 0) {
 		}
 	}
 	
-	$prevencion = array("1002","1102","1106","1107","1108","5000","5001");
+	$prevencion = array("1002","1102","1106","1107","1108","5000","5001","2403");
 	$_SESSION['tienePrevencion'] = false;
 	for ($i=0; $i < sizeof($prevencion); $i++) {
 		if ($prevencion[$i] == $_SESSION['delcod']) {
@@ -29,10 +29,10 @@ if ($cant > 0) {
 			$i = sizeof($prevencion);
 		}
 	}
-	
+	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	$hoy = date("Ymd");
 	$hora = date("H:i:s");
-	$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod";
+	$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = ".$_SESSION['delcod'];
 	$result = mysql_query($sql,$db);
 }
 echo $cant;

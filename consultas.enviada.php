@@ -24,7 +24,7 @@
 		<div class="row" align="center" style="background-color: #f5f5f5;">
 			<nav class="navbar navbar-default navbar-static-top">
 				<div class="navbar-header" style="margin-left: 10px">
-					<a class="navbar-brand" href="menu.php">U.S.I.M.R.A.</a>
+					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png"></a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
 					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>

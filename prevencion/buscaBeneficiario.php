@@ -1,9 +1,14 @@
-<?php session_save_path("../sesiones");
-session_start();
+<?php 
 include ("verificaSesionAutorizaciones.php");
 $delcod = $_SESSION['delcod'];
 if (isset($_POST['cuil'])) {
-	$respuesta = array("nroafi" => NULL, "tipo" => NULL, "codigo" => NULL, "fecnac" => NULL, "nombre" => NULL, "sexo" => NULL);
+	$nroafi = NULL;
+	$tipo = NULL;
+	$codigo = NULL;
+	$fecnac = NULL;
+	$nombre = NULL;
+	$sexo = NULL;
+	//$respuesta = array("nroafi" => NULL, "tipo" => NULL, "codigo" => NULL, "fecnac" => NULL, "nombre" => NULL, "sexo" => NULL);
 	$cuil = $_POST['cuil'];
 	if ($delcod >= "4000") {
 		$queryTitu = "SELECT * FROM titular WHERE nrcuil = $cuil";

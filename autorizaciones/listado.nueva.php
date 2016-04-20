@@ -6,6 +6,11 @@ $fechaSolicitud = date("d/m/Y");
 $cartel = 0;
 $delcod = $_SESSION['delcod'];
 
+$nombre = "";
+$nroafil = "";
+$tipo = "";
+$codigo = "";
+$cuil = "";
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
 	if ($delcod >= "4000") {
@@ -20,6 +25,8 @@ if (isset($_GET['cuil'])) {
 		$cant = mysql_num_rows($result);
 		if ($cant != 0) {
 			$row = mysql_fetch_array($result);
+			$nombre = $row['nombre'];
+			$nroafil = $row['nrafil'];
 			$tipo = "Titular";
 			$codigo = 0;
 		} else {
@@ -27,6 +34,8 @@ if (isset($_GET['cuil'])) {
 			$cant = mysql_num_rows($result);
 			if ($cant != 0) {
 				$row = mysql_fetch_array($result);
+				$nombre = $row['nombre'];
+				$nroafil = $row['nrafil'];
 				$tipo = "Familiar";
 				$codigo = $row['codpar'];
 			} else { 
@@ -185,7 +194,7 @@ if (isset($_GET['cuil'])) {
 						</p>
 						<p>
 							<b>N&uacute;mero de Afiliado:</b> 
-						    <input name="textNroAfil" type="text" id="textNroAfil" readonly="readonly" value="<?php echo $row['nrafil'] ?>" style="background:#f5f5f5"/>
+						    <input name="textNroAfil" type="text" id="textNroAfil" readonly="readonly" value="<?php echo $nroafil ?>" style="background:#f5f5f5"/>
 						</p>
 						<p>
 						    <b>Tipo de Afiliado: </b>
@@ -199,7 +208,7 @@ if (isset($_GET['cuil'])) {
 					    </p>
 					    <p>
 					      <b>* Apellido y Nombre: </b>
-					      <input name="textNombre" type="text" id="textNombre" value="<?php echo $row['nombre'] ?>" size="30"/>
+					      <input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30"/>
 					    </p>
 					    <br>
 					    <script>

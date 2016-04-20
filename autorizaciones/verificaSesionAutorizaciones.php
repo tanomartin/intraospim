@@ -19,7 +19,7 @@ if(empty($_SESSION) || $_SESSION['delcod'] == null || $_SESSION['delcod'] == '')
 	} else {
 		$_SESSION["ultimoAcceso"] = $ahora; 
 	}*/
-	$sql = "select acceso from usuarios where delcod = '$delcod'";
+	$sql = "select acceso from usuarios where delcod = ".$_SESSION['delcod'];
 	$result = mysql_query($sql,$db);
 	$rowUsuario = mysql_fetch_assoc($result);
 	if ($rowUsuario['acceso'] == 0) {

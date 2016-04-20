@@ -83,13 +83,13 @@
 				  	</thead>
 				  	<tbody>
 					<?php
-					$sql = "select * from empresa where delcod = $delcod order by nrcuit";
+					$sql = "select * from empresa where delcod = ".$_SESSION['delcod']." order by nrcuit";
 					$result = mysql_query($sql,$db);
 					while ($row=mysql_fetch_array($result)) { ?>
 						<tr>
 							<td><?php echo $row['nrcuit'] ?></td>
 							<td><?php echo $row['nombre'] ?></td>
-							<td align="center"><a target="_blanck" href="empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+							<td align="center"><a target="_blank" href="empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 							<td align="center"><a href="empresas.nomina.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-user"></i></a></td>
 							<td align="center"><a href="javascript:rediSabanaCtaCte('<?php echo $row['nrcuit'] ?>')"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
 						</tr>

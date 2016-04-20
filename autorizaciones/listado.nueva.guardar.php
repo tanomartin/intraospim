@@ -1,5 +1,4 @@
-<?php session_save_path("../sesiones");
-session_start();
+<?php 
 include ("verificaSesionAutorizaciones.php");
 	
 
@@ -50,6 +49,7 @@ if($delcod == 0 || $delcod == NULL)
 	$tamano_archivo_pm=$_FILES["pedidoMedico"]["size"]; //Tamano de archivo
 	$archivo_pm = $_FILES["pedidoMedico"]["tmp_name"]; 
 	$error_pm = "";
+	$contenido_pm = "";
 	if ($nombre_archivo_pm!="") {
 		if ($tamano_archivo_pm <= $maxSize) {
 			if ($tipo_archivo_pm==$tipoPermitidoE || $tipo_archivo_pm==$tipoPermitidoCM ) {
@@ -79,6 +79,7 @@ if($delcod == 0 || $delcod == NULL)
 	$tamano_archivo_hc=$_FILES["historiaClinica"]["size"]; //Tamano de archivo
 	$archivo_hc = $_FILES["historiaClinica"]["tmp_name"]; 
 	$error_hc = "";
+	$contenido_hc = "";
 	if ($nombre_archivo_hc!="") {
 		if ($tamano_archivo_hc <= $maxSize) {
 			if ($tipo_archivo_hc==$tipoPermitidoE || $tipo_archivo_hc==$tipoPermitidoCM ) {
@@ -107,6 +108,7 @@ if($delcod == 0 || $delcod == NULL)
 	$tamano_archivo_e=$_FILES["estudios"]["size"]; //Tamano de archivo
 	$archivo_e = $_FILES["estudios"]["tmp_name"]; 
 	$error_e = "";
+	$contenido_e = "";
 	if ($nombre_archivo_e!="") {
 		if ($tamano_archivo_e <= $maxSize) {
 			if ($tipo_archivo_e==$tipoPermitidoE || $tipo_archivo_e==$tipoPermitidoCM ) {
@@ -130,7 +132,21 @@ if($delcod == 0 || $delcod == NULL)
 	//echo($tipo_archivo_e); //echo "<br>";
 	//echo($tamano_archivo_e); //echo "<br>";
 	
+	$contenido_p1 = "";
+	$contenido_p2 = "";
+	$contenido_p3 = "";
+	$contenido_p4 = "";
+	$contenido_p5 = "";
+	
 	if ($maxPresu > 0) {
+		
+		define('error_p', 'error_p');
+		define('nombre_archivo_p', 'nombre_archivo_p');
+		define('tamano_archivo_p', 'tamano_archivo_p');
+		define('tipo_archivo_p', 'tipo_archivo_p');
+		define('archivo_p', 'archivo_p');
+		define('contenido_p', 'contenido_p');
+		
 		for ($i=1; $i <= $maxPresu; $i++) {
 			$nombrePresu = "presu".$i;
 			${nombre_archivo_p.$i}=$_FILES["$nombrePresu"]["name"];
@@ -138,6 +154,7 @@ if($delcod == 0 || $delcod == NULL)
 			${tamano_archivo_p.$i}=$_FILES["$nombrePresu"]["size"]; 
 			${archivo_p.$i} = $_FILES["$nombrePresu"]["tmp_name"]; 
 			${error_p.$i} = "";
+			
 			if (${nombre_archivo_p.$i}!="") {
 				if (${tamano_archivo_p.$i} <= $maxSize) {
 					if (${tipo_archivo_p.$i}==$tipoPermitidoE || ${tipo_archivo_p.$i}==$tipoPermitidoCM) {
@@ -145,7 +162,6 @@ if($delcod == 0 || $delcod == NULL)
 						${contenido_p.$i} = fread($fp,${tamano_archivo_p.$i});
 						${contenido_p.$i} = addslashes(${contenido_p.$i});
 						fclose($fp); 
-						$controlCantPresu = $controlCantPresu + 1;
 					} else {
 						$todoOk = 1;
 						${error_p.$i} = "Tipo de Archivo no permitido. Solo se permite pdf";

@@ -100,7 +100,7 @@ $(function() {
 							<td><?php echo $row['nrcuil'] ?></td>
 							<td><?php echo $row['nombre'] ?></td>
 							<td><?php echo tipo($row['tiposolicitud']) ?></td>
-							<td align="center"><a target="_blanck" href="listado.ficha.php?nrosolicitud=<?php echo $row['nrosolicitud'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+							<td align="center"><a target="_blank" href="listado.ficha.php?nrosolicitud=<?php echo $row['nrosolicitud'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 						</tr>	
 					<?php } 
 				} else { ?>

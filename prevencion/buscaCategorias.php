@@ -1,5 +1,4 @@
-<?php session_save_path("../sesiones");
-session_start();
+<?php
 include ("verificaSesionAutorizaciones.php");
 include ("lib/funciones.php");
 if(isset($_POST['grupo']))
