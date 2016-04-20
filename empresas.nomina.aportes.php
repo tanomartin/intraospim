@@ -124,8 +124,8 @@ for ($ano=$anoincio;$ano<$anofinal;$ano++){
 				<tr>
 					<td><?php echo $mes."/".$ano ?></td>
 					<td><a target="_blank" href="empresas.ficha.php?nrcuit=<?php echo $cuit ?>"><?php echo $cuit ?></a></td>
-					<td><b><?php $remu ?></b></td>
-					<td><b><?php $impo ?></b></td>
+					<td><b><?php echo $remu ?></b></td>
+					<td><b><?php echo $impo ?></b></td>
 				</tr>
 <?php		}
 		}
