@@ -1,7 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-include ("verificaSesion.php");
-?>
+<?php include ("verificaSesion.php"); ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,6 +35,7 @@ $nrcuit = $_GET['nrcuit'];
 $delcod = $_SESSION['delcod'];
 $ano = $_GET['ano'];
 $mes = $_GET['mes'];
+$rem = "AFIP no informa";
 
 $sql = "select * from empresa where delcod = $delcod and nrcuit = '$nrcuit'";
 $result = mysql_query($sql,$db); 
@@ -47,10 +45,7 @@ $sql4 = "select * from pagos where delcod = $delcod and nrcuit = '$nrcuit' and a
 $result4 = mysql_query($sql4,$db); 
 while ($row4=mysql_fetch_array($result4)) {
 	if ($row4['contra'] == "REM") {
-		$rem=$row4['totdep'];
-	}
-	if ($row4['contra'] == "OSP") {
-		$osp= (int) $row4['totdep'];
+		$rem += $row4['totdep'];
 	}
 }
 ?>
@@ -59,7 +54,7 @@ while ($row4=mysql_fetch_array($result4)) {
 <?php print ($row['nombre']);?>
 </font></strong></p>
 <p align="center"><span class="Estilo3">Detalle de Pago </span></p>
-<p align="center" class="Estilo5 Estilo9">Total de Empleados: <?php echo $osp ?> - Total de Remuneraciones: <?php echo $rem ?> </p>
+<p align="center" class="Estilo5 Estilo9">Total de Remuneraciones: <?php echo $rem ?> </p>
 <table width="700" border="1" align="center" cellpadding="2" cellspacing="0" style="border-color: #CD8C34; text-align: center; font-family:  Verdana, Geneva, sans-serif; font-size: 11px">
   <tr>
     <th>Per&iacute;odo</th>
