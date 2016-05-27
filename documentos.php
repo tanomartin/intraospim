@@ -93,19 +93,18 @@
 			</div>
 			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-list-alt"></i><br>Formularios</h2>
-			<h3>Discapacidad</h3>
 			
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4 col-md-offset-2">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Facturación de Prestadores</h3>
+							<h3>Discapacidad</h3>
 						</div>
 						<div class="panel-body">
-							<p>Instructivo Para Facturación de Prestadores</p>
+							<p>TEXTO DE EXPLICACION DEL GRUPO</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/DISCAPACIDAD INSTRUCTIVO FACTURACION.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="documentos.discapacidad.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -113,111 +112,13 @@
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Trámites por Prestaciones</h3>
+							<h3>Historias Clinicas</h3>
 						</div>
 						<div class="panel-body">
-							<p>Instructivo Para Trámites por Prestaciones</p>
+							<p>TEXTO DE EXPLICACION DEL GRUPO</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/DISCAPACIDAD INSTRUCTIVO BENEFICIARIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Transporte</h3>
-						</div>
-						<div class="panel-body">
-							<p>Consentimiento de Transporte</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/CONSENTIMIENTO DE TRANSPORTE DISCAPACIDAD.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Tratamiento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Consentimiento de Tratamiento<br><br></p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/CONSENTIMIENTO DE TRATAMIENTO DISCAPACIDAD.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Asistencia</h3>
-						</div>
-						<div class="panel-body">
-							<p>Planilla de Asistencia Mensual Prestadores / Ambulatorio</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM_AMBULATORIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Asistencia</h3>
-						</div>
-						<div class="panel-body">
-							<p>Planilla de Asistencia Mensual Prestadores / Instituciones</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM_INSTITUCIONES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Transporte</h3>
-						</div>
-						<div class="panel-body">
-							<p>Planilla de Asistencia Mensual Transporte</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA TRANSPORTE OSPIM.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Independencia Funcional</h3>
-						</div>
-						<div class="panel-body">
-							<p>Planilla de Medida de Independencia Funcional</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA DE MEDIDA DE INDEPENDENCIA FUNCIONAL.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Historia Clinica</h3>
-						</div>
-						<div class="panel-body">
-							<p>Resumen de Historia Clinica</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/RESUMEN DE HISTORIA CLINICA PARA EL BENEFICIARIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="documentos.historiasclinicas.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
