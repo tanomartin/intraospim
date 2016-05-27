@@ -101,7 +101,7 @@
 							<h3>Discapacidad</h3>
 						</div>
 						<div class="panel-body">
-							<p>TEXTO DE EXPLICACION DEL GRUPO</p>
+							<p>Formularios para Discapacidad</p>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="documentos.discapacidad.php" class="btn btn-primary">Ingresar</a></li>
@@ -115,7 +115,7 @@
 							<h3>Historias Clinicas</h3>
 						</div>
 						<div class="panel-body">
-							<p>TEXTO DE EXPLICACION DEL GRUPO</p>
+							<p>Formularios para Historias Clinicas</p>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="documentos.historiasclinicas.php" class="btn btn-primary">Ingresar</a></li>

@@ -42,145 +42,116 @@
 			<h3>Historias Clinicas</h3>
 			
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Consentimiento Informado</h3><br>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/CONSENTIMIENTO INFORMADO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Historia Clinica de Prácticas de Alta Complejidad</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DE PRACTICAS DE ALTA COMPLEJIDAD.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Historia Clínica HIV</h3><br>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA HIV.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Historia Clínica Medicación Alto Costo</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA MEDICACION ALTO COSTO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Historia Clínica Oncología</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA ONCOLOGIA.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Hormona de Crecimiento Formularios</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/HORMONA DE CRECIMIENTO FORMULARIOS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Notificación de VIH-SIDA</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/NOTIFICACION DE VIH-SIDA.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Resumen de Historia Clínica Artritis</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/RESUMEN HISTORIA CLINICA ARTRITIS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3 col-md-offset-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Resumen Historia Clínica Esclerosis Múltiple</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/RESUMEN HISTORIA CLINICA ESCLEROSIS MULTIPLE.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-4 col-md-offset-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Titulo Documento</h3>
-						</div>
-						<div class="panel-body">
-							<p>Texto Explicativo del Formulario</p>
+							<h3 class="panel-title">Resumen de Historia Clínica Específica para Hepatitis B y C Crónicas</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/xxxxx.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/historias/RESUMEN DE HISTORIA CLINICA ESPECIFICA PARA HEPATITIS B Y C CRONICAS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
+				
 			</div>
 			
 			<div class="col-md-12 panel-footer">
