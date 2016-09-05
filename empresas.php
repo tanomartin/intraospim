@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script> 
 	<script type="text/javascript" src="include/js/jquery.blockUI.js" ></script>
 	<script>
 
@@ -36,7 +37,8 @@
 				filter_startsWith  : false,
 				filter_hideFilters : false,
 			}
-		});
+		})
+		.tablesorterPager({container: $("#paginador")}); 
 	});
 
 	function rediSabanaCtaCte(cuit) {
@@ -85,6 +87,7 @@
 					<?php
 					$sql = "select * from empresa where delcod = ".$_SESSION['delcod']." order by nrcuit";
 					$result = mysql_query($sql,$db);
+					$cant = mysql_num_rows($result);
 					while ($row=mysql_fetch_array($result)) { ?>
 						<tr>
 							<td><?php echo $row['nrcuit'] ?></td>
@@ -96,6 +99,29 @@
 					<?php } ?>
 					</tbody>
 				</table>
+				<table style="width: 245; border: 0" class="nover">
+			      <tr>
+			        <td width="239">
+					<div id="paginador" class="pager">
+					  <form>
+						<p align="center">
+						  <span class="glyphicon glyphicon-fast-backward first" aria-hidden="true"></span>
+					      <span class="glyphicon glyphicon-backward prev" aria-hidden="true"></span>
+						  <input name="text" type="text" class="pagedisplay" style="background:#CCCCCC; text-align:center" size="14" readonly="readonly"/>
+					      <span class="glyphicon glyphicon-forward next" aria-hidden="true"></span>
+					      <span class="glyphicon glyphicon-fast-forward last" aria-hidden="true"></span>
+					      <select name="select" class="pagesize form-control">
+					      	<option selected="selected" value="10">10 por pagina</option>
+					      	<option value="20">20 por pagina</option>
+					      	<option value="30">30 por pagina</option>
+					      	<option value="<?php echo $cant;?>">Todos</option>
+					      </select>
+					    </p>
+					 </form>	
+					</div>
+					</td>
+			      </tr>
+			  </table>			
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>

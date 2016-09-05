@@ -1,8 +1,9 @@
 <?php include ("verificaSesionAutorizaciones.php"); 
 include_once ("lib/funciones.php");
-$sql = "select * from autorizacionprocesada where delcod = ".$_SESSION['delcod']." order by nrosolicitud DESC";
+$sql = "SELECT * FROM autorizacionprocesada WHERE delcod = ".$_SESSION['delcod']." ORDER BY nrosolicitud DESC";
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +23,7 @@ $cant = mysql_num_rows($result);
 	<script type="text/javascript" src="../include/js/jquery.js"></script>
 	<script type="text/javascript" src="../include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="../include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="../include/js/jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script> 
 	<script type="text/javascript" src="../include/js/jquery.blockUI.js" ></script>
 
 <script>
@@ -41,11 +43,14 @@ $(function() {
 			filter_startsWith  : false,
 			filter_hideFilters : false,
 		}
-	});
+	})
+	.tablesorterPager({container: $("#paginador")}); 
 });
 
 </script>
-
+<style type="text/css" media="print">
+.nover {display:none}
+</style>
 </head>
 
 <body>
@@ -73,8 +78,8 @@ $(function() {
 			
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<input style="float: left" class="btn btn-primary" type="button" value="Nueva Solicitud" onclick="location.href='listado.nueva.php'" />
-					<a href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px; float: right;"  class="glyphicon glyphicon-print"></i></a>
+					<input style="float: left" class="btn btn-primary nover" type="button" value="Nueva Solicitud" onclick="location.href='listado.nueva.php'" />
+					<a href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px; float: right;"  class="glyphicon glyphicon-print nover"></i></a>
 				</div>
 			  
 				<table class="tablesorter" id="solicitudes">
@@ -100,7 +105,7 @@ $(function() {
 							<td><?php echo $row['nrcuil'] ?></td>
 							<td><?php echo $row['nombre'] ?></td>
 							<td><?php echo tipo($row['tiposolicitud']) ?></td>
-							<td align="center"><a target="_blank" href="listado.ficha.php?nrosolicitud=<?php echo $row['nrosolicitud'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+							<td align="center"><a class="nover" target="_blank" href="listado.ficha.php?nrosolicitud=<?php echo $row['nrosolicitud'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 						</tr>	
 					<?php } 
 				} else { ?>
@@ -108,13 +113,34 @@ $(function() {
 		  <?php } ?>
 				  </tbody>
 				</table>
-			</div>
-			
+				<table style="width: 245; border: 0" class="nover">
+			      <tr>
+			        <td width="239">
+					<div id="paginador" class="pager">
+					  <form>
+						<p align="center">
+						  <span class="glyphicon glyphicon-fast-backward first" aria-hidden="true"></span>
+					      <span class="glyphicon glyphicon-backward prev" aria-hidden="true"></span>
+						  <input name="text" type="text" class="pagedisplay" style="background:#CCCCCC; text-align:center" size="14" readonly="readonly"/>
+					      <span class="glyphicon glyphicon-forward next" aria-hidden="true"></span>
+					      <span class="glyphicon glyphicon-fast-forward last" aria-hidden="true"></span>
+					      <select name="select" class="pagesize form-control">
+					      	<option selected="selected" value="10">10 por pagina</option>
+					      	<option value="20">20 por pagina</option>
+					      	<option value="30">30 por pagina</option>
+					      	<option value="<?php echo $cant;?>">Todos</option>
+					      </select>
+					    </p>
+					 </form>	
+					</div>
+					</td>
+			      </tr>
+			  </table>			  
+			</div>		
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
 				<p>&copy; 2016 O.S.P.I.M.<p>
 			</div>
-			
 		</div>
 	</div>
 </body>
