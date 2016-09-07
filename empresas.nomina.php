@@ -27,6 +27,7 @@ $cantTitu = mysql_num_rows($result);
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script> 
 	<script type="text/javascript" src="include/js/jquery.blockUI.js" ></script>
 	
 	<script>
@@ -46,7 +47,8 @@ $cantTitu = mysql_num_rows($result);
 				filter_startsWith  : false,
 				filter_hideFilters : false,
 			}
-		});
+		})
+		.tablesorterPager({container: $("#paginador")}); 
 	});
 	
 	</script>
@@ -76,7 +78,7 @@ $cantTitu = mysql_num_rows($result);
 			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-user"></i><br>Nomina</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a href="empresas.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
+					<a href="empresas.php"><i title="Volver" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="tablesorter" id="empleados">
@@ -112,6 +114,29 @@ $cantTitu = mysql_num_rows($result);
 				  	<?php } ?>
 					</tbody>
 				</table>
+				<table style="width: 245; border: 0" class="nover">
+			      <tr>
+			        <td width="239">
+					<div id="paginador" class="pager">
+					  <form>
+						<p align="center">
+						  <span class="glyphicon glyphicon-fast-backward first" aria-hidden="true"></span>
+					      <span class="glyphicon glyphicon-backward prev" aria-hidden="true"></span>
+						  <input name="text" type="text" class="pagedisplay" style="background:#CCCCCC; text-align:center" size="14" readonly="readonly"/>
+					      <span class="glyphicon glyphicon-forward next" aria-hidden="true"></span>
+					      <span class="glyphicon glyphicon-fast-forward last" aria-hidden="true"></span>
+					      <select name="select" class="pagesize form-control">
+					      	<option selected="selected" value="10">10 por pagina</option>
+					      	<option value="20">20 por pagina</option>
+					      	<option value="30">30 por pagina</option>
+					      	<option value="<?php echo $cantEmp;?>">Todos</option>
+					      </select>
+					    </p>
+					 </form>	
+					</div>
+					</td>
+			      </tr>
+			  </table>	
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>

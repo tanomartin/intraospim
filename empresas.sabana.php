@@ -92,7 +92,7 @@ function estado($ano, $me, $db) {
 			<h2 class="page-header">Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a class="nover" href="empresas.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
+					<a class="nover" href="empresas.php"><i title="Volver" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">
