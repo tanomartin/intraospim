@@ -90,10 +90,10 @@ $arrayJuicios = encuentroJuicios($db);
 //var_dump($arrayJuicios);echo"<br><br>";
 $arrayAcuerdos = encuentroAcuerdos($db);
 //var_dump($arrayAcuerdos);echo"<br><br>";
-$arrayDdjj = encuentroDdjj($db, $arrayPagos);
+$arrayDdjj = encuentroDdjj($db);
 //var_dump($arrayDdjj);echo"<br><br>";
 
-function estado($ano, $me, $db) {
+function estado($ano, $me) {
 	global $cuit, $anoinicio, $mesinicio, $anofin, $mesfin;
 	global $arrayPagos, $arrayAcuerdos, $arrayJuicios, $arrayDdjj;
 	//VEO QUE EL MES Y EL AÑO ESTEND DENTRO DE LOS PERIODOS A MOSTRAR
@@ -203,7 +203,7 @@ function estado($ano, $me, $db) {
 									if ($ano == $anofin && $mes > $mesfin) { ?>
 										<td>-</td>
 						<?php		} else {
-										$descri = estado($ano,$mes,$db);
+										$descri = estado($ano,$mes);
 										if ($descri == "PAGO") { ?>
 											<td><a href="javascript:mypopup('empresas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
