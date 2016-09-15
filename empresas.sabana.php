@@ -71,28 +71,9 @@ function estado($ano, $me, $db) {
 <body>
 	<div class="container">
 		<div class="row" align="center" style="background-color: #f5f5f5;">
-			<nav class="navbar navbar-default navbar-static-top">
-				<div class="navbar-header" style="margin-left: 10px">
-					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png"/></a>
-				</div>
-				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
-					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
-					<a style="margin: 11px 10px 0 0" class="btn btn-info" href="logout.php"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
-				</div>
-				<ul class="nav navbar-nav navbar-left">
-					<li><a href="empresas.php">Empresas</a></li>
-					<li><a href="#">Beneficiarios</a></li>
-					<?php if ($_SESSION['tienePrevencion']) {?><li><a href="#">Prev. Salud</a></li><?php } ?>
-					<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="#">Autorizaciones</a></li><?php } ?>
-					<li><a href="#">Inst. y Forms.</a></li>
-					<li><a href="consultas.php">Consultas</a></li>
-				</ul>
-			</nav>
-			
-			<h2 class="page-header">Estado de Cuenta</h2>
+			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-list-alt"></i><br>Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a class="nover" href="empresas.php"><i title="Volver" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">
