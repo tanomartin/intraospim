@@ -245,7 +245,7 @@ if (isset($_GET['cuil'])) {
 					      <input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30"/>
 					    </p>
 					    <p>
-					      <b>Teléfonos (solo números)</b>
+					      <b>Teléfonos [Solo Números. No olvide ingresar DDN (Código de Area)]</b>
 					    </p>
 					    <p>
 					      <b>Fijo: </b>
