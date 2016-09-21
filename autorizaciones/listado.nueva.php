@@ -29,7 +29,9 @@ if (isset($_GET['cuil'])) {
 			$nroafil = $row['nrafil'];
 			$tipo = "Titular";
 			$codigo = 0;
-			$delegacion = $row['delegacion'];
+			if ($delcod >= "4000") {
+				$delegacion = $row['delegacion'];
+			}
 		} else {
 			$result = mysql_query($queryFami,$db); 
 			$cant = mysql_num_rows($result);
@@ -39,7 +41,9 @@ if (isset($_GET['cuil'])) {
 				$nroafil = $row['nrafil'];
 				$tipo = "Familiar";
 				$codigo = $row['codpar'];
-				$delegacion = $row['delegacion'];
+				if ($delcod >= "4000") {
+					$delegacion = $row['delegacion'];
+				}
 			} else { 
 				$cartel = 1;
 				$codigo = -1;
