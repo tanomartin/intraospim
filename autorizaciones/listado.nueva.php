@@ -14,8 +14,8 @@ $cuil = "";
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
 	if ($delcod >= "4000") {
-		$queryTitu = "select * from titular where nrcuil = $cuil";
-		$queryFami = "select * from familia where nrcuil = $cuil";
+		$queryTitu = "select t.*, d.nombre as delegacion from titular t, delega d where t.nrcuil = $cuil and t.delcod = d.delcod";
+		$queryFami = "select f.*, d.nombre as delegacion from familia f, delega d where f.nrcuil = $cuil and f.delcod = d.delcod";
 	} else {
 		$queryTitu = "select * from titular where nrcuil = $cuil and delcod = $delcod";
 		$queryFami = "select * from familia where nrcuil = $cuil and delcod = $delcod";
@@ -29,6 +29,7 @@ if (isset($_GET['cuil'])) {
 			$nroafil = $row['nrafil'];
 			$tipo = "Titular";
 			$codigo = 0;
+			$delegacion = $row['delegacion'];
 		} else {
 			$result = mysql_query($queryFami,$db); 
 			$cant = mysql_num_rows($result);
@@ -38,6 +39,7 @@ if (isset($_GET['cuil'])) {
 				$nroafil = $row['nrafil'];
 				$tipo = "Familiar";
 				$codigo = $row['codpar'];
+				$delegacion = $row['delegacion'];
 			} else { 
 				$cartel = 1;
 				$codigo = -1;
@@ -123,6 +125,35 @@ if (isset($_GET['cuil'])) {
 			alert("Debe ingresar el nombre del Beneficiario");
 			return false;
 		}
+
+
+		if (formulario.textFijo.value == "" && formulario.textMovil.value == "") {
+			alert("Debe ingresar algún telefono Fijo o Movil");
+			return false;
+		}
+
+		if (formulario.textFijo.value != "" || formulario.textMovil.value != "") {
+			if (formulario.textFijo.value != "") {
+				if (!isNumberPositivo(formulario.textFijo.value)) {
+					alert("El telefono Fijo debe ser un número");
+					return false;
+				}
+			}
+			if (formulario.textMovil.value != "") {
+				if (!isNumberPositivo(formulario.textMovil.value)) {
+					alert("El telefono Movil debe ser un número");
+					return false;
+				}
+			}
+		}
+
+		if (formulario.textMail.value != "") {
+			if (!validarEmail(formulario.textMail.value)) {
+				alert("El E-mail no es valido");
+				return false;
+			}
+		}
+
 		if (formulario.pedidoMedico.value == "") {
 			alert("Debe adjuntar el Pedido Medico");
 			return false;
@@ -201,6 +232,9 @@ if (isset($_GET['cuil'])) {
 						    <input name="textCodPar" type="text" id="textCodPar" readonly="readonly" style="background:#f5f5f5;" value="<?php echo $tipo; ?>"/>
 						    <input name="codPar" type="text" id="codPar" size="4" readonly="readonly" style="display:none" value="<?php echo $codigo ?>"/>
 						</p>
+						<?php if ($delcod >= "4000") { ?>
+							      <p><b>Delegación: </b><input name="delega" type="text" id="delega" readonly="readonly" style="background:#f5f5f5;" value="<?php echo $delegacion; ?>"/></p>
+						<?php } ?>
 						<p><?php 
 							if ($cartel == 1) {
 								print("<div nombre='cartel' id='cartel' style='color:green'><b> Beneficiario con CUIL $cuil no empadronado. Completar Apellido y Nombre </b></div>");
@@ -210,6 +244,20 @@ if (isset($_GET['cuil'])) {
 					      <b>* Apellido y Nombre: </b>
 					      <input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30"/>
 					    </p>
+					    <p>
+					      <b>Teléfonos (solo números)</b>
+					    </p>
+					    <p>
+					      <b>Fijo: </b>
+					      <input name="textFijo" type="text" id="textFijo" size="20"/>
+					      <b>Movil: </b>
+					      <input name="textMovil" type="text" id="textMovil" size="20"/>
+					    </p>
+					    <p>
+					      <b>E-Mail: </b>
+					      <input name="textMail" type="text" id="textMail" size="50"/>
+					    </p>
+					    
 					    <br>
 					    <script>
 								if (document.forms.nuevaSolicitud.textNombre.value != "")  {

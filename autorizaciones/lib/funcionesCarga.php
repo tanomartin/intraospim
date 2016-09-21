@@ -35,6 +35,7 @@ function limpiarFormulario(sCUIT){
 	document.forms.nuevaSolicitud.textNroAfil.value="";
 	document.forms.nuevaSolicitud.textCodPar.value="";
 	document.forms.nuevaSolicitud.textNombre.value="";
+	document.forms.nuevaSolicitud.delega.value ="";
 	verificaCuil(sCUIT);
 }
 

@@ -4,7 +4,19 @@ $nrosolicitud = $_GET['nrosolicitud'];
 $delcod = $_SESSION['delcod'];
 $sql = "select * from autorizacionprocesada where delcod = $delcod and nrosolicitud = $nrosolicitud";
 $result = mysql_query($sql,$db);
-$row=mysql_fetch_array($result)
+$row=mysql_fetch_array($result);
+
+if ($delcod >= "4000") { 
+	if ($row['nrafil'] != 0) {
+		if ($row['codpar'] == 0) {
+			$sqlDelega = "select d.nombre as delega from titular t, delega d where t.nrafil = ".$row['nrafil']." and t.delcod = d.delcod";
+		} else {
+			$sqlDelega = "select d.nombre as delega from familia f, delega d where f.nrafil = ".$row['nrafil']." and f.nrcuil = ".$row['nrcuil']." and f.delcod = d.delcod";
+		}
+		$resDelega = mysql_query($sqlDelega,$db);
+		$rowDelega = mysql_fetch_array($resDelega);
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +70,14 @@ body {
 	    <p><strong>N&uacute;mero de Afiliado:</strong> <?php echo $row['nrafil']?></p>
 	    <p><strong>Apellido y Nombre: </strong><?php echo $row['nombre']?></p>
 	    <p><strong>C.U.I.L.:</strong> <?php echo $row['nrcuil'] ?></p>
+	   	<?php if ($delcod >= "4000") { ?>
+	   		<p><strong>Delegación:</strong> <?php echo $rowDelega['delega'] ?></p>
+	   	<?php }?>
+	   
+	    <p><strong>Tel. Fijo:</strong> <?php echo $row['telefono'] ?></p>
+	    <p><strong>Tel. Movil:</strong> <?php echo $row['movil'] ?></p>
+	    <p><strong>Email:</strong> <?php echo $row['email'] ?></p>
+	    
 	    <p><strong>Tipo:</strong> <?php echo tipoBene($row['codpar']) ?></p>
 	    <p><strong>Fecha Verficaci&oacute;n:</strong>
 	      <?php if ($row['fechaverificacion'] != NULL && $row['fechaverificacion'] != "0000-00-00") {
