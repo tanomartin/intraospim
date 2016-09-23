@@ -32,152 +32,159 @@ if ($canDisca == 0) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Informacion Titulares</title>
-<style type="text/css">
-<!--
-.Estilo3 {font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-	font-size: 24px;
-}
-body {
-	background-color: #CCCCCC;
-}
-.Estilo4 {
-	font-size: 10px;
-	font-weight: bold;
-}
-.Estilo5 {font-family: Papyrus; font-weight: bold; color: #000000; font-size: 24px; }
-.Estilo6 {font-size: 11px; font-weight: bold; }
--->
-</style>
+	<title>Ficha Empleado</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'/>
+	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	
+	<script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="include/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="include/js/jquery.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script>
+	function mypopup(dire) {
+	    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
+	}
+	</script>
+	
+	<style type="text/css" media="print">
+		.nover {display:none}
+	</style>
 </head>
 
 <body>
-<div align="center">
-  <table style="width: 546px">
-    <tr>
-        <th scope="row"><div align="right"><font size="3" face="Papyrus">
-          <?php print ("Afiliado Nro: ".$row['nrafil']." - ".$row['nombre']); ?>
-        </font></div></th>
-      </tr>
-  </table>
-  <table style="width: 548px; border: 1px solid; margin-bottom: 10px">
-    <tr>
-      <th scope="row"><div align="left">Documento</div></th>
-        <td width="365"><?php print ($row['tipdoc'].": ".$row['nrodoc']);?></td>
-    </tr>
-	<tr>
-      <th scope="row"><div align="left">Estado Civil</div></th>
-        <td width="365"><?php print ($row['estcivil']);?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Domicilio</div></th>
-        <td><?php print ($row['domici']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Localidad</div></th>
-        <td><?php print ($row['locali']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Provincia</div></th>
-        <td><?php print ($row['provin']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">C.P.</div></th>
-        <td><?php print ($row['codpos']);?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Fecha Nacimiento </div></th>
-        <td><?php print ($row['fecnac']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">CUIL</div></th>
-        <td><?php
-		if ($_SESSION['delcod'] == $row['delcod']) {
-			print("<a href=javascript:void(window.open('empresas.nomina.aportes.php?cuil=".$row['nrcuil']."'))>".$row['nrcuil']."</a>");
-		} else {
- 			print ($row['nrcuil']);
-		}
-		?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Delegaci&oacute;n</div></th>
-      <td><?php print ($row['nomdel']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Empresa</div></th>
-      <td><?php print ($row['empresa']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Estado </div></th>
-      <td><?php print ($est); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Categoria</div></th>
-        <td><?php print ($row['catego']); ?></td>
-    </tr>
-    <tr>
-      <th scope="row"><div align="left">Feche de ingreso </div></th>
-        <td><?php print ($row['fecing']); ?></td>
-    </tr>
-    <tr>
-     <th scope="row"><div align="left">Discapacitado</div></th>
-        <td><?php print ($disca); ?></td>
-    </tr>
-  </table>
-  <p class="Estilo6">*Si el empleado pertenece a su Delegacion. Haciendo click sobre su CUIL se motrar&aacute;n sus aportes individuales </p>
-  <p class="Estilo5">Familiares</p>
-
-<?php
-if ($est == "ACTIVO") {
-	$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from familia f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
-	$result1 = mysql_query($sql1,$db); 
-} else {
-	$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from bajafam f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
-	$result1 = mysql_query($sql1,$db); 
-}
-$cantFami = mysql_num_rows($result1);
-if ($cantFami > 0) { ?>
-		<table style="width: 1030px; border: 1px solid; font-family: Verdana, Geneva, sans-serif; text-align: center; font-size: 12px" >
-		<tr>
-			<th>Nombre y Apellido </th>
-			<th>Documento </th>
-			<th>Parentesco </th>
-			<th>Sexo </th>
-			<th>Fecha de Nacimiento </th>
-			<th>C.U.I.L. </th>
-			<th>Discapacitado</th>
-		</tr>
-<?php while ($row1=mysql_fetch_array($result1)) { 
-			$nroorden = $row1['nroord'];
-			$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nrafil and nroord = $nroorden";
-			$resDisca = mysql_query($sqlDisca,$db);
-			$canDisca = mysql_num_rows($resDisca);
-			if ($canDisca == 0) {
-				$disca = 'NO';
-			} else {
-				$disca = 'SI';
-			}
-?>
-		<tr>
-		    <td><?php echo $row1['nombre'] ?></td>
-			<td><?php echo $row1['tipdoc'].": ".$row1['nrodoc'] ?> </td>
-			<td><?php echo $row1['despare'] ?></td>
-			<td><?php echo $row1['ssexxo'] ?></td>
-			<td><?php echo $row1['fecnac'] ?></td>
-			<td><?php echo $row1['nrcuil'] ?></td>
-			<td><?php echo $disca ?></td>
-		</tr>
-<?php	}
-} else { ?>
-		<tr><td colspan="7"><b> No hay familiares informados</b></td></tr>
-<?php }
-?>
-
-</table>
-<p><input type="button" name="imprimir" value="Imprimir" onclick="window.print();" /></p>
-</div>
+	<div class="container">
+		<div class="row" align="center" style="background-color: #f5f5f5;">
+			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-user"></i><br>Ficha de Empleado</h2>
+			<h3><?php echo $row['nombre']?></h3>
+			<div class="col-md-8 col-md-offset-2">
+				<table class="table" style="text-align: center">
+	    			<tr>
+				      	<th style="text-align: center;">Nro. Afiliado</th>
+				        <td><?php echo  $row['nrafil']?></td>
+				    </tr>
+	    			<tr>
+				      	<th style="text-align: center;">Documento</th>
+				        <td><?php echo ($row['tipdoc'].": ".$row['nrodoc']);?></td>
+				    </tr>
+					<tr>
+				      	<th style="text-align: center;">Estado Civil</th>
+				        <td><?php echo ($row['estcivil']);?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Domicilio</th>
+				        <td><?php echo ($row['domici']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Localidad</th>
+				        <td><?php echo ($row['locali']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Provincia</th>
+				        <td><?php echo ($row['provin']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">C.P.</th>
+				        <td><?php echo ($row['codpos']);?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Fecha Nacimiento </th>
+				        <td><?php echo ($row['fecnac']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">CUIL</th>
+				        <td><?php
+						if ($_SESSION['delcod'] == $row['delcod']) {
+							echo("<a href=javascript:void(window.open('empresas.nomina.aportes.php?cuil=".$row['nrcuil']."'))>".$row['nrcuil']."</a>");
+						} else {
+				 			echo ($row['nrcuil']);
+						}
+						?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Delegaci&oacute;n</th>
+				      <td><?php echo ($row['nomdel']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Empresa</th>
+				      <td><?php echo ($row['empresa']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Estado </th>
+				      <td><?php echo ($est); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Categoria</th>
+				        <td><?php echo ($row['catego']); ?></td>
+				    </tr>
+				    <tr>
+				      <th style="text-align: center;">Feche de ingreso </th>
+				        <td><?php echo ($row['fecing']); ?></td>
+				    </tr>
+				    <tr>
+				     <th style="text-align: center;">Discapacitado</th>
+				        <td><?php echo ($disca); ?></td>
+				    </tr>
+				</table>
+			</div>
+			<div class="col-md-10 col-md-offset-1">
+				<p>*Si el empleado pertenece a su Delegacion. Haciendo click sobre su CUIL se motrar&aacute;n sus aportes individuales </p>
+  				<h3>Familiares</h3>
+  				<table class="table">
+					<tr>
+						<th>Nombre y Apellido </th>
+						<th>Documento </th>
+						<th>Parentesco </th>
+						<th>Sexo </th>
+						<th>Fecha de Nacimiento </th>
+						<th>C.U.I.L. </th>
+						<th>Discapacitado</th>
+					</tr>
+  				<?php
+				if ($est == "ACTIVO") {
+					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from familia f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
+					$result1 = mysql_query($sql1,$db); 
+				} else {
+					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from bajafam f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
+					$result1 = mysql_query($sql1,$db); 
+				}
+				$cantFami = mysql_num_rows($result1);
+				if ($cantFami > 0) { 
+					while ($row1=mysql_fetch_array($result1)) { 
+						$nroorden = $row1['nroord'];
+						$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nrafil and nroord = $nroorden";
+						$resDisca = mysql_query($sqlDisca,$db);
+						$canDisca = mysql_num_rows($resDisca);
+						if ($canDisca == 0) {
+							$disca = 'NO';
+						} else {
+							$disca = 'SI';
+						} ?>
+					<tr>
+					    <td><?php echo $row1['nombre'] ?></td>
+						<td><?php echo $row1['tipdoc'].": ".$row1['nrodoc'] ?> </td>
+						<td><?php echo $row1['despare'] ?></td>
+						<td><?php echo $row1['ssexxo'] ?></td>
+						<td><?php echo $row1['fecnac'] ?></td>
+						<td><?php echo $row1['nrcuil'] ?></td>
+						<td><?php echo $disca ?></td>
+					</tr>
+			<?php	}
+			} else { ?>
+					<tr><td colspan="7" style="text-align: center">No hay familiares informados</td></tr>
+			<?php } ?>
+				</table>
+  				<p><a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px" class="glyphicon glyphicon-print"></i></a></p>
+			</div>
+			<div class="col-md-12 panel-footer">
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
+				<p>&copy; 2016 O.S.P.I.M.</p>
+			</div>
+		</div>
+	</div>
 </body>
-</html>
