@@ -9,7 +9,7 @@ include ("verificaSesionAutorizaciones.php");
 	$fechaSolicitud = date("Y/m/d"); 
 	
 	$delcod = $_SESSION['delcod'];
-if($delcod == 0 || $delcod == NULL) 
+if($delcod == 0 || $delcod == NULL || sizeof($_POST) == 0) 
 	header ("Location: ../logintranet.php?err=2");
 	
 	$cuit =  $_POST['textCuil'];
