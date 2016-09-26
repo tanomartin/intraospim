@@ -57,7 +57,6 @@ if (mysql_num_rows($result2) == 0) {
 						<th style="text-align: center">Remuneraci&oacute;n</th>
 						<th style="text-align: center">Aporte</th>
 					</tr>
-					<tr>
 					<?php
 						if (!isset($global['timezone'])) {
 							$global['timezone'] = "";
@@ -74,83 +73,51 @@ if (mysql_num_rows($result2) == 0) {
 						
 						$tabla="apoi".$_SESSION['delcod'];
 						$tablaCuij = "cuij".$_SESSION['delcod'];
-						
-						$sql3 = "select anotra,mestra,remimp,nrcuit from $tablaCuij where nrcuil = '$cuil' and anotra >= $anoincio";
-						$result3 = mysql_query($sql3,$db);
-						$arrayRemune = array();
-						$arrayCuits = array();
-						if (mysql_num_rows($result3) != 0) {
-							while ($row3=mysql_fetch_array($result3)) {
-								$index = $row3['anotra'].$row3['mestra']."-".$row3['nrcuit'];
-								$arrayRemune[$index] = $row3['remimp'];
-								$arrayCuits[$row3['nrcuit']] = $row3['nrcuit'];
-							}
-						}
-						//var_dump($arrayCuits);echo"<br><br>";
-						//var_dump($arrayRemune);echo"<br><br>";
-						
-						$sql6 = "select anotra,mestra from desemple where nrcuil = '$cuil' and anotra >= $anoincio";
-						$result6 = mysql_query($sql6,$db);
-						$arrayDesemple = array();
-						if (mysql_num_rows($result6)!=0) {
-							while ($row6=mysql_fetch_array($result6)) {
-								$index = $row6['anotra'].$row6['mestra'];
-								$arrayDesemple[$index] = "ANSES - S.D.";
-							}
-						}
-						//var_dump($arrayDesemple);echo"<br><br>";
-						
-						$sql = "select anotra,mestra,imptra,nrcuit from $tabla where nrcuil = '$cuil' and anotra >= $anoincio";
-						$result = mysql_query($sql,$db);
-						$arrayAporte = array();
-						if (mysql_num_rows($result) != 0) {
-							while ($row=mysql_fetch_array($result)) {
-								$index = $row['anotra'].$row['mestra']."-".$row['nrcuit'];
-								$arrayAporte[$index] = $row['imptra'];
-							}
-						}
-						//var_dump($arrayAporte);echo"<br><br>";
-						
-
 						for ($ano=$anoincio;$ano<$anofinal;$ano++){
-							for ($mes=1;$mes<13;$mes++) { 
-								$buscaDespemple = $ano.$mes;
-								if (array_key_exists($buscaDespemple,$arrayDesemple)) { ?>
+							for ($mes=1;$mes<13;$mes++) {
+								$sql3 = "select * from $tablaCuij where nrcuil = '$cuil' and anotra = '$ano' and mestra = '$mes'";
+								$result3 = mysql_query($sql3,$db); 
+								if (mysql_num_rows($result3) == 0) {
+									$remu="-";
+									$impo="-";	
+									$cuit="-";
+									
+									$sql6 = "select * from desemple where nrcuil = '$cuil' and mestra = '$mes' and anotra = '$ano'";
+									$result6 = mysql_query($sql6,$db); 
+									$row6 = mysql_fetch_array($result6);
+									if (mysql_num_rows($result6)!=0) {
+										$cuit="ANSES - S.D.";
+									}?>
 									<tr>
 										<td><?php echo $mes."/".$ano ?></td>
-										<td><?php echo $arrayDesemple[$buscaDespemple]  ?></td>
-										<td>-</td>
-										<td>-</td>
+										<td><?php echo $cuit ?></td>
+										<td><b><?php echo $remu ?></b></td>
+										<td><b><?php echo $impo ?></b></td>
 									</tr>
-					 <?php		} else {
-					 				$ingreso = false;
-						 	 		foreach($arrayCuits as $cuit) { ?>
-						  		<tr>
-						   	  <?php $buscador = $ano.$mes."-".$cuit;
-									if (array_key_exists($buscador,$arrayRemune)) { 
-										$ingreso = true; ?>
-										<td><?php echo $mes."/".$ano ?></td>
-										<td><a target="_blank" href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $cuit ?>')"><?php echo $cuit ?></a></td>
-										<td><b><?php echo $arrayRemune[$buscador] ?></b></td>
-								<?php	if (array_key_exists($buscador,$arrayAporte)) { ?>
-											<td><b><?php echo $arrayAporte[$buscador] ?></b></td>
-								<?php	} else { ?>
-											<td>-</td>
-								<?php	} 
-									}?>
-								<tr>
-							<?php }
-							      if (!$ingreso) { ?>
-							      	<tr>
-							      	<td><?php echo $mes."/".$ano ?></td>
-							      	<td>-</td>
-							      	<td>-</td>
-							      	<td>-</td>
-							      	</tr>
-							<?php }
-					 			}
-							} 
-						 }?>
+						<?php		} else {
+									while ($row3=mysql_fetch_array($result3)) {
+										$remu=$row3['remimp'];
+										$cuit=$row3['nrcuit'];
+							
+										$sql = "select * from $tabla where nrcuit = '$cuit' and nrcuil = '$cuil' and mestra = '$mes' and anotra = '$ano'";
+										$result = mysql_query($sql,$db); 
+										$row = mysql_fetch_array($result);
+										
+										if (mysql_num_rows($result) == 0) {
+											$impo="-";
+										} else {
+											$impo=$row['imptra'];
+										} ?>
+										<tr>
+											<td><?php echo $mes."/".$ano ?></td>
+											<td><a target="_blank" href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $cuit ?>')"><?php echo $cuit ?></a></td>
+											<td><b><?php echo $remu ?></b></td>
+											<td><b><?php echo $impo ?></b></td>
+										</tr>
+						<?php		}
+								}
+							}
+						} ?>
 				</table>
 				<p>	* ANSES - S.D.: Cobrando para el per&iacute;odo subsidio para desempleados. </p>
 				<p><a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px" class="glyphicon glyphicon-print"></i></a></p>
