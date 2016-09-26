@@ -22,86 +22,117 @@ if ($delcod >= "4000") {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Detalle Solicitud</title>
-<style type="text/css">
-<!--
-.Estilo3 {
-	font-family: Papyrus;
-	font-weight: bold;
-	color: black;
-	font-size: 24px;
-}
-body {
-	background-color: #CCCCCC;
-}
-.Estilo4 {
-	color: #990000;
-	font-weight: bold;
-}
--->
-</style>
+	<title>Ficha de Solicitud</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'/>
+	<link rel="stylesheet" href="../include/js/jquery.tablesorter/themes/theme.blue.css"/>
+	<link rel="stylesheet" href="../css/style.css">
+	
+	<script type="text/javascript" src="../include/js/jquery-2.2.0.min.js" ></script>
+	<script type="text/javascript" src="../include/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../include/js/jquery.js"></script>
+	<script type="text/javascript" src="../include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="../include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="../include/js/jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script> 
+	<script type="text/javascript" src="../include/js/jquery.blockUI.js" ></script>
+	
+	<style type="text/css" media="print">
+		.nover {display:none}
+	</style>
 </head>
+
 <body>
-<table style="width: 739px">
-  <tr>
-    <td>
-    	<div align="left"><p class="Estilo3">Solicitud N&uacute;mero <?php echo $nrosolicitud ?></p></div>
-    </td>
-    <td>
-    	<table style="width: 328; height: 60; border: 1px solid">
-	      <tr>
-	        <td height="25"><div align="center"><strong>Fecha Solicitud</strong> </div></td>
-	        <td><div align="center"><?php echo  invertirFecha($row['fechasolicitud']);?></div></td>
-	      </tr>
-	      <tr>
-	        <td width="107" height="25"><div align="center"><strong>Status</strong> </div></td>
-	        <td width="203"><div align="center"><?php echo estado($row['statusverificacion'],$row['statusautorizacion']) ?></div></td>
-	      </tr>
-    	</table>
-     </td>
-  </tr>
-  <tr>
-    <td><h3 class="Estilo4">Informaci&oacute;n del Beneficiario </h3></td>
-    <td><h3 class="Estilo4">Informaci&oacute;n Solicitud </h3></td>
-  </tr>
-  <tr>
-    <td>
-	    <p><strong>N&uacute;mero de Afiliado:</strong> <?php echo $row['nrafil']?></p>
-	    <p><strong>Apellido y Nombre: </strong><?php echo $row['nombre']?></p>
-	    <p><strong>C.U.I.L.:</strong> <?php echo $row['nrcuil'] ?></p>
-	   	<?php if ($delcod >= "4000") { ?>
-	   		<p><strong>Delegación:</strong> <?php echo $rowDelega['delega'] ?></p>
-	   	<?php }?>
-	   
-	    <p><strong>Tel. Fijo:</strong> <?php echo $row['telefono'] ?></p>
-	    <p><strong>Tel. Movil:</strong> <?php echo $row['movil'] ?></p>
-	    <p><strong>Email:</strong> <?php echo $row['email'] ?></p>
-	    
-	    <p><strong>Tipo:</strong> <?php echo tipoBene($row['codpar']) ?></p>
-	    <p><strong>Fecha Verficaci&oacute;n:</strong>
-	      <?php if ($row['fechaverificacion'] != NULL && $row['fechaverificacion'] != "0000-00-00") {
-						echo invertirFecha($row['fechaverificacion']);
-				  } else {
-				  		echo "Pendiente";
-				  } 
-			?>
-	- <?php echo $row['rechazoverificacion'] ?></p></td>
-	    <td valign="top"><p><strong>Tipo: </strong><?php echo tipo($row['tiposolicitud']) ?></p>
-	      <p><strong>Fecha Autorizaci&oacute;n:</strong>
-	          <?php if ($row['fechaautorizacion'] != NULL && $row['fechaautorizacion'] != "0000-00-00") {
-						echo invertirFecha($row['fechaautorizacion']);
-				  } else {
-				  		echo "Pendiente";
-				  } 
-			?>
-	    - <?php echo $row['rechazoautorizacion'] ?></p>
-	      <p>&nbsp;</p>
-	      <p>
-	        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-	      </p>
-      </td>
-  </tr>
-</table>
+	<div class="container">
+		<div class="row" align="center" style="background-color: #f5f5f5;">
+			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-ok-sign"></i><br>Ficha de Solicitud</h2>
+			<h3><?php echo ($row['nombre']);?></h3>
+			<h3>Solicitud Nro. <b><?php echo $nrosolicitud;?></b> del <b><?php echo  invertirFecha($row['fechasolicitud']);?></b> </h3>
+			<h3 style="color: <?php echo estadoColor($row['statusverificacion'],$row['statusautorizacion']) ?>"><b><?php echo estado($row['statusverificacion'],$row['statusautorizacion']) ?></b></h3>
+			<div class="col-md-8 col-md-offset-2">
+				<h4>Informaci&oacute;n del Beneficiario </h4>
+			 	<table class="table" style="text-align: center">
+			 		<tr>
+				        <th style="text-align: center;">N&uacute;mero de Afiliado</th>
+				      	<td><?php echo $row['nrafil']?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Apellido y Nombre</th>
+				      	<td><?php echo $row['nombre']?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">C.U.I.L.</th>
+				      	<td><?php echo $row['nrcuil']?></td>
+			    	</tr>
+			    		<?php if ($delcod >= "4000") { ?>
+				    		<tr>
+					       	 	<th style="text-align: center;">Delegación</th>
+					      		<td><?php echo $rowDelega['delega'] ?></td>
+				    		</tr>
+					   	<?php }?>
+					<tr>
+				        <th style="text-align: center;">Telefono Fijo</th>
+				      	<td><?php echo $row['telefono']?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Telefono Móvil</th>
+				      	<td><?php echo $row['movil']?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Email</th>
+				      	<td><?php echo $row['email']?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Tipo de Beneficiario</th>
+				      	<td> <?php echo tipoBene($row['codpar']) ?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Fecha Verficaci&oacute;n</th>
+				      	<td> <?php if ($row['fechaverificacion'] != NULL && $row['fechaverificacion'] != "0000-00-00") {
+										echo invertirFecha($row['fechaverificacion']);
+								  } else {
+								  		echo "Pendiente";
+								  } 
+							?>
+						</td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Observacion</th>
+				      	<td> <?php echo $row['rechazoverificacion'] ?></td>
+			    	</tr>
+			    </table>
+			 	
+			 	<h4>Informaci&oacute;n de la Solicitud </h4>
+			 	
+			 	<table class="table" style="text-align: center">
+			 		<tr>
+				        <th style="text-align: center;">Tipo de Solicitud</th>
+				      	<td> <?php echo tipo($row['tiposolicitud']) ?></td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Fecha Autorizaci&oacute;n</th>
+				      	<td><?php 
+				      		if ($row['fechaautorizacion'] != NULL && $row['fechaautorizacion'] != "0000-00-00") {
+								echo invertirFecha($row['fechaautorizacion']);
+							  } else {
+							  		echo "Pendiente";
+							  }  ?>
+	    				</td>
+			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Observacion</th>
+				      	<td> <?php echo $row['rechazoautorizacion'] ?></td>
+			    	</tr>
+			 	</table>
+			 	
+			 	<a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px"  class="glyphicon glyphicon-print"></i></a>
+			</div>	
+			<div class="col-md-12 panel-footer">
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
+				<p>&copy; 2016 O.S.P.I.M.</p>
+			</div>
+		</div>
+	</div>
 </body>
-</html>

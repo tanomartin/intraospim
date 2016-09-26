@@ -30,6 +30,27 @@ function estado($veri, $auto) {
 	}
 }
 
+function estadoColor($veri, $auto) {
+	if ($veri == 0 && $auto == 0) {
+		return "black";
+	}
+	if ($veri == 1 && $auto == 0) {
+		return "blue";
+	}
+	if ($veri == 2 && $auto == 0) {
+		return "blue";
+	}
+	if ($veri == 1 && $auto == 1) {
+		return "green";
+	}
+	if ($veri == 1 && $auto == 2) {
+		return "red";
+	}
+	if ($veri == 2 && $auto == 2) {
+		return "red";
+	}
+}
+
 function tipo($tipo) {
 	if ($tipo == 1) {
 		return "Practica";
