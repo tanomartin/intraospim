@@ -110,7 +110,7 @@ $cantTitu = mysql_num_rows($result);
 					      	<option selected="selected" value="10">10 por pagina</option>
 					      	<option value="20">20 por pagina</option>
 					      	<option value="30">30 por pagina</option>
-					      	<option value="<?php echo $cantEmp;?>">Todos</option>
+					      	<option value="<?php echo $cantTitu ?>">Todos</option>
 					      </select>
 					    </p>
 					 </form>	
