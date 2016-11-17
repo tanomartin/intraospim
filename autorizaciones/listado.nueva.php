@@ -15,11 +15,11 @@ $delegacion = "";
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
 	if ($delcod >= "4000") {
-		$queryTitu = "select t.*, d.nombre as delegacion from titular t, delega d where t.nrcuil = $cuil and t.delcod = d.delcod";
-		$queryFami = "select f.*, d.nombre as delegacion from familia f, delega d where f.nrcuil = $cuil and f.delcod = d.delcod";
+		$queryTitu = "select t.*, d.nombre as delegacion, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from titular t, delega d where t.nrcuil = $cuil and t.delcod = d.delcod";
+		$queryFami = "select f.*, d.nombre as delegacion, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from familia f, delega d where f.nrcuil = $cuil and f.delcod = d.delcod";
 	} else {
-		$queryTitu = "select * from titular where nrcuil = $cuil and delcod = $delcod";
-		$queryFami = "select * from familia where nrcuil = $cuil and delcod = $delcod";
+		$queryTitu = "select t.*, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from titular t where nrcuil = $cuil and delcod = $delcod";
+		$queryFami = "select f.*, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from familia f where nrcuil = $cuil and delcod = $delcod";
 	}
 	if ($cuil != NULL) { 
 		$result = mysql_query($queryTitu,$db); 
@@ -28,6 +28,8 @@ if (isset($_GET['cuil'])) {
 			$row = mysql_fetch_array($result);
 			$nombre = $row['nombre'];
 			$nroafil = $row['nrafil'];
+			$fecnac = $row['fecnac'];
+			$edad = $row['edad'];
 			$tipo = "Titular";
 			$codigo = 0;
 			if ($delcod >= "4000") {
@@ -40,6 +42,8 @@ if (isset($_GET['cuil'])) {
 				$row = mysql_fetch_array($result);
 				$nombre = $row['nombre'];
 				$nroafil = $row['nrafil'];
+				$fecnac = $row['fecnac'];
+				$edad = $row['edad'];
 				$tipo = "Familiar";
 				$codigo = $row['codpar'];
 				if ($delcod >= "4000") {
@@ -48,10 +52,23 @@ if (isset($_GET['cuil'])) {
 			} else { 
 				$cartel = 1;
 				$codigo = -1;
+				$fecnac_edad = "";
 			}
 		}
 	} 
 }
+
+if ($nroafil != "") {
+	$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nroafil";
+	$resDisca = mysql_query($sqlDisca,$db);
+	$canDisca = mysql_num_rows($resDisca);
+	if ($canDisca == 0) {
+		$disca = 'NO';
+	} else {
+		$disca = 'SI';
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -224,45 +241,79 @@ if (isset($_GET['cuil'])) {
 					</div>
 					<div class="col-md-10 col-md-offset-1" style="border: 1px solid">
 						<h4 style="color: blue">Informaci&oacute;n del Beneficiario</h4>
-						<p><b>* C.U.I.L.:</b> 
-							<input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onblur="limpiarFormulario(this.value)" />
-						    <input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
-						</p>
-						<p>
-							<b>N&uacute;mero de Afiliado:</b> 
-						    <input name="textNroAfil" type="text" id="textNroAfil" readonly="readonly" value="<?php echo $nroafil ?>" style="background:#f5f5f5"/>
-						</p>
-						<p>
-						    <b>Tipo de Afiliado: </b>
-						    <input name="textCodPar" type="text" id="textCodPar" readonly="readonly" style="background:#f5f5f5;" value="<?php echo $tipo; ?>"/>
-						    <input name="codPar" type="text" id="codPar" size="4" readonly="readonly" style="display:none" value="<?php echo $codigo ?>"/>
-						</p>
-						<?php if ($delcod >= "4000") { ?>
-							      <p><b>Delegación: </b><input name="delega" type="text" id="delega" readonly="readonly" style="background:#f5f5f5;" value="<?php echo $delegacion; ?>"/></p>
-						<?php } ?>
-						<p><?php 
-							if ($cartel == 1) {
-								print("<div nombre='cartel' id='cartel' style='color:green'><b> Beneficiario con CUIL $cuil no empadronado. Completar Apellido y Nombre </b></div>");
-							}?>
-					    </p>
-					    <p>
-					      <b>* Apellido y Nombre: </b>
-					      <input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30"/>
-					    </p>
-					    <p>
-					      <b>Teléfonos [Solo Números. No olvide ingresar DDN (Código de Area)]</b>
-					    </p>
-					    <p>
-					      <b>Fijo: </b>
-					      <input name="textFijo" type="text" id="textFijo" size="20"/>
-					      <b>Movil: </b>
-					      <input name="textMovil" type="text" id="textMovil" size="20"/>
-					    </p>
-					    <p>
-					      <b>E-Mail: </b>
-					      <input name="textMail" type="text" id="textMail" size="50"/>
-					    </p>
-					    
+						<table class="table" style="width: 80%">
+							<tr>
+								<td style="text-align: right;"><b>* C.U.I.L.:</b> </td>
+								<td>
+									<input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onblur="limpiarFormulario(this.value)" />
+							    	<input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
+							    </td>
+							</tr>
+							<tr>
+								<td style="text-align: right;"><b>N&uacute;mero de Afiliado:</b></td> 
+							    <td><input name="textNroAfil" type="text" id="textNroAfil" readonly="readonly" value="<?php echo $nroafil ?>" style="background:#f5f5f5"/></td>
+							</tr>
+							<tr>
+							    <td style="text-align: right;"><b>Tipo de Afiliado: </b></td> 
+							    <td>
+							    	<input name="textCodPar" type="text" id="textCodPar" readonly="readonly" style="background:#f5f5f5;" value="<?php echo $tipo; ?>"/>
+							    	<input name="codPar" type="text" id="codPar" size="4" readonly="readonly" style="display:none" value="<?php echo $codigo ?>"/>
+							    </td>
+							</tr>
+							<tr>
+								<td style="text-align: right;"><b>Fec. de Nac.:</b> </td>
+								<td><span id="fecnac"><?php echo $fecnac ?></span></td>
+							</tr>
+							<tr>
+								<td style="text-align: right;"><b>Edad: </b></td>
+								<td><span id="edad"><?php echo $edad ?></span></td>
+							</tr>
+							<tr>
+								<td style="text-align: right;"><b>Discapacitado: </b></td>
+								<td><span id="disca"><?php echo $disca ?></span></td>
+							</tr>
+							<?php if ($delcod >= "4000") { 
+									$hidden = '';    
+								  } else {
+								  	$hidden = 'hidden="hidden"';
+								  }
+							?>
+							<tr <?php echo $hidden?>>
+								<td style="text-align: right;"><b>Delegación: </b></td>
+								<td><input name="delega" type="text" id="delega" readonly="readonly" style="background:#f5f5f5;" value="<?php echo $delegacion; ?>"/></td>
+							</tr>
+							<?php 
+								if ($cartel == 1) {
+									$hidden = '';
+								} else {
+									$hidden = 'hidden="hidden"';
+								}
+							?>
+							<tr <?php echo $hidden?>>
+						    	<td colspan="2" style="text-align: center">
+						    		<span id='cartel' style='color:green'><b> Beneficiario con CUIL <?php echo $cuil ?> no empadronado.<br> Completar Apellido y Nombre </b></span>
+						    	</td>
+						    </tr>
+						    <tr>
+						     	<td style="text-align: right;"><b>* Apellido y Nombre: </b></td>
+						     	<td><input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30"/></td>
+						    </tr>
+						    <tr>
+						      <td colspan="2" style="text-align: center;"><b>Teléfonos [Solo Números. No olvide ingresar DDN (Código de Area)]</b></td>
+						    </tr>
+						    <tr>
+						      <td style="text-align: right;"><b>Fijo: </b></td>
+						      <td><input name="textFijo" type="text" id="textFijo" size="20"/></td>
+						    </tr>
+						    <tr>
+						      <td style="text-align: right;"><b>Movil: </b></td>
+						      <td><input name="textMovil" type="text" id="textMovil" size="20"/></td>
+						    </tr>
+						    <tr>
+						      <td style="text-align: right;"><b>E-Mail: </b></td>
+						      <td><input name="textMail" type="text" id="textMail" size="40"/></td>
+						    </tr>
+					     </table>
 					    <br>
 					    <script>
 								if (document.forms.nuevaSolicitud.textNombre.value != "")  {

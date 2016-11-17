@@ -36,6 +36,10 @@ function limpiarFormulario(sCUIT){
 	document.forms.nuevaSolicitud.textCodPar.value="";
 	document.forms.nuevaSolicitud.textNombre.value="";
 	document.forms.nuevaSolicitud.delega.value ="";
+	document.getElementById("fecnac").innerHTML ="";
+	document.getElementById("edad").innerHTML ="";
+	document.getElementById("disca").innerHTML ="";
+	document.getElementById("cartel").innerHTML ="";
 	verificaCuil(sCUIT);
 }
 

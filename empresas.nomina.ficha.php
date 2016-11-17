@@ -3,7 +3,7 @@ $cuil = $_GET['cuil'];
 $nrcuit = $_GET['nrcuit'];
 $nrafil = $_GET['nrafil'];
 
-$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
+$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac
 FROM titular t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
 WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and t.estciv = civ.codestciv";
 $result = mysql_query($sql,$db);
@@ -11,7 +11,7 @@ $row = mysql_fetch_array($result);
 $est = "ACTIVO";
 
 if (mysql_num_rows($result) == 0) {
-	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil
+	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac
 	FROM bajatit t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
 	WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and  t.estciv = civ.codestciv";
 	$result = mysql_query($sql,$db);
@@ -97,6 +97,10 @@ if ($canDisca == 0) {
 				        <td><?php echo ($row['fecnac']); ?></td>
 				    </tr>
 				    <tr>
+				      <th style="text-align: center;">Edad </th>
+				        <td><?php echo ($row['edad']); ?></td>
+				    </tr>
+				    <tr>
 				      <th style="text-align: center;">CUIL</th>
 				        <td><?php
 						if ($_SESSION['delcod'] == $row['delcod']) {
@@ -141,16 +145,21 @@ if ($canDisca == 0) {
 						<th>Documento </th>
 						<th>Parentesco </th>
 						<th>Sexo </th>
-						<th>Fecha de Nacimiento </th>
+						<th>Fec. de Nac.</th>
+						<th>Edad</th>
 						<th>C.U.I.L. </th>
 						<th>Discapacitado</th>
 					</tr>
   				<?php
 				if ($est == "ACTIVO") {
-					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from familia f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
+					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac 
+								from familia f, tipodocu t, parentesco p
+								where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
 					$result1 = mysql_query($sql1,$db); 
 				} else {
-					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare from bajafam f, tipodocu t, parentesco p where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
+					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac 
+								from bajafam f, tipodocu t, parentesco p 
+								where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
 					$result1 = mysql_query($sql1,$db); 
 				}
 				$cantFami = mysql_num_rows($result1);
@@ -171,6 +180,7 @@ if ($canDisca == 0) {
 						<td><?php echo $row1['despare'] ?></td>
 						<td><?php echo $row1['ssexxo'] ?></td>
 						<td><?php echo $row1['fecnac'] ?></td>
+						<td><?php echo $row1['edad'] ?></td>
 						<td><?php echo $row1['nrcuil'] ?></td>
 						<td><?php echo $disca ?></td>
 					</tr>
