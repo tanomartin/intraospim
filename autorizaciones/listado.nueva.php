@@ -12,6 +12,9 @@ $tipo = "";
 $codigo = "";
 $cuil = "";
 $delegacion = "";
+$fecnac = "";
+$edad = "";
+
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
 	if ($delcod >= "4000") {
@@ -42,6 +45,7 @@ if (isset($_GET['cuil'])) {
 				$row = mysql_fetch_array($result);
 				$nombre = $row['nombre'];
 				$nroafil = $row['nrafil'];
+				$nroord = $row['nroord'];
 				$fecnac = $row['fecnac'];
 				$edad = $row['edad'];
 				$tipo = "Familiar";
@@ -58,8 +62,13 @@ if (isset($_GET['cuil'])) {
 	} 
 }
 
+$disca = "";
 if ($nroafil != "") {
-	$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nroafil";
+	if ($tipo == "Titular") {
+		$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nroafil and nroord = 0";
+	} else {
+		$sqlDisca = "SELECT * FROM discapacitados WHERE nrafil = $nroafil and nroord = $nroord";
+	}
 	$resDisca = mysql_query($sqlDisca,$db);
 	$canDisca = mysql_num_rows($resDisca);
 	if ($canDisca == 0) {
