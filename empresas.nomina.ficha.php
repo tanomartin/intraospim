@@ -3,7 +3,7 @@ $cuil = $_GET['cuil'];
 $nrcuit = $_GET['nrcuit'];
 $nrafil = $_GET['nrafil'];
 
-$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac
+$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, DATE_FORMAT(fecemi,'%d/%m/%Y') as fecemi, DATE_FORMAT(fecing,'%d/%m/%Y') as fecing
 FROM titular t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
 WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and t.estciv = civ.codestciv";
 $result = mysql_query($sql,$db);
@@ -11,7 +11,7 @@ $row = mysql_fetch_array($result);
 $est = "ACTIVO";
 
 if (mysql_num_rows($result) == 0) {
-	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac
+	$sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac,  DATE_FORMAT(fecemi,'%d/%m/%Y') as fecemi, DATE_FORMAT(fecing,'%d/%m/%Y') as fecing, DATE_FORMAT(fecbaj,'%d/%m/%Y') as fecbaj
 	FROM bajatit t, delega d, empresa e, provin p, tipodocu tip, estadocivil civ
 	WHERE t.nrcuil = '$cuil' and t.delcod = d.delcod and t.nrcuit = e.nrcuit and t.delcod = e.delcod and t.provin = p.codigo and t.tipdoc = tip.codigo and  t.estciv = civ.codestciv";
 	$result = mysql_query($sql,$db);
@@ -127,8 +127,12 @@ if ($canDisca == 0) {
 				        <td><?php echo ($row['catego']); ?></td>
 				    </tr>
 				    <tr>
-				      <th style="text-align: center;">Feche de ingreso </th>
+				      <th style="text-align: center;">Fecha de Ingreso </th>
 				        <td><?php echo ($row['fecing']); ?></td>
+				    </tr>
+				     <tr>
+				      <th style="text-align: center;">Ultima Emisión Carnet </th>
+				        <td><?php echo ($row['fecemi']); ?></td>
 				    </tr>
 				    <tr>
 				     <th style="text-align: center;">Discapacitado</th>
@@ -148,16 +152,17 @@ if ($canDisca == 0) {
 						<th>Fec. de Nac.</th>
 						<th>Edad</th>
 						<th>C.U.I.L. </th>
+						<th>Ultima Emisión Carnet</th>
 						<th>Discapacitado</th>
 					</tr>
   				<?php
 				if ($est == "ACTIVO") {
-					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac 
+					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, DATE_FORMAT(fecemi,'%d/%m/%Y') as fecemi
 								from familia f, tipodocu t, parentesco p
 								where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
 					$result1 = mysql_query($sql1,$db); 
 				} else {
-					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac 
+					$sql1 = "select f.*, t.descri as tipdoc, p.descrip as despare, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, DATE_FORMAT(fecemi,'%d/%m/%Y') as fecemi 
 								from bajafam f, tipodocu t, parentesco p 
 								where f.nrafil = '$nrafil' and f.tipdoc = t.codigo and f.codpar = p.codparent";
 					$result1 = mysql_query($sql1,$db); 
@@ -182,11 +187,12 @@ if ($canDisca == 0) {
 						<td><?php echo $row1['fecnac'] ?></td>
 						<td><?php echo $row1['edad'] ?></td>
 						<td><?php echo $row1['nrcuil'] ?></td>
+						<td><?php echo $row1['fecemi'] ?></td>
 						<td><?php echo $disca ?></td>
 					</tr>
 			<?php	}
 			} else { ?>
-					<tr><td colspan="7" style="text-align: center">No hay familiares informados</td></tr>
+					<tr><td colspan="9" style="text-align: center">No hay familiares informados</td></tr>
 			<?php } ?>
 				</table>
   				<p><a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px" class="glyphicon glyphicon-print"></i></a></p>

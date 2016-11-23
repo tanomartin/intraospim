@@ -17,7 +17,7 @@ $like = $_POST['condicion'];
     <td><strong>Nro. Afiliado</strong></td>
   </tr>
 <?php
-$sql = "SELECT nombre, nrodoc, nrcuil, nrafil, nrcuit, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac FROM `titular` WHERE delcod = '$delcod' and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by '$where'";
+$sql = "SELECT nombre, nrodoc, nrcuil, nrafil, nrcuit, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac FROM `titular` WHERE delcod = '$delcod' and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by '$where'";
 $result = mysql_query($sql,$db); 
 
 		// TABLA DE TITULARES
@@ -52,7 +52,7 @@ $result = mysql_query($sql,$db);
 
 
 <?php
-$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.nrcuit as nrcuit, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(familia.fecnac)), '%Y')+0 as edad, DATE_FORMAT(familia.fecnac,'%m/%d/%Y') as fecnac 
+$sql2 = "SELECT familia.nombre as nombre, familia.nrodoc as nrodoc, familia.nrcuil as cuifam, titular.nrcuit as nrcuit, titular.nrcuil as nrcuil, titular.nrafil as nrafil, titular.delcod as delcod, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(familia.fecnac)), '%Y')+0 as edad, DATE_FORMAT(familia.fecnac,'%d/%m/%Y') as fecnac 
 			FROM familia, titular WHERE familia.nrafil = titular.nrafil and titular.delcod = '$delcod' and familia.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by familia.nombre";
 $result2 = mysql_query($sql2,$db);
 
@@ -84,7 +84,7 @@ if(mysql_num_rows($result2) == 0) { ?>
     <td><strong>Nro. Afiliado</strong></td>	
   </tr>
 <?php
-$sql3 = "SELECT nombre, nrafil, nrodoc, nrcuil, nrcuit, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac FROM bajatit WHERE delcod = $delcod and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by nombre";
+$sql3 = "SELECT nombre, nrafil, nrodoc, nrcuil, nrcuit, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac FROM bajatit WHERE delcod = $delcod and $where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci order by nombre";
 $result3 = mysql_query($sql3,$db);
 
 // TABLA DE TITULARES DE BAJA
@@ -117,7 +117,7 @@ if(mysql_num_rows($result3) == 0) { ?>
 
 
 <?php
-$sql4 = "SELECT bajafam.nombre as nombre, bajafam.nrodoc as nrodoc, bajafam.nrcuil as cuifam, bajatit.delcod as delcod, bajatit.nrafil as nrafil, bajatit.nrcuit as nrcuit, bajatit.nrcuil as nrcuil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(bajafam.fecnac)), '%Y')+0 as edad, DATE_FORMAT(bajafam.fecnac,'%m/%d/%Y') as fecnac 
+$sql4 = "SELECT bajafam.nombre as nombre, bajafam.nrodoc as nrodoc, bajafam.nrcuil as cuifam, bajatit.delcod as delcod, bajatit.nrafil as nrafil, bajatit.nrcuit as nrcuit, bajatit.nrcuil as nrcuil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(bajafam.fecnac)), '%Y')+0 as edad, DATE_FORMAT(bajafam.fecnac,'%d/%m/%Y') as fecnac 
 			FROM bajafam, bajatit WHERE (bajafam.nrafil = bajatit.nrafil and bajatit.delcod = $delcod and bajafam.$where LIKE CONVERT(_utf8 '%$like%' USING latin1) COLLATE latin1_swedish_ci) ORDER BY bajafam.nombre";	
 $result4 = mysql_query($sql4,$db);
 
