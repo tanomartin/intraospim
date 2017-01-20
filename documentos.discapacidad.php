@@ -59,55 +59,55 @@
 				<div class="col-md-5">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Facturación de Prestadores</h3>
+							<h3 class="panel-title">Facturación de Prestadores 2017</h3>
 						</div>
 						<div class="panel-body">
 							<p>Instructivo Para Facturación de Prestadores</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/DISCAPACIDAD INSTRUCTIVO FACTURACION.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/discapacidad/INSTRUCTIVO FACTURACION.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-5 col-md-offset-1">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Asistencia (Ambulatorio)</h3>
-						</div>
-						<div class="panel-body">
-							<p>Planilla de Asistencia Mensual Prestadores / Ambulatorio</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM_AMBULATORIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-5">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Asistencia (Instituciones)</h3>
+							<h3 class="panel-title">ANEXO I</h3>
 						</div>
 						<div class="panel-body">
 							<p>Planilla de Asistencia Mensual Prestadores / Instituciones</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA PRESTADORES OSPIM_INSTITUCIONES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/discapacidad/ANEXO I PLANILLA ASISTENCIA OSPIM INSTITUCIONES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Transporte</h3>
+							<h3 class="panel-title">ANEXO II</h3>
 						</div>
 						<div class="panel-body">
-							<p>Planilla de Asistencia Mensual Transporte</p>
+							<p>Planilla de Asistencia Mensual Prestadores / Ambulatorio</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/PLANILLA ASISTENCIA TRANSPORTE OSPIM.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/discapacidad/ANEXO II PLANILLA ASISTENCIA OSPIM AMBULATORIO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">ANEXO III</h3>
+						</div>
+						<div class="panel-body">
+							<p>Planilla de Asistencia Mensual Prestadores / Transporte</p>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="files/formularios/discapacidad/ANEXO III PLANILLA ASISTENCIA OSPIM TRANSPORTE.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>			
