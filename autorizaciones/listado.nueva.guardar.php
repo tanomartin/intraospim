@@ -181,6 +181,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 		}
 	}
 	
+	$autorizaGuardado = 0;
 	if ($todoOk == 0 and $delcod != 0 and $delcod != NULL) {
 		try {
 			$dbname = "sistem22_intranet";
@@ -210,9 +211,9 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 
 			mail($mails,$asunto,$cuerpo,$cabecera); 
 			$dbh->commit();
-			
+			$autorizaGuardado = 1;
 		} catch (PDOException $e) {
-			echo $e->getMessage();
+			$autorizaGuardado = -1;
 			$dbh->rollback();
 		}
 	} 
@@ -238,6 +239,10 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 	<script type="text/javascript" src="../include/js/jquery.blockUI.js" ></script>
 	<script type="text/javascript" src="lib/jquery.maskedinput.js"></script>
 	<script type="text/javascript" src="lib/funcionControl.js" ></script>
+	
+	<style type="text/css" media="print">
+		.nover {display:none}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -262,10 +267,9 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 				
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-ok-sign"></i><br>Autorizaciones</h2>
 			<h3>Resultado Carga Solicitud</h3>
-
-			<div align="center">
-			   
-			    
+			
+			<div align="center"> 
+				<?php if ($autorizaGuardado != -1) { ?>	
 			    <div class="col-md-8 col-md-offset-2"> 		    
 				    <table class="table" style="text-align: center">
 				      <thead>
@@ -422,12 +426,21 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 						if ($todoOk != 0) { ?>
 							<input type="button" style="margin-bottom: 15px" class="btn btn-primary" name="volver" value="Volver a carga de Solicitud" onclick="location.href='listado.nueva.php'"/>
 				 <?php	} ?>
-				</div>
-				<div class="col-md-12 panel-footer">
+				</div>		
+  			<?php } else { ?>	
+  					<div class="col-md-8 col-md-offset-2"> 
+  						<h1><i style="color: red"  class="glyphicon glyphicon-remove"></i></h1> 
+  						<h3 style="color: red">ERROR AL GUARDAR LA AUTORIZACION <br>POR FAVOR COMUNIQUESE CON EL DPTO. DE SISTEMAS DE OSPIM</h3>
+  						<h4 style="color: blue"><i class="glyphicon glyphicon-phone-alt"></i> (011) 4431-4791 (INT. 125) <br> <i class="glyphicon glyphicon-envelope"></i> intranet@ospim.com.ar </h4>
+  						<h4>PARA INFORMAR AL DPTO. SISTEMAS OSPIM <br> <?php echo $e->getMessage(); ?></h4>
+  						<a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px"  class="glyphicon glyphicon-print"></i></a>
+  					</div>
+  			<?php }?>	
+  				<div class="col-md-12 panel-footer">
 					<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
 					<p>&copy; 2016 O.S.P.I.M.<p>
-				</div>
-  			</div>
+				</div> 	
+			</div>
   		</div>
   	</div>
 </body>
