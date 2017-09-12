@@ -338,7 +338,7 @@ if ($nroafil != "") {
 					<div class="col-md-10 col-md-offset-1" style="border: 1px solid">
 					    <h4 style="color: blue">Datos Solicitud</h4>
 					      	<p><b>* Tipo: </b>
-						      	<input name="tipo" id="tipoPractica" type="radio" value="1" onchange="mostrarPresu(0)" checked="checked"/> Pr&aacute;ctica |
+						      	<input name="tipo" id="tipoPractica" type="radio" value="1" onchange="mostrarPresu(2)" checked="checked"/> Pr&aacute;ctica |
 						      	<input name="tipo" id="tipoMaterial" type="radio" value="2" onchange="mostrarPresu(1)"/> Material |
 							  	<input name="tipo" id="tipoMedicamento" type="radio" value="3" onchange="mostrarPresu(0)"/> Medicamento 
 					      	</p>
@@ -355,11 +355,14 @@ if ($nroafil != "") {
 					      	<br>
 					 </div>  
 					 
-					 <div class="col-md-10 col-md-offset-1" style="border: 1px solid; margin-bottom: 10px">
+					 <input name="minimo" value="0" type="text" id="minimo" size="4" style="display: none"/>
+				   	 <input name="maximo" value="3" type="text" id="maximo" size="4" style="display: none"/>
+					 
+					 <div id="presuMaterial" class="col-md-10 col-md-offset-1" style="border: 1px solid; display: none">
 					 	 <h4 style="color: blue">Pedido de Materiales - Presupuestos</h4>
 					      <p><b>Tipo de Material</b></p>
 					      <p>
-					       	 <select name="tipoSolicitud" size="1" id="tipoSolicitud" onchange="controlCantidad(document.forms.nuevaSolicitud.tipoSolicitud[selectedIndex].value)" style="background:#f5f5f5" disabled="disabled">
+					       	 <select name="tipoSolicitud" size="1" id="tipoSolicitud" onchange="controlCantidad(document.forms.nuevaSolicitud.tipoSolicitud[selectedIndex].value)">
 					            <option value='0' selected="selected">Seleccione un valor </option>
 						            <?php $query="select * from clasificamaterial order by codigo ASC";
 										  $result = mysql_query($query,$db); 
@@ -368,21 +371,31 @@ if ($nroafil != "") {
 						            <?php } ?>
 					            </select>
 					      </p>
-					      <input name="minimo" type="text" id="minimo" size="4" style="display: none"/>
-					      <input name="maximo" type="text" id="maximo" size="4" style="display: none"/>
+					     
 					      <p>
 					        <input name="notaCantidad" type="text" id="notaCantidad" size="50" style="background:#f5f5f5; text-align: center; color: green; font-weight: bold;" readonly="readonly" />
 					      </p>
-					      <p id="presu1" style="display: none"><b>Presupuesto 1</b> <input name="presu1" id="presu1" type="file" /></p>
-					      <p id="presu2" style="display: none"><b>Presupuesto 2</b> <input name="presu2" id="presu2" type="file" /></p>
-					      <p id="presu3" style="display: none"><b>Presupuesto 3</b> <input name="presu3" id="presu3" type="file" /></p>
-					      <p id="presu4" style="display: none"><b>Presupuesto 4</b> <input name="presu4" id="presu4" type="file" /></p>
-					      <p id="presu5" style="display: none"><b>Presupuesto 5</b> <input name="presu5" id="presu5" type="file" /></p>  
-					</div>      
+					      <p id="presu1"><b>Presupuesto 1</b> <input name="presu1" id="presu1" type="file" /></p>
+					      <p id="presu2"><b>Presupuesto 2</b> <input name="presu2" id="presu2" type="file" /></p>
+					      <p id="presu3"><b>Presupuesto 3</b> <input name="presu3" id="presu3" type="file" /></p>
+					      <p id="presu4"><b>Presupuesto 4</b> <input name="presu4" id="presu4" type="file" /></p>
+					      <p id="presu5"><b>Presupuesto 5</b> <input name="presu5" id="presu5" type="file" /></p>  
+					</div>   
+
+					<div id="presuPractica" class="col-md-10 col-md-offset-1" style="border: 1px solid;">
+					 	 <h4 style="color: blue">Pedido de Práctica - Presupuestos</h4>
+					     <p>
+					        <input name="notaCantidadPractica" value="Debe cargar entre 0 y 3 presupuestos" type="text" id="notaCantidadPractica" size="50" style="background:#f5f5f5; text-align: center; color: green; font-weight: bold;" readonly="readonly" />
+					      </p>
+					      <p id="presuprac1"><b>Presupuesto 1</b> <input name="presuprac1" id="presuprac1" type="file" /></p>
+					      <p id="presuprac2"><b>Presupuesto 2</b> <input name="presuprac2" id="presuprac2" type="file" /></p>
+					      <p id="presuprac3"><b>Presupuesto 3</b> <input name="presuprac3" id="presuprac3" type="file" /></p>
+					</div>    
+					
 					<?php if (isset($_GET['cuil'])) {?>
-					         	<input class="btn btn-primary" name="generar" type="submit" id="generar" value="Generar Solicitud"/>
+					         	<input style="margin-top: 10px" class="btn btn-primary" name="generar" type="submit" id="generar" value="Generar Solicitud"/>
 					<?php } else {?>
-					         	<input title="Debe Verificar C.U.I.L." class="btn btn-primary" name="generar" type="submit" id="generar" value="Generar Solicitud" disabled="disabled"/>
+					         	<input style="margin-top: 10px" title="Debe Verificar C.U.I.L." class="btn btn-primary" name="generar" type="submit" id="generar" value="Generar Solicitud" disabled="disabled"/>
 					<?php } ?>
 				</form>
 			</div>

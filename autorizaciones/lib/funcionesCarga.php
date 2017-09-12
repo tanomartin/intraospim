@@ -20,15 +20,18 @@ function mostrarPresu(muestra) {
 	ocultarPresu();
 	document.getElementById("obligatorioPedido").style.visibility = "hidden";
 	document.getElementById("obligatorioHistoria").style.visibility = "hidden";
-	if (muestra != 1) {
-		document.forms.nuevaSolicitud.tipoSolicitud.disabled=true;
-		document.forms.nuevaSolicitud.notaCantidad.value = "";
-		document.forms.nuevaSolicitud.tipoSolicitud.selectedIndex="0";	
-		document.forms.nuevaSolicitud.tipoSolicitud.style.backgroundColor = "#f5f5f5";
-	} else {
-		document.forms.nuevaSolicitud.tipoSolicitud.style.backgroundColor = "#ffffff";
-		document.forms.nuevaSolicitud.tipoSolicitud.disabled=false;
-	}	
+	document.getElementById("presuMaterial").style.display = "none";
+	document.getElementById("presuPractica").style.display = "none";
+	document.forms.nuevaSolicitud.notaCantidad.value = "";
+	document.forms.nuevaSolicitud.tipoSolicitud.selectedIndex = 0;
+	if (muestra == 1) {
+		document.getElementById("presuMaterial").style.display = "block";
+	}
+	if (muestra == 2) {
+		document.getElementById("presuPractica").style.display = "block";
+		document.forms.nuevaSolicitud.maximo.value="3";
+		document.forms.nuevaSolicitud.minimo.value="0";
+	}
 }	
 
 function limpiarFormulario(sCUIT){

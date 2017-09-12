@@ -8,17 +8,6 @@ $redirec = false;
 if(empty($_SESSION) || $_SESSION['delcod'] == null || $_SESSION['delcod'] == ''){
 	$redirec = true;
 } else {
-	/*$fechaGuardada = $_SESSION["ultimoAcceso"]; 
-	$ahora = date("Y-n-j H:i:s"); 
-	$tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada)); 
-	$maxSession = $_SESSION["maxtimeSession"];
-	
-	//40 minutos de sesion
-	if($tiempo_transcurrido >= $maxSession) { 
-		$redirec = true;
-	} else {
-		$_SESSION["ultimoAcceso"] = $ahora; 
-	}*/
 	$sql = "select acceso from usuarios where delcod = ".$_SESSION['delcod'];
 	$result = mysql_query($sql,$db);
 	$rowUsuario = mysql_fetch_assoc($result);

@@ -153,7 +153,11 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 		define('contenido_p', 'contenido_p');
 		
 		for ($i=1; $i <= $maxPresu; $i++) {
-			$nombrePresu = "presu".$i;
+			if ($practica == 1) {
+				$nombrePresu = "presuprac".$i;
+			} else {
+				$nombrePresu = "presu".$i;
+			}
 			${nombre_archivo_p.$i}=$_FILES["$nombrePresu"]["name"];
 			${tipo_archivo_p.$i}=$_FILES["$nombrePresu"]["type"]; 
 			${tamano_archivo_p.$i}=$_FILES["$nombrePresu"]["size"]; 

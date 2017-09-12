@@ -5,7 +5,7 @@ $delcod = $_SESSION['delcod'];
 $sql = "select * from autorizacionprocesada where delcod = $delcod and nrosolicitud = $nrosolicitud";
 $result = mysql_query($sql,$db);
 $row=mysql_fetch_array($result);
-
+$delegacion = "-";
 if ($delcod >= "4000") { 
 	if ($row['nrafil'] != 0) {
 		if ($row['codpar'] == 0) {
@@ -15,6 +15,7 @@ if ($delcod >= "4000") {
 		}
 		$resDelega = mysql_query($sqlDelega,$db);
 		$rowDelega = mysql_fetch_array($resDelega);
+		$delegacion = $rowDelega['delega'];
 	}
 }
 ?>
@@ -53,9 +54,9 @@ if ($delcod >= "4000") {
 			<h3 style="color: <?php echo estadoColor($row['statusverificacion'],$row['statusautorizacion']) ?>"><b><?php echo estado($row['statusverificacion'],$row['statusautorizacion']) ?></b></h3>
 			<div class="col-md-8 col-md-offset-2">
 				<h4>Informaci&oacute;n del Beneficiario </h4>
-			 	<table class="table" style="text-align: center">
+			 	<table class="table" style="text-align: center;">
 			 		<tr>
-				        <th style="text-align: center;">N&uacute;mero de Afiliado</th>
+				        <th style="text-align: center;  width: 400px">N&uacute;mero de Afiliado</th>
 				      	<td><?php echo $row['nrafil']?></td>
 			    	</tr>
 			    	<tr>
@@ -69,20 +70,20 @@ if ($delcod >= "4000") {
 			    		<?php if ($delcod >= "4000") { ?>
 				    		<tr>
 					       	 	<th style="text-align: center;">Delegación</th>
-					      		<td><?php echo $rowDelega['delega'] ?></td>
+					      		<td><?php echo $delegacion ?></td>
 				    		</tr>
 					   	<?php }?>
 					<tr>
 				        <th style="text-align: center;">Telefono Fijo</th>
-				      	<td><?php echo $row['telefono']?></td>
+				      	<td><?php if ($row['telefono'] != "") { echo $row['telefono']; } else { echo "-"; }?></td>
 			    	</tr>
 			    	<tr>
 				        <th style="text-align: center;">Telefono Móvil</th>
-				      	<td><?php echo $row['movil']?></td>
+				      	<td><?php if ($row['movil'] != "") { echo $row['movil']; } else { echo "-"; }?></td>
 			    	</tr>
 			    	<tr>
 				        <th style="text-align: center;">Email</th>
-				      	<td><?php echo $row['email']?></td>
+				      	<td><?php if ($row['email'] != "") { echo $row['email']; } else { echo "-"; }?></td>
 			    	</tr>
 			    	<tr>
 				        <th style="text-align: center;">Tipo de Beneficiario</th>
@@ -100,15 +101,15 @@ if ($delcod >= "4000") {
 			    	</tr>
 			    	<tr>
 				        <th style="text-align: center;">Observacion</th>
-				      	<td> <?php echo $row['rechazoverificacion'] ?></td>
+				      	<td><?php if ($row['rechazoverificacion'] != "") { echo $row['rechazoverificacion']; } else { echo "-"; }?></td>
 			    	</tr>
 			    </table>
 			 	
 			 	<h4>Informaci&oacute;n de la Solicitud </h4>
 			 	
-			 	<table class="table" style="text-align: center">
+			 	<table class="table" style="text-align: center;">
 			 		<tr>
-				        <th style="text-align: center;">Tipo de Solicitud</th>
+				        <th style="text-align: center; width: 400px">Tipo de Solicitud</th>
 				      	<td> <?php echo tipo($row['tiposolicitud']) ?></td>
 			    	</tr>
 			    	<tr>
@@ -123,7 +124,7 @@ if ($delcod >= "4000") {
 			    	</tr>
 			    	<tr>
 				        <th style="text-align: center;">Observacion</th>
-				      	<td> <?php echo $row['rechazoautorizacion'] ?></td>
+				      	<td><?php if ($row['rechazoautorizacion'] != "") { echo $row['rechazoautorizacion']; } else { echo "-"; }?></td>
 			    	</tr>
 			 	</table>
 			 	
