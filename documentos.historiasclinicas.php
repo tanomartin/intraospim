@@ -141,13 +141,24 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4 col-md-offset-4">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Resumen de Historia Clínica Específica para Hepatitis B y C Crónicas</h3>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/historias/RESUMEN DE HISTORIA CLINICA ESPECIFICA PARA HEPATITIS B Y C CRONICAS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">Historia Clínica de Fertilización Asistida</h3>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DE FERTILIZACION ASISTIDA.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
