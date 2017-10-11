@@ -163,6 +163,17 @@
 					</div>
 				</div>
 				
+				<div class="col-md-4">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">Historia Clínica Diabetes</h3>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DIABETES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+						</ul>
+					</div>
+				</div>
+				
 			</div>
 			
 			<div class="col-md-12 panel-footer">
