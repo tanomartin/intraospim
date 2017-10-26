@@ -45,13 +45,13 @@
 				<div class="col-md-5 col-md-offset-1">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Manual de Procedimiento 2017</h3>
+							<h3 class="panel-title">Manual de Procedimiento 2018</h3>
 						</div>
 						<div class="panel-body">
 							<p>Instructivo Completo de Procedimiento para Discapacidad</p>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/discapacidad/Manual de Procedimiento Discapacidad 2017.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/discapacidad/Manual de Procedimiento Discapacidad 2018.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
