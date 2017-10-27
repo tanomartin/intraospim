@@ -38,73 +38,18 @@
 				</ul>
 			</nav>
 			
-			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-book"></i><br>Instructivos</h2>
-			
-			<div class="row">
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Consultas</h3>
-						</div>
-						<div class="panel-body">
-							<i style="font-size: 100px"  class="glyphicon glyphicon-book"></i>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/instructivos/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Autorizaciones</h3>
-						</div>
-						<div class="panel-body">
-							<i style="font-size: 100px"  class="glyphicon glyphicon-ok-sign"></i>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item">
-								<b>Tutorial</b><br><a href="files/instructivos/autorizaciones/tutorial.pdf" target="_blank" class="btn btn-primary btn-sm">Descargar</a>
-							</li>
-							<li class="list-group-item">
-								<b>Configuracion Correo</b><br><a href="files/instructivos/autorizaciones/correo.pdf" target="_blank" class="btn btn-primary btn-sm">Descargar</a>
-							</li>
-							<li class="list-group-item">
-								<b>Configuracion Escane</b><br><a href="files/instructivos/autorizaciones/escaneo.pdf" target="_blank" class="btn btn-primary btn-sm">Descargar</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">Prevención de la Salud</h3>
-						</div>
-						<div class="panel-body">
-							<i style="font-size: 100px"  class="glyphicon glyphicon-plus"></i>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="files/instructivos/prevencion/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-list-alt"></i><br>Formularios</h2>
+			<h3>Diabetes</h3>
 			
 			<div class="row">
+
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Discapacidad</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios para Discapacidad</p>
+							<h3 class="panel-title">INSTRUCTIVO <BR>PACIENTES</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.discapacidad.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="files/formularios/diabetes/PROGRAMA DIABETES INSTRUCTIVO PACIENTE.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -112,13 +57,10 @@
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Historias Clinicas</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios para Historias Clinicas</p>
+							<h3 class="panel-title">¿QUE ES LA <BR>DIABETES?</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.historiasclinicas.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="files/formularios/diabetes/Que es la diabetes.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -126,17 +68,13 @@
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Diabetes</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios para Diabetes</p>
+							<h3 class="panel-title">PROCEDIMIENTO INTERNO <BR>MEDICACIÓN E INSUMOS</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.diabetes.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="files/formularios/diabetes/PROCEDIMIENTO INTERNO DIABETES MEDICACIÓN E INSUMOS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
-				</div>
-				
+				</div>			
 			</div>
 			
 			<div class="col-md-12 panel-footer">
