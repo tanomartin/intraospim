@@ -71,7 +71,9 @@
 								<b>Configuracion Correo</b><br><a href="files/instructivos/autorizaciones/correo.pdf" target="_blank" class="btn btn-primary btn-sm">Descargar</a>
 							</li>
 							<li class="list-group-item">
-								<b>Configuracion Escane</b><br><a href="files/instructivos/autorizaciones/escaneo.pdf" target="_blank" class="btn btn-primary btn-sm">Descargar</a>
+								<b>Configuracion Escaneo</b><br>
+								<a href="files/instructivos/autorizaciones/escaneo.pdf" target="_blank" class="btn btn-primary btn-sm">Descargar Tutorial</a>
+								<a href="files/instructivos/autorizaciones/Scan2PDF.exe" target="_blank" class="btn btn-primary btn-sm">Descargar Programa</a>
 							</li>
 						</ul>
 					</div>
