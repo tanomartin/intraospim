@@ -16,7 +16,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 	$nroafil = $_POST['textNroAfil'];
 	$detalleCodigo = $_POST['textCodPar'];
 	$codPar = $_POST['codPar'];
-	$nombre = strtoupper($_POST['textNombre']);
+	$nombre = strtoupper(addslashes($_POST['textNombre']));
 	
 	$fijo = $_POST['textFijo'];
 	$movil = $_POST['textMovil'];
