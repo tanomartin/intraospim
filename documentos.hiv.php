@@ -20,21 +20,20 @@
 <body>
 	<div class="container">
 		<div class="row" align="center" style="background-color: #f5f5f5;">
-			
 			<?php include_once ("navbar.php"); ?>
 			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-list-alt"></i><br>Documentación y Formularios</h2>
-			<h3>Diabetes</h3>
+			<h3>H.I.V.</h3>
 			
 			<div class="row">
-				
+
 				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Historia <br> Clinica</h3>
+							<h3 class="panel-title">Historia Clínica</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DIABETES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/hiv/HISTORIA CLINICA HIV.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -42,10 +41,10 @@
 				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Instructivo <BR>Pacientes</h3>
+							<h3 class="panel-title">Notificación</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/diabetes/PROGRAMA DIABETES INSTRUCTIVO PACIENTE.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/hiv/NOTIFICACION DE VIH-SIDA.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -53,24 +52,24 @@
 				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">¿Que es la <BR>Diabetes?</h3>
+							<h3 class="panel-title">Consentimiento</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/diabetes/Que es la diabetes.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/hiv/CONSENTIMIENTO PARA HIV.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
-				</div>
+				</div>	
 				
 				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Procedimiento Interno <BR>Medicación e Insumos</h3>
+							<h3 class="panel-title">Planilla de Adherencia</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/diabetes/PROCEDIMIENTO INTERNO DIABETES MEDICACIÓN E INSUMOS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/hiv/PLANILLA DE ADHERENCIA.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
-				</div>			
+				</div>				
 			</div>
 			
 			<div class="col-md-12 panel-footer">
