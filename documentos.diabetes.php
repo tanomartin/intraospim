@@ -34,7 +34,7 @@
 							<h3 class="panel-title">Historia <br> Clinica</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DIABETES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/diabetes/HISTORIA CLINICA DIABETES.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
