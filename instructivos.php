@@ -52,7 +52,7 @@
 							<li class="list-group-item">
 								<b><font color="blue"> Configuracion Correo</font> <br><br> Outlook Express (Windows XP) <br>Live Mail (Windows Vista a Windows 7)</b><br><a href="files/instructivos/autorizaciones/correo.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Tutorial</a><br><br>
 								<b>eClient (Windows 10)</b><br><a href="files/instructivos/autorizaciones/Tutorial eM Client.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i>Tutorial</a>
-								<a href="files/instructivos/autorizaciones/setup.msi" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
+								<a href="#" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
 							</li>
 							<li class="list-group-item">
 								<b><font color="blue">Configuracion Escaneo</font> </b><br><br>
