@@ -82,11 +82,7 @@
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item">
-								<?php if ($_SESSION['tieneAutorizacion']) {?>
-									<a href="autorizaciones/listado.php" class="btn btn-primary">Ingresar</a>
-							   <?php } else { ?>
-							    	<div style="color: red">PEDIR AUTORIZACION</div>
-							  <?php  } ?>
+								<a href="autorizaciones/listado.php" class="btn btn-primary">Ingresar</a>
 							</li>
 						</ul>
 					</div>

@@ -1,6 +1,6 @@
 <?php include ("verificaSesionAutorizaciones.php"); 
 include_once ("lib/funciones.php");
-$sql = "SELECT * FROM autorizacionprocesada WHERE delcod = ".$_SESSION['delcod']." ORDER BY nrosolicitud DESC LIMIT 50";
+$sql = "SELECT * FROM autorizacionprocesada WHERE delcod = ".$_SESSION['delcod']." ORDER BY nrosolicitud DESC";
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
 
@@ -78,13 +78,7 @@ $(function() {
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-ok-sign"></i><br>Autorizaciones</h2>
 			
 			<div class="col-md-10 col-md-offset-1">
-				<div>
-					<input style="float: left" class="btn btn-primary nover" type="button" value="Nueva Solicitud" onclick="location.href='listado.nueva.php'" />	
-					<input style="float: right" class="btn btn-primary nover" type="button" value="Listado Completo Solictudes" onclick="location.href='listado.completo.php'" />	
-				</div>
-			</div>
-			<div class="col-md-10 col-md-offset-1">
-			    <h3>Últimas 50 Solicitudes</h3>
+			    <h3>Listado Completo de Solicitudes</h3>
 				<table class="tablesorter" id="solicitudes">
 				  <thead>
 					  <tr>

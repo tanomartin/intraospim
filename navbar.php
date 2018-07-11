@@ -10,7 +10,7 @@
 		<li><a href="empresas.php">Empresas</a></li>
 		<li><a href="beneficiarios.php">Beneficiarios</a></li>
 		<?php if ($_SESSION['tienePrevencion']) {?><li><a href="prevencion/menuPrevencion.php">Prev. Salud</a></li><?php } ?>
-		<?php if ($_SESSION['tieneAutorizacion']) {?><li><a href="autorizaciones/listado.php">Autorizaciones</a></li><?php } ?>
+		<li><a href="autorizaciones/listado.php">Autorizaciones</a></li>
 		<li><a href="documentos.php">Docu. y Forms.</a></li>
 		<li><a href="consultas.php">Consultas</a></li>
 		<li><a href="instructivos.php">Instructivos</a></li>
