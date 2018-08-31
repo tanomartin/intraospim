@@ -307,6 +307,10 @@ if ($nroafil != "") {
 						     	<td style="text-align: right;"><b>* Apellido y Nombre: </b></td>
 						     	<td><input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30"/></td>
 						    </tr>
+						     <tr>
+						     	<td style="text-align: right;"><b>Comentario: </b></td>
+						     	<td><textarea placeholder="Ingrese aquí comentarios que necesite enviar al dpto. de autorizaciones" name="comentario" id="comentario" rows="5" cols="40"></textarea></td>
+						    </tr>
 						    <tr>
 						      <td colspan="2" style="text-align: center;"><b>Teléfonos [Solo Números. No olvide ingresar DDN (Código de Area)]</b></td>
 						    </tr>

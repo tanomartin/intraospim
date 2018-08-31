@@ -67,6 +67,10 @@ if ($delcod >= "4000") {
 				        <th style="text-align: center;">C.U.I.L.</th>
 				      	<td><?php echo $row['nrcuil']?></td>
 			    	</tr>
+			    	<tr>
+				        <th style="text-align: center;">Comentario</th>
+				      	<td><?php if ($row['comentario'] == "") { echo "-"; } else { echo $row['comentario']; }?></td>
+			    	</tr>
 			    		<?php if ($delcod >= "4000") { ?>
 				    		<tr>
 					       	 	<th style="text-align: center;">Delegación</th>
