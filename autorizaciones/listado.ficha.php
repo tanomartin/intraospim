@@ -78,11 +78,11 @@ if ($delcod >= "4000") {
 				    		</tr>
 					   	<?php }?>
 					<tr>
-				        <th style="text-align: center;">Telefono Fijo</th>
+				        <th style="text-align: center;">Fijo Particular / Empresa</th>
 				      	<td><?php if ($row['telefono'] != "") { echo $row['telefono']; } else { echo "-"; }?></td>
 			    	</tr>
 			    	<tr>
-				        <th style="text-align: center;">Telefono Móvil</th>
+				        <th style="text-align: center;">Móvil</th>
 				      	<td><?php if ($row['movil'] != "") { echo $row['movil']; } else { echo "-"; }?></td>
 			    	</tr>
 			    	<tr>

@@ -250,7 +250,7 @@ if ($nroafil != "") {
 					</div>
 					<div class="col-md-10 col-md-offset-1" style="border: 1px solid">
 						<h4 style="color: blue">Informaci&oacute;n del Beneficiario</h4>
-						<table class="table" style="width: 80%">
+						<table class="table" style="width: 85%">
 							<tr>
 								<td style="text-align: right;"><b>* C.U.I.L.:</b> </td>
 								<td>
@@ -315,7 +315,7 @@ if ($nroafil != "") {
 						      <td colspan="2" style="text-align: center;"><b>Teléfonos [Solo Números. No olvide ingresar DDN (Código de Area)]</b></td>
 						    </tr>
 						    <tr>
-						      <td style="text-align: right;"><b>Fijo: </b></td>
+						      <td style="text-align: right;"><b>Fijo Particular / Empresa: </b></td>
 						      <td><input name="textFijo" type="text" id="textFijo" size="20"/></td>
 						    </tr>
 						    <tr>
