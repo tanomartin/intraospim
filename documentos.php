@@ -25,25 +25,11 @@
 			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-list-alt"></i><br>Documentación y Formularios</h2>
 			
-			<div class="row">
+			<div class="row" style="margin: 5px">
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Discapacidad</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios y Documentos para Discapacidad</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.discapacidad.php" class="btn btn-primary">Ingresar</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3>H.I.V.</h3>
+							<h3>H.I.V.</h3><br>
 						</div>
 						<div class="panel-body">
 							<p>Formularios y Documentos para H.I.V.</p>
@@ -57,7 +43,7 @@
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Diabetes</h3>
+							<h3>Diabetes</h3><br>
 						</div>
 						<div class="panel-body">
 							<p>Formularios y Documentos para Diabetes</p>
@@ -67,8 +53,8 @@
 						</ul>
 					</div>
 				</div>
-				
-				<div class="col-md-8 col-md-offset-2">
+
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3>Historias Clínicas Otras Patologias</h3>
