@@ -209,7 +209,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			$nombre = $row['nombre'];
 			$emailRepli = "autorizaciones".$delcod."@ospim.com.ar";
 			
-			$mails = "autorizaciones@ospim.com.ar, verificaciones@ospim.com.ar";
+			$mails = "verificaciones@ospim.com.ar";
 			$asunto = "ATENCION: Solicitud de Autorizacion Nro ".$ultimo_id." de la Delegacion ".$delcod."-".$nombre;
 			$cuerpo = "Ha sido ingresada al Sistema de Autorizaciones la solicitud nro ".$ultimo_id." de fecha ".$fechaSolicitud." perteneciente a la Delegacion ".$delcod."-".$nombre;
 			$cabecera = "MIME-Version: 1.0" . "\r\n";
