@@ -196,13 +196,13 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$dbh->beginTransaction();
 			
-			$sqlCarga = "INSERT INTO autorizacionpedida VALUE (DEFAULT,'$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$obs','$fijo','$movil','$email','$practica','$material','$medicamento','$tipoMaterial','$contenido_pm', '$contenido_hc', '$contenido_e', '$contenido_p1', '$contenido_p2', '$contenido_p3', '$contenido_p4', '$contenido_p5')";
-			
-			$dbh->exec($sqlCarga);
-			
+			$sqlSoli = "INSERT INTO autorizacionprocesada (nrosolicitud,delcod,fechasolicitud,nrcuil,nrafil,codpar,nombre,comentario,telefono,movil,email,tiposolicitud, tipomaterial) VALUES  (DEFAULT,'$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$obs','$fijo','$movil','$email','$select', '$tipoMaterial')";
+			$dbh->exec($sqlSoli);
 			$ultimo_id = $dbh->lastInsertId();
-			$sqlSoli = "INSERT INTO autorizacionprocesada (nrosolicitud,delcod,fechasolicitud,nrcuil,nrafil,codpar,nombre,comentario,telefono,movil,email,tiposolicitud, tipomaterial) VALUES  ('$ultimo_id','$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$obs','$fijo','$movil','$email','$select', '$tipoMaterial')";
-			$dbh->exec($sqlSoli);	
+			
+			$sqlCarga = "INSERT INTO autorizacionpedida VALUE ($ultimo_id,'$delcod','$fechaSolicitud','$cuit','$nroafil','$codPar','$nombre','$obs','$fijo','$movil','$email','$practica','$material','$medicamento','$tipoMaterial','$contenido_pm', '$contenido_hc', '$contenido_e', '$contenido_p1', '$contenido_p2', '$contenido_p3', '$contenido_p4', '$contenido_p5')";
+			$dbh->exec($sqlCarga);
+
 			
 			$sqlNombre = "select * from usuarios where delcod = $delcod";
 			$row = $dbh->query($sqlNombre)->fetch();
