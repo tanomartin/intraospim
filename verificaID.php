@@ -13,8 +13,7 @@ if (isset($_POST['usuario']) && isset($_POST['pass'])) {
 		$_SESSION['fecacc'] = substr($row['fecuac'],8,2)."/".substr($row['fecuac'],5,2)."/".substr($row['fecuac'],0,4)." - ".$row['horuac'];
 		$_SESSION['nombre'] = $row['nombre'];
 		
-		//$prevencion = array("1002","1102","1106","1107","1108","5000","5001");
-		$prevencion = array();
+		$prevencion = array("5000");
 		$_SESSION['tienePrevencion'] = false;
 		for ($i=0; $i < sizeof($prevencion); $i++) {
 			if ($prevencion[$i] == $_SESSION['delcod']) {
