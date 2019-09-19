@@ -130,7 +130,7 @@ if (mysql_num_rows($result2) == 0) {
 									if (array_key_exists($buscador,$arrayRemune)) { 
 										$ingreso = true; ?>
 										<td><?php echo $mes."/".$ano ?></td>
-										<td><a target="_blank" href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $cuit ?>')"><?php echo $cuit ?></a></td>
+										<td><a href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $cuit ?>')"><?php echo $cuit ?></a></td>
 										<td><b><?php echo $arrayRemune[$buscador] ?></b></td>
 								<?php	if (array_key_exists($buscador,$arrayAporte)) { ?>
 											<td><b><?php echo $arrayAporte[$buscador] ?></b></td>
