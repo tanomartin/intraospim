@@ -28,16 +28,7 @@ if (mysql_num_rows($result2) == 0) {
 	<script type="text/javascript" src="include/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
-	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
-	<script>
-	function mypopup(dire) {
-		var a = document.createElement("a");
-		a.target = "_blank";
-		a.href = dire;
-		a.click();
-	}
-	</script>
-	
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>	
 	<style type="text/css" media="print">
 		.nover {display:none}
 	</style>
@@ -130,7 +121,7 @@ if (mysql_num_rows($result2) == 0) {
 									if (array_key_exists($buscador,$arrayRemune)) { 
 										$ingreso = true; ?>
 										<td><?php echo $mes."/".$ano ?></td>
-										<td><a href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $cuit ?>')"><?php echo $cuit ?></a></td>
+										<td><a target="_blank" href="empresas.ficha.php?nrcuit=<?php echo $cuit ?>"><?php echo $cuit ?></a></td>
 										<td><b><?php echo $arrayRemune[$buscador] ?></b></td>
 								<?php	if (array_key_exists($buscador,$arrayAporte)) { ?>
 											<td><b><?php echo $arrayAporte[$buscador] ?></b></td>

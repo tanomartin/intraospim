@@ -23,12 +23,6 @@ $row=mysql_fetch_array($result);
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
-	<script>
-	function mypopup(dire) {
-	    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
-	}
-	</script>
-	
 	<style type="text/css" media="print">
 		.nover {display:none}
 	</style>

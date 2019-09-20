@@ -46,12 +46,6 @@ if ($canDisca == 0) {
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
-	<script>
-	function mypopup(dire) {
-	    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
-	}
-	</script>
-	
 	<style type="text/css" media="print">
 		.nover {display:none}
 	</style>
@@ -103,12 +97,11 @@ if ($canDisca == 0) {
 				    <tr>
 				      <th style="text-align: center;">CUIL</th>
 				        <td><?php
-						if ($_SESSION['delcod'] == $row['delcod']) {
-							echo("<a href=javascript:void(window.open('empresas.nomina.aportes.php?cuil=".$row['nrcuil']."'))>".$row['nrcuil']."</a>");
-						} else {
+						if ($_SESSION['delcod'] == $row['delcod']) { ?>
+							<a target="_blank" href="empresas.nomina.aportes.php?cuil=<?php echo $row['nrcuil'] ?>"><?php echo $row['nrcuil'] ?></a>
+				<?php	} else { 
 				 			echo ($row['nrcuil']);
-						}
-						?></td>
+						} ?></td>
 				    </tr>
 				    <tr>
 				      <th style="text-align: center;">Delegaci&oacute;n</th>

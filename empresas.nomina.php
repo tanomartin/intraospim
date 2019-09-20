@@ -86,8 +86,8 @@ $cantTitu = mysql_num_rows($result);
 							<td><b><?php echo $row['nombre'] ?></b></td>
 							<td><?php echo $row['nrcuil'] ?></td>
 							<td><?php echo $row2['descri']."-".$row['nrodoc'] ?></td>
-							<td align="center"><a href="javascript:void(window.open('empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>'))"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
-							<td align="center"><a href="javascript:void(window.open('empresas.nomina.aportes.php?cuil=<?php echo $row['nrcuil'] ?>'))"><i style="font-size: 25px"  class="glyphicon glyphicon-usd"></i></a></td>
+							<td align="center"><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+							<td align="center"><a target="_blank" href="empresas.nomina.aportes.php?cuil=<?php echo $row['nrcuil'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-usd"></i></a></td>
 						</tr>
 				<?php } 
 				} else { ?>
