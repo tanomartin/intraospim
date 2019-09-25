@@ -35,6 +35,11 @@ while ($row4=mysql_fetch_array($result4)) {
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script>
+		function mypopup(dire) {
+		    mywindow = window.open(dire, '_blank');
+		}
+	</script>
 	<style type="text/css" media="print">
 		.nover {display:none}
 	</style>
@@ -116,7 +121,7 @@ while ($row4=mysql_fetch_array($result4)) {
 							if (mysql_num_rows($result5) != 0) { ?>
 								<tr>
 								<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
-								<td><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row5['nrafil'] ?>&=nrcuit<?php echo $nrcuit ?>"><?php echo $row2['nrcuil'] ?></a></td>
+								<td><a href="javascript:mypopup('empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row5['nrafil'] ?>&=nrcuit<?php echo $nrcuit ?>')"><?php echo $row2['nrcuil'] ?></a></td>
 								<td><?php echo$row2['remimp'] ?></td>
 								</tr>
 					<?php	}
@@ -124,7 +129,7 @@ while ($row4=mysql_fetch_array($result4)) {
 							 if(mysql_num_rows($result6) != 0) { ?>
 							 	<tr>
 							 	<td><?php echo $row2['mestra']."/".$row2['anotra'] ?></td>
-								<td><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row6['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>"><?php echo $row2['nrcuil'] ?></a></td>
+								<td><a href="javascript:mypopup('empresas.nomina.ficha.php?cuil=<?php echo $row2['nrcuil'] ?>&nrafil=<?php echo $row6['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>')"><?php echo $row2['nrcuil'] ?></a></td>
 								<td><?php echo $row2['remimp'] ?></td>
 								</tr>
 					<?php	}	
