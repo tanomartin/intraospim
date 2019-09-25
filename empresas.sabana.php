@@ -182,7 +182,12 @@ function estado($ano, $me) {
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
-	<style type="text/css" media="print">
+	<script>
+		function mypopup(dire) {
+		    mywindow = window.open(dire, '_blank');
+		}
+	</script>
+		<style type="text/css" media="print">
 		.nover {display:none}
 	</style>
 </head>
@@ -228,13 +233,13 @@ function estado($ano, $me) {
 						<?php		} else {
 										$descri = estado($ano,$mes);
 										if ($descri == "PAGO") { ?>
-											<td><a target="_blank" href="empresas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('empresas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if ($descri == "ACUER.") { ?>
-											<td><a target="_blank" href="empresas.sabana.acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('empresas.sabana.acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if ($descri == "NO PAGO") { ?>
-											<td><a target="_blank" href="empresas.sabana.ddjj.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('empresas.sabana.ddjj.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if (($descri == "JUICI.") || strpos($descri, "REQUE.") !== false || ($descri == "S.DJ.")) { ?>
 											<td><?php echo $descri ?></td>

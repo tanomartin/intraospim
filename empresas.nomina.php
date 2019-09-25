@@ -29,8 +29,11 @@ $cantTitu = mysql_num_rows($result);
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script> 
 	<script type="text/javascript" src="include/js/jquery.blockUI.js" ></script>
-	
 	<script>
+	function mypopup(dire) {
+	    mywindow = window.open(dire, '_blank');
+	}
+	
 	$(function() {
 		$("#empleados")
 		.tablesorter({
@@ -86,8 +89,8 @@ $cantTitu = mysql_num_rows($result);
 							<td><b><?php echo $row['nombre'] ?></b></td>
 							<td><?php echo $row['nrcuil'] ?></td>
 							<td><?php echo $row2['descri']."-".$row['nrodoc'] ?></td>
-							<td align="center"><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
-							<td align="center"><a target="_blank" href="empresas.nomina.aportes.php?cuil=<?php echo $row['nrcuil'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-usd"></i></a></td>
+							<td align="center"><a href="javascript:mypopup('empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&nrafil=<?php echo $row['nrafil'] ?>&nrcuit=<?php echo $nrcuit ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+							<td align="center"><a href="javascript:mypopup('empresas.nomina.aportes.php?cuil=<?php echo $row['nrcuil'] ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-usd"></i></a></td>
 						</tr>
 				<?php } 
 				} else { ?>
