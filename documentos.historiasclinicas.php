@@ -23,7 +23,7 @@
 			
 			
 			<div class="row" style="margin: 10px">
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Consentimiento <br> Informado</h3>
@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Historia Clinica de <br>Prácticas de Alta Complejidad</h3>
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Historia Clínica <br>Artritis Psoriasica</h3>
@@ -56,10 +56,10 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Historia Clínica <br>Artritis Psoriasis en Placa</h3>
+							<h3 class="panel-title">Historia Clínica <br>Psoriasis en Placa</h3>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DE ARTRITIS PSORIASIS EN PLACA.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
@@ -67,7 +67,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Historia Clínica <br>Oncología</h3>
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title"> Formularios Hormona <br>de Crecimiento</h3>
@@ -89,10 +89,10 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Resumen de Historia<br> Clínica Artritis Reumatoidea</h3>
+							<h3 class="panel-title">Historia Clínica <br>Artritis Reumatoidea</h3>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/historias/RESUMEN HISTORIA CLINICA ARTRITIS.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
@@ -100,10 +100,10 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Resumen Historia Clínica<br> Esclerosis Múltiple</h3>
+							<h3 class="panel-title">Historia Clínica <br>Esclerosis Múltiple</h3>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/historias/RESUMEN HISTORIA CLINICA ESCLEROSIS MULTIPLE.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
@@ -111,10 +111,10 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Resumen de Historia Clínica<br> Específica para Hepatitis B</h3>
+							<h3 class="panel-title">Historia Clínica <br>Específica para Hepatitis B</h3>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DE HEPATITIS B.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
@@ -122,10 +122,10 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Resumen de Historia Clínica<br> Específica para Hepatitis C</h3>
+							<h3 class="panel-title">Historia Clínica <br>Específica para Hepatitis C</h3>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="files/formularios/historias/HISTORIA CLINICA DE HEPATITIS C.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
@@ -133,7 +133,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Historia Clínica <br> Fertilización Asistida</h3>
