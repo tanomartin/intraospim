@@ -20,64 +20,42 @@
 			<?php include_once ("navbar.php"); ?>
 			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-list-alt"></i><br>Documentación y Formularios</h2>
+			<h3>Cronicidad</h3>
 			
 			<div class="row" style="margin: 5px">
-				<div class="col-md-6">
+		
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>H.I.V.</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios y Documentos para H.I.V.</p>
+							<h3 class="panel-title">Formulario</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.hiv.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="files/formularios/cronicidad/FORMULARIO CRONICIDAD.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Diabetes</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios y Documentos para Diabetes</p>
+							<h3 class="panel-title">Normativa Ingreso al Programa</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.diabetes.php" class="btn btn-primary">Ingresar</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="panel panel-default text-center">
-						<div class="panel-heading">
-							<h3>Historias Clínicas<br>Otras Patologias</h3>
-						</div>
-						<div class="panel-body">
-							<p>Formularios para Historias Clinicas</p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.historiasclinicas.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="files/formularios/cronicidad/NORMATIVA INGRESO AL PROGRAMA CRONICIDAD.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
 				
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Cronicidad</h3><br>
-						</div>
-						<div class="panel-body">
-							<p>Formularios para Cronicidad</p>
+							<h3 class="panel-title">Normativa Retiro Medicación</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="documentos.cronicidad.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="files/formularios/cronicidad/NORMATIVA PARA RETIRO DE MEDICACION.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
-				</div>
-				
+				</div>		
 			</div>
 			
 			<div class="col-md-12 panel-footer">
