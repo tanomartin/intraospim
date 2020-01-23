@@ -22,7 +22,7 @@
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-list-alt"></i><br>Documentación y Formularios</h2>
 			
 			<div class="row" style="margin: 5px">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3>H.I.V.</h3>
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3>Diabetes</h3>
@@ -50,10 +50,10 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3>Historias Clínicas<br>Otras Patologias</h3>
+							<h3>H.C. Otras Patologias</h3>
 						</div>
 						<div class="panel-body">
 							<p>Formularios para Historias Clinicas</p>
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3>Cronicidad</h3><br>
@@ -78,6 +78,19 @@
 					</div>
 				</div>
 				
+				<div class="col-md-4">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3>Oncología</h3><br>
+						</div>
+						<div class="panel-body">
+							<p>Formularios para Oncología</p>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="documentos.oncologia.php" class="btn btn-primary">Ingresar</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			
 			<div class="col-md-12 panel-footer">
