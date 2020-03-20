@@ -7,12 +7,12 @@
 		<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 	</div>
 	<ul class="nav navbar-nav navbar-left" style="margin-top: 5px">
+		<li><a href="coronavirus.php">CORONAVIRUS</a></li>
 		<li><a href="empresas.php">Empresas</a></li>
 		<li><a href="beneficiarios.php">Beneficiarios</a></li>
 		<?php if ($_SESSION['tienePrevencion']) {?><li><a href="prevencion/menuPrevencion.php">Prev. Salud</a></li><?php } ?>
 		<li><a href="autorizaciones/listado.php">Autorizaciones</a></li>
-		<li><a href="documentos.php">Docu. y Forms.</a></li>
+		<li><a href="documentos.php">Inst. y Form.</a></li>
 		<li><a href="consultas.php">Consultas</a></li>
-		<li><a href="instructivos.php">Instructivos</a></li>
 	</ul>
 </nav>

@@ -24,6 +24,23 @@
 			<?php include_once ("navbar.php"); ?>
 			
 			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">CORONAVIRUS</h3>
+						</div>
+						<div class="panel-body">
+							<i style="font-size: 100px; color: red" class="glyphicon glyphicon-asterisk"></i>
+							<p><b style="color: blue">INFORMACION IMPORTANTE SOBRE LA PANDEMIA</b></p>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="coronavirus.php" class="btn btn-primary">Ingresar</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<hr/>
+				
 				<div class="col-md-4 col-md-offset-1">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
