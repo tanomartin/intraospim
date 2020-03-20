@@ -21,7 +21,7 @@
 			<h2 class="page-header">
 				<i style="font-size: 50px;color: red" class="glyphicon glyphicon-asterisk"></i><br>CORONAVIRUS
 			</h2>
-			<h3 style="color: blue">INFORMACION IMPORTANTE SOBRE LA PANDEMIA</h3>
+			<h3 style="color: blue">CANAL DE COMUNICACION INSTITUCIONAL</h3>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
 				<p>&copy; 2016 O.S.P.I.M.<p>
