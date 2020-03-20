@@ -31,7 +31,7 @@
 						</div>
 						<div class="panel-body">
 							<i style="font-size: 100px; color: red" class="glyphicon glyphicon-asterisk"></i>
-							<p><b style="color: blue">INFORMACION IMPORTANTE SOBRE LA PANDEMIA</b></p>
+							<p><b style="color: blue">CANAL DE COMUNICACION INSTITUCIONAL</b></p>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="coronavirus.php" class="btn btn-primary">Ingresar</a></li>
