@@ -31,20 +31,30 @@ $row = mysql_fetch_assoc($result);
 			
 			<div class="row" style="margin: 15px">
     			<div class="col-md-6">
-    				<h3>Uso del correo electrónico a través de web mail</h3>
+    				<h3 style="margin-top: -4px">Uso del correo electrónico a través de web mail</h3>
     				<p align="justify">
-    					A continuación usted encontrar la información para poder acceder a su correo electrónico de autorizaciones
-    					a través de web mail. Usted debe ingresar la siguiente link <a href="http://www.ospim.com.ar/webmail" target="_blank">www.ospim.com.ar/webmail</a> 
-    					e ingresar los datos de acceso que se dan a continuación<br><br> 
-    					Su información de acceso es la siguiente:<br>
-    					<b>Dirección de correo electrónico: <font color="blue"><?php echo $row['email'] ?></font></b><br>
-    					<b>Contraseña: <font color="blue"><?php echo $row['clave'] ?></font></b><br><br>
+    					A continuación usted encontrara la información para poder acceder a su correo electrónico de autorizaciones a través de web mail. 
+    					Usted debe ingresar al siguiente link <a href="http://www.ospim.com.ar/webmail" target="_blank">www.ospim.com.ar/webmail.</a> 
+    					Han sido reiniciadas todas las contraseñas para centralizar su uso exclusivamente a traves de webmail.<br> 
+						A continuacion los datos para su acceso.
+					</p>
+					<div class="panel panel-default">
+						<div class="panel-body">
+        					<h4 style="margin-top: -4px">Su información de acceso es la siguiente</h4>
+        					<b>Dirección de correo electrónico: <font color="blue"><?php echo $row['email'] ?></font></b><br>
+        					<b>Contraseña: <font color="blue"><?php echo $row['clave'] ?></font></b>
+    					</div>
+    				</div>
+    				<p align="justify">
     					A la derecha de la pantalla encontrará un video explicativo que muestra como acceder al correo electrónico
     					a través del web mail paso a paso
     				</p>
+    				
     			</div>
-    			<div class="embed-responsive" style="height: 350px">
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+    			<div class="col-md-6">
+                  	<video width="100%" controls>
+                      <source src="files/videos/webmail.mp4" type="video/mp4">
+                    </video>
                 </div>															  
 			</div>
 			
