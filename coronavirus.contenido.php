@@ -31,7 +31,7 @@ $row = mysql_fetch_assoc($result);
 			
 			<div class="row" style="margin: 15px">
     			<div class="col-md-6">
-    				<h3>Uso del correo electronico a través de web mail</h3>
+    				<h3>Uso del correo electrónico a través de web mail</h3>
     				<p align="justify">
     					A continuación usted encontrar la información para poder acceder a su correo electrónico de autorizaciones
     					a través de web mail. Usted debe ingresar la siguiente link <a href="http://www.ospim.com.ar/webmail" target="_blank">www.ospim.com.ar/webmail</a> 
@@ -39,8 +39,8 @@ $row = mysql_fetch_assoc($result);
     					Su información de acceso es la siguiente:<br>
     					<b>Dirección de correo electrónico: <font color="blue"><?php echo $row['email'] ?></font></b><br>
     					<b>Contraseña: <font color="blue"><?php echo $row['clave'] ?></font></b><br><br>
-    					A la derecha de la pantalla encontrará un video explicativo que muestra como accesder al correo electrónico
-    					a través del web mail
+    					A la derecha de la pantalla encontrará un video explicativo que muestra como acceder al correo electrónico
+    					a través del web mail paso a paso
     				</p>
     			</div>
     			<div class="embed-responsive" style="height: 350px">
