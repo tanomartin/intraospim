@@ -1,4 +1,11 @@
-<?php include ("verificaSesion.php"); ?>
+<?php include ("verificaSesion.php"); 
+
+$delcod = $_SESSION['delcod'];
+$sql = "SELECT * FROM autorizacionemail WHERE delcod = $delcod";
+$result = mysql_query($sql,$db);
+$row = mysql_fetch_assoc($result);
+
+?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,6 +28,25 @@
 			<h2 class="page-header">
 				<i style="font-size: 50px" class="glyphicon glyphicon-tasks"></i><br>CORONAVIRUS CONTENIDO
 			</h2>
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-6">
+    				<h3>Uso del correo electronico a través de web mail</h3>
+    				<p align="justify">
+    					A continuación usted encontrar la información para poder acceder a su correo electrónico de autorizaciones
+    					a través de web mail. Usted debe ingresar la siguiente link <a href="http://www.ospim.com.ar/webmail" target="_blank">www.ospim.com.ar/webmail</a> 
+    					e ingresar los datos de acceso que se dan a continuación<br><br> 
+    					Su información de acceso es la siguiente:<br>
+    					<b>Dirección de correo electrónico: <font color="blue"><?php echo $row['email'] ?></font></b><br>
+    					<b>Contraseña: <font color="blue"><?php echo $row['clave'] ?></font></b><br><br>
+    					A la derecha de la pantalla encontrará un video explicativo que muestra como accesder al correo electrónico
+    					a través del web mail
+    				</p>
+    			</div>
+    			<div class="embed-responsive" style="height: 350px">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                </div>															  
+			</div>
 			
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
