@@ -21,6 +21,39 @@
 			<h2 class="page-header">
 				<i style="font-size: 50px" class="glyphicon glyphicon-info-sign"></i><br>CORONAVIRUS COMUNICACIONES
 			</h2>
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
+								<b>Comunicado 2 - 26/03/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+                     		Compañero<br>
+                            Secretario General del<br>
+                            SINDICATO DE LA MADERA<br><br>
+                            Presente<br>
+                            De nuestra mayor consideración:<br><br>
+                            Por esta vía nos dirigimos a Ud y por su intermedio al resto de la Comisión Directiva de esa organización,  con el objeto de llegar a todos los compañeros nucleados en ese sindicato, en momentos en los que no solo nuestro país sino el mundo entero, está padeciendo las dramáticas alternativas y consecuencias que produce este nuevo flagelo que asola a la humanidad identificado como Corona Virus - COVID-19.<br>
+                            Esta crisis sanitaria mundial inédita ha empezado, como es de público conocimiento, a provocar efectos trágicos por su vertiginoso contagio prácticamente en todo el territorio de la República Argentina, ocasionando a esta altura de los acontecimientos ocho fallecimientos.<br>
+                            Consecuentemente nos plantea un desafío de alcances desconocidos debiendo entre todos y mancomunadamente afrontarlo con responsabilidad, en unidad y coordinadamente para maximizar nuestras posibilidades ciertas de enfrentar esta pandemia.<br>
+                            A tal efecto, el Consejo Directivo de la Obra Social de la Industria Maderera, totalmente comprometido con la coyuntura realiza denodados esfuerzos  adoptando medidas en consonancia con la extrema gravedad que plantea esta emergencia sanitaria.<br>
+                            Al mismo tiempo, en un enfoque crítico y racional estamos realizando modificaciones en el funcionamiento interno de nuestra Obra Social a efectos de, al mismo tiempo que instrumentamos medidas protectorias para con la salud de quienes desarrollan sus tareas laborales en nuestra institución, las mismas no afecten el sistema de prestaciones médicas asistenciales que cubren la salud de nuestros beneficiarios y sus familias.<br>
+                            Las medidas emanadas desde el Ministerio Publico, reseñado en la emergencia sanitaria decretada, ordena el acatamiento de ciertas conductas de carácter universal exigiendo a hospitales públicos y privados, sanatorios, clínicas y demás estructuras sanitarias un comportamiento que tienda a evitar la concurrencia masiva de pacientes para solicitar turnos, lo que deberá realizarse por medios electrónicos. Del mismo modo y prioritariamente, estos establecimientos han sido afectados a la política sanitaria de atención de casos relacionados con las víctimas o potenciales víctimas del Corona Virus - COVID-19, intentando con ello reducir el alto impacto de transmisión que conlleva ese letal microorganismo.<br>
+                            A estos efectos, deberán tener en cuenta y aplicar las medidas enunciadas en el memo enviado por Auditoria Medica de OSPIM a todas nuestras organizaciones hermanas en fecha 14 de marzo de 2020.<br>
+                            Por supuesto, nos ocupa y preocupa seriamente también la propagación de las enfermedades virales que hoy azotan nuestro país, fundamentalmente el DENGUE y el SARAMPION por lo que a  ya se ha acompañado folletería con la descripción, alcances y medidas preventivas  a tener en cuenta relacionadas con esas enfermedades para su conocimiento y difusión entre los trabajadores madereros y sus familias.<br>
+                            Este Consejo Directivo comprometido como siempre con la salud de nuestros compañeros y sus familias, seguirá trabajando incansablemente y solidariamente para enfrentar este peligro mortal que nos acecha, para lo cual es necesario que todos los que componemos esta organización asumamos el mismo compromiso y en coordinación, orden y unidad demos las batallas que la hora reclama.<br>
+                            Sin otro particular, saludamos a Ud muy atentamente.<br><br> 
+                            <p style="text-align: right; margin: 15px">
+                            	<b>Consejo Directivo O.S.P.I.M.<br> Secretariado Nacional U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>		
+		
 		
 			<div class="row" style="margin: 15px">
     			<div class="col-md-12">
