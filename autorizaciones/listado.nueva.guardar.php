@@ -1,9 +1,10 @@
 <?php 
 include ("verificaSesionAutorizaciones.php");
 	
-
-	// maximo 512KB
-	$maxSize = 524288;
+    // maximo 512KB
+    //$maxSize = 524288;
+	// maximo 1536KB
+    $maxSize = 1572864;
 	$tipoPermitidoE = "application/pdf";
 	$tipoPermitidoCM = "application/pdf";
 	$fechaSolicitud = date("Y/m/d"); 
@@ -71,7 +72,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			}
 		} else {
 			$todoOk = 1;
-			$error_pm = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
+			$error_pm = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
 		}
 	} else {
 		$todoOk = 1;
@@ -101,7 +102,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			}
 		} else {
 			$todoOk = 1;
-			$error_hc = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
+			$error_hc = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
 		}
 	} else {
 		$error_hc = "ns";
@@ -130,7 +131,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			}
 		} else {
 			$todoOk = 1;
-			$error_e = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
+			$error_e = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
 		}
 	} else {
 		$error_e = "ns";
@@ -180,7 +181,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 					}
 				} else {
 					$todoOk = 1;
-					${error_p.$i} = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
+					${error_p.$i} = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
 				}
 			} else {
 				${error_p.$i} = "nc";

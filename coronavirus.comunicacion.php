@@ -27,6 +27,27 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 3 - 27/03/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+        					USIMRA pone a disposición y para vuestro conocimiento las resoluciones que se han tomado en relación a las cuestiones de carácter laboral en el 
+							contexto del aislamiento social preventivo y obligatorio decretado por la crisis sanitaria COVID-19.<br>
+							En el siguiente link se puede consultar los detalles y procedimientos: 
+							<a target="_blank" href="https://www.argentina.gob.ar/noticias/coronavirus-reglamentacion-de-temas-laborales-del-decreto-presidencial">LINK</a>
+                     		<p style="text-align: right; margin: 15px">
+                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 2 - 26/03/2020</b>
 							</h2>
         				</div>
