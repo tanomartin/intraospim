@@ -27,6 +27,27 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 4 - 27/03/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+							A través del Sindicato de la Madera de Cordoba, la USIMRA ha puesto a disposición de la gobernación de esa provincia, 
+							debido a la emergencia social que es de público conocimiento, los campings de Unquillo y Villa del Rosario. <br>
+							Así también, dispuso que la colonia, los hoteles y el camping que posee queden a 
+							disposición para el uso por parte del Gobierno Nacional y la Gobernación de la Provincia de Buenos Aires.
+                     		<p style="text-align: right; margin: 15px">
+                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 3 - 27/03/2020</b>
 							</h2>
         				</div>
