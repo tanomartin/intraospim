@@ -34,7 +34,7 @@
         					USIMRA pone a disposición y para vuestro conocimiento las resoluciones que se han tomado en relación a las cuestiones de carácter laboral en el 
 							contexto del aislamiento social preventivo y obligatorio decretado por la crisis sanitaria COVID-19.<br>
 							En el siguiente link se puede consultar los detalles y procedimientos: 
-							<a target="_blank" href="https://www.argentina.gob.ar/noticias/coronavirus-reglamentacion-de-temas-laborales-del-decreto-presidencial">LINK</a>
+							<a target="_blank" href="https://www.argentina.gob.ar/noticias/coronavirus-reglamentacion-de-temas-laborales-del-decreto-presidencial">Coronavirus: reglamentación de temas laborales del Decreto Presidencial</a>
                      		<p style="text-align: right; margin: 15px">
                             	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
                             </p>
