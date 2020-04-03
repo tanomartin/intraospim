@@ -27,6 +27,29 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 5 - 03/04/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+							Por intermedio de la  DECISION ADMINISTRATIVA 450/2020 el Gobierno Nacional, amplia las actividades y servicios declarados esenciales. 
+							En esta ampliación se han incorporado actividades de relación directa con nuestro gremio, indicados en el Art. 1 Inc. 1, 2 y 3:<br><br>
+                        	1. VENTA DE INSUMOS Y MATERIALES DE LA CONSTRUCCIÓN PROVISTOS POR CORRALONES.<br>
+                        	2. ACTIVIDADES VINCULADAS CON LA PRODUCCIÓN, DISTRIBUCIÓN Y COMERCIALIZACIÓN FORESTAL Y MINERA.<br>
+                        	3. CURTIEMBRES, ASERRADEROS Y FÁBRICAS DE PRODUCTOS DE MADERA, FÁBRICAS DE COLCHONES Y FÁBRICAS DE MAQUINARIA VIAL Y AGRÍCOLA.<br><br>
+							Aquí el link de su publicación en el boletín oficial: <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/227401/20200403" target="_blank">DECAD-2020-450-APN-JGM</a>
+							<p style="text-align: right; margin: 15px">
+                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 4 - 27/03/2020</b>
 							</h2>
         				</div>
