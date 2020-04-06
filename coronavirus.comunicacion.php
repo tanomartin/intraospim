@@ -33,7 +33,7 @@
         				<div class="panel-body" style="text-align: justify;">
 							Les acercamos un documento que propone medidas de higiene y seguridad sanitaria para implementar 
 							en las empresas, pensando en la proteccion de todos los trabajadores de nuestra industria.<br>
-							Aqui el documento propuesto: <a href="files/Medidas de prevención para empresas y trabajadores.pdf" target="_blank">LINK A PDF</a>
+							Aqui el documento propuesto: <a href="files/Medidas de prevención para empresas y trabajadores.pdf" target="_blank">PROTOCOLO: MEDIDA DE PREVENCIÓN PARA EMPRESAS Y TRABAJADORES</a>
 							<p style="text-align: right; margin: 15px">
                             	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
                             </p>
