@@ -27,6 +27,26 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 6 - 06/04/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+							Les acercamos un documento que propone medidas de higiene y seguridad sanitaria para implementar 
+							en las empresas, pensando en la proteccion de todos los trabajadores de nuestra industria.<br>
+							Aqui el documento propuesto: <a href="files/Medidas de prevención para empresas y trabajadores.pdf" target="_blank">LINK A PDF</a>
+							<p style="text-align: right; margin: 15px">
+                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 5 - 03/04/2020</b>
 							</h2>
         				</div>
