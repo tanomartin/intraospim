@@ -27,6 +27,48 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 7 - PREVENCION CONTRA EL CORONAVIRUS - 08/04/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+							<b>1. LAVADO DE MANOS</b><br><br>
+                            Lávese las manos con frecuencia con un desinfectante de manos a base de alcohol o con agua y jabón.<br>
+                            ¿Por qué? Lavarse las manos con un desinfectante a base de alcohol o con agua y jabón mata el virus si este está en sus manos.<br><br>
+                            <b>2. MEDIDAS DE HIGIENE RESPIRATORIA</b><br><br>
+                            Al toser o estornudar, cúbrase la boca y la nariz con el codo flexionado o con un pañuelo; tire el pañuelo inmediatamente y lávese las manos con un desinfectante de manos a base de alcohol, o con agua y jabón.<br>
+                            No compartir elementos de uso personal como mates, bombillas, cubiertos, vajilla, son de uso exclusivo y personal.<br>
+                            ¿Por qué? Al cubrir la boca y la nariz durante la tos o el estornudo se evita la propagación de gérmenes y virus. Si usted estornuda o tose cubriéndose con las manos puede contaminar los objetos o las personas a los que toque.<br><br>
+                            <b>3. MANTENGA EL DISTANCIAMIENTO SOCIAL</b><br><br>
+                            Mantenga al menos 1 metro y medio de distancia entre usted y las demás personas, particularmente aquellas que tosan, estornuden y tengan fiebre.<br>
+                            ¿Por qué? Cuando alguien con una enfermedad respiratoria, como la infección por el Coronavirus  tose o estornuda, proyecta pequeñas gotículas que contienen el virus. Si está demasiado cerca, puede inhalar el virus.<br><br>
+                            <b>4. EVITE TOCARSE LOS OJOS, LA NARIZ Y LA BOCA</b><br><br>
+                            ¿Por qué? Las manos tocan muchas superficies que pueden estar contaminadas con el virus. Si se toca los ojos, la nariz o la boca con las manos contaminadas, puedes transferir el virus de la superficie a si mismo.<br><br>
+                            <b>5. ¿COMO DEBO SALUDAR A LAS PERSONAS PARA EVITAR CONTAGIARME DEL NUEVO CORONAVIRUS?</b><br><br>
+                            El virus puede transmitirse al darse la mano y tocarse los ojos, la nariz y la boca. Es mejor saludar con un gesto de la mano, una inclinación de la cabeza o una reverencia.<br><br>
+                            <b>6. USO DE GUANTES</b><br><br>
+                            ¿Usar guantes de goma cuando se está en público es una forma eficaz de prevenir la infección por el nuevo coronavirus?<br>
+                            Lavarse las manos con frecuencia proporciona más protección frente al contagio de la COVID-19 que usar guantes de goma. El hecho de llevarlos puestos no impide el contagio, ya que si uno se toca la cara mientras los lleva, la contaminación pasa del guante a la cara y puede causar la infección.<br><br>
+                            <b>7. USO DE MASCARILLA (BARBIJO)</b><br><br>
+                            Lleve  mascarilla si tiene tos o estornudos y si está en contacto frecuente con personas a los efectos de evitar la  propagación de gérmenes y / o virus.<br>
+                            Utilice mascarilla si no puede mantener el distanciamiento social.<br>
+                            Aquí un video instructivo acerca de cómo hacer en forma casera y sencilla mascarillas (barbijos) muy efectivos y reutilizables: <br><br>
+							<div class="embed-responsive embed-responsive-16by9">
+                          		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/piZBohV2kRI?rel=0" allowfullscreen></iframe>
+                        	</div>
+							<p style="text-align: right; margin: 15px">
+                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                        
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 6 - 06/04/2020</b>
 							</h2>
         				</div>
