@@ -27,11 +27,12 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">CORONAVIRUS</h3>
+							<h3 class="panel-title"><b>CORONAVIRUS</b></h3>
 						</div>
 						<div class="panel-body">
 							<i style="font-size: 100px; color: red" class="glyphicon glyphicon-asterisk"></i>
 							<p><b style="color: blue">CANAL DE COMUNICACION INSTITUCIONAL</b></p>
+							<p>Para mantenerse actualizado acerca de las comunicaciones y contenidos técnicos ingrese cotidianamente aquí</p>
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="coronavirus.php" class="btn btn-primary">Ingresar</a></li>
