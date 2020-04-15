@@ -38,7 +38,7 @@
 							los trabajadores madereros que formen parte de la jurisdicción de vuestro Sindicato.<br>
 							Aqui el link del mencionado decreto: <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/227750/20200414" target="_blank">Decreto 367/2020</a>
 							<p style="text-align: right; margin: 15px">
-                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            	<b>Consejo Directivo O.S.P.I.M.<br> Secretariado Nacional U.S.I.M.R.A</b>
                             </p>
                         </div>
                      </div>
@@ -79,7 +79,7 @@
                           		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/piZBohV2kRI?rel=0" allowfullscreen></iframe>
                         	</div>
 							<p style="text-align: right; margin: 15px">
-                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            	<b>Consejo Directivo O.S.P.I.M.<br> Secretariado Nacional U.S.I.M.R.A</b>
                             </p>
                         </div>
                         
