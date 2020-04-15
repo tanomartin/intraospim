@@ -27,6 +27,29 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 8 - 15/04/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+							Ponemos en vuestro conocimiento que a  partir del Decreto N° 367/2020 la enfermedad COVID-19 producida por el coronavirus SARS – CoV 2, 
+							pasa a tener carácter de enfermedad profesional  y por lo tanto, todo trabajador que resulte infectado por ese virus y según dicho  
+							decreto, las Aseguradoras de Riesgos del Trabajo (A.R.T.) no podrán rechazar la cobertura de los mismos. <br>
+							Por tal motivo, solicitamos que dicha información sea tenida en cuenta ante cualquier caso que pudiera surgir entre 
+							los trabajadores madereros que formen parte de la jurisdicción de vuestro Sindicato.<br>
+							Aqui el link del mencionado decreto: <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/227750/20200414" target="_blank">Decreto 367/2020</a>
+							<p style="text-align: right; margin: 15px">
+                            	<b>Secretariado Nacional<br>U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 7 - PREVENCION CONTRA EL CORONAVIRUS - 08/04/2020</b>
 							</h2>
         				</div>

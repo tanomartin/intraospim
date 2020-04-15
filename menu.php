@@ -24,7 +24,7 @@
 			<?php include_once ("navbar.php"); ?>
 			
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title"><b>CORONAVIRUS</b></h3>
