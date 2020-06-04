@@ -222,7 +222,8 @@ if ($nroafil != "") {
 <body>
 	<div class="container">
 		<div class="row" align="center" style="background-color: #f5f5f5;">
-			<?php include_once ("navbar.php"); ?>
+			
+			<?php include_once ("../navbar.php"); ?>
 
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-ok-sign"></i><br>Autorizaciones</h2>
 			<h3>Nueva Solicitud</h3>	

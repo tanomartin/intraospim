@@ -56,7 +56,8 @@ $(function() {
 <body>
 	<div class="container">
 		<div class="row" align="center" style="background-color: #f5f5f5;">
-			<?php include_once ("navbar.php"); ?>
+			
+			<?php include_once ("../navbar.php"); ?>
 			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-ok-sign"></i><br>Autorizaciones</h2>
 			
@@ -71,7 +72,7 @@ $(function() {
 				<table class="tablesorter" id="solicitudes">
 				  <thead>
 					  <tr>
-					    <th>N&uacute;mero</th>
+					    <th>Nº</th>
 					    <th>Fecha</th>
 					    <th class="filter-select" data-placeholder="Seleccione Estado">Estado</th>
 						<th>C.U.I.L</th>

@@ -25,7 +25,7 @@
 			<?php include_once ("navbar.php"); ?>
 			
 			<h2><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i><br>Consultas</h2>
-			<div class="col-md-6 col-md-offset-3" align="left" >
+			<div class="col-md-6 col-md-offset-3" align="center" >
 				<form action="consultas.enviar.php" method="post" style="margin-bottom: 15px"> 	
 					 <div> <?php if (isset($_GET['err'])) {
 						  		$err = $_GET['err'];
@@ -35,20 +35,20 @@
 						  	  } ?> 
 					 </div>
 				  	 <div class="form-group">
-				        <label for="nombre_1">Nombre y Apellido: </label>
-				        <input type="text"  name="nombre" id="nombre" placeholder="Introduce tu Nombre" required />
+				        <p><label for="nombre_1">NOMBRE Y APELLIDO</label></p>
+				        <input style="text-align: center" type="text" size="50"  name="nombre" id="nombre" placeholder="Introduce tu Nombre" required />
 				     </div>
 				     <div class="form-group">
-				        <label for="email_1">Email: </label>
-				        <input type="email" required name="email" id="email" placeholder="Introduce tu Email" />
+				        <p><label for="email_1">CORREO ELECTRONICO </label></p>
+				        <input style="text-align: center" type="email" size="50" required name="email" id="email" placeholder="Introduce tu Email" />
 				     </div>
 				      <div class="form-group">
-				        <label for="telefono_1">Telefono: </label>
-				        <input type="number" required name="telefono" id="telefono" placeholder="Introduce tu Telefono" />
+				        <p><label for="telefono_1">TELEFONO</label></p>
+				        <input style="text-align: center" type="number" size="25" required name="telefono" id="telefono" placeholder="Introduce tu Telefono" />
 				     </div>
 				     <div class="form-group">
-				        <label for="consulta_1">Consulta: </label>
-				       <textarea name="coment" required id="coment" cols="60" rows="5" ></textarea>
+				       <p><label for="consulta_1">CONSULTA</label></p>
+				       <textarea name="coment" required id="coment" cols="50" rows="5" ></textarea>
 				     </div>
 				     <div align="center">
 				    	<button type="submit" class="btn btn-default">Enviar</button>

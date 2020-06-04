@@ -1,10 +1,9 @@
 <?php 
 include ("verificaSesionAutorizaciones.php");
 	
-    // maximo 512KB
-    //$maxSize = 524288;
-	// maximo 1536KB
-    $maxSize = 1572864;
+
+	// maximo 512KB
+	$maxSize = 524288;
 	$tipoPermitidoE = "application/pdf";
 	$tipoPermitidoCM = "application/pdf";
 	$fechaSolicitud = date("Y/m/d"); 
@@ -72,7 +71,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			}
 		} else {
 			$todoOk = 1;
-			$error_pm = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
+			$error_pm = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
 		}
 	} else {
 		$todoOk = 1;
@@ -102,7 +101,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			}
 		} else {
 			$todoOk = 1;
-			$error_hc = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
+			$error_hc = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
 		}
 	} else {
 		$error_hc = "ns";
@@ -131,7 +130,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 			}
 		} else {
 			$todoOk = 1;
-			$error_e = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
+			$error_e = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
 		}
 	} else {
 		$error_e = "ns";
@@ -181,7 +180,7 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 					}
 				} else {
 					$todoOk = 1;
-					${error_p.$i} = "El tamaño del archivo excede el máximo permitido. Máximo permitido 1536 KB.";
+					${error_p.$i} = "El tamaño del archivo excede el máximo permitido. Máximo permitido 512 KB.";
 				}
 			} else {
 				${error_p.$i} = "nc";
@@ -248,14 +247,24 @@ if($delcod == 0 || $delcod == NULL || !isset($_POST['textCuil']))
 	<script type="text/javascript" src="lib/jquery.maskedinput.js"></script>
 	<script type="text/javascript" src="lib/funcionControl.js" ></script>
 	
+	<script>
+	function Verificar() {
+		var tecla=window.event.keyCode;
+		if (tecla==116) {
+			event.returnValue=false;
+		}
+	}
+	</script>
+	
+	
 	<style type="text/css" media="print">
 		.nover {display:none}
 	</style>
 </head>
-<body>
+<body onKeyDown="javascript:Verificar()">
 	<div class="container">
 		<div class="row" align="center" style="background-color: #f5f5f5;">
-			<?php include_once ("navbar.php"); ?>
+			<?php include_once ("../navbar.php"); ?>
 				
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-ok-sign"></i><br>Autorizaciones</h2>
 			<h3>Resultado Carga Solicitud</h3>

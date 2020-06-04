@@ -22,7 +22,7 @@
 				<h2 class="heading-desc">Intranet Delegaciones</h2>
 				<div class="main" style="padding-top: 0px;">
 					<h4 class="heading-desc">Estamos Actualizando la informacion</h4>
-					<img class="img-responsive" src="images/work.png" />
+					<img class="img-responsive" src="img/work.png" />
 					<h4 class="heading-desc">Disculpe las molestias ocasionadas </h4>
 				</div>
 			</form>

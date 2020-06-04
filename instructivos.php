@@ -24,7 +24,31 @@
 			
 			<h2 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-book"></i><br>Instructivos</h2>
 			
-			<div class="row">
+			<div class="row" style="margin: 5px">
+				<div class="col-md-4">
+					<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">Autorizaciones</h3>
+						</div>
+						<div class="panel-body">
+							<i style="font-size: 100px"  class="glyphicon glyphicon-ok-sign"></i>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item"><a href="files/instructivos/autorizaciones/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item">
+								<b><font color="blue"> Configuracion Correo</font> <br>Outlook Express (Windows XP) <br>Live Mail (Windows Vista a Windows 7)</b><br><a href="files/instructivos/autorizaciones/correo.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Tutorial</a><br><br>
+								<b>eClient (Windows 10)</b><br><a href="files/instructivos/autorizaciones/Tutorial eM Client.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i>Tutorial</a>
+								<a href="#" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
+							</li>
+							<li class="list-group-item">
+								<b><font color="blue">Configuracion Escaneo</font> </b><br>
+								<a href="files/instructivos/autorizaciones/escaneo.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Tutorial</a>
+								<a href="files/instructivos/autorizaciones/Scan2PDF.exe" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
@@ -39,26 +63,18 @@
 					</div>
 				</div>
 				
+				
+				
 				<div class="col-md-4">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Autorizaciones</h3>
+							<h3 class="panel-title">Órdenes de Consulta</h3>
 						</div>
 						<div class="panel-body">
-							<i style="font-size: 100px"  class="glyphicon glyphicon-ok-sign"></i>
+							<i style="font-size: 100px"  class="glyphicon glyphicon-modal-window"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/instructivos/autorizaciones/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
-							<li class="list-group-item">
-								<b><font color="blue"> Configuracion Correo</font> <br><br> Outlook Express (Windows XP) <br>Live Mail (Windows Vista a Windows 7)</b><br><a href="files/instructivos/autorizaciones/correo.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Tutorial</a><br><br>
-								<b>eClient (Windows 10)</b><br><a href="files/instructivos/autorizaciones/Tutorial eM Client.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i>Tutorial</a>
-								<a href="#" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
-							</li>
-							<li class="list-group-item">
-								<b><font color="blue">Configuracion Escaneo</font> </b><br><br>
-								<a href="files/instructivos/autorizaciones/escaneo.pdf" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Tutorial</a>
-								<a href="files/instructivos/autorizaciones/Scan2PDF.exe" target="_blank" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
-							</li>
+							<li class="list-group-item"><a href="files/instructivos/ordenes/tutorial.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -76,6 +92,7 @@
 						</ul>
 					</div>
 				</div>
+
 			</div>
 					
 			<div class="col-md-12 panel-footer">

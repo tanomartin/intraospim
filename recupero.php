@@ -22,7 +22,7 @@
 		<div class="row" align="center">
 			<form class="form-signin mg-btm" id="form_recupero">
 				<h3 class="heading-desc">Recupero Contrase&ntilde;a</h3>
-				<img class="img-responsive" src="images/recupero.png" />
+				<img class="img-responsive" src="img/recupero.png" />
 				<h4><span id="cartelRecuerpo" class="clearfix"></span></h4>
 				<div class="main">
 					<div class="input-group">

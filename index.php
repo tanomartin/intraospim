@@ -20,7 +20,7 @@
 		<div class="row" align="center">
 			<form class="form-signin mg-btm" id="form_ingreso">
 				<h2 class="heading-desc">Intranet Delegaciones</h2>
-				<img class="img-responsive" src="images/logo.png" width="378px" height="378px"/>
+				<img class="img-responsive" src="img/logo.png" width="378px" height="378px"/>
 				<div class="main">
 					<h4 style="color: red"><span id="errorIngreso" class="clearfix"></span></h4>
 					<div class="input-group">
@@ -36,7 +36,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-8 col-md-8" style="text-align: left;">
-							<label><a href="recupero.php">&iquest;Olvido su contrase&ntilde;a?</a></label>
+							<label><a href="recupero.php">¿Olvidó su contraseña?</a></label>
 						</div>
 						<div class="col-xs-4 col-md-4 pull-right">
 							<button type="submit" id="submit" name="submit" class="btn btn-large btn-success pull-right">Login</button>
