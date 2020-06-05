@@ -24,7 +24,7 @@
 		<div class="row" align="center" style="background-color: #f5f5f5;">
 			<?php include_once ("navbar.php"); ?>
 			
-			<h2><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i><br>Consultas</h2>
+			<h2><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i><br>Contacto</h2>
 			<div class="col-md-6 col-md-offset-3" align="center" >
 				<form action="consultas.enviar.php" method="post" style="margin-bottom: 15px"> 	
 					 <div> <?php if (isset($_GET['err'])) {
