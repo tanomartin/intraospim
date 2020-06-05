@@ -4,7 +4,7 @@ require('lib/fpdf/fpdf.php');
 
 $id = $_GET['idconsulta'];
 $delcod = $_SESSION['delcod'];
-$sqlOrden = "SELECT o.*, DATE_FORMAT(o.fechaorden,'%d/%m/%Y') as fechaorden
+$sqlOrden = "SELECT o.*, DATE_FORMAT(o.fechaorden,'%d/%m/%Y') as fechaorden, nrcuil
 				FROM ordenesconsulta o 
 				WHERE delcod = ".$_SESSION['delcod']." and 
 				      id = $id and 
@@ -55,7 +55,7 @@ try {
 	
 	$pdf->SetFont('Arial','B',16);
 	$pdf->SetXY(145, 18);
-	$pdf->Cell(60,8,'Nº '.$id,1,1,'C');
+	$pdf->Cell(60,8,'Nº '.str_pad($id,6,0,STR_PAD_LEFT),1,1,'C');
 	
 	$pdf->SetFont('Arial','',8);
 	$pdf->SetXY(10, 30);
@@ -144,7 +144,8 @@ try {
 	$pdf->SetXY(10, 137);
 	$pdf->Cell(195,1,"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------",0,0,'C');
 	
-	$pdf->Output('D');
+	$docname = "OC-".str_pad($id,6,0,STR_PAD_LEFT)."-".$rowOrden['nrcuil'].".pdf";
+	$pdf->Output('D',$docname);
 	
 	$dbname = "sistem22_intranet";
 	$dbh = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
