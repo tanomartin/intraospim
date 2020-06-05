@@ -184,21 +184,31 @@ if ($nroafil != "") {
 	function calcularEdad(fecha) {
 		document.getElementById('edadRecNac').value = "";
 		if (fecha != "") {
-			var hoy = new Date();
-			console.log(hoy);
-		    var cumpleanos = new Date(fecha);
-		    console.log(cumpleanos);
-		    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-		    var m = hoy.getMonth() - cumpleanos.getMonth();
-			console.log(edad);
-		    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-		        edad--;
-		    }
-		    if (edad < 0) {
-				alert("La fecha de nacimiento no puede ser futura");
-		    } else { 
-				document.getElementById('edadRecNac').value = edad;
-		    }
+			if (FechaValida(fecha)) {
+				//DATOS//
+    			var hoy = new Date();
+    			var fechaArray = fecha.split("/");
+    			var fechaCumple = fechaArray[2]+"-"+fechaArray[1]+"-"+fechaArray[0]+" GMT-0300";
+    		    var cumpleanos = new Date(fechaCumple);
+
+				//CALCULOS//
+    		    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    		    var m = hoy.getMonth() - cumpleanos.getMonth();
+    		    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+    		        edad--;
+    		    }
+
+    		    //CONTROL//
+    		    if (edad < 0) {
+    				alert("La fecha de nacimiento no puede ser futura");
+    				document.getElementById('fecNacRecNac').value = '';
+    		    } else { 
+    				document.getElementById('edadRecNac').value = edad;
+    		    }
+			} else {
+				alert("La fecha de nacimiento no es valida");
+				document.getElementById('fecNacRecNac').value = '';
+			}
 		}
 	}
 
