@@ -30,6 +30,36 @@ $row = mysql_fetch_assoc($result);
 			</h2>
 			
 			<div class="row" style="margin: 15px">
+				
+				<div class="row" style="margin: 15px">
+        			<h3>Impresora PDF, convertir documentos a PDF compatibles </h3>
+        			<div class="col-md-6">
+        				<p align="justify">
+        					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+        					labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+        					laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+        					voluptate velit esse cillum. In culpa qui officia deserunt mollit anim id est laborum.
+        				</p>
+        				<p align="justify">
+        					A la derecha de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como instalar, configurar y utilizar el programa.
+        				</p>
+        				<p align="justify">
+        					A Continuacion dejamos el link para descargar el instalador del programa.
+        				</p>
+        				<p align="center">
+        					<a href="files/instructivos/autorizaciones/dopdf-7.exe" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
+        				</p>
+    				</div>
+    				<div class="col-md-6">
+                      	<video width="100%" controls>
+                          <source src="files/videos/webmail.mp4" type="video/mp4">
+                        </video>
+                    </div>	
+    			</div>
+				
+				<hr>
+				
+				
 				<div class="row" style="margin: 15px">
         			<h3>Eliminación de correos electrónicos en web mail (¡¡¡IMPORTANTE!!!)</h3>
         			<div class="col-md-6">
