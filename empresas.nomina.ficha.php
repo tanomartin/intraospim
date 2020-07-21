@@ -1,6 +1,5 @@
 <?php include ("verificaSesion.php"); 
 $cuil = $_GET['cuil'];
-$nrcuit = $_GET['nrcuit'];
 $nrafil = $_GET['nrafil'];
 
 $sql = "SELECT t.*, d.nombre as nomdel, e.nombre as empresa, p.nombre as provin, tip.descri as tipdoc, civ.descrip as estcivil, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, DATE_FORMAT(fecemi,'%d/%m/%Y') as fecemi, DATE_FORMAT(fecing,'%d/%m/%Y') as fecing
