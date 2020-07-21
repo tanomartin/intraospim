@@ -32,19 +32,25 @@ $row = mysql_fetch_assoc($result);
 			<div class="row" style="margin: 15px">
 				
 				<div class="row" style="margin: 15px">
-        			<h3>Impresora PDF, convertir documentos a PDF compatibles </h3>
+        			<h3>Impresora PDF. Convertir documentos a PDF compatible con el modulo de Autorizaciones</h3>
         			<div class="col-md-6">
         				<p align="justify">
-        					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-        					labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-        					laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-        					voluptate velit esse cillum. In culpa qui officia deserunt mollit anim id est laborum.
+        					En las circunstancias actuales mucha de la documentación que es exigible por el modulo de Solicitudes de Autorización, 
+        					que utilizan a través de la intranet todas las delegaciones de O.S.P.I.M., es recepcionada a través de canales
+        					digitales no convencionales (correo electrónico, whatsapp,etc.) y en consecuencia no son tratados con las 
+        					herramientas clásicas utilizadas antes de declararse la emergencia sanitaria. Esto ha obligado a las distintas 
+        					delegaciones a implementar métodos para convertir la documentación a formato PDF desde los distintos formatos 
+        					originales en que son recepcionados, situación esta última, que ha provocado la circulación de documentos con 
+        					diferentes motores PDF que no respetan el standard respectivo y que, consecuentemente, no son compatibles con 
+        					el Modulo de Autorizaciones en O.S.P.I.M. central. Para salvar esta situación, que genera demoras y rechazos en 
+        					la atención de la solicitud de autorización, les acercamos una solución de muy simple implementación y uso, que 
+        					respeta los standares necesarios.
         				</p>
         				<p align="justify">
         					A la derecha de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como instalar, configurar y utilizar el programa.
         				</p>
         				<p align="justify">
-        					A Continuacion dejamos el link para descargar el instalador del programa.
+        					A continuación dejamos el link para descargar el instalador del programa.
         				</p>
         				<p align="center">
         					<a href="files/instructivos/autorizaciones/dopdf-7.exe" class="btn btn-primary btn-sm"><i style="font-size: 10px"  class="glyphicon glyphicon-arrow-down"></i> Programa</a>
@@ -52,7 +58,7 @@ $row = mysql_fetch_assoc($result);
     				</div>
     				<div class="col-md-6">
                       	<video width="100%" controls>
-                          <source src="files/videos/webmail.mp4" type="video/mp4">
+                          <source src="files/videos/doPDF.mp4" type="video/mp4">
                         </video>
                     </div>	
     			</div>
