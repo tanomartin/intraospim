@@ -27,6 +27,25 @@
     				<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h2 class="panel-title">
+								<b>Comunicado 9 - 25/09/2020</b>
+							</h2>
+        				</div>
+        				<div class="panel-body" style="text-align: justify;">
+							Texto de la resolución que prolonga la suspensión de la actividad gremial <br>
+							Aquí el link de la mencionada resolución: <a href="files/Resolucion 1199 - Prorroga suspension actividad gremial.pdf" target="_blank">Resolución 1199</a>
+							<p style="text-align: right; margin: 15px">
+                            	<b>Consejo Directivo O.S.P.I.M.<br> Secretariado Nacional U.S.I.M.R.A</b>
+                            </p>
+                        </div>
+                     </div>
+				</div>
+			</div>	
+			
+			<div class="row" style="margin: 15px">
+    			<div class="col-md-12">
+    				<div class="panel panel-default text-center">
+						<div class="panel-heading">
+							<h2 class="panel-title">
 								<b>Comunicado 8 - 15/04/2020</b>
 							</h2>
         				</div>
