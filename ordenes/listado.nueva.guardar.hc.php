@@ -1,9 +1,9 @@
 <?php include ("verificaSesionOrdenes.php");
 $delcod = $_SESSION['delcod'];
-echo $delcod."<br>";
+//echo $delcod."<br>";
 
-var_dump($_POST); echo "<br>";
-var_dump($_FILES);
+//var_dump($_POST); echo "<br>";
+//var_dump($_FILES);
 
 try {
 	$dbname = "sistem22_intranet";
