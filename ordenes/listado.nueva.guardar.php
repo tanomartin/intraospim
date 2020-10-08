@@ -22,14 +22,14 @@ $tipo = $_POST['tipoConsulta'];
 
 $error = 0;
 
-$sqlConsultaCanHoy = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden = '$fechaOrden'";
+$sqlConsultaCanHoy = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden = '$fechaOrden' and autorizada != 2";
 $resConsultaCanHoy = mysql_query($sqlConsultaCanHoy,$db);
 $canConsultaCanHoy = mysql_num_rows($resConsultaCanHoy);
 if ($canConsultaCanHoy > 0 ) {
 	header("Location: listado.error.php?error=1&cuil=$cuil");
 } else {
     $primerDia = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
-	$sqlConsultaCanMes = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden >= '$primerDia'";
+	$sqlConsultaCanMes = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden >= '$primerDia' and autorizada != 2";
 	$resConsultaCanMes = mysql_query($sqlConsultaCanMes,$db);
 	$canConsultaCanMes = mysql_num_rows($resConsultaCanMes);
 	if ($canConsultaCanMes > 4) {
