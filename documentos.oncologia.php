@@ -29,7 +29,7 @@
 							<h3 class="panel-title">Recetario Oncológico</h3>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/formularios/oncologia/RECETARIO ONCOLOGICO.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
+							<li class="list-group-item"><a href="files/formularios/oncologia/Recetario Oncologico 2020.pdf" target="_blank" class="btn btn-primary">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
