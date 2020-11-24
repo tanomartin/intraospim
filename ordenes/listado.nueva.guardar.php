@@ -20,44 +20,45 @@ if(isset($_POST['nrcuilTitu'])) {
 }
 $tipo = $_POST['tipoConsulta'];
 
-$error = 0;
+//$sqlConsultaCanHoy = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden = '$fechaOrden' and autorizada != 2";
+//$resConsultaCanHoy = mysql_query($sqlConsultaCanHoy,$db);
+//$canConsultaCanHoy = mysql_num_rows($resConsultaCanHoy);
+//if ($canConsultaCanHoy > 0 ) {
+//	header("Location: listado.error.php?error=1&cuil=$cuil");
+//} else {
 
-$sqlConsultaCanHoy = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden = '$fechaOrden' and autorizada != 2";
-$resConsultaCanHoy = mysql_query($sqlConsultaCanHoy,$db);
-$canConsultaCanHoy = mysql_num_rows($resConsultaCanHoy);
-if ($canConsultaCanHoy > 0 ) {
-	header("Location: listado.error.php?error=1&cuil=$cuil");
+$primerDia = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
+$sqlConsultaCanMes = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden >= '$primerDia' and autorizada != 2";
+$resConsultaCanMes = mysql_query($sqlConsultaCanMes,$db);
+$canConsultaCanMes = mysql_num_rows($resConsultaCanMes);
+if ($canConsultaCanMes > 4) {
+	header("Location: listado.error.php?error=2&cuil=$cuil");
 } else {
-    $primerDia = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
-	$sqlConsultaCanMes = "SELECT id,nrcuil FROM ordenesconsulta WHERE nrcuil = '$cuil' and fechaorden >= '$primerDia' and autorizada != 2";
-	$resConsultaCanMes = mysql_query($sqlConsultaCanMes,$db);
-	$canConsultaCanMes = mysql_num_rows($resConsultaCanMes);
-	if ($canConsultaCanMes > 4) {
-		header("Location: listado.error.php?error=2&cuil=$cuil");
-	} else {
-		if ($canConsultaCanMes != 4) {
-			try {
-				$dbname = "sistem22_intranet";
-				$dbh = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
-				$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$dbh->beginTransaction();
-				
-				$sqlInsertOrden = "INSERT INTO ordenesconsulta VALUE (DEFAULT,'$delcod','$fechaOrden','$cuil','$nroafil','$codPar','$nombre','$nrodoc','$sexo','$edad','$tipo',$cuilTitu,1,0,0,NULL)";
-				
-				$dbh->exec($sqlInsertOrden);
-				$ultimo_id = $dbh->lastInsertId();
-				$dbh->commit();
-				header("Location: listado.php");
-			} catch (PDOException $e) {
-				echo $e->getMessage();
-				$dbh->rollback();
-				exit(-1);
-			}
-		} else {
-			$sqlInsertOrden = "INSERT INTO ordenesconsulta VALUE (DEFAULT,'$delcod','$fechaOrden','$cuil','$nroafil','$codPar','$nombre','$nrodoc','$sexo','$edad','$tipo',$cuilTitu,0,0,0,NULL)";
+	if ($canConsultaCanMes != 4) {
+		try {
+			$dbname = "sistem22_intranet";
+			$dbh = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
+			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$dbh->beginTransaction();
+			
+			$sqlInsertOrden = "INSERT INTO ordenesconsulta VALUE (DEFAULT,'$delcod','$fechaOrden','$cuil','$nroafil','$codPar','$nombre','$nrodoc','$sexo','$edad','$tipo',$cuilTitu,1,0,0,NULL)";
+			
+			$dbh->exec($sqlInsertOrden);
+			$ultimo_id = $dbh->lastInsertId();
+			$dbh->commit();
+			header("Location: listado.php");
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			$dbh->rollback();
+			exit(-1);
 		}
-	} 
-} ?>
+	} else {
+		$sqlInsertOrden = "INSERT INTO ordenesconsulta VALUE (DEFAULT,'$delcod','$fechaOrden','$cuil','$nroafil','$codPar','$nombre','$nrodoc','$sexo','$edad','$tipo',$cuilTitu,0,0,0,NULL)";
+	}
+} 
+	
+//} 
+?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
