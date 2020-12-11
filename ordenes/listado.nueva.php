@@ -68,7 +68,6 @@ if (isset($_GET['cuil'])) {
        			} else { 
        				$cartel = 1;
        				$codigo = -1;
-       				$fecnac_edad = "";
        				if (isset($_GET['cuilTitu'])) {
        					$cuilTitu = $_GET['cuilTitu'];
        					$queryTitu = "SELECT t.nombre, t.nrafil
@@ -156,13 +155,20 @@ if ($nroafil != "") {
 		if (valor == 1) {
 			document.getElementById('textCuil').style.background = ""
 			document.getElementById('textCuil').readOnly = false;
-			document.getElementById('verCuil').disabled = false;
 		}
 		if (valor == 0) {
 			document.getElementById('textCuil').style.background = "#f5f5f5"
 			document.getElementById('textCuil').readOnly = true;
 			document.getElementById('verCuil').disabled = true;
 			window.location="listado.nueva.php?cuil=sc#infoRecNac";
+		}
+	}
+
+	function validarCUIL(cuil) {
+		if (cuil != '') {
+    		if (verificaCuil(cuil) != false) {
+    			document.getElementById('verCuil').disabled = false;
+    		} 
 		}
 	}
 	
@@ -227,6 +233,8 @@ if ($nroafil != "") {
 			}
 		}
 	}
+
+	
 
 	function validar(formulario) {	
 		if (formulario.tieneCuil.value == 1) {
@@ -306,7 +314,7 @@ if ($nroafil != "") {
 							<tr>
 								<td style="text-align: right;"><b>C.U.I.L.:</b></td>
 								<td>
-									<input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" readonly="readonly" maxlength="11" size="11" style="background:#f5f5f5" />
+									<input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" readonly="readonly" maxlength="11" size="11" style="background:#f5f5f5" onblur="validarCUIL(this.value)" />
 							    	<input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value" disabled="disabled"/>
 							    </td>
 							</tr>
@@ -347,14 +355,11 @@ if ($nroafil != "") {
 						   			</tr>
 							<?php } ?>
 						 </table>
-				   <?php $hidden = 'hidden = "hidden"';
-						 $nameDiabled = 'disabled="disabled"';
-						 $tableRecNac = 'display: none';
+				   <?php $tableRecNac = 'display: none';
 						 $recNac = '';
 						 $recNacDisabled = '';
 						 if ($cartel == 1) { 
-						 	$hidden = '';
-						 	$nameDiabled = '';
+	
 						 	$tableRecNac = '';
 						 	if (isset($_GET['cuilTitu'])) {
 						 	  	$recNac = 'selected="selected"';
