@@ -2,7 +2,8 @@
 include_once ("lib/funciones.php");
 $primerDia = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
 $sqlOrden = "SELECT o.*, DATE_FORMAT(o.fechaorden,'%d/%m/%Y') as fechaorden, 
-						 DATE_FORMAT(o.fechaestado,'%d/%m/%Y %h:%i:%s') as fechaestado
+						 DATE_FORMAT(o.fechaestado,'%d/%m/%Y %h:%i:%s') as fechaestado,
+                         DATE_FORMAT(o.fechavto,'%d/%m/%Y') as fechavto
 				FROM ordenesconsulta o
 				WHERE delcod = ".$_SESSION['delcod']." and fechaorden >= '$primerDia' 
 				ORDER BY id DESC";
@@ -81,7 +82,8 @@ function emitir(id, hrefa) {
 						    <th>Fecha</th>
 							<th>C.U.I.L</th>
 						    <th>Nombre</th>
-						    <th>Tipo</th>
+						    <th>Fecha VTO</th>
+						    <th>C.U.I.L. Titular</th>
 						    <th>Info</th>
 						  </tr>
 					  </thead>
@@ -94,8 +96,8 @@ function emitir(id, hrefa) {
 								<td><?php echo $rowOrden['fechaorden'] ?></td>
 								<td><?php echo $rowOrden['nrcuil'] ?></td>
 								<td><?php echo $rowOrden['nombre'] ?></td>
-								<td><?php if ($rowOrden['tipo'] == 'I') { echo "INTERNACION"; }
-						 				  if ($rowOrden['tipo'] == 'A') { echo "AMBULATORIO"; }?>
+								<td><?php echo $rowOrden['fechavto'] ?>
+								<td><?php echo $rowOrden['nrcuiltitular'] ?>
 								<td align="center">
 								<?php if ($rowOrden['autorizada'] == 1 && $rowOrden['emitida'] == 0) { ?>
 										<i style="font-size: 25px; display: none" class="glyphicon glyphicon-info-sign" title="EMITIDA" id="icon<?php echo $rowOrden['id']?>"></i>

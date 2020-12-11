@@ -25,70 +25,74 @@ $disabledSubmit = 'disabled = "disabled"';
 
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
-	$queryTitu = "SELECT t.*, 
-						 DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
-						 DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc
-				  FROM titular t 
-				  WHERE nrcuil = $cuil AND delcod = $delcod";
-	$queryFami = "SELECT f.*, 
-						 DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
-						 DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc
-				  FROM familia f 
-				  WHERE nrcuil = $cuil AND delcod = $delcod";
-	if ($cuil != NULL) { 
-		$result = mysql_query($queryTitu,$db); 
-		$cant = mysql_num_rows($result);
-		if ($cant != 0) {
-			$row = mysql_fetch_array($result);
-			$nombre = $row['nombre'];
-			$nroafil = $row['nrafil'];
-			$fecnac = $row['fecnac'];
-			$edad = $row['edad'];
-			$sexo = $row['ssexxo'];
-			$nrodoc = $row['nrodoc'];
-			$tipo = "Titular";
-			$codigo = 0;
-			$disabledSubmit = "";
-		} else {
-			$result = mysql_query($queryFami,$db); 
-			$cant = mysql_num_rows($result);
-			if ($cant != 0) {
-				$row = mysql_fetch_array($result);
-				$nombre = $row['nombre'];
-				$nroafil = $row['nrafil'];
-				$nroord = $row['nroord'];
-				$fecnac = $row['fecnac'];
-				$edad = $row['edad'];
-				$sexo = $row['ssexxo'];
-				$tipo = "Familiar";
-				$codigo = $row['codpar'];
-				$nrodoc = $row['nrodoc'];
-				$disabledSubmit = "";
-			} else { 
-				$cartel = 1;
-				$codigo = -1;
-				$fecnac_edad = "";
-				if (isset($_GET['cuilTitu'])) {
-					$cuilTitu = $_GET['cuilTitu'];
-					$queryTitu = "SELECT t.nombre, t.nrafil
-									FROM titular t
-									WHERE nrcuil = $cuilTitu AND delcod = $delcod";
-					$resultTitu = mysql_query($queryTitu,$db);
-					$cantTitu = mysql_num_rows($resultTitu);
-					if ($cantTitu != 0) {
-						$rowTitu = mysql_fetch_array($resultTitu);
-						$nombreTitu = $rowTitu['nombre'];
-						$nroafilTitu = $rowTitu['nrafil'];
-						$cartelTitu = 0;
-						$disabledSubmit = "";
-						$hiddenInfoRec = "";
-					} else {
-						$cartelTitu = 1;
-					}
-				} 		
-			}
-		}
-	} 
+	if ($cuil != 'sc' || isset($_GET['cuilTitu'])) {
+       	$queryTitu = "SELECT t.*, 
+        					 DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
+        					 DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc
+        				  FROM titular t 
+        				  WHERE nrcuil = '$cuil' AND delcod = $delcod";
+        $queryFami = "SELECT f.*, 
+        					 DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
+        					 DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc
+        			  FROM familia f 
+        			  WHERE nrcuil = '$cuil' AND delcod = $delcod";
+        if ($cuil != NULL) { 
+        	$result = mysql_query($queryTitu,$db); 
+        	$cant = mysql_num_rows($result);
+        	if ($cant != 0) {
+        		$row = mysql_fetch_array($result);
+        		$nombre = $row['nombre'];
+        		$nroafil = $row['nrafil'];
+       			$fecnac = $row['fecnac'];
+       			$edad = $row['edad'];
+       			$sexo = $row['ssexxo'];
+       			$nrodoc = $row['nrodoc'];
+       			$tipo = "Titular";
+       			$codigo = 0;
+       			$disabledSubmit = "";
+       		} else {
+       			$result = mysql_query($queryFami,$db); 
+       			$cant = mysql_num_rows($result);
+       			if ($cant != 0) {
+       				$row = mysql_fetch_array($result);
+       				$nombre = $row['nombre'];
+       				$nroafil = $row['nrafil'];
+       				$nroord = $row['nroord'];
+       				$fecnac = $row['fecnac'];
+       				$edad = $row['edad'];
+       				$sexo = $row['ssexxo'];
+       				$tipo = "Familiar";
+       				$codigo = $row['codpar'];
+       				$nrodoc = $row['nrodoc'];
+       				$disabledSubmit = "";
+       			} else { 
+       				$cartel = 1;
+       				$codigo = -1;
+       				$fecnac_edad = "";
+       				if (isset($_GET['cuilTitu'])) {
+       					$cuilTitu = $_GET['cuilTitu'];
+       					$queryTitu = "SELECT t.nombre, t.nrafil
+       									FROM titular t
+       									WHERE nrcuil = $cuilTitu AND delcod = $delcod";
+       					$resultTitu = mysql_query($queryTitu,$db);
+       					$cantTitu = mysql_num_rows($resultTitu);
+       					if ($cantTitu != 0) {
+       						$rowTitu = mysql_fetch_array($resultTitu);
+       						$nombreTitu = $rowTitu['nombre'];
+       						$nroafilTitu = $rowTitu['nrafil'];
+       						$cartelTitu = 0;
+       						$disabledSubmit = "";
+       						$hiddenInfoRec = "";
+       					} else {
+       						$cartelTitu = 1;
+       					}
+       				} 		
+       			}
+       		}
+        } 
+	} else {
+	    $cartel = 1;
+	}
 }
 
 $disca = "";
@@ -106,9 +110,6 @@ if ($nroafil != "") {
 		$disca = 'SI';
 	}
 }
-
-//TENGO QUE VERIFICAR SI HAY menos de 3 o entre 3 y 5... si hay mas de 5 no dejo seguir
-
 ?>
 
 <!DOCTYPE html>
@@ -146,6 +147,24 @@ if ($nroafil != "") {
 			event.returnValue=false;
 		}
 	}
+
+	function habilitarFormulario(valor) {
+		limpiarFormulario();
+		if (valor == -1) {
+			window.location="listado.nueva.php";
+		}
+		if (valor == 1) {
+			document.getElementById('textCuil').style.background = ""
+			document.getElementById('textCuil').readOnly = false;
+			document.getElementById('verCuil').disabled = false;
+		}
+		if (valor == 0) {
+			document.getElementById('textCuil').style.background = "#f5f5f5"
+			document.getElementById('textCuil').readOnly = true;
+			document.getElementById('verCuil').disabled = true;
+			window.location="listado.nueva.php?cuil=sc#infoRecNac";
+		}
+	}
 	
 	function limpiarFormulario() {
 		document.getElementById('textCuil').value = "";
@@ -159,15 +178,12 @@ if ($nroafil != "") {
 		document.getElementById('fecnac').innerHTML = "";
 		document.getElementById('disca').innerHTML = "";
 
-		document.getElementById('tipoConsulta').value= 0;
-
 		if (document.getElementById('infoRecNac')) {
 			document.getElementById('infoRecNac').style.display = "none";
 		}
 		document.getElementById('generar').disabled = true;
 		
 	}
-	
 
 	function habilitarCuilTitu(valor) {
 		document.getElementById('textCuilTitu').value = "";
@@ -213,12 +229,14 @@ if ($nroafil != "") {
 	}
 
 	function validar(formulario) {	
-		if (formulario.textCuil.value == "") {
-			alert("Debe ingresar numero de CUIL");
-			return false;
-		}
-		if (verificaCuil(formulario.textCuil.value) == false) {
-			return false;
+		if (formulario.tieneCuil.value == 1) {
+    		if (formulario.textCuil.value == "") {
+    			alert("Debe ingresar numero de CUIL");
+    			return false;
+    		}
+    		if (verificaCuil(formulario.textCuil.value) == false) {
+    			return false;
+    		}
 		}
 		if (formulario.textNombre.value == "") {
 			formulario.textNombre.focus();
@@ -246,11 +264,6 @@ if ($nroafil != "") {
 			}
 		}
 		
-		if (formulario.tipoConsulta.value == 0) {
-			alert("Debe ingresar el tipo de Orden de Consulta");
-			return false;
-		}
-		
 		$.blockUI({ message: "<h1>Generando Orden de Consulta. Aguarde por favor...</h1>" });
 		formulario.generar.disabled = true;
 		return true;
@@ -273,14 +286,28 @@ if ($nroafil != "") {
 						<div style="float: left;">(*) DATOS OBLIGATORIOS</div>
 						<div style="float: right;"><b>Fecha: </b><?php echo $fechaSolicitud ;?></div>
 					</div>
-					<div class="col-md-10 col-md-offset-1" style="border: 1px solid">
+					<div class="col-md-10 col-md-offset-1" style="border: 1px solid">	
 						<h4 style="color: blue"><b>Información del Beneficiario</b></h4>
 						<table class="table" style="width: 85%">
 							<tr>
-								<td style="text-align: right;"><b>* C.U.I.L.:</b> </td>
+								<td style="text-align: right;"><b>Tiene C.U.I.L.</b></td>
 								<td>
-									<input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" size="11" onclick="limpiarFormulario(this.value)" />
-							    	<input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value"/>
+								<?php $selectedNO = '';
+								      $selectedSI = '';
+								      if ($cuil == 'sc') { $selectedNO = 'selected="selected"'; } 
+								      if ($cuil != '') { $selectedSI = 'selected="selected"'; } ?>
+									<select id="tieneCuil" onchange="habilitarFormulario(this.value)">
+										<option value="-1">Selecciones Valor</option>
+										<option value="1" <?php echo $selectedSI ?>>SI</option>
+										<option value="0" <?php echo $selectedNO ?>>NO</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: right;"><b>C.U.I.L.:</b></td>
+								<td>
+									<input name="textCuil" type="text" id="textCuil" value="<?php echo $cuil ?>" readonly="readonly" maxlength="11" size="11" style="background:#f5f5f5" />
+							    	<input type="button" name="verCuil" id="verCuil" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value" disabled="disabled"/>
 							    </td>
 							</tr>
 							<tr>
@@ -318,16 +345,6 @@ if ($nroafil != "") {
 						     			<td style="text-align: right;"><b>* Apellido y Nombre: </b></td>
 						     			<td><input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30" readonly="readonly" style="background:#f5f5f5"/></td>
 						   			</tr>
-						   			<tr>
-						     			<td style="text-align: right;"><b>* Tipo Consulta: </b></td>
-						     			<td>
-									    	<select id="tipoConsulta" name="tipoConsulta">
-									    		<option value="0" selected="selected">Selecciones Valor</option>
-									    		<option value="I">Internacion</option>
-									    		<option value="A">Ambulatoria</option>
-									    	</select>
-							    		</td>
-						   			</tr>
 							<?php } ?>
 						 </table>
 				   <?php $hidden = 'hidden = "hidden"';
@@ -346,8 +363,13 @@ if ($nroafil != "") {
 							<table class="table" style="width: 85%; <?php echo $tableRecNac ?>; margin-top: -15px" id="infoRecNac">		
 								<tr>
 									<td colspan="2" style="text-align: center">
-										<b style='color:green'>Beneficiario con CUIL <?php echo $cuil ?> no empadronado<br>
-															   Completar la siguiente Información</b>
+									<?php if ($cuil != 'sc') { ?>
+												<b style='color:green'>Beneficiario con C.U.I.L. <?php echo $cuil ?> no empadronado<br>
+															  		   Completar la siguiente Información</b>
+									<?php } else { ?>	
+												<b style='color:green'>Beneficiario sin C.U.I.L. no empadronado<br>
+															  		   Completar la siguiente Información</b>
+									<?php } ?>	
 									</td>
 								</tr>		
 								<tr>
@@ -370,7 +392,11 @@ if ($nroafil != "") {
 									<td>
 										<input name="textCuilTitu" disabled="disabled" value="<?php echo $cuilTitu ?>" type="text" id="textCuilTitu" size="11" />
 										<input name="nrcuilTitu" value="<?php echo $cuilTitu ?>" type="text" id="nrcuilTitu" style="display: none" />
-										<input type="button" disabled="disabled" name="verCuil" id="verCuilTitu" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value+'&cuilTitu='+document.forms.nuevaSolicitud.textCuilTitu.value+'#infoRecNac'"/>
+										<?php if ($cuil != 'sc') { ?>
+												<input type="button" disabled="disabled" name="verCuil" id="verCuilTitu" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil='+document.forms.nuevaSolicitud.textCuil.value+'&cuilTitu='+document.forms.nuevaSolicitud.textCuilTitu.value+'#infoRecNac'"/>
+										<?php } else { ?>
+												<input type="button" disabled="disabled" name="verCuil" id="verCuilTitu" value="Verificar CUIL" onclick="location.href='listado.nueva.php?cuil=sc&cuilTitu='+document.forms.nuevaSolicitud.textCuilTitu.value+'#infoRecNac'"/>
+										<?php } ?>
 									</td>
 								</tr>
 								<tr>
@@ -415,16 +441,6 @@ if ($nroafil != "") {
 									 <td style="text-align: right;"><b>Edad: </b></td>
 									 <td><input type="text" name="edadRecNac" id="edadRecNac" readonly="readonly" style="background:#f5f5f5" size="3"></td>
 								</tr> 
-								<tr <?php echo $hiddenInfoRec ?>>
-									 <td style="text-align: right;"><b>* Tipo Consulta: </b></td>
-									 <td>
-										 <select id="tipoConsulta" name="tipoConsulta">
-										    <option value="0" selected="selected">Selecciones Valor</option>
-										    <option value="I">Internacion</option>
-										    <option value="A">Ambulatoria</option>
-										 </select>
-									</td> 
-								</tr>
 							</table>
 					<?php } ?>
 					    <br>

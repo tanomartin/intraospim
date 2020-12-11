@@ -4,7 +4,7 @@ require('lib/fpdf/fpdf.php');
 
 $id = $_GET['idconsulta'];
 $delcod = $_SESSION['delcod'];
-$sqlOrden = "SELECT o.*, DATE_FORMAT(o.fechaorden,'%d/%m/%Y') as fechaorden, nrcuil
+$sqlOrden = "SELECT o.*, DATE_FORMAT(o.fechaorden,'%d/%m/%Y') as fechaorden, DATE_FORMAT(o.fechavto,'%d/%m/%Y') as fechavto,nrcuil
 				FROM ordenesconsulta o 
 				WHERE delcod = ".$_SESSION['delcod']." and 
 				      id = $id and 
@@ -25,29 +25,12 @@ try {
 	
 	$pdf->Image('../img/logo.png',10,10,-400);
 	
-	$pdf->SetFont('Arial','B',16);
+	$pdf->SetFont('Arial','B',14);
 	$pdf->SetXY(30, 10);
-	$pdf->Cell(40,10,'ORDEN DE',0,0);
-	$pdf->SetXY(30, 18);
-	$pdf->Cell(40,10,'CONSULTA',0,0);
-
-	$tipoI = "";
-	$tipoA = "X";
-	if ($rowOrden['tipo'] == 'I') {
-		$tipoI = "X";
-		$tipoA = "";
-	}
-	
-	$pdf->SetFont('Arial','',14);
-	$pdf->SetXY(65, 10);
-	$pdf->Cell(38,10,'INTERNACION',0,0);
-	$pdf->SetXY(105, 10);
-	$pdf->Cell(6,8,$tipoI,1,1,'C');
-	
-	$pdf->SetXY(65, 18);
-	$pdf->Cell(38,10,'AMBULATORIO',0,0);
-	$pdf->SetXY(105, 18);
-	$pdf->Cell(6,8,$tipoA,1,1,'C');
+	$pdf->Cell(40,10,'ORDEN DE CONSULTA AMBULATORIA',0,0);
+	$pdf->SetFont('Arial','B',11);
+	$pdf->SetXY(31, 18);
+	$pdf->Cell(40,10,'Esta orden tiene validez hasta el dia '.$rowOrden['fechavto'],0,0);
 	
 	$pdf->SetFont('Arial','B',12);
 	$pdf->SetXY(115, 10);
@@ -61,7 +44,7 @@ try {
 	$pdf->SetXY(10, 30);
 	$pdf->Cell(50,6,"OBRA SOCIAL",1,1,'C');
 	$pdf->SetXY(60, 30);
-	$pdf->Cell(50,6,"CÓDIGO: Nº 11.100-1",1,1,'C');
+	$pdf->Cell(50,6,"RNOS 111.001",1,1,'C');
 	$pdf->SetXY(110, 30);
 	$pdf->Cell(70,6,"LUGAR DE EMISION",1,1,'C');
 	$pdf->SetXY(180, 30);
@@ -89,9 +72,9 @@ try {
 	$pdf->SetXY(100, 48);
 	$pdf->Cell(10,6,"SEXO",1,1,'C');
 	$pdf->SetXY(110, 48);
-	$pdf->Cell(60,6,"FECHA PRESTACION",1,1,'C');
-	$pdf->SetXY(170, 48);
-	$pdf->Cell(35,6,"CODIGO N.N.",1,1,'C');
+	$pdf->Cell(45,6,"FECHA PRESTACION",1,1,'C');
+	$pdf->SetXY(155, 48);
+	$pdf->Cell(50,6,"ESTABLECIMIENTO",1,1,'C');
 	
 	$pdf->SetFont('Arial','B',10);
 	$pdf->SetXY(10, 54);
@@ -101,26 +84,20 @@ try {
 	$pdf->SetXY(100, 54);
 	$pdf->Cell(10,8,$rowOrden['sexo'],1,1,'C');
 	$pdf->SetXY(110, 54);
-	$pdf->Cell(60,8,"",1,1);
-	$pdf->SetXY(170, 54);
-	$pdf->Cell(35,8,"",1,1);
+	$pdf->Cell(45,8,"",1,1);
+	$pdf->SetXY(155, 54);
+	$pdf->Cell(50,8,"",1,1);
 	
 	$pdf->SetFont('Arial','',8);
 	$pdf->SetXY(10, 62);
 	$pdf->Cell(100,6,"APELLIDO Y NOMBRE",1,1,'C');
 	$pdf->SetXY(110, 62);
-	$pdf->Cell(60,6,"ESTABLECIMIENTO",1,1,'C');
-	$pdf->SetXY(170, 62);
-	$pdf->SetFont('Arial','',7);
-	$pdf->Cell(35,6,"Nº ORDEN INTERNACION",1,1,'C');
-	
+	$pdf->Cell(95,6,"DIAGNOSTICO O CIE.10",1,1,'C');
 	$pdf->SetFont('Arial','B',10);
 	$pdf->SetXY(10, 68);
 	$pdf->Cell(100,8,$rowOrden['nombre'],1,1,'C');
 	$pdf->SetXY(110, 68);
-	$pdf->Cell(60,8,"",1,1,'C');
-	$pdf->SetXY(170, 68);
-	$pdf->Cell(35,8,"",1,1,'C');
+	$pdf->Cell(95,8,"",1,1,'C');
 	
 	$pdf->SetFont('Arial','',8);
 	$pdf->SetXY(10, 76);
@@ -134,17 +111,17 @@ try {
 	$pdf->SetXY(10, 102);
 	$pdf->Cell(195,6,"FIRMA RESPONSABLE OBRA SOCIAL",1,1,'C');
 	$pdf->SetXY(10, 108);
-	$pdf->Cell(195,20,"",1,1);
-	$pdf->SetFont('Arial','B',9);
-	$pdf->SetXY(10, 128);
-	$pdf->Cell(195,5,"LEY 25.649: TODA RECETA O PRESCRIPCION MEDICA, DEBERA EFECTUARSE EN",0,0,'C');
-	$pdf->SetXY(10, 132);
-	$pdf->Cell(195,5,"FORMA OBLIGATORIA EXPRESANDO EL NOMBRE GENERICO DEL MEDICAMENTO",0,0,'C');
+	$pdf->Cell(195,27,"",1,1);
 	$pdf->SetFont('Arial','',10);
 	$pdf->SetXY(10, 137);
 	$pdf->Cell(195,1,"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------",0,0,'C');
 	
-	$docname = "OC-".str_pad($id,6,0,STR_PAD_LEFT)."-".$rowOrden['nrcuil'].".pdf";
+	$cuilnombre = $rowOrden['nrcuil'];
+	if ($cuilnombre == "" ) {
+	    $cuilnombre = $rowOrden['nrcuiltitular'];
+	}
+	
+	$docname = "OC-".str_pad($id,6,0,STR_PAD_LEFT)."-".$cuilnombre.".pdf";
 	$pdf->Output('D',$docname);
 	
 	$dbname = "sistem22_intranet";
