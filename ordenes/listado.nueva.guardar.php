@@ -103,7 +103,7 @@ function validar(formulario) {
 				<h4>Resumen de Historia Clinica</h4>
 				<input style="display: none" readonly="readonly" type="text" value="<?php echo $sqlInsertOrden?>" size="150" name="insert" id="insert"/>
 				<p><input name="rhc" id="rhc" type="file" accept=".pdf"/></p>
-				<input style="margin-top: 10px" id="generar" class="btn btn-primary" name="generar" type="submit" id="generar" value="Generar Órden de Consulta"  />
+				<input style="margin-top: 10px" id="generar" class="btn btn-primary" name="generar" type="submit" value="Generar Órden de Consulta"  />
 			</form>
 			<h4>La Orden de consulta se generará pero no se podrá emitir hasta que se autorize desde el sector de Auditoría Médica Central</h4>
 			<div class="col-md-12 panel-footer">

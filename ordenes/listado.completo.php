@@ -1,9 +1,10 @@
 <?php include ("verificaSesionOrdenes.php"); 
 include_once ("lib/funciones.php");
-$primerDia = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
 $sqlOrden = "SELECT o.*, DATE_FORMAT(o.fechaorden,'%d/%m/%Y') as fechaorden, 
-						 DATE_FORMAT(o.fechaestado,'%d/%m/%Y %h:%i:%s') as fechaestado
+						 DATE_FORMAT(o.fechaestado,'%d/%m/%Y %h:%i:%s') as fechaestado,
+                         ordenesconsultarelacional.nroordenrelacional as relacional
 				FROM ordenesconsulta o
+                LEFT JOIN ordenesconsultarelacional on ordenesconsultarelacional.id = o.id
 				WHERE delcod = ".$_SESSION['delcod']."
 				ORDER BY id DESC";
 $resOrden = mysql_query($sqlOrden,$db);
@@ -85,7 +86,8 @@ function emitir(id, hrefa) {
 					if ($canOrden > 0) { 
 						while ($rowOrden = mysql_fetch_array($resOrden)) { ?>
 							<tr>
-								<td><?php echo $rowOrden['id'] ?></td>
+								<td><?php echo $rowOrden['id'];
+										  if ($rowOrden['relacional'] != NULL ) { echo " (".$rowOrden['relacional'].")"; } ?></td>
 								<td><?php echo $rowOrden['fechaorden'] ?></td>
 								<td><?php echo $rowOrden['nrcuil'] ?></td>
 								<td><?php echo $rowOrden['nombre'] ?></td>
@@ -94,9 +96,11 @@ function emitir(id, hrefa) {
 								<td align="center">
 								<?php if ($rowOrden['autorizada'] == 1 && $rowOrden['emitida'] == 0) { ?>
 										<i style="font-size: 25px; display: none" class="glyphicon glyphicon-info-sign" title="EMITIDA" id="icon<?php echo $rowOrden['id']?>"></i>
-										<a onclick="emitir('<?php echo $rowOrden['id']?>', this)">
-											<i style="font-size: 25px; cursor: pointer " class="glyphicon glyphicon-download" title="DESCARGAR"></i>
-										</a>
+								     <?php  if ($_SESSION['delcod'] != '2602') { ?>
+        										<a onclick="emitir('<?php echo $rowOrden['id']?>', this)">
+        											<i style="font-size: 25px; cursor: pointer " class="glyphicon glyphicon-download" title="DESCARGAR"></i>
+        										</a>
+    							      <?php } ?>
 								<?php } else {
 										  if ($rowOrden['emitida'] == 1) { ?>
 											 <i style="font-size: 25px" class="glyphicon glyphicon-info-sign" title="EMITIDA (<?php echo $rowOrden['fechaestado'] ?>)"></i>
@@ -107,12 +111,15 @@ function emitir(id, hrefa) {
 											  	   if ($rowOrden['autorizada'] == 2) { ?> 
 														<i style="font-size: 25px; color: red" class="glyphicon glyphicon-remove-sign"  title="RECHAZADA (<?php echo $rowOrden['fechaestado'] ?>)"></i>
 											 <?php } else {
-											  			if ($rowOrden['autorizada'] == 3) { ?>
+											            if ($rowOrden['autorizada'] == 3 && $_SESSION['delcod'] != '2602') { ?>
 											  				<i style="font-size: 25px; display: none" class="glyphicon glyphicon-info-sign" title="EMITIDA" id="icon<?php echo $rowOrden['id']?>"></i>
 											  				<a onclick="emitir('<?php echo $rowOrden['id']?>', this)"> 
 											  					<i style="font-size: 25px; color: green; cursor: pointer" class="glyphicon glyphicon-download" title="APROBADA (<?php echo $rowOrden['fechaestado'] ?>) - DESCARGAR"></i>
 											  				</a>
 											  	  <?php }
+											  	        if ($rowOrden['autorizada'] == 3 && $_SESSION['delcod'] == '2602') { ?>
+											  				<i style="font-size: 25px;  color: green;" class="glyphicon glyphicon-info-sign" title="APROBADA PERMISO DE EMISION" id="icon<?php echo $rowOrden['id']?>"></i>
+											  	 <?php  }
 											 	   }
 										  	   }
 								    	  }							  
@@ -154,8 +161,12 @@ function emitir(id, hrefa) {
 				<i style="font-size: 15px;" class="glyphicon glyphicon-info-sign"></i> EMITIDA -
 				<i style="font-size: 15px;" class="glyphicon glyphicon-time"></i> ESPERANDO AUTORIZACION -
 				<i style="font-size: 15px; color:red" class="glyphicon glyphicon-remove-sign"></i> RECHAZADA -
-				<i style="font-size: 15px; color: green;" class="glyphicon glyphicon-download"></i> APROBADA DESCARGAR -
-				<i style="font-size: 15px; color: blue;" class="glyphicon glyphicon-download"></i> DESCARGAR
+				<?php if ($_SESSION['delcod'] != '2602') { ?>
+						<i style="font-size: 15px; color: green;" class="glyphicon glyphicon-download"></i> APROBADA DESCARGAR -
+						<i style="font-size: 15px; color: blue;" class="glyphicon glyphicon-download"></i> DESCARGAR
+				<?php } else { ?>
+						<i style="font-size: 15px; color: green;" class="glyphicon glyphicon-info-sign"></i> APROBADA PERMISO DE EMISION
+				<?php } ?>
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
