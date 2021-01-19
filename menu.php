@@ -10,6 +10,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto:500,700' rel='stylesheet' type='text/css'/>
 <script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="include/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="css/style.css" />
 
 <style>
@@ -34,8 +35,9 @@
 						<div class="panel-body">
 							<i style="font-size: 100px; color: red" class="glyphicon glyphicon-asterisk"></i>
 							<p><b style="color: blue">CANAL DE COMUNICACION INSTITUCIONAL</b></p>
-							<p>Para mantenerse actualizado acerca de las comunicaciones y contenidos técnicos ingrese cotidianamente aquí</p>
+							<p>Para mantenerse actualizado acerca de las comunicaciones y contenidos técnicos ingrese cotidianamente aquí</p>							
 						</div>
+						<h4 style="color: maroon;" class="animate__animated animate__pulse animate__faster animate__infinite">NUEVO CONTENIDO AQUI<br><i class="glyphicon glyphicon-arrow-down"></i></h4>
 						<ul class="list-group">
 							<li class="list-group-item"><a href="coronavirus.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>

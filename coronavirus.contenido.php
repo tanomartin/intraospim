@@ -32,6 +32,56 @@ $row = mysql_fetch_assoc($result);
 			<div class="row" style="margin: 15px">
 				
 				<div class="row" style="margin: 15px">
+					<h3>VIDEOTUTORIALES ORDENES DE CONSULTA</h3>
+					<h4>Texto general para todos los videos</h4>
+					<div class="col-md-6">
+                      	<video width="100%" controls>
+                          <source src="files/videos/01-Tutorial cargar ordenes de consulta.mp4" type="video/mp4">
+                        </video>
+                    </div>	
+					<div class="col-md-6">
+						<p align="justify">
+							Texto del video 1
+						</p>
+						<p align="justify">
+        					A la izquierda de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como utilizar el programa.
+        				</p>
+					</div>
+				</div>
+				<div class="row" style="margin: 15px">
+					<div class="col-md-6">
+						<p align="justify">
+							Texto del video 2
+						</p>
+						<p align="justify">
+        					A la derecha de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como utilizar el programa.
+        				</p>
+					</div>
+					<div class="col-md-6">
+                      	<video width="100%" controls>
+                          <source src="files/videos/02-Tutorial beneficiario recien nacido.mp4" type="video/mp4">
+                        </video>
+                    </div>	
+				</div>
+				<div class="row" style="margin: 15px">	
+					<div class="col-md-6">
+                      	<video width="100%" controls>
+                          <source src="files/videos/03-Tutorial 5ta orden de consulta.mp4" type="video/mp4">
+                        </video>
+                    </div>	
+					<div class="col-md-6">
+						<p align="justify">
+							Texto del video 3
+						</p>
+						<p align="justify">
+        					A la izquierda de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como utilizar el programa.
+        				</p>
+					</div>
+				</div>
+				
+				<hr>
+				
+				<div class="row" style="margin: 15px">
         			<h3>Impresora PDF. Convertir documentos a PDF compatible con el modulo de Autorizaciones</h3>
         			<div class="col-md-6">
         				<p align="justify">
