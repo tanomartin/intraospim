@@ -69,7 +69,18 @@ $registrosNOOK = unserialize(urldecode($NOOKSerializado));
     	});
     	
     	function validar(formulario) {
-    		$.blockUI({ message: "<h1>Guardando Ordenes de Consulta. Aguarde por favor...</h1>" });
+        	for (var i=0;i<formulario.elements.length;i++) {
+				if (formulario.elements[i].name.indexOf("rhc") !== -1) {
+					filisize = formulario.elements[i].files.item(0).size;
+					filisize = (filisize / 1024);
+					if (filisize > 2048) {
+						alert("El resumen de historia clinica no puede superar los 2 MB");
+						formulario.elements[i].focus();
+						return false;
+					}
+				}
+        	}
+        	$.blockUI({ message: "<h1>Guardando Ordenes de Consulta. Aguarde por favor...</h1>" });
     		formulario.importar.disabled = true;
     		return true;
     	}
@@ -111,15 +122,15 @@ $registrosNOOK = unserialize(urldecode($NOOKSerializado));
     							<td><?php echo $arrayRegistro[9] ?></td>
     					  		<td>
         					  <?php if ($arrayRegistro[9] == 0 ) { ?>
-        							<input name="rhc<?php echo $nroordenref?>" id="rhc<?php echo $nroordenref?>" type="file" accept=".pdf" required="required"/></p>	
+        							<input name="rhc<?php echo $nroordenref?>" id="rhc<?php echo $nroordenref?>" type="file" accept=".pdf" required="required" />
         					  <?php } ?>
         					 	</td>
     				<?php }?>
     					  </tbody>
     					</table>
-    					<input name="archivo" type="hidden" value="<?php echo $_POST['archivo'] ?>"/>
-    					<input name="regOK" type="hidden" value="<?php echo $_POST['regOK'] ?>"/>
-    					<input style="margin-top: 10px" id="importar" class="btn btn-primary" name="importar" type="submit" value="Importar" />
+    					<input name="archivo" id="archivo" type="hidden" value="<?php echo $_POST['archivo'] ?>"/>
+    					<input name="regOK" id="regOK" type="hidden" value="<?php echo $_POST['regOK'] ?>"/>
+    					<input style="margin-top: 10px" id="importar" class="btn btn-primary" name="importar" type="submit" value="Importar"/>
 				</form>
 				<?php }?>	
 				
