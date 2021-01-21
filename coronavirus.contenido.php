@@ -32,8 +32,17 @@ $row = mysql_fetch_assoc($result);
 			<div class="row" style="margin: 15px">
 				
 				<div class="row" style="margin: 15px">
-					<h3>VIDEOTUTORIALES ORDENES DE CONSULTA</h3>
-					<h4>Texto general para todos los videos</h4>
+					<h3>Modulo de Ordenes de Consulta</h3>
+					<p align="justify">El nuevo módulo O.C. OSPIM,  sistema de Órdenes de Consulta Online, es una herramienta pensada para atender las necesidades de consulta médica ambulatoria de los beneficiarios. Esta herramienta, 
+						funcional a través de la Intranet,  posibilitará a las distintas delegaciones de la O.S.P.I.M. gestionar  la obtención por parte de los beneficiarios de la Orden de Consulta, permitiendo a las mismas implementar distintas estrategias de atención, 
+						ya sea de tipo presencial o a distancia. Dichas estrategias podrán organizarse según los requerimientos y posibilidades operativas de cada delegación, basándose en el concepto de Orden de Consulta electrónica, a través de la generación de 
+						un documento digital (archivo de tipo .PDF) que puede ser impreso para su entrega presencial o remitido por lo distintos canales de comunicación actuales (ej: correo electrónico y whatsapp).</p>
+					<p align="justify">A continuación encontrarán una serie de video tutoriales que les permitirá obtener una referencia visual e instruirán sobre las características principales y el uso del módulo O.C. OSPIM. 
+						Para quienes, luego de introducirse a través de estos video tutoriales, aún presenten dudas e  inquietudes  acerca del uso y operatividad, el Depto. de Sistemas organizará oportunamente una serie de videos talleres online a modo de apoyo. 
+						Los mismos se organizarán a través de la plataforma de reunión virtual Zoom y en tandas sucesivas de no más de seis asistentes y con la intención exclusiva de atender situaciones muy específicas de funcionalidad e implementación. 
+						Les solicitamos tener muy en cuenta esta prerrogativa al momento de inscribirse. Para inscribirse en ellos, deberán enviar un correo electrónico a la dirección intranet@ospim.com.ar con el asunto “Video Taller Online Modulo O.C. OSPIM” 
+						identificándose con Usuario de Ingreso a la Intranet, Nombre de la Delegación, Nombre del asistente (podrán presenciar más de una persona pero con un único canal de conexión y un solo participante audio parlante), y una descripción breve 
+						del motivo por el que se solicita la participación en los video talleres. Su participación le será informada a través del mismo medio, indicándose día y horario del taller programado.</p>
 					<div class="col-md-6">
                       	<video width="100%" controls>
                           <source src="files/videos/01-Tutorial cargar ordenes de consulta.mp4" type="video/mp4">
