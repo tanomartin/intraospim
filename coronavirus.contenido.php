@@ -49,21 +49,28 @@ $row = mysql_fetch_assoc($result);
                         </video>
                     </div>	
 					<div class="col-md-6">
+						<h4>Como generar ordenes de consulta</h4>
 						<p align="justify">
-							Texto del video 1
+        					A la izquierda de la pantalla te dejamos un video explicativo que te muestra, paso a paso, 
+        					el procedimiento general para la generación de una orden de consulta. En él se observa como 
+        					utilizando el CUIL el sistema identifica automáticamente y en forma directa al beneficiario, 
+        					sin importar que se tratase de un titular o un familiar. El sistema permite generar y 
+        					administrar hasta cinco ordenes de consulta por beneficiario ( cinco ordenes de consulta por CUIL) 
+        					por mes, cuatro de generación directa y libre, y una quinta que requerirá de un proceso de autorización 
+        					atendido por el departamento de Auditoria y Autorizaciones de la O.S.P.I.M. central.
 						</p>
-						<p align="justify">
-        					A la izquierda de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como utilizar el programa.
-        				</p>
 					</div>
 				</div>
 				<div class="row" style="margin: 15px">
 					<div class="col-md-6">
+						<h4>Como generar una orden de consulta para un beneficiario recién nacido</h4>
 						<p align="justify">
-							Texto del video 2
-						</p>
-						<p align="justify">
-        					A la derecha de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como utilizar el programa.
+        					Los hijos recién nacidos pueden presentar algunas situaciones particulares como: ausencia de CUIL, 
+        					documentación en trámite y/o falta de empadronamiento en el registro de beneficiarios de la O.S.P.I.M. 
+        					Para cubrir estas carencias se ha formulado una funcionalidad específica para el caso. En este video, 
+        					a la derecha de este texto explicativo, se visualiza el procedimiento que te muestra como generar una 
+        					orden de consulta para recién nacidos, utilizando como datos identificatorios el CUIL del beneficiario 
+        					titular (mama, papa o titular a cargo) más datos propios del beneficiario recién nacido.
         				</p>
 					</div>
 					<div class="col-md-6">
@@ -79,11 +86,18 @@ $row = mysql_fetch_assoc($result);
                         </video>
                     </div>	
 					<div class="col-md-6">
+						<h4>Generación de quinta orden de consulta en el mes para un mismo beneficiario</h4>
 						<p align="justify">
-							Texto del video 3
-						</p>
-						<p align="justify">
-        					A la izquierda de la pantalla te dejamos un video explicativo que te muestra, paso a paso, como utilizar el programa.
+        					En este video, a la izquierda de este texto, te mostramos el procedimiento para generar una quinta orden 
+        					de consulta en el mes para un mismo beneficiario (quinta orden de consulta para un CUIL). 
+        					Esta circunstancia requiere de la intervención del departamento de Auditoria y Autorizaciones de 
+        					la O.S.P.I.M. central, solicitud que para ser atendida debe ser acompañada de un resumen de historia 
+        					clínica, la cual será provista por la delegación, cargándola a través del mismo modulo O.C. OSPIM en 
+        					formato de archivo digital, documento tipo PDF (referir a contenido técnico dentro de esta misma página 
+        					denominado “Impresora PDF. Convertir documentos a PDF compatible con el modulo de Autorizaciones” que 
+        					es aplicable también al caso). La solicitud quedara en suspenso hasta ser atendida, dependiendo, 
+        					la generación de la quinta orden de consulta, de la aprobación o rechazo que será comunicada por 
+        					intermedio del mismo modulo O.C. OSPIM.
         				</p>
 					</div>
 				</div>
