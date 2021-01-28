@@ -23,7 +23,7 @@ try {
 	$pdf = new FPDF('P','mm','Letter');
 	$pdf->AddPage();
 	
-	$pdf->Image('../img/logo.png',10,10,-400);
+	$pdf->Image('logo.png',10,10,-400);
 	
 	$pdf->SetFont('Arial','B',14);
 	$pdf->SetXY(30, 10);
@@ -109,7 +109,8 @@ try {
 	$pdf->SetXY(110, 82);
 	$pdf->Cell(95,20,"",1,1);
 	$pdf->SetXY(10, 102);
-	$pdf->Cell(195,6,"FIRMA RESPONSABLE OBRA SOCIAL",1,1,'C');
+	$pdf->Cell(195,6,"AUTORIZADO POR OBRA SOCIAL",1,1,'C');
+	$pdf->Image('sello.png',90,110,-400);
 	$pdf->SetXY(10, 108);
 	$pdf->Cell(195,27,"",1,1);
 	$pdf->SetFont('Arial','',10);
