@@ -2,8 +2,10 @@
 include ("verificaSesionAutorizaciones.php");
 	
 
-	// maximo 512KB
-	$maxSize = 524288;
+    // maximo 512KB
+    // $maxSize = 524288;
+    // maximo 1536KB
+    $maxSize = 1572864;
 	$tipoPermitidoE = "application/pdf";
 	$tipoPermitidoCM = "application/pdf";
 	$fechaSolicitud = date("Y/m/d"); 
