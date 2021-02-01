@@ -65,27 +65,67 @@ if (isset($_GET['cuil'])) {
        				$codigo = $row['codpar'];
        				$nrodoc = $row['nrodoc'];
        				$disabledSubmit = "";
-       			} else { 
-       				$cartel = 1;
-       				$codigo = -1;
-       				if (isset($_GET['cuilTitu'])) {
-       					$cuilTitu = $_GET['cuilTitu'];
-       					$queryTitu = "SELECT t.nombre, t.nrafil
+       			} else {
+       			    $queryBajaTit = "SELECT t.*, 
+        					           DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
+        					           DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc 
+                                     FROM bajatit t WHERE nrcuil = '$cuil' AND delcod = $delcod";
+       			    $queryBajaFam = "SELECT f.*, 
+        					           DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
+        					           DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc 
+                                    FROM bajafam f WHERE nrcuil = '$cuil' AND delcod = $delcod";
+       			    $result = mysql_query($queryBajaTit,$db); 
+       			    $cant = mysql_num_rows($result);
+       			    if ($cant != 0) {
+       			        $row = mysql_fetch_array($result);
+       			        $nombre = $row['nombre'];
+       			        $nroafil = $row['nrafil'];
+       			        $fecnac = $row['fecnac'];
+       			        $edad = $row['edad'];
+       			        $sexo = $row['ssexxo'];
+       			        $nrodoc = $row['nrodoc'];
+       			        $tipo = "Titular";
+       			        $codigo = 0;
+       			        $cartel = 2;
+       			    } else {
+       			        $result = mysql_query($queryBajaFam,$db); 
+       			        $cant = mysql_num_rows($result);
+       			        $cant = mysql_num_rows($result);
+       			        if ($cant != 0) {
+       			            $row = mysql_fetch_array($result);
+       			            $nombre = $row['nombre'];
+       			            $nroafil = $row['nrafil'];
+       			            $nroord = $row['nroord'];
+       			            $fecnac = $row['fecnac'];
+       			            $edad = $row['edad'];
+       			            $sexo = $row['ssexxo'];
+       			            $tipo = "Familiar";
+       			            $codigo = $row['codpar'];
+       			            $nrodoc = $row['nrodoc'];
+       			            $cartel = 2;
+       			        } else { 
+       			            $cartel = 1;
+       			            $codigo = -1;
+       			            if (isset($_GET['cuilTitu'])) {
+       			                $cuilTitu = $_GET['cuilTitu'];
+       			                $queryTitu = "SELECT t.nombre, t.nrafil
        									FROM titular t
        									WHERE nrcuil = $cuilTitu AND delcod = $delcod";
-       					$resultTitu = mysql_query($queryTitu,$db);
-       					$cantTitu = mysql_num_rows($resultTitu);
-       					if ($cantTitu != 0) {
-       						$rowTitu = mysql_fetch_array($resultTitu);
-       						$nombreTitu = $rowTitu['nombre'];
-       						$nroafilTitu = $rowTitu['nrafil'];
-       						$cartelTitu = 0;
-       						$disabledSubmit = "";
-       						$hiddenInfoRec = "";
-       					} else {
-       						$cartelTitu = 1;
-       					}
-       				} 		
+       			                $resultTitu = mysql_query($queryTitu,$db);
+       			                $cantTitu = mysql_num_rows($resultTitu);
+       			                if ($cantTitu != 0) {
+       			                    $rowTitu = mysql_fetch_array($resultTitu);
+       			                    $nombreTitu = $rowTitu['nombre'];
+       			                    $nroafilTitu = $rowTitu['nrafil'];
+       			                    $cartelTitu = 0;
+       			                    $disabledSubmit = "";
+       			                    $hiddenInfoRec = "";
+       			                } else {
+       			                    $cartelTitu = 1;
+       			                }
+       			            } 	
+       			        }
+       			    }		
        			}
        		}
         } 
@@ -348,7 +388,7 @@ if ($nroafil != "") {
 								<td style="text-align: right;"><b>Discapacitado: </b></td>
 								<td><span id="disca"><?php echo $disca ?></span></td>
 							</tr>
-							<?php if ($cartel == 0) {  ?>
+							<?php if (($cartel == 0) || ($cartel == 2)) {  ?>
 									<tr>
 						     			<td style="text-align: right;"><b>* Apellido y Nombre: </b></td>
 						     			<td><input name="textNombre" type="text" id="textNombre" value="<?php echo $nombre ?>" size="30" readonly="readonly" style="background:#f5f5f5"/></td>
@@ -358,8 +398,10 @@ if ($nroafil != "") {
 				   <?php $tableRecNac = 'display: none';
 						 $recNac = '';
 						 $recNacDisabled = '';
+						 if ($cartel == 2) { ?>
+						     <h4 style='color:red'>Beneficiario con C.U.I.L. <?php echo $cuil ?> se encuentra inactivo<br>No se podrá generar la orden de consulta</h4>
+				   <?php }
 						 if ($cartel == 1) { 
-	
 						 	$tableRecNac = '';
 						 	if (isset($_GET['cuilTitu'])) {
 						 	  	$recNac = 'selected="selected"';
@@ -415,7 +457,7 @@ if ($nroafil != "") {
 						<?php if ($cartelTitu == 1) { ?>
 								<tr>
 									<td colspan="2" style="text-align: center">
-										<b style='color:red'> Titular <?php echo $cuilTitu ?> no econtrado. No se podrá genrar la Órden de consulta</b>
+										<b style='color:red'> Titular <?php echo $cuilTitu ?> no se encontro empadronado o activo.<br>No se podrá generar la Órden de consulta</b>
 									</td>
 								</tr>	
 						<?php } ?>
