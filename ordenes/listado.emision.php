@@ -130,7 +130,7 @@ try {
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$dbh->beginTransaction();
 	
-	$fechaemision = date("Y-m-d h:i:s");
+	$fechaemision = date("Y-m-d H:i:s");
 	$sqlUpdateOrden = "UPDATE ordenesconsulta SET emitida = 1, fechaestado = '$fechaemision' WHERE id = $id and delcod = $delcod";
 	$dbh->exec($sqlUpdateOrden);
 	
