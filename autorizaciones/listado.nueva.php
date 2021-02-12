@@ -18,11 +18,11 @@ $edad = "";
 if (isset($_GET['cuil'])) {
 	$cuil = $_GET['cuil'];
 	if ($delcod >= "4000") {
-		$queryTitu = "select t.*, d.nombre as delegacion, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from titular t, delega d where t.nrcuil = $cuil and t.delcod = d.delcod";
-		$queryFami = "select f.*, d.nombre as delegacion, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from familia f, delega d where f.nrcuil = $cuil and f.delcod = d.delcod";
+		$queryTitu = "select t.*, d.nombre as delegacion, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac from titular t, delega d where t.nrcuil = $cuil and t.delcod = d.delcod";
+		$queryFami = "select f.*, d.nombre as delegacion, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac from familia f, delega d where f.nrcuil = $cuil and f.delcod = d.delcod";
 	} else {
-		$queryTitu = "select t.*, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from titular t where nrcuil = $cuil and delcod = $delcod";
-		$queryFami = "select f.*, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac from familia f where nrcuil = $cuil and delcod = $delcod";
+		$queryTitu = "select t.*, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac from titular t where nrcuil = $cuil and delcod = $delcod";
+		$queryFami = "select f.*, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac from familia f where nrcuil = $cuil and delcod = $delcod";
 	}
 	if ($cuil != NULL) { 
 		$result = mysql_query($queryTitu,$db); 

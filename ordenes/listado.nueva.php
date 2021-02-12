@@ -28,12 +28,12 @@ if (isset($_GET['cuil'])) {
 	if ($cuil != 'sc' || isset($_GET['cuilTitu'])) {
        	$queryTitu = "SELECT t.*, 
         					 DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
-        					 DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc
+        					 DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, ssexxo, nrodoc
         				  FROM titular t 
         				  WHERE nrcuil = '$cuil' AND delcod = $delcod";
         $queryFami = "SELECT f.*, 
         					 DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
-        					 DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc
+        					 DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, ssexxo, nrodoc
         			  FROM familia f 
         			  WHERE nrcuil = '$cuil' AND delcod = $delcod";
         if ($cuil != NULL) { 
@@ -68,11 +68,11 @@ if (isset($_GET['cuil'])) {
        			} else {
        			    $queryBajaTit = "SELECT t.*, 
         					           DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
-        					           DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc 
+        					           DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, ssexxo, nrodoc 
                                      FROM bajatit t WHERE nrcuil = '$cuil' AND delcod = $delcod";
        			    $queryBajaFam = "SELECT f.*, 
         					           DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(fecnac)), '%Y')+0 as edad, 
-        					           DATE_FORMAT(fecnac,'%m/%d/%Y') as fecnac, ssexxo, nrodoc 
+        					           DATE_FORMAT(fecnac,'%d/%m/%Y') as fecnac, ssexxo, nrodoc 
                                     FROM bajafam f WHERE nrcuil = '$cuil' AND delcod = $delcod";
        			    $result = mysql_query($queryBajaTit,$db); 
        			    $cant = mysql_num_rows($result);
