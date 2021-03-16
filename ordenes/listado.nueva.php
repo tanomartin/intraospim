@@ -311,9 +311,8 @@ if ($nroafil != "") {
 				return false;
 			}
 		}
-		
-		$.blockUI({ message: "<h1>Generando Orden de Consulta. Aguarde por favor...</h1>" });
 		formulario.generar.disabled = true;
+		$.blockUI({ message: "<h1>Generando Orden de Consulta. Aguarde por favor...</h1>" });
 		return true;
 	}
 	
