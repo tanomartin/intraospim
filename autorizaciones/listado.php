@@ -96,7 +96,7 @@ $(function() {
 						</tr>	
 					<?php } 
 				} else { ?>
-					<tr><td colspan="6" style="text-align: center;">No Existen autorizaciones</td></tr>
+					<tr><td colspan="7" style="text-align: center;">No Existen autorizaciones</td></tr>
 		  <?php } ?>
 				  </tbody>
 				</table>
