@@ -140,7 +140,7 @@ function emitir(id, hrefa) {
 							</tr>	
 						<?php } 
 					} else { ?>
-						<tr><td colspan="6" style="text-align: center;">No Existen Órdenes de Consulta en este mes</td></tr>
+						<tr><td colspan="7" style="text-align: center;">No Existen Órdenes de Consulta en este mes</td></tr>
 			  <?php } ?>
 					  </tbody>
 					</table>

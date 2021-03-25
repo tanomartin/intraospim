@@ -4,15 +4,30 @@ $archivo = $_FILES['txtImp'];
 $archivo_name = $archivo['name'];
 $archivo_type = $archivo['type'];
 
-function validateDate($date, $format = 'YmdHis') {
-    $d = DateTime::createFromFormat($format, $date);
-    return $d && $d->format($format) == $date;
+function validarFecha($fecha) {
+    $anoarch = substr($fecha,0,4);
+    $mesarch = substr($fecha,4,2);
+    $diaarch = substr($fecha,6,2);
+    return checkdate($mesarch,$diaarch,$anoarch);
 }
 
-function validateDateShort($date, $format = 'Ymd') {
-    $d = DateTime::createFromFormat($format, $date);
-    return $d && $d->format($format) == $date;
+function calcularDiasVto($fechaOrden, $fechaVto) {
+    $anoorden = substr($fechaOrden,0,4);
+    $mesorden = substr($fechaOrden,4,2);
+    $diaorden = substr($fechaOrden,6,2);
+    $fechaOrdenFormato = $anoorden."-".$mesorden."-".$diaorden;
+    
+    $anovto = substr($fechaVto,0,4);
+    $mesvto = substr($fechaVto,4,2);
+    $diavto = substr($fechaVto,6,2);
+    $fechaVtoFormato = $anovto."-".$mesvto."-".$diavto;
+    
+    $dias = (strtotime($fechaOrdenFormato)-strtotime($fechaVtoFormato))/86400;
+    $dias = abs($dias); 
+    $dias = floor($dias);
+    return ($dias);
 }
+
 
 function controlarNombreArc($nombre,$type,$db) {
     $ext="text";
@@ -22,8 +37,8 @@ function controlarNombreArc($nombre,$type,$db) {
             if ($inicio == 'OC') {
                 $delcod = substr($nombre,2,4);
                 if ($delcod == '2602') {
-                    $timestampArc = substr($nombre,6,14);
-                    if (validateDate($timestampArc)) {
+                    $fechaArc = substr($nombre,6,8);
+                    if (validarFecha($fechaArc)) {
                         $sqlControlSubida = "SELECT count(id) as cantidad FROM ordenesconsultarelacional WHERE archivosubida = '$nombre'";
                         $resControlSubida = mysql_query($sqlControlSubida,$db);
                         $rowControlSubida = mysql_fetch_assoc($resControlSubida);
@@ -34,7 +49,7 @@ function controlarNombreArc($nombre,$type,$db) {
                         }                   
                     } else {
                         return array(1,"Error en la fecha de generacion del archivo. Es una fecha invalida");
-                    }
+                   }
                 } else {
                     return array(1,"Error en el codigo de delegacion");
                 }
@@ -70,7 +85,7 @@ function verificarCampo($registro,$numReg,$db) {
     }
     
     $fechaorden = $regArray[2];
-    if (!validateDateShort($fechaorden)) {
+    if (!validarFecha($fechaorden)) {
         return array($numeroLinea, "Error en la fecha de la orden de consulta");
     }
     
@@ -131,11 +146,8 @@ function verificarCampo($registro,$numReg,$db) {
     }
     
     $fechavto = $regArray[7];
-    if (validateDateShort($fechavto)) {
-        $date1 = DateTime::createFromFormat('Ymd', $fechavto);
-        $date2 = DateTime::createFromFormat('Ymd', $fechaorden);
-        $diff = $date2->diff($date1);
-        $dias =  $diff->days;
+    if (validarFecha($fechavto)) {
+        $dias = calcularDiasVto($fechaorden,$fechavto);
         if ($dias > 31) {
             return array($numeroLinea, "Error en la fecha de vencimiento. La fecha de vencimiento no puede superar los 30 dias de la fecha de la orden");
         }
@@ -150,8 +162,8 @@ function verificarCampo($registro,$numReg,$db) {
 
     $fechaemision = $regArray[10];
     if ($autorizado == 1) {
-        if (!validateDateShort($fechaemision)) {
-            return array($numeroLinea, "Error en la fecha de emision. Fecha Invalidad");
+        if (!validarFecha($fechaemision)) {
+           return array($numeroLinea, "Error en la fecha de emision. Fecha Invalidad");
         }
     } else {
         if ($fechaemision != '') {
