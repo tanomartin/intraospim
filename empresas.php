@@ -1,4 +1,7 @@
-<?php include ("verificaSesion.php"); ?>
+<?php include ("verificaSesion.php"); 
+$sql = "select * from empresa where delcod = ".$_SESSION['delcod']." order by nrcuit";
+$result = mysql_query($sql,$db);
+$cant = mysql_num_rows($result); ?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,7 +34,7 @@
 			theme: 'blue', 
 			widthFixed: true, 
 			widgets: ["zebra", "filter"], 
-			headers:{2:{sorter:false, filter:false},3:{sorter:false, filter:false},4:{sorter:false, filter:false}},
+			headers:{3:{sorter:false, filter:false},4:{sorter:false, filter:false},5:{sorter:false, filter:false}},
 			widgetOptions : { 
 				filter_cssFilter   : '',
 				filter_childRows   : false,
@@ -66,21 +69,21 @@
 				  	<thead>
 					  <tr>
 					  	<th>CUIT</th>
-					    <th>Raz&oacute;n Social </th>
+					    <th>Razón Social </th>
+					    <th>Fecha Inicio </th>
 					    <th>Ficha</th>
 						<th>Nomina</th>
 						<th>Cuenta</th>
 					  </tr>
 				  	</thead>
 				  	<tbody>
-					<?php
-					$sql = "select * from empresa where delcod = ".$_SESSION['delcod']." order by nrcuit";
-					$result = mysql_query($sql,$db);
-					$cant = mysql_num_rows($result);
-					while ($row=mysql_fetch_array($result)) { ?>
+				<?php while ($row=mysql_fetch_array($result)) { 
+						$fechaini = $row['fecini'];
+						if ($fechaini == "0000-00-00") { $fechaini = "-";} ?>
 						<tr>
 							<td><?php echo $row['nrcuit'] ?></td>
 							<td><?php echo $row['nombre'] ?></td>
+							<td><?php echo $fechaini ?></td>
 							<td align="center"><a href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 							<td align="center"><a href="javascript:mypopup('empresas.nomina.php?nrcuit=<?php echo $row['nrcuit'] ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-user"></i></a></td>
 							<td align="center"><a href="javascript:mypopup('empresas.sabana.php?nrcuit=<?php echo $row['nrcuit'] ?>')"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
